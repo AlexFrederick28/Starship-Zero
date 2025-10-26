@@ -7,7 +7,7 @@ using UnityEngine.InputSystem.LowLevel;
 /// </summary>
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed;
+    [SerializeField] private PlayerBase player;
     private Rigidbody2D rb;
     [SerializeField] private Vector2 moveInput;
 
@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        rb.linearVelocity = moveInput * moveSpeed;
+        rb.linearVelocity = moveInput * player.speed;
         MoveAnimations();
     }
 
@@ -30,5 +30,6 @@ public class PlayerMovement : MonoBehaviour
     public void MoveAnimations()
     {
         // use vector2 move input to set the correct animation (Idle, Up, Down, left, Right)
+
     }
 }

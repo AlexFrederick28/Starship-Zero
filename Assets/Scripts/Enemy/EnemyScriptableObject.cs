@@ -7,5 +7,5 @@ public class EnemyScriptableObject : ScriptableObject
     public float health;
     public float damage;
     public float speed;
-
+    public int level;
 }

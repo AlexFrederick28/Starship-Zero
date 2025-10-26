@@ -16,3 +16,4 @@ MonoBehaviour:
   health: 25
   damage: 3
   speed: 3
+  level: 1
