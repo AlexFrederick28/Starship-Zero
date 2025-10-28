@@ -15,5 +15,5 @@ MonoBehaviour:
   enemyName: Mite
   health: 25
   damage: 3
-  speed: 3
+  speed: 0.3
   level: 1

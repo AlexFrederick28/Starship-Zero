@@ -5,16 +5,41 @@ public class EnemyBase : MonoBehaviour
     [Header("Base Settings")]
     [SerializeField] private EnemyScriptableObject enemyType;
     [SerializeField] private string enemyName;
-    [SerializeField] private float health;
-    [SerializeField] private float damage;
-    [SerializeField] private float speed;
-    [SerializeField] private int level;
-    [SerializeField] private float attackCooldown;
+    [SerializeField] private float currentHealth;
+    [SerializeField] protected float maxHealth;
 
-    private void Start()
+    public float Health
+    {
+        get
+        {
+            return currentHealth;
+        }
+        set
+        {
+            if (value > maxHealth)
+            {
+                value = maxHealth;
+            }
+            if (value < 0)
+            {
+                value = 0;
+            }
+
+            currentHealth = value;
+        }
+    }
+
+    [SerializeField] protected float damage;
+    [SerializeField] protected float speed;
+    [SerializeField] protected int level;
+    [SerializeField] protected float attackCooldown;
+    [SerializeField] protected float cooldownTimer;
+    [SerializeField] protected bool readyToAttack;
+
+    protected virtual void Start()
     {
         enemyName = enemyType.enemyName;
-        health = enemyType.health;
+        Health = enemyType.health;
         damage = enemyType.damage;
         speed = enemyType.speed;
         level = enemyType.level;
@@ -25,22 +50,33 @@ public class EnemyBase : MonoBehaviour
         LevelScale();
     }
 
-    private void LevelScale()
+    protected virtual void Update()
+    {
+        MoveToPlayer(FindAnyObjectByType<PlayerBase>().transform);
+        AttackCooldown();
+    }
+
+    protected void LevelScale()
     {
         // scales enemy stats with levels to adjust game difficulty
 
     }
 
-    protected void Attack()
+    protected virtual void Attack()
     {
-        // enemy attack player
+        // enemy attack player - mostly used for animations
 
+        Debug.Log("Enemy used Attack!");
+        cooldownTimer = 0f;
+        readyToAttack = false;
     }
 
-    protected void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         // enemy take damage from player
 
+        Health -= damage;
+        Debug.Log(name + " took " + damage + " damage!");
     }
 
     protected void Death()
@@ -49,8 +85,48 @@ public class EnemyBase : MonoBehaviour
 
     }
 
-    protected void MoveToPlayer()
+    protected void MoveToPlayer(Transform playerTransform)
     {
         // locate player and move directly to them at a constant speed
+
+        Vector3 targetPosition = playerTransform.position - transform.position;
+        transform.position += targetPosition * speed * Time.deltaTime;
+    }
+
+    protected void AttackCooldown()
+    {
+        if (readyToAttack == false)
+        {
+            cooldownTimer += Time.deltaTime;
+        }
+        if (cooldownTimer > attackCooldown)
+        {
+            readyToAttack = true;
+        }
+
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.GetComponent<PlayerBase>())
+        {
+            if (readyToAttack)
+            {
+                Attack();
+                collision.gameObject.GetComponent<PlayerBase>().TakeDamage(damage);
+            }
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.GetComponent<PlayerBase>())
+        {
+            if (readyToAttack)
+            {
+                Attack();
+                collision.gameObject.GetComponent<PlayerBase>().TakeDamage(damage);
+            }
+        }
     }
 }
