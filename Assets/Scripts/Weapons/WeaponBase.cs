@@ -5,6 +5,9 @@ public class WeaponBase : MonoBehaviour
 
     // base weapon class
 
+    [SerializeField] private float fireTime;
+    [SerializeField] private bool canWeaponFire;
+
     [Header("Stats")]
     [SerializeField] private string weaponName;
     [SerializeField] private float damage;
@@ -16,7 +19,8 @@ public class WeaponBase : MonoBehaviour
     [SerializeField] private WeaponScriptableObject weaponType;
 
 
-    void Start()
+
+    protected virtual void Start()
     {
         weaponName = weaponType.weaponName;
         damage = weaponType.damage;
@@ -26,9 +30,9 @@ public class WeaponBase : MonoBehaviour
         projectileToFire = weaponType.projectileToFire;
     }
 
-    void Update()
+    protected virtual void Update()
     {
-        
+        FireTimer();
     }
 
     protected void ItemScaling()
@@ -36,9 +40,12 @@ public class WeaponBase : MonoBehaviour
         // scale weapon with players items
     }
 
-    protected void FireProjectile()
+    protected virtual void FireProjectile()
     {
         // weapon fires projectile
+
+        Instantiate(projectileToFire, transform.position, Quaternion.identity); // TODO - fix when aiming is implemented
+
     }
 
     protected void ProjectileDealDamage()
@@ -49,6 +56,19 @@ public class WeaponBase : MonoBehaviour
     protected void DestroyProjectile()
     {
         // destroy weapon projectile
+    }
+
+    protected void FireTimer()
+    {
+        if (canWeaponFire == true)
+        {
+            fireTime += Time.deltaTime * 2f; // TODO - x times player attack speed?
+            if (fireTime >= fireRate)
+            {
+                fireTime -= fireRate;
+                FireProjectile();
+            }
+        }   
     }
 
 }

@@ -17,4 +17,4 @@ MonoBehaviour:
   fireRate: 1
   critChance: 5
   critDamage: 50
-  projectileToFire: {fileID: 1536454755095982992, guid: 01724c6e9c4b94f4fa2f1ca65e9a5a7c, type: 3}
+  projectileToFire: {fileID: 396421345929245815, guid: ebedc5602757a7c45be0cb715bf235b3, type: 3}
