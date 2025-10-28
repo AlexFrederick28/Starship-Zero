@@ -30,7 +30,7 @@ public class PlayerBase : MonoBehaviour
 
     [Space]
     [SerializeField] private float health;
-    public float speed { get; private set; }
+    public float speed;
 
     private void Update()
     {
