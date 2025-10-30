@@ -381,6 +381,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 4688768272980312557, guid: 5a6d9e2c934a7064980f349c321cee3c, type: 3}
+      propertyPath: 'easyEnemiesToSpawn.Array.data[1]'
+      value: 
+      objectReference: {fileID: 7749859244026942653, guid: 89b3369a00723ea408d0414c75daca8f, type: 3}
     - target: {fileID: 6467625082563482837, guid: 5a6d9e2c934a7064980f349c321cee3c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 8302320551027633761}
   - component: {fileID: -8158307771112887211}
   m_Layer: 0
-  m_Name: Mite
+  m_Name: Boss Test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -144,7 +144,7 @@ MonoBehaviour:
   damage: 0
   speed: 0
   level: 0
-  currentDifficultyType: 0
+  currentDifficultyType: 3
   attackCooldown: 1
   cooldownTimer: 0
   readyToAttack: 0
