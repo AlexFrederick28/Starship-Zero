@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3904750311189774911
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6467625082563482837}
+  - component: {fileID: 6283190580603290024}
+  - component: {fileID: 4688768272980312557}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6467625082563482837
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3904750311189774911}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6283190580603290024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3904750311189774911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b3fcc26a4f79ca4ea99b91feb2c4c02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameState
+  currentState: 1
+--- !u!114 &4688768272980312557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3904750311189774911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcc1ec35092ae224c89df5bb40d4cf47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Spawning
+  currentTime: 0
+  timerLength: 600
+  currentDifficulty: 0
+  maxDifficulty: 2
+  scalingSegments: 0
+  currentEasySpawnChance: 0
+  currentMediumSpawnChance: 0
+  currentHardSpawnChance: 0
+  currentBossSpawnChance: 0
+  easySpawnChance: 100
+  mediumSpawnChance: -25
+  hardSpawnChance: -50
+  bossSpawnChance: 50
+  amountOfEnemiesToSpawn: 0
+  spawnAmountMulitplier: 100
+  easyEnemiesToSpawn:
+  - {fileID: 7749859244026942653, guid: 89b3369a00723ea408d0414c75daca8f, type: 3}
+  mediumEnemiesToSpawn: []
+  hardEnemiesToSpawn: []
+  bossEnemiesToSpawn: []
+  spawnMinDistance: 0
+  spawnMaxDistance: 0
+  totalPoolCount: 10
+  amountCurrentlyInPool: 0
+  enemyBasePrefabToSpawn: {fileID: 7679490682118504128, guid: 110adf2be060c1344a7a819ce7b7bea1, type: 3}
+  poolParentToSpawn: {fileID: 9027508375457356037, guid: 4e72d640888148348b35cf679c5539a7, type: 3}
+  poolParent: {fileID: 0}
+  enemyBasePool: []

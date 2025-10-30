@@ -32,6 +32,9 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] protected float damage;
     [SerializeField] protected float speed;
     [SerializeField] protected int level;
+    public enum DifficultyType { Easy, Medium, Hard, Boss }
+    public DifficultyType currentDifficultyType;
+
     [SerializeField] protected float attackCooldown;
     [SerializeField] protected float cooldownTimer;
     [SerializeField] protected bool readyToAttack;
