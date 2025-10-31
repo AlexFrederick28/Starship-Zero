@@ -67,12 +67,12 @@ MonoBehaviour:
   currentMediumSpawnChance: 0
   currentHardSpawnChance: 0
   currentBossSpawnChance: 0
-  easySpawnChance: 100
+  easySpawnChance: 50
   mediumSpawnChance: 0
-  hardSpawnChance: -50
-  bossSpawnChance: -10
+  hardSpawnChance: 0
+  bossSpawnChance: 0
   amountOfEnemiesToSpawn: 0
-  spawnAmountMulitplier: 100
+  spawnAmountMulitplier: 500
   easyEnemiesToSpawn:
   - {fileID: 7749859244026942653, guid: 89b3369a00723ea408d0414c75daca8f, type: 3}
   mediumEnemiesToSpawn:
@@ -81,13 +81,15 @@ MonoBehaviour:
   - {fileID: 7749859244026942653, guid: 04e3122e70df8d94c9bbb3bc2a1cbbeb, type: 3}
   bossEnemiesToSpawn:
   - {fileID: 7749859244026942653, guid: 3c2b2c6f7b3c4754ab1bc0a115517268, type: 3}
-  spawnMinDistance: 0
-  spawnMaxDistance: 0
+  spawnMinDistance: 6
+  spawnMaxDistance: 12
+  spawnBoundOne: {fileID: 0}
+  spawnBoundTwo: {fileID: 0}
   totalEnemyPoolCount: 0
-  easyEnemyPoolCount: 58
-  mediumEnemyPoolCount: 58
-  hardEnemyPoolCount: 58
-  bossEnemyPoolCount: 26
+  easyEnemyPoolCount: 200
+  mediumEnemyPoolCount: 100
+  hardEnemyPoolCount: 100
+  bossEnemyPoolCount: 100
   amountCurrentlyInPool: 0
   activeInPool: 0
   enemyBasePrefabToSpawn: {fileID: 0}
@@ -95,3 +97,4 @@ MonoBehaviour:
   poolParent: {fileID: 0}
   enemyPool: []
   allEnemies: []
+  collectiveSpawnChance: 0

@@ -92,7 +92,7 @@ public class EnemyBase : MonoBehaviour
     {
         // locate player and move directly to them at a constant speed
 
-        Vector3 targetPosition = playerTransform.position - transform.position;
+        Vector3 targetPosition = (playerTransform.position - transform.position).normalized;
         transform.position += targetPosition * speed * Time.deltaTime;
     }
 
