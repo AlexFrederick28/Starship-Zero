@@ -15,10 +15,4 @@ public class Pistol : WeaponBase
         base.Update();
     }
 
-    public void ProjectileHitTarget(Collider2D collision)
-    {
-        
-        ProjectileDealDamage(collision);
-    }
-
 }
