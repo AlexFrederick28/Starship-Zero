@@ -81,17 +81,21 @@ MonoBehaviour:
   - {fileID: 7749859244026942653, guid: 04e3122e70df8d94c9bbb3bc2a1cbbeb, type: 3}
   bossEnemiesToSpawn:
   - {fileID: 7749859244026942653, guid: 3c2b2c6f7b3c4754ab1bc0a115517268, type: 3}
-  spawnMinDistance: 6
-  spawnMaxDistance: 12
+  spawnMinDistance: 8
+  spawnMaxDistance: 20
   spawnBoundOne: {fileID: 0}
   spawnBoundTwo: {fileID: 0}
   totalEnemyPoolCount: 0
   easyEnemyPoolCount: 200
+  easyEnemiesSpawned: 0
   mediumEnemyPoolCount: 100
+  mediumEnemiesSpawned: 0
   hardEnemyPoolCount: 100
+  hardEnemiesSpawned: 0
   bossEnemyPoolCount: 100
+  bossEnemiesSpawned: 0
   amountCurrentlyInPool: 0
-  activeInPool: 0
+  totalEnemiesSpawned: 0
   enemyBasePrefabToSpawn: {fileID: 0}
   poolParentToSpawn: {fileID: 9027508375457356037, guid: 4e72d640888148348b35cf679c5539a7, type: 3}
   poolParent: {fileID: 0}

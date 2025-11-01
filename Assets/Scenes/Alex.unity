@@ -240,6 +240,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1078035600 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3904750311189774911, guid: 5a6d9e2c934a7064980f349c321cee3c, type: 3}
+  m_PrefabInstance: {fileID: 842805608384012770}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1078035604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078035600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82129b99762eb824fbf5eb0c48330f3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyBrain
+  enemyList: []
+  player: {fileID: 0}
 --- !u!1 &1406838663
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,6 +463,10 @@ PrefabInstance:
       value: Game Manager
       objectReference: {fileID: 0}
     - target: {fileID: 4688768272980312557, guid: 5a6d9e2c934a7064980f349c321cee3c, type: 3}
+      propertyPath: currentTime
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688768272980312557, guid: 5a6d9e2c934a7064980f349c321cee3c, type: 3}
       propertyPath: spawnBoundOne
       value: 
       objectReference: {fileID: 433847521}
@@ -502,7 +525,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3904750311189774911, guid: 5a6d9e2c934a7064980f349c321cee3c, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 1078035604}
   m_SourcePrefab: {fileID: 100100000, guid: 5a6d9e2c934a7064980f349c321cee3c, type: 3}
 --- !u!1001 &6991759259399470196
 PrefabInstance:
@@ -512,6 +538,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4318514336278049100, guid: 48285cebc3c31e44cab4185c16fdd8dd, type: 3}
+      propertyPath: m_Layer
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 4466290808661980776, guid: 48285cebc3c31e44cab4185c16fdd8dd, type: 3}
       propertyPath: m_Name
       value: Player
@@ -554,6 +584,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7311839100965269547, guid: 48285cebc3c31e44cab4185c16fdd8dd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8227415630955463128, guid: 48285cebc3c31e44cab4185c16fdd8dd, type: 3}
+      propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9116013883404478746}
   - component: {fileID: 5724982464057537291}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 3468034756832663561}
   - component: {fileID: 8227415630955463128}
   - component: {fileID: 4717108533939382607}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,10 +203,10 @@ CapsuleCollider2D:
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ContactCaptureLayers:
     serializedVersion: 2
     m_Bits: 4294967295

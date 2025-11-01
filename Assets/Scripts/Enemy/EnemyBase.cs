@@ -54,9 +54,20 @@ public class EnemyBase : MonoBehaviour
         LevelScale();
     }
 
-    protected virtual void FixedUpdate()
+    protected virtual void OnEnable()
     {
-        MoveToPlayer(FindAnyObjectByType<PlayerBase>().transform);
+        if (EnemyBrain.instance != null)
+        {
+            EnemyBrain.instance.MoveToPlayer += MoveToPlayer;
+        }
+    }
+
+    protected virtual void OnDisable()
+    {
+        if (EnemyBrain.instance != null)
+        {
+            EnemyBrain.instance.MoveToPlayer -= MoveToPlayer;
+        }
     }
 
     protected virtual void Update()
@@ -129,7 +140,7 @@ public class EnemyBase : MonoBehaviour
         }
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    public void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.GetComponent<PlayerBase>())
         {
