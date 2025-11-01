@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
@@ -53,9 +54,13 @@ public class EnemyBase : MonoBehaviour
         LevelScale();
     }
 
-    protected virtual void Update()
+    protected virtual void FixedUpdate()
     {
         MoveToPlayer(FindAnyObjectByType<PlayerBase>().transform);
+    }
+
+    protected virtual void Update()
+    {
         AttackCooldown();
     }
 
@@ -113,10 +118,13 @@ public class EnemyBase : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<PlayerBase>())
         {
-            if (readyToAttack)
+            if (collision.gameObject.GetComponent<PlayerBase>().Health != 0)
             {
-                Attack();
-                collision.gameObject.GetComponent<PlayerBase>().TakeDamage(damage);
+                if (readyToAttack)
+                {
+                    Attack();
+                    collision.gameObject.GetComponent<PlayerBase>().TakeDamage(damage);
+                }
             }
         }
     }
@@ -125,10 +133,13 @@ public class EnemyBase : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<PlayerBase>())
         {
-            if (readyToAttack)
+            if (collision.gameObject.GetComponent<PlayerBase>().Health != 0)
             {
-                Attack();
-                collision.gameObject.GetComponent<PlayerBase>().TakeDamage(damage);
+                if (readyToAttack)
+                {
+                    Attack();
+                    collision.gameObject.GetComponent<PlayerBase>().TakeDamage(damage);
+                }
             }
         }
     }

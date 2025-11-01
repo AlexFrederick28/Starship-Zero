@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6731701526133398138}
   - component: {fileID: 2499095594077236903}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 3147825488977111085}
   - component: {fileID: 8302320551027633761}
   - component: {fileID: -8158307771112887211}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Mite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2147483648
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -191,7 +191,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2147483648
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

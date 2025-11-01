@@ -67,10 +67,10 @@ MonoBehaviour:
   currentMediumSpawnChance: 0
   currentHardSpawnChance: 0
   currentBossSpawnChance: 0
-  easySpawnChance: 50
-  mediumSpawnChance: 0
-  hardSpawnChance: 0
-  bossSpawnChance: 0
+  easySpawnWeight: 5
+  mediumSpawnWeight: 3
+  hardSpawnWeight: 1
+  bossSpawnWeight: 0.2
   amountOfEnemiesToSpawn: 0
   spawnAmountMulitplier: 500
   easyEnemiesToSpawn:
