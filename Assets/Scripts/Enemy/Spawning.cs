@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.Pool;
 using static UnityEngine.EventSystems.EventTrigger;
@@ -70,6 +71,7 @@ public class Spawning : Difficulty
             currentBossSpawnChance = value;
         }
     }
+    private float collectiveSpawnChance = 0f;
     [Header("Chance Multiplier")]
     [Tooltip("Default 100% (Spawn chance lowers as the difficulty progresses)")]
     [SerializeField] private float easySpawnWeight;
@@ -102,7 +104,7 @@ public class Spawning : Difficulty
     [SerializeField] private int hardEnemiesSpawned;
     [SerializeField] private int bossEnemyPoolCount;
     [SerializeField] private int bossEnemiesSpawned;
-    [SerializeField] private int amountCurrentlyInPool;
+    //[SerializeField] private int amountCurrentlyInPool;
     [SerializeField] private int totalEnemiesSpawned;
     [SerializeField] private GameObject enemyBasePrefabToSpawn;
     [SerializeField] private GameObject poolParentToSpawn;
@@ -116,6 +118,30 @@ public class Spawning : Difficulty
     private int mediumIndexNumb;
     private int hardIndexNumb;
     private int bossIndexNumb;
+
+    // for the instance of a spawner to work for each room, the gameobject must only be active when the room is entered as to not have multiple instances destroyed when they're needed later
+    public static Spawning instance;
+
+    private void OnEnable()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            // turns off duplicate instances if there are more than one enabled
+            gameObject.SetActive(false);
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (instance == this)
+        {
+            instance = null;
+        }
+    }
 
     private void Start()
     {
@@ -155,7 +181,7 @@ public class Spawning : Difficulty
                 enemyPool.Add(newEnemy);
                 newEnemy.transform.SetParent(poolParent.transform);
                 newEnemy.SetActive(false);
-                amountCurrentlyInPool++;
+                //amountCurrentlyInPool++;
             }
             for (int i = 0; i < mediumEnemyPoolCount; i++)
             {
@@ -165,7 +191,7 @@ public class Spawning : Difficulty
                 enemyPool.Add(newEnemy);
                 newEnemy.transform.SetParent(poolParent.transform);
                 newEnemy.SetActive(false);
-                amountCurrentlyInPool++;
+                //amountCurrentlyInPool++;
             }
             for (int i = 0; i < hardEnemyPoolCount; i++)
             {
@@ -175,7 +201,7 @@ public class Spawning : Difficulty
                 enemyPool.Add(newEnemy);
                 newEnemy.transform.SetParent(poolParent.transform);
                 newEnemy.SetActive(false);
-                amountCurrentlyInPool++;
+                //amountCurrentlyInPool++;
             }
             for (int i = 0; i < bossEnemyPoolCount; i++)
             {
@@ -185,14 +211,12 @@ public class Spawning : Difficulty
                 enemyPool.Add(newEnemy);
                 newEnemy.transform.SetParent(poolParent.transform);
                 newEnemy.SetActive(false);
-                amountCurrentlyInPool++;
+                //amountCurrentlyInPool++;
             }
 
             totalEnemyPoolCount = easyEnemyPoolCount + mediumEnemyPoolCount + hardEnemyPoolCount + bossEnemyPoolCount;
         }
     }
-
-    [SerializeField] private float collectiveSpawnChance = 0f;
 
     private void SpawnChance()
     {
@@ -205,12 +229,12 @@ public class Spawning : Difficulty
         float bossScaled = bossSpawnWeight * Mathf.Lerp(0f, 2f, currentDifficulty / scalingSegments);
 
         // Normalize so total = 100%
-        float total = easyScaled + mediumScaled + hardScaled + bossScaled;
+        collectiveSpawnChance = easyScaled + mediumScaled + hardScaled + bossScaled;
 
-        CurrentEasySpawnChance = (easyScaled / total) * 100f;
-        CurrentMediumSpawnChance = (mediumScaled / total) * 100f;
-        CurrentHardSpawnChance = (hardScaled / total) * 100f;
-        CurrentBossSpawnChance = (bossScaled / total) * 100f;
+        CurrentEasySpawnChance = (easyScaled / collectiveSpawnChance) * 100f;
+        CurrentMediumSpawnChance = (mediumScaled / collectiveSpawnChance) * 100f;
+        CurrentHardSpawnChance = (hardScaled / collectiveSpawnChance) * 100f;
+        CurrentBossSpawnChance = (bossScaled / collectiveSpawnChance) * 100f;
     }
 
     private bool TrySetNewSpawnPosition(Transform enemyTransform)
@@ -240,7 +264,7 @@ public class Spawning : Difficulty
         {
             if (enemyPool != null && enemyPool.Count != 0)
             {
-                if (amountCurrentlyInPool > 0)
+                //if (amountCurrentlyInPool > 0)
                 {
                     if (amountOfEnemiesToSpawn > totalEnemiesSpawned)
                     {
@@ -344,7 +368,7 @@ public class Spawning : Difficulty
         enemyPool.Add(go);
         go.transform.position = poolParent.transform.position;
         go.SetActive(false);
-        amountCurrentlyInPool++;
+        //amountCurrentlyInPool++;
     }
 
     public void AddToPool(GameObject go)
@@ -353,7 +377,7 @@ public class Spawning : Difficulty
         enemyPool.Add(go);
         go.transform.position = poolParent.transform.position;
         go.SetActive(false);
-        amountCurrentlyInPool++;
+        //amountCurrentlyInPool++;
         totalEnemiesSpawned--;
     }
 
@@ -361,7 +385,7 @@ public class Spawning : Difficulty
     {
         enemyPool.Remove(go);
         go.SetActive(true);
-        amountCurrentlyInPool--;
+        //amountCurrentlyInPool--;
         totalEnemiesSpawned++;
     }
 
@@ -381,5 +405,25 @@ public class Spawning : Difficulty
         }
 
         return 0;
+    }
+
+    public void EnemyDeath(EnemyBase.DifficultyType type)
+    {
+        if (type == EnemyBase.DifficultyType.Easy)
+        {
+            easyEnemiesSpawned--;
+        }
+        if (type == EnemyBase.DifficultyType.Medium)
+        {
+            mediumEnemiesSpawned--;
+        }
+        if (type == EnemyBase.DifficultyType.Hard)
+        {
+            hardEnemiesSpawned--;
+        }
+        if (type == EnemyBase.DifficultyType.Boss)
+        {
+            bossEnemiesSpawned--;
+        }
     }
 }

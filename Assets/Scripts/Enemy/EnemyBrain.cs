@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyBrain : MonoBehaviour
 {
-    [SerializeField] private List<EnemyBase> enemyList;
     [SerializeField] private PlayerBase player;
 
     public delegate void EnemyBrainDelegate(Transform playerTransform);

@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6467625082563482837}
   - component: {fileID: 6283190580603290024}
+  - component: {fileID: 3386434121657024945}
+  - component: {fileID: 5307932166547637836}
   - component: {fileID: 4688768272980312557}
   m_Layer: 0
   m_Name: Game Manager
@@ -46,6 +48,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameState
   currentState: 1
+--- !u!114 &3386434121657024945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3904750311189774911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82129b99762eb824fbf5eb0c48330f3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyBrain
+  player: {fileID: 0}
+--- !u!114 &5307932166547637836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3904750311189774911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab33e3530d2bad4cab9c44d21c953f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Experience
+  experiencePool: []
+  poolParent: {fileID: 0}
+  maxExperiencePoolCount: 0
+  totalExperienceInPool: 0
 --- !u!114 &4688768272980312557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,11 +125,9 @@ MonoBehaviour:
   hardEnemiesSpawned: 0
   bossEnemyPoolCount: 100
   bossEnemiesSpawned: 0
-  amountCurrentlyInPool: 0
   totalEnemiesSpawned: 0
   enemyBasePrefabToSpawn: {fileID: 0}
   poolParentToSpawn: {fileID: 9027508375457356037, guid: 4e72d640888148348b35cf679c5539a7, type: 3}
   poolParent: {fileID: 0}
   enemyPool: []
   allEnemies: []
-  collectiveSpawnChance: 0

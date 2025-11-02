@@ -24,6 +24,7 @@ public class EnemyBase : MonoBehaviour
             if (value < 0)
             {
                 value = 0;
+                Death();
             }
 
             currentHealth = value;
@@ -96,12 +97,23 @@ public class EnemyBase : MonoBehaviour
 
         Health -= damage;
         Debug.Log(name + " took " + damage + " damage!");
+
+        if (Health == 0)
+        {
+            Death();
+        }
     }
 
     protected void Death()
     {
         // enemy death
 
+        if (Health == 0)
+        {
+            Spawning.instance.AddToPool(gameObject);
+            Spawning.instance.EnemyDeath(currentDifficultyType);
+            Health = maxHealth;
+        }
     }
 
     protected void MoveToPlayer(Transform playerTransform)
