@@ -73,10 +73,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ab33e3530d2bad4cab9c44d21c953f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Experience
-  experiencePool: []
-  poolParent: {fileID: 0}
-  maxExperiencePoolCount: 0
+  maxExperiencePoolCount: 1000
   totalExperienceInPool: 0
+  poolParent: {fileID: 0}
+  poolParentToSpawn: {fileID: 9027508375457356037, guid: 91f6199349a550a40a9e46a7b1851e06, type: 3}
+  experiencePointPrefab: {fileID: 3345650389857839163, guid: 13a8f6187eccbd74399a267b5b3f9572, type: 3}
+  experiencePool: []
 --- !u!114 &4688768272980312557
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -110,6 +110,7 @@ public class EnemyBase : MonoBehaviour
 
         if (Health == 0)
         {
+            Spawning.instance.GetComponent<Experience>().RemoveFromPool(Spawning.instance.GetComponent<Experience>().selectedExperiencePoint, currentDifficultyType, transform);
             Spawning.instance.AddToPool(gameObject);
             Spawning.instance.EnemyDeath(currentDifficultyType);
             Health = maxHealth;
