@@ -60,11 +60,16 @@ public class Experience : MonoBehaviour
 
     public void RemoveFromPool(ExperiencePoint exp, EnemyBase.DifficultyType type, Transform spawnArea)
     {
-        experiencePool.Remove(exp);
-        exp.gameObject.SetActive(true);
-        totalExperienceInPool--;
-        exp.currentExperienceType = type;
-        selectedExperiencePoint = null;
-        exp.transform.position = spawnArea.position;
+        if (exp != null)
+        {
+            experiencePool.Remove(exp);
+            exp.gameObject.SetActive(true);
+            totalExperienceInPool--;
+            exp.currentExperienceType = type;
+            exp.transform.position = spawnArea.position;
+            exp.SetExperience(type);
+
+            selectedExperiencePoint = null;
+        }
     }
 }

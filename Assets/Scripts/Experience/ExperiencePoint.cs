@@ -4,7 +4,7 @@ public class ExperiencePoint : MonoBehaviour
 {
     public EnemyBase.DifficultyType currentExperienceType;
 
-    [SerializeField] private float currentExperienceAmount;
+    public float currentExperienceAmount;
     [SerializeField] private float easyDefaultExperience;
     [SerializeField] private float mediumDefaultExperience;
     [SerializeField] private float hardDefaultExperience;
@@ -18,10 +18,10 @@ public class ExperiencePoint : MonoBehaviour
     private void OnEnable()
     {
         // setting the experience upon enabing the game object as to allow for the correct type of experience to spawn when a certain type of enemy dies
-        SetExperience(currentExperienceType);
+        //SetExperience(currentExperienceType);
     }
 
-    private void SetExperience(EnemyBase.DifficultyType currentType)
+    public void SetExperience(EnemyBase.DifficultyType currentType)
     {
         if (currentExperienceType == EnemyBase.DifficultyType.Easy)
         {

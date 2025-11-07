@@ -181,7 +181,6 @@ public class Spawning : Difficulty
                 enemyPool.Add(newEnemy);
                 newEnemy.transform.SetParent(poolParent.transform);
                 newEnemy.SetActive(false);
-                //amountCurrentlyInPool++;
             }
             for (int i = 0; i < mediumEnemyPoolCount; i++)
             {
@@ -191,7 +190,6 @@ public class Spawning : Difficulty
                 enemyPool.Add(newEnemy);
                 newEnemy.transform.SetParent(poolParent.transform);
                 newEnemy.SetActive(false);
-                //amountCurrentlyInPool++;
             }
             for (int i = 0; i < hardEnemyPoolCount; i++)
             {
@@ -201,7 +199,6 @@ public class Spawning : Difficulty
                 enemyPool.Add(newEnemy);
                 newEnemy.transform.SetParent(poolParent.transform);
                 newEnemy.SetActive(false);
-                //amountCurrentlyInPool++;
             }
             for (int i = 0; i < bossEnemyPoolCount; i++)
             {
@@ -211,7 +208,6 @@ public class Spawning : Difficulty
                 enemyPool.Add(newEnemy);
                 newEnemy.transform.SetParent(poolParent.transform);
                 newEnemy.SetActive(false);
-                //amountCurrentlyInPool++;
             }
 
             totalEnemyPoolCount = easyEnemyPoolCount + mediumEnemyPoolCount + hardEnemyPoolCount + bossEnemyPoolCount;
@@ -220,13 +216,11 @@ public class Spawning : Difficulty
 
     private void SpawnChance()
     {
-        // Chat GPT helped me with the spawn chance formula :)
-        // Apply difficulty scaling (example: exponential or linear)
         // As difficulty increases, easier enemies lose weight and harder ones gain
         float easyScaled = easySpawnWeight / currentDifficulty;
-        float mediumScaled = mediumSpawnWeight * Mathf.Lerp(0f, 2f, currentDifficulty / scalingSegments);
-        float hardScaled = hardSpawnWeight * Mathf.Lerp(0f, 2f, currentDifficulty / scalingSegments);
-        float bossScaled = bossSpawnWeight * Mathf.Lerp(0f, 2f, currentDifficulty / scalingSegments);
+        float mediumScaled = mediumSpawnWeight * Mathf.Lerp(0f, 1f, currentDifficulty / scalingSegments);
+        float hardScaled = hardSpawnWeight * Mathf.Lerp(0f, 3.5f, currentDifficulty / scalingSegments);
+        float bossScaled = bossSpawnWeight * Mathf.Lerp(0f, 2.5f, currentDifficulty / scalingSegments);
 
         // Normalize so total = 100%
         collectiveSpawnChance = easyScaled + mediumScaled + hardScaled + bossScaled;
@@ -368,7 +362,6 @@ public class Spawning : Difficulty
         enemyPool.Add(go);
         go.transform.position = poolParent.transform.position;
         go.SetActive(false);
-        //amountCurrentlyInPool++;
     }
 
     public void AddToPool(GameObject go)
@@ -377,7 +370,6 @@ public class Spawning : Difficulty
         enemyPool.Add(go);
         go.transform.position = poolParent.transform.position;
         go.SetActive(false);
-        //amountCurrentlyInPool++;
         totalEnemiesSpawned--;
     }
 
@@ -385,7 +377,6 @@ public class Spawning : Difficulty
     {
         enemyPool.Remove(go);
         go.SetActive(true);
-        //amountCurrentlyInPool--;
         totalEnemiesSpawned++;
     }
 
@@ -412,18 +403,22 @@ public class Spawning : Difficulty
         if (type == EnemyBase.DifficultyType.Easy)
         {
             easyEnemiesSpawned--;
+            totalEnemiesSpawned--;
         }
         if (type == EnemyBase.DifficultyType.Medium)
         {
             mediumEnemiesSpawned--;
+            totalEnemiesSpawned--;
         }
         if (type == EnemyBase.DifficultyType.Hard)
         {
             hardEnemiesSpawned--;
+            totalEnemiesSpawned--;
         }
         if (type == EnemyBase.DifficultyType.Boss)
         {
             bossEnemiesSpawned--;
+            totalEnemiesSpawned--;
         }
     }
 }

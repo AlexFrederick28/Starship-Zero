@@ -5,8 +5,7 @@ public class PlayerBase : MonoBehaviour
 {
     [SerializeField] private int level;
     [SerializeField] private int currentExperience;
-    
-    private int CurrentExperience
+    public int CurrentExperience
     {
         get
         {
@@ -14,6 +13,8 @@ public class PlayerBase : MonoBehaviour
         }
         set
         {
+            currentExperience = value;
+
             if (currentExperience >= experienceNeeded)
             {
                 LevelUp();
@@ -81,11 +82,22 @@ public class PlayerBase : MonoBehaviour
 
     public void AddExperience(int amount)
     {
-        currentExperience += amount;
+        CurrentExperience += amount;
     }
 
     public void LevelUp()
     {
         Debug.Log("Leveled Up!");
+        level++;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.GetComponent<ExperiencePoint>())
+        {
+            ExperiencePoint point = collision.gameObject.GetComponent<ExperiencePoint>();
+            AddExperience((int)point.currentExperienceAmount);
+            Spawning.instance.GetComponent<Experience>().AddToPool(point);
+        }
     }
 }

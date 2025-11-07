@@ -167,7 +167,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &600361414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,6 +439,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Experience Point
       objectReference: {fileID: 0}
+    - target: {fileID: 3345650389857839163, guid: 13a8f6187eccbd74399a267b5b3f9572, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4734852185052688211, guid: 13a8f6187eccbd74399a267b5b3f9572, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.88
@@ -567,7 +571,7 @@ MonoBehaviour:
   critDamage: 0
   isProjectile: 0
   projectileToFire: {fileID: 0}
-  weaponType: {fileID: 11400000, guid: 05999a0be426d764f8c18b11c29079bb, type: 2}
+  weaponType: {fileID: 11400000, guid: cce55908474f4c64095414ad8aac65ce, type: 2}
   fireTime: 0
   detectionRadius: 5
   closestTarget: {fileID: 0}
@@ -646,7 +650,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4688768272980312557, guid: 5a6d9e2c934a7064980f349c321cee3c, type: 3}
       propertyPath: currentTime
-      value: 500
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 4688768272980312557, guid: 5a6d9e2c934a7064980f349c321cee3c, type: 3}
       propertyPath: spawnBoundOne
@@ -717,6 +721,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3468034756832663561, guid: 48285cebc3c31e44cab4185c16fdd8dd, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 536870912
+      objectReference: {fileID: 0}
     - target: {fileID: 4318514336278049100, guid: 48285cebc3c31e44cab4185c16fdd8dd, type: 3}
       propertyPath: m_Layer
       value: 30

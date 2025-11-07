@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7335405252269802028}
-  - component: {fileID: 7041992913896740577}
   - component: {fileID: 4480558313169863424}
   - component: {fileID: 5447878479332819472}
   - component: {fileID: 3125969707835165516}
@@ -36,18 +35,6 @@ Transform:
   - {fileID: 4364355589959570013}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7041992913896740577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8136050725359594267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9613f0cf19f68b45ac4c48425142c84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TempBullet
 --- !u!114 &4480558313169863424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,6 +50,7 @@ MonoBehaviour:
   bulletSpeed: 10
   projectileLifeTime: 5
   RB2D: {fileID: 0}
+  baseWeapon: {fileID: 0}
 --- !u!58 &5447878479332819472
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -76,10 +64,10 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 2147483648
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1342177280
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -121,7 +109,7 @@ Rigidbody2D:
     m_Bits: 2147483648
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1342177280
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0

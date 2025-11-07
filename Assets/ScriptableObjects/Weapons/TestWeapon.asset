@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponScriptableObject
   weaponName: TestWeapon
   damage: 50
-  fireRate: 1
+  fireRate: 20
   critChance: 5
   critDamage: 100
+  isProjectile: 1
   projectileToFire: {fileID: 8136050725359594267, guid: 62fa9780767f2be45b85e013368b17f9, type: 3}
