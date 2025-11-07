@@ -4,11 +4,11 @@ using UnityEngine;
 public class BulletProjectile : MonoBehaviour
 {
 
-    [SerializeField] private float bulletSpeed;
-    [SerializeField] private float projectileLifeTime;
+    [SerializeField] private float bulletSpeed; // force applied to bullet
+    [SerializeField] private float projectileLifeTime; // self destruct time
     [SerializeField] private Rigidbody2D RB2D;
 
-    public WeaponBase baseWeapon;
+    public WeaponBase baseWeapon; // owner of this bullet created (used to refer back to it when dealing damage)
 
     private void Start()
     {
@@ -16,7 +16,7 @@ public class BulletProjectile : MonoBehaviour
         Destroy(gameObject, projectileLifeTime);
     }
 
-    protected void MoveProjectile() // push projectile forward // TODO - dont add velocity to attacks only projectiles
+    protected void MoveProjectile() // single instanceto push 0 gravity projectile
     {
         RB2D = GetComponent<Rigidbody2D>();
         RB2D.linearVelocity = transform.right * bulletSpeed;

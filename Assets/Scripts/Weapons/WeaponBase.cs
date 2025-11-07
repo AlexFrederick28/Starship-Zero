@@ -8,28 +8,25 @@ public class WeaponBase : MonoBehaviour
 
     // base weapon class
 
-    [SerializeField] private float fireTime;
-    [SerializeField] private bool canWeaponFire;
-
-    [Header("Stats")]
+    [Header("Base Settings")]
     [SerializeField] private string weaponName;
     [SerializeField] private float damage;
-    [SerializeField] private float fireRate; // NOTE - item scaling with weapons that dont start at 1 RPS (rounds per second)   solution? - 0.5 x 50%(attack speed)
+    [SerializeField] private float fireRate;
     [SerializeField] private float critChance;
     [SerializeField] private float critDamage;
-    [SerializeField] private bool isProjectile;
-
-    [Space]
-
+    [SerializeField] private bool isProjectile; // ?? - only needed if different projectile types e.g. sword swing
     [SerializeField] private GameObject projectileToFire;
     [SerializeField] private WeaponScriptableObject weaponType;
 
-    [SerializeField] private Transform closestTarget;
-
+    [Header("Other")]
+    [SerializeField] private float fireTime;
     [SerializeField] private float detectionRadius = 5f; // default 5, subject to change
+    [SerializeField] private Transform closestTarget;
+    [SerializeField] private bool canWeaponFire;
 
-    [SerializeField] protected GameObject newBullet;
-    [SerializeField] public List<GameObject> currentBullets;
+    // bullets from weapon
+    [SerializeField] protected GameObject newBullet; // newest bullet
+    [SerializeField] public List<GameObject> currentBullets; // all bullets
 
 
     protected virtual void Start()
@@ -64,17 +61,18 @@ public class WeaponBase : MonoBehaviour
     {
         if (closestTarget != null)
         {
+            // direction to fire forward
             Vector3 vectorToTarget = closestTarget.position - transform.position;
             float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
             Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-            newBullet = Instantiate(projectileToFire, transform.position, rotation);
+            newBullet = Instantiate(projectileToFire, transform.position, rotation); // create bullet
 
             BulletProjectile bullet = newBullet.GetComponent<BulletProjectile>();
             currentBullets.Add(newBullet);
             if (bullet != null)
             {
-                bullet.baseWeapon = this;
+                bullet.baseWeapon = this; // owner that created bullet
             }
         }
 
@@ -84,17 +82,17 @@ public class WeaponBase : MonoBehaviour
         }
     }
 
-    protected virtual void FireAttack() // variation ^^^ - weapons that DONT want a rotation e.g. sword attack 
-    {
-        newBullet = Instantiate(projectileToFire, transform.position, Quaternion.identity);
+    //protected virtual void FireAttack() // variation ^^^ 
+    //{
+    //    newBullet = Instantiate(projectileToFire, transform.position, Quaternion.identity);
 
-        BulletProjectile bullet = newBullet.GetComponent<BulletProjectile>();
-        currentBullets.Add(newBullet);
-        if (bullet != null)
-        {
-            bullet.baseWeapon = this;
-        }
-    }
+    //    BulletProjectile bullet = newBullet.GetComponent<BulletProjectile>();
+    //    currentBullets.Add(newBullet);
+    //    if (bullet != null)
+    //    {
+    //        bullet.baseWeapon = this;
+    //    }
+    //}
 
     public void ProjectileDealDamage(Collider2D collision) // weapon projectile deals damage
     {
@@ -113,34 +111,34 @@ public class WeaponBase : MonoBehaviour
         }   
 
         EnemyBase enemy = collision.gameObject.GetComponent<EnemyBase>();
-        enemy.TakeDamage(finalDamage); // final
+        enemy.TakeDamage(finalDamage); // final damage
 
     }
 
     public void DestroyProjectile(GameObject projectileGO) // destroy weapon projectile
     {    
         currentBullets.Remove(projectileGO);
-        Destroy(projectileGO, 0.01f);
+        Destroy(projectileGO, 0.01f); // small note - if not 0.01s destruction sometimes code above wont play
     }
 
     protected virtual void FireTimer() // controls the fire rate of each weapon
     {
         if (canWeaponFire == true)
         {
-            fireTime += Time.deltaTime * fireRate; // charge speed
+            fireTime += Time.deltaTime * fireRate; // fire speed
             if (fireTime >= 1f)
             {
-                fireTime = 0f;
+                fireTime = 0f; // reset timer
 
                 if (isProjectile == true) // projectile based e.g. pistol bullet
                 {
                     FireProjectile();
                 }
 
-                if (isProjectile == false) // attack based e.g. sword swing
-                {
-                    FireAttack();
-                }
+                //if (isProjectile == false) // variation
+                //{
+                //    FireAttack();
+                //}
 
             }
         }   
@@ -159,17 +157,17 @@ public class WeaponBase : MonoBehaviour
             {
                 float distanceToTarget = Vector2.Distance(transform.position, hit.transform.position);
 
-                if (distanceToTarget < shortestDistance)
+                if (distanceToTarget < shortestDistance) // if closest
                 {
                     shortestDistance = distanceToTarget;
-                    closestTarget = hit.transform;
+                    closestTarget = hit.transform; // set as target
                     //Debug.Log(closestTarget.name);
                 }
             }
         }
     }
 
-    //void OnDrawGizmos() // visual for attack range radius
+    //void OnDrawGizmos() // visual for attack range radius of the weapon
     //{
     //    Gizmos.color = Color.blue;
     //    Gizmos.DrawWireSphere(transform.position, detectionRadius);
