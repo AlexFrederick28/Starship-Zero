@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2734484028767871636}
   - component: {fileID: 3684174261704247072}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 4734852185052688211}
   - component: {fileID: 8552912130872724390}
   - component: {fileID: 407306473147868651}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Experience Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2684354560
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
