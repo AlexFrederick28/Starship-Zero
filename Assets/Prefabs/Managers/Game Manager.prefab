@@ -79,6 +79,7 @@ MonoBehaviour:
   poolParentToSpawn: {fileID: 9027508375457356037, guid: 91f6199349a550a40a9e46a7b1851e06, type: 3}
   experiencePointPrefab: {fileID: 3345650389857839163, guid: 13a8f6187eccbd74399a267b5b3f9572, type: 3}
   experiencePool: []
+  selectedExperiencePoint: {fileID: 0}
 --- !u!114 &4688768272980312557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,13 +122,14 @@ MonoBehaviour:
   totalEnemyPoolCount: 0
   easyEnemyPoolCount: 200
   easyEnemiesSpawned: 0
-  mediumEnemyPoolCount: 100
+  mediumEnemyPoolCount: 200
   mediumEnemiesSpawned: 0
-  hardEnemyPoolCount: 100
+  hardEnemyPoolCount: 200
   hardEnemiesSpawned: 0
-  bossEnemyPoolCount: 100
+  bossEnemyPoolCount: 200
   bossEnemiesSpawned: 0
-  totalEnemiesSpawned: 0
+  totalEnemiesActive: 0
+  totalEnemiesInPool: 0
   enemyBasePrefabToSpawn: {fileID: 0}
   poolParentToSpawn: {fileID: 9027508375457356037, guid: 4e72d640888148348b35cf679c5539a7, type: 3}
   poolParent: {fileID: 0}

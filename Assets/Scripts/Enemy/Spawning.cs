@@ -104,8 +104,8 @@ public class Spawning : Difficulty
     [SerializeField] private int hardEnemiesSpawned;
     [SerializeField] private int bossEnemyPoolCount;
     [SerializeField] private int bossEnemiesSpawned;
-    //[SerializeField] private int amountCurrentlyInPool;
-    [SerializeField] private int totalEnemiesSpawned;
+    [SerializeField] private int totalEnemiesActive;
+    [SerializeField] private int totalEnemiesInPool;
     [SerializeField] private GameObject enemyBasePrefabToSpawn;
     [SerializeField] private GameObject poolParentToSpawn;
     [SerializeField] private GameObject poolParent;
@@ -178,36 +178,28 @@ public class Spawning : Difficulty
                 allEnemies.Add(easyEnemiesToSpawn[Random.Range(easyEnemiesToSpawn.Count - 1, 0)]);
 
                 GameObject newEnemy = Instantiate(easyEnemiesToSpawn[Random.Range(easyEnemiesToSpawn.Count - 1, 0)], transform.position, Quaternion.identity);
-                enemyPool.Add(newEnemy);
-                newEnemy.transform.SetParent(poolParent.transform);
-                newEnemy.SetActive(false);
+                AddNewEnemyToPool(newEnemy);
             }
             for (int i = 0; i < mediumEnemyPoolCount; i++)
             {
                 allEnemies.Add(mediumEnemiesToSpawn[Random.Range(mediumEnemiesToSpawn.Count - 1, 0)]);
 
                 GameObject newEnemy = Instantiate(mediumEnemiesToSpawn[Random.Range(mediumEnemiesToSpawn.Count - 1, 0)], transform.position, Quaternion.identity);
-                enemyPool.Add(newEnemy);
-                newEnemy.transform.SetParent(poolParent.transform);
-                newEnemy.SetActive(false);
+                AddNewEnemyToPool(newEnemy);
             }
             for (int i = 0; i < hardEnemyPoolCount; i++)
             {
                 allEnemies.Add(hardEnemiesToSpawn[Random.Range(hardEnemiesToSpawn.Count - 1, 0)]);
 
                 GameObject newEnemy = Instantiate(hardEnemiesToSpawn[Random.Range(hardEnemiesToSpawn.Count - 1, 0)], transform.position, Quaternion.identity);
-                enemyPool.Add(newEnemy);
-                newEnemy.transform.SetParent(poolParent.transform);
-                newEnemy.SetActive(false);
+                AddNewEnemyToPool(newEnemy);
             }
             for (int i = 0; i < bossEnemyPoolCount; i++)
             {
                 allEnemies.Add(bossEnemiesToSpawn[Random.Range(bossEnemiesToSpawn.Count - 1, 0)]);
 
                 GameObject newEnemy = Instantiate(bossEnemiesToSpawn[Random.Range(bossEnemiesToSpawn.Count - 1, 0)], transform.position, Quaternion.identity);
-                enemyPool.Add(newEnemy);
-                newEnemy.transform.SetParent(poolParent.transform);
-                newEnemy.SetActive(false);
+                AddNewEnemyToPool(newEnemy);
             }
 
             totalEnemyPoolCount = easyEnemyPoolCount + mediumEnemyPoolCount + hardEnemyPoolCount + bossEnemyPoolCount;
@@ -242,13 +234,11 @@ public class Spawning : Difficulty
 
             if (distance < spawnMaxDistance && distance > spawnMinDistance)
             {
-                //Debug.Log($"Spawned successfully on attempt {i + 1}");
                 enemyTransform.position = newSpawnPosition;
                 return true; 
             }
         }
 
-        //Debug.Log("Spawn failed all attempts");
         return false; 
     }
 
@@ -258,96 +248,77 @@ public class Spawning : Difficulty
         {
             if (enemyPool != null && enemyPool.Count != 0)
             {
-                //if (amountCurrentlyInPool > 0)
+                if (amountOfEnemiesToSpawn > totalEnemiesActive)
                 {
-                    if (amountOfEnemiesToSpawn > totalEnemiesSpawned)
+                    int randomNumb = Random.Range(1, 100);
+                    if (currentHardSpawnChance > 0 && hardEnemiesSpawned < hardEnemyPoolCount)
                     {
-                        int randomNumb = Random.Range(1, 100);
-                        if (currentHardSpawnChance > 0 && hardEnemiesSpawned < hardEnemyPoolCount)
+                        if (randomNumb <= CurrentHardSpawnChance)
                         {
-                            if (randomNumb <= CurrentHardSpawnChance)
+                            int enemyToSpawn = SearchForEnemyTypeInPool(EnemyBase.DifficultyType.Hard);
+
+                            if (enemyPool[enemyToSpawn].GetComponent<EnemyBase>().currentDifficultyType == EnemyBase.DifficultyType.Hard)
                             {
-                                int enemyToSpawn = SearchForEnemyTypeInPool(EnemyBase.DifficultyType.Hard);
+                                bool success = TrySetNewSpawnPosition(enemyPool[enemyToSpawn].transform);
 
-                                if (enemyPool[enemyToSpawn].GetComponent<EnemyBase>().currentDifficultyType == EnemyBase.DifficultyType.Hard)
+                                if (success)
                                 {
-                                    bool success = TrySetNewSpawnPosition(enemyPool[enemyToSpawn].transform);
-
-                                    if (success)
-                                    {
-                                        RemoveFromPool(enemyPool[enemyToSpawn].gameObject);
-                                        hardEnemiesSpawned++;
-                                    }
-                                    else
-                                    {
-                                        SpawnFailAddBackToPool(enemyPool[enemyToSpawn].gameObject);
-                                    }
+                                    RemoveFromPool(enemyPool[enemyToSpawn].gameObject);
+                                    hardEnemiesSpawned++;
                                 }
                             }
                         }
-                        if (currentBossSpawnChance > 0 && bossEnemiesSpawned < bossEnemyPoolCount)
+                    }
+                    if (currentBossSpawnChance > 0 && bossEnemiesSpawned < bossEnemyPoolCount)
+                    {
+                        if (randomNumb <= CurrentBossSpawnChance)
                         {
-                            if (randomNumb <= CurrentBossSpawnChance)
+                            int enemyToSpawn = SearchForEnemyTypeInPool(EnemyBase.DifficultyType.Boss);
+
+                            if (enemyPool[enemyToSpawn].GetComponent<EnemyBase>().currentDifficultyType == EnemyBase.DifficultyType.Boss)
                             {
-                                int enemyToSpawn = SearchForEnemyTypeInPool(EnemyBase.DifficultyType.Boss);
+                                bool success = TrySetNewSpawnPosition(enemyPool[enemyToSpawn].transform);
 
-                                if (enemyPool[enemyToSpawn].GetComponent<EnemyBase>().currentDifficultyType == EnemyBase.DifficultyType.Boss)
+                                if (success)
                                 {
-                                    bool success = TrySetNewSpawnPosition(enemyPool[enemyToSpawn].transform);
-
-                                    if (success)
-                                    {
-                                        RemoveFromPool(enemyPool[enemyToSpawn].gameObject);
-                                        bossEnemiesSpawned++;
-                                    }
-                                    else
-                                    {
-                                        SpawnFailAddBackToPool(enemyPool[enemyToSpawn].gameObject);
-                                    }
+                                    RemoveFromPool(enemyPool[enemyToSpawn].gameObject);
+                                    bossEnemiesSpawned++;
                                 }
                             }
                         }
-                        if (currentMediumSpawnChance > 0 && mediumEnemiesSpawned < mediumEnemyPoolCount)
+                    }
+                    if (currentMediumSpawnChance > 0 && mediumEnemiesSpawned < mediumEnemyPoolCount)
+                    {
+                        if (randomNumb <= CurrentMediumSpawnChance)
                         {
-                            if (randomNumb <= CurrentMediumSpawnChance)
+                            int enemyToSpawn = SearchForEnemyTypeInPool(EnemyBase.DifficultyType.Medium);
+
+                            if (enemyPool[enemyToSpawn].GetComponent<EnemyBase>().currentDifficultyType == EnemyBase.DifficultyType.Medium)
                             {
-                                int enemyToSpawn = SearchForEnemyTypeInPool(EnemyBase.DifficultyType.Medium);
+                                bool success = TrySetNewSpawnPosition(enemyPool[enemyToSpawn].transform);
 
-                                if (enemyPool[enemyToSpawn].GetComponent<EnemyBase>().currentDifficultyType == EnemyBase.DifficultyType.Medium)
+                                if (success)
                                 {
-                                    bool success = TrySetNewSpawnPosition(enemyPool[enemyToSpawn].transform);
-
-                                    if (success)
-                                    {
-                                        RemoveFromPool(enemyPool[enemyToSpawn].gameObject);
-                                        mediumEnemiesSpawned++;
-                                    }
-                                    else
-                                    {
-                                        SpawnFailAddBackToPool(enemyPool[enemyToSpawn].gameObject);
-                                    }
+                                    RemoveFromPool(enemyPool[enemyToSpawn].gameObject);
+                                    mediumEnemiesSpawned++;
                                 }
                             }
                         }
-                        if (currentEasySpawnChance > 0 && easyEnemiesSpawned < easyEnemyPoolCount)
+                    }
+                    if (currentEasySpawnChance > 0 && easyEnemiesSpawned < easyEnemyPoolCount)
+                    {
+                        if (randomNumb <= CurrentEasySpawnChance)
                         {
-                            if (randomNumb <= CurrentEasySpawnChance)
+                            int enemyToSpawn = SearchForEnemyTypeInPool(EnemyBase.DifficultyType.Easy);
+
+                            if (enemyPool[enemyToSpawn].GetComponent<EnemyBase>().currentDifficultyType == EnemyBase.DifficultyType.Easy)
                             {
-                                int enemyToSpawn = SearchForEnemyTypeInPool(EnemyBase.DifficultyType.Easy);
+                                bool success = TrySetNewSpawnPosition(enemyPool[enemyToSpawn].transform);
 
-                                if (enemyPool[enemyToSpawn].GetComponent<EnemyBase>().currentDifficultyType == EnemyBase.DifficultyType.Easy)
+                                if (success)
                                 {
-                                    bool success = TrySetNewSpawnPosition(enemyPool[enemyToSpawn].transform);
-
-                                    if (success)
-                                    {
-                                        RemoveFromPool(enemyPool[enemyToSpawn].gameObject);
-                                        easyEnemiesSpawned++;
-                                    }
-                                    else
-                                    {
-                                        SpawnFailAddBackToPool(enemyPool[enemyToSpawn].gameObject);
-                                    }
+                                    RemoveFromPool(enemyPool[enemyToSpawn].gameObject);
+                                    easyEnemiesSpawned++;
                                 }
                             }
                         }
@@ -357,11 +328,14 @@ public class Spawning : Difficulty
         }
     }
 
-    private void SpawnFailAddBackToPool(GameObject go)
+    public void AddNewEnemyToPool(GameObject go)
     {
+        // used when spawning an entirly new pool
+        go.transform.SetParent(poolParent.transform);
         enemyPool.Add(go);
         go.transform.position = poolParent.transform.position;
         go.SetActive(false);
+        totalEnemiesInPool++;
     }
 
     public void AddToPool(GameObject go)
@@ -370,14 +344,15 @@ public class Spawning : Difficulty
         enemyPool.Add(go);
         go.transform.position = poolParent.transform.position;
         go.SetActive(false);
-        totalEnemiesSpawned--;
+        totalEnemiesActive--;
     }
 
     public void RemoveFromPool(GameObject go)
     {
+        // used when spawning a new enemy
         enemyPool.Remove(go);
         go.SetActive(true);
-        totalEnemiesSpawned++;
+        totalEnemiesActive++;
     }
 
     private int SearchForEnemyTypeInPool(EnemyBase.DifficultyType type)
@@ -403,22 +378,18 @@ public class Spawning : Difficulty
         if (type == EnemyBase.DifficultyType.Easy)
         {
             easyEnemiesSpawned--;
-            totalEnemiesSpawned--;
         }
         if (type == EnemyBase.DifficultyType.Medium)
         {
             mediumEnemiesSpawned--;
-            totalEnemiesSpawned--;
         }
         if (type == EnemyBase.DifficultyType.Hard)
         {
             hardEnemiesSpawned--;
-            totalEnemiesSpawned--;
         }
         if (type == EnemyBase.DifficultyType.Boss)
         {
             bossEnemiesSpawned--;
-            totalEnemiesSpawned--;
         }
     }
 }
