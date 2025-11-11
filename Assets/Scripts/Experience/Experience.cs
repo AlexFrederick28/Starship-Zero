@@ -17,7 +17,7 @@ public class Experience : MonoBehaviour
 
     private void Start()
     {
-        // this shouldonly be spawned when entering a room, just like the enemies
+        // this should only be spawned when entering a room, just like the enemies
         SpawnPool();
     }
 
