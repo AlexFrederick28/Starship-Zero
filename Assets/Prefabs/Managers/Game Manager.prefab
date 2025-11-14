@@ -10,9 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6467625082563482837}
   - component: {fileID: 6283190580603290024}
-  - component: {fileID: 3386434121657024945}
+  - component: {fileID: 6870090674624868283}
+  - component: {fileID: 5562658886180886453}
   - component: {fileID: 5307932166547637836}
   - component: {fileID: 4688768272980312557}
+  - component: {fileID: 3386434121657024945}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -48,7 +50,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameState
   currentState: 1
---- !u!114 &3386434121657024945
+  gamePaused: 0
+--- !u!114 &6870090674624868283
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -57,10 +60,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 3904750311189774911}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82129b99762eb824fbf5eb0c48330f3e, type: 3}
+  m_Script: {fileID: 11500000, guid: 33b66eaa08d0a294b9af387d1c2e5cb8, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyBrain
-  player: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::QuestManager
+--- !u!114 &5562658886180886453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3904750311189774911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6907a38c7d09844eb147c813a07a7af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIManager
+  canvas: {fileID: 0}
+  dialogueParent: {fileID: 0}
+  nameText: {fileID: 0}
+  dialogueText: {fileID: 0}
+  continueButton: {fileID: 0}
 --- !u!114 &5307932166547637836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,3 +154,16 @@ MonoBehaviour:
   poolParent: {fileID: 0}
   enemyPool: []
   allEnemies: []
+--- !u!114 &3386434121657024945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3904750311189774911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82129b99762eb824fbf5eb0c48330f3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyBrain
+  player: {fileID: 0}

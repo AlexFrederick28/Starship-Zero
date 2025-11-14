@@ -1,5 +1,8 @@
+using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class PlayerBase : MonoBehaviour
 {
@@ -57,9 +60,22 @@ public class PlayerBase : MonoBehaviour
 
     public float speed;
 
+    private IInteractable interactable;
+
     private void Update()
     {
         ExperienceNeeded();
+    }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (interactable != null)
+            {
+                interactable.OnInteract();
+            }
+        }
     }
 
     public void TakeDamage(float damage)
@@ -98,6 +114,22 @@ public class PlayerBase : MonoBehaviour
             ExperiencePoint point = collision.gameObject.GetComponent<ExperiencePoint>();
             AddExperience((int)point.currentExperienceAmount);
             Spawning.instance.GetComponent<Experience>().AddToPool(point);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<IInteractable>() != null)
+        {
+            interactable = collision.gameObject.GetComponent<IInteractable>();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (interactable != null && interactable == collision.gameObject.GetComponent<IInteractable>())
+        {
+            interactable.OnEndInteraction();
         }
     }
 }

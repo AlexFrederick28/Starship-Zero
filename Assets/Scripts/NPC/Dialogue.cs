@@ -9,4 +9,7 @@ class Dialogue
     public string topic;
     public string[] dialogueText;
     public bool completedTopic = false;
+    public bool completedPrerequisite = false;
+    public bool isQuest = false;
+    public Quest quest;
 }
