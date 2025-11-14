@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class WeaponBase : MonoBehaviour
 {
 
-    // base weapon class
+    // base weapon class - has all the functionality for weapons 
 
     [Header("Base Settings")]
     [SerializeField] private string weaponName;
