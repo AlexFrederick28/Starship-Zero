@@ -9,7 +9,7 @@ public class WeaponScriptableObject : ScriptableObject
     public float fireRate;
     public float critChance;
     public float critDamage;
-    public bool isProjectile;
+    public float projectileSpeed;
     public GameObject projectileToFire;
 
 }

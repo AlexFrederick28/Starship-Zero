@@ -6,7 +6,6 @@ public class BulletProjectile : MonoBehaviour
 
     // projectile - functionality of the bullet that is fired from weapons
 
-    [SerializeField] private float bulletSpeed; // force applied to bullet
     [SerializeField] private float projectileLifeTime; // self destruct time
     [SerializeField] private Rigidbody2D RB2D;
 
@@ -21,7 +20,7 @@ public class BulletProjectile : MonoBehaviour
     protected void MoveProjectile() // single instanceto push 0 gravity projectile
     {
         RB2D = GetComponent<Rigidbody2D>();
-        RB2D.linearVelocity = transform.right * bulletSpeed;
+        RB2D.linearVelocity = transform.right * baseWeapon.projectileSpeed;
 
     }
 

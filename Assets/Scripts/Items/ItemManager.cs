@@ -12,6 +12,8 @@ public class ItemManager : MonoBehaviour
     [SerializeField] public List<string> itemDescriptionGO;
     [SerializeField] public List<Sprite> itemSpritesGO;
 
+    public WeaponBase[] allWeapons;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,6 +24,17 @@ public class ItemManager : MonoBehaviour
 
         ItemStats(); 
         ItemInfo(); 
+        ItemScaleAllWeapons();
+    }
+
+    public void ItemScaleAllWeapons()
+    {
+        allWeapons = FindObjectsByType<WeaponBase>(FindObjectsSortMode.None);
+
+        foreach (WeaponBase weapon in allWeapons)
+        {
+            weapon.ItemScaling();
+        }
     }
 
     public void ItemStats() // stats that affect a weapon
