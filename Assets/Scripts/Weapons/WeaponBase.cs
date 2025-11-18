@@ -17,7 +17,7 @@ public class WeaponBase : MonoBehaviour
     [SerializeField] private float baseCritChance;
     [SerializeField] private float baseCritDamage;
 
-    [SerializeField] private bool isProjectile; // ?? - only needed if different projectile types e.g. sword swing
+    [SerializeField] public float projectileSpeed;
     [SerializeField] private GameObject projectileToFire;
     [SerializeField] private WeaponScriptableObject weaponType;
 
@@ -43,25 +43,18 @@ public class WeaponBase : MonoBehaviour
 
     protected virtual void Start()
     {
-        //if (itemListGO == null)
-        //{
-        //    itemManager = FindFirstObjectByType<ItemManager>();
-
-        //    for (int i = 0; i < itemManager.itemList.Count; i++)
-        //    {
-        //        itemListGO[i] = itemManager.itemList[i]; 
-        //    }
-        //}
+        if (itemManager == null)
+        {
+            itemManager = FindFirstObjectByType<ItemManager>();
+        }
 
         weaponName = weaponType.weaponName;
         baseDamage = weaponType.damage;
         baseFireRate = weaponType.fireRate;
         baseCritChance = weaponType.critChance;
         baseCritDamage = weaponType.critDamage;
-        isProjectile = weaponType.isProjectile;
-        projectileToFire = weaponType.projectileToFire;
-
-        ItemScaling();       
+        projectileSpeed = weaponType.projectileSpeed;
+        projectileToFire = weaponType.projectileToFire;    
     }
 
     protected virtual void Update()
@@ -74,11 +67,62 @@ public class WeaponBase : MonoBehaviour
         FindClosetTarget();
     }
 
-    protected void ItemScaling() // scale weapon stats with players items - TODO
+    public void ItemScaling() // scale weapon stats with players items - TODO
     {
+        // (regions in order of the item manager list)
+        #region Damage 
+        if (itemManager.itemCountGO[0] > 0f) // if at least 1 itemas
+        {
+            // convert to float for decimal calculation
+            float amount = itemManager.itemCountGO[0];
+            float scale = itemManager.itemScalingGO[0];
+
+            //Debug.Log("ItemCount [" + amount + "], Item Scaling [" + scale + "]");
+            float itemModifier = amount * scale; // amount to modify by
+            //Debug.Log("Item: Damage Increase [" + itemModifier + "%]");
+
+            damage = baseDamage * (1f + itemModifier / 100f); // weapons damage
+        }
+        else // if no items (0 or less damage
+        {
+            damage = baseDamage;
+        }
+
+        //Debug.Log(weaponName + " Damage = [" + damage + "]");
+        #endregion
+
+        #region Crit Chance
+        // TODO
+        #endregion
+
+        #region Crit Damage
+        // TODO
+        #endregion
+
+        #region Fire Rate
+        if (itemManager.itemCountGO[3] > 0f) // if at least 1 itemas
+        {
+            // convert to float for decimal calculation
+            float amount = itemManager.itemCountGO[3];
+            float scale = itemManager.itemScalingGO[3];
+
+            //Debug.Log("ItemCount [" + amount + "], Item Scaling [" + scale + "]");
+            float itemModifier = amount * scale; // amount to modify by
+            //Debug.Log("Item: Attack Speed Increase [" + itemModifier + "%]");
+
+            fireRate = baseFireRate * (1f + itemModifier / 100f); // weapons damage
+        }
+        else // if no items (0 or less damage
+        {
+            fireRate = baseFireRate;
+        }
+
+        //Debug.Log(weaponName + " Attack Speed = [" + fireRate + "]");
+        #endregion
+
 
     }
-        
+
     protected virtual void FireProjectile() // weapon fires projectile
     {
         if (closestTarget != null)
@@ -100,7 +144,7 @@ public class WeaponBase : MonoBehaviour
 
         else
         {
-            Debug.Log("No target detected to fire");
+            //Debug.Log("No target detected to fire");
         }
     }
 
@@ -152,10 +196,7 @@ public class WeaponBase : MonoBehaviour
             {
                 fireTime = 0f; // reset timer
 
-                if (isProjectile == true) // projectile based e.g. pistol bullet
-                {
-                    FireProjectile();
-                }
+                FireProjectile(); // fire
 
                 //if (isProjectile == false) // variation
                 //{
