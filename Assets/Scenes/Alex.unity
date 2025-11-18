@@ -1457,10 +1457,10 @@ MonoBehaviour:
     completedPrerequisite: 0
     isQuest: 0
     quest:
-      description: Movement Tutorial
+      description: 
       prerequisite:
-        name: moveTutorial
-        id: 3
+        name: 
+        id: 0
         complete: 0
   currentDialogue:
     topic: 

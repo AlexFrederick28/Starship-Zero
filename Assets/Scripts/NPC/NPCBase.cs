@@ -86,9 +86,6 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
 
     public void NextLine()
     {
-        StopAllCoroutines();
-        ClearText();
-
         if (currentDialogue.completedTopic == false && currentDialogue.completedPrerequisite == false)
         {
             // repeats the same topic if not completed, as well as adds any quest that hasnt already been made active
@@ -102,42 +99,31 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
             }
             else
             {
-                CompleteTopic();
+                if (dialogueIndex != newDialogue.Length - 1)
+                {
+                    CompleteTopic();
+                    CompleteQuest();
+                }
                 textIndex = 0;
                 ClearText();
                 StartCoroutine(WriteLine_C());
             }
         }
-        //else
-        //{
-        //    if (textIndex < currentDialogue.dialogueText.Length - 1)
-        //    {
-        //        textIndex++;
-        //        StopAllCoroutines();
-        //        ClearText();
-        //        StartCoroutine(WriteLine_C());
-        //        ActivateQuest();
-        //    }
-        //    else
-        //    {
-        //        CompleteTopic();
-        //        textIndex = 0;
-        //        ClearText();
-        //        StartCoroutine(WriteLine_C());
-        //    }
-        //}
     }
 
     public void CompleteTopic()
     {
-        if (currentDialogue.isQuest == false && textIndex == currentDialogue.dialogueText.Length - 1 || currentDialogue.isQuest == true && textIndex == currentDialogue.dialogueText.Length - 1 && currentDialogue.quest.prerequisite.complete == true)
+        if (currentDialogue.isQuest == false && textIndex == currentDialogue.dialogueText.Length - 1)
         {
             // if the current topic is not a quest, and the dialogue length has been reached - set to true and continue
             currentDialogue.completedTopic = true;
-            currentDialogue.completedPrerequisite = true;
-
-            GoNextDialogue();
         }
+        else if (currentDialogue.isQuest == true && textIndex == currentDialogue.dialogueText.Length - 1 && currentDialogue.quest.prerequisite.complete == true)
+        {
+            currentDialogue.completedPrerequisite = true;
+        }
+
+        GoNextDialogue();
     }
 
     public void GoNextDialogue()
@@ -159,7 +145,7 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
         //    EndDialogue();
         //}
 
-        CompleteQuest();
+        //CompleteQuest();
     }
 
     public void ActivateQuest()
