@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 
 [Serializable]
-class Dialogue
+public class Dialogue
 {
     [Tooltip("What the dialogue is about - what part of the narrative is it")]
     public string topic;

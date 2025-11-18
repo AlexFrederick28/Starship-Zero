@@ -63,6 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33b66eaa08d0a294b9af387d1c2e5cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuestManager
+  questList: []
 --- !u!114 &5562658886180886453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,6 +81,8 @@ MonoBehaviour:
   nameText: {fileID: 0}
   dialogueText: {fileID: 0}
   continueButton: {fileID: 0}
+  questParent: {fileID: 0}
+  questPrefab: {fileID: 1232731352731200, guid: d87b4731775488f40a1cf27dbc21a2f1, type: 3}
 --- !u!114 &5307932166547637836
 MonoBehaviour:
   m_ObjectHideFlags: 0

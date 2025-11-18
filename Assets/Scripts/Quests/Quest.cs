@@ -9,6 +9,7 @@ public class Quest
     {
         public string name;
         public int id;
+        public bool complete;
     }
 
     public string description;
