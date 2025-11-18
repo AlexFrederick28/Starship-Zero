@@ -75,8 +75,10 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
             UIManager.instance.nameText.text = nameNPC;
             UIManager.instance.continueButton.GetComponent<Button>().onClick.AddListener(NextLine);
 
+            CompleteQuest();
+            CompleteTopic();
+            textIndex = 0;
             SetDialogueActive();
-
             ClearText();
             StartCoroutine(WriteLine_C());
 
@@ -86,7 +88,7 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
 
     public void NextLine()
     {
-        if (currentDialogue.completedTopic == false && currentDialogue.completedPrerequisite == false)
+        if (currentDialogue.completedTopic == false && currentDialogue.completedPrerequisite == false || currentDialogue.completedTopic == true && dialogueIndex < newDialogue.Length - 1)
         {
             // repeats the same topic if not completed, as well as adds any quest that hasnt already been made active
             if (textIndex < currentDialogue.dialogueText.Length - 1)
@@ -99,36 +101,37 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
             }
             else
             {
-                if (dialogueIndex != newDialogue.Length - 1)
-                {
-                    CompleteTopic();
-                    CompleteQuest();
-                }
+                CompleteQuest();
+                CompleteTopic();
                 textIndex = 0;
                 ClearText();
                 StartCoroutine(WriteLine_C());
             }
         }
+       
     }
 
     public void CompleteTopic()
     {
         if (currentDialogue.isQuest == false && textIndex == currentDialogue.dialogueText.Length - 1)
         {
-            // if the current topic is not a quest, and the dialogue length has been reached - set to true and continue
-            currentDialogue.completedTopic = true;
+            if (dialogueIndex !< newDialogue.Length - 1)
+            {
+                // if the current topic is not a quest, and the dialogue length has been reached - set to true and continue
+                currentDialogue.completedTopic = true;
+                GoNextDialogue();
+            }
         }
         else if (currentDialogue.isQuest == true && textIndex == currentDialogue.dialogueText.Length - 1 && currentDialogue.quest.prerequisite.complete == true)
         {
             currentDialogue.completedPrerequisite = true;
+            GoNextDialogue();
         }
-
-        GoNextDialogue();
     }
 
     public void GoNextDialogue()
     {
-        // if possible, go to the next dialogue prompt. Otherwise end interaction
+        // if possible, go to the next dialogue prompt
         if (dialogueIndex < newDialogue.Length - 1)
         {
             StopAllCoroutines();
@@ -137,15 +140,6 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
             currentDialogue = newDialogue[dialogueIndex];
             textIndex = 0;
         }
-        //else
-        //{
-        //    Debug.Log("Ended Dialogue Interaction");
-        //    StopAllCoroutines();
-        //    ClearText();
-        //    EndDialogue();
-        //}
-
-        //CompleteQuest();
     }
 
     public void ActivateQuest()
