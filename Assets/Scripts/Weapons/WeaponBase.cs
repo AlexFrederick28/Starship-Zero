@@ -10,13 +10,22 @@ public class WeaponBase : MonoBehaviour
 
     [Header("Base Settings")]
     [SerializeField] private string weaponName;
+
+    // TODO - add base and modified stats to weapon
+    [SerializeField] private float baseDamage;
+    [SerializeField] private float baseFireRate;
+    [SerializeField] private float baseCritChance;
+    [SerializeField] private float baseCritDamage;
+
+    [SerializeField] private bool isProjectile; // ?? - only needed if different projectile types e.g. sword swing
+    [SerializeField] private GameObject projectileToFire;
+    [SerializeField] private WeaponScriptableObject weaponType;
+
+    [Header("Modified Stats")]
     [SerializeField] private float damage;
     [SerializeField] private float fireRate;
     [SerializeField] private float critChance;
     [SerializeField] private float critDamage;
-    [SerializeField] private bool isProjectile; // ?? - only needed if different projectile types e.g. sword swing
-    [SerializeField] private GameObject projectileToFire;
-    [SerializeField] private WeaponScriptableObject weaponType;
 
     [Header("Other")]
     [SerializeField] private float fireTime;
@@ -28,14 +37,27 @@ public class WeaponBase : MonoBehaviour
     [SerializeField] protected GameObject newBullet; // newest bullet
     [SerializeField] public List<GameObject> currentBullets; // all bullets
 
+    [Header("References (item stuff for now)")]
+
+    [SerializeField] public ItemManager itemManager;
 
     protected virtual void Start()
     {
+        //if (itemListGO == null)
+        //{
+        //    itemManager = FindFirstObjectByType<ItemManager>();
+
+        //    for (int i = 0; i < itemManager.itemList.Count; i++)
+        //    {
+        //        itemListGO[i] = itemManager.itemList[i]; 
+        //    }
+        //}
+
         weaponName = weaponType.weaponName;
-        damage = weaponType.damage;
-        fireRate = weaponType.fireRate;
-        critChance = weaponType.critChance;
-        critDamage = weaponType.critDamage;
+        baseDamage = weaponType.damage;
+        baseFireRate = weaponType.fireRate;
+        baseCritChance = weaponType.critChance;
+        baseCritDamage = weaponType.critDamage;
         isProjectile = weaponType.isProjectile;
         projectileToFire = weaponType.projectileToFire;
 
@@ -54,9 +76,9 @@ public class WeaponBase : MonoBehaviour
 
     protected void ItemScaling() // scale weapon stats with players items - TODO
     {
-        
-    }
 
+    }
+        
     protected virtual void FireProjectile() // weapon fires projectile
     {
         if (closestTarget != null)
