@@ -5,7 +5,15 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    [Header("Player")]
+    public Slider playerHealthSlider;
+
+    [Header("Infested Room")]
+    public TextMeshProUGUI currentTime;
+    public TextMeshProUGUI currentDifficulty;
+
     [Header("Dialogue")]
+    [Space]
     public GameObject canvas;
     public GameObject dialogueParent;
     public TextMeshProUGUI nameText;
@@ -50,5 +58,20 @@ public class UIManager : MonoBehaviour
             GameObject parent = Instantiate(questParent);
             parent.transform.SetParent(canvas.transform);
         }
+    }
+
+    private void Update()
+    {
+        GetUINumbersTEMP();
+    }
+    public void GetUINumbersTEMP()
+    {
+        // this is a temporary function to get the infested room and player health bar working for prototype testing
+        int newTime = (int)Spawning.instance.CurrentTime;
+        int newDifficulty = (int)Spawning.instance.CurrentDifficulty;
+
+
+        currentTime.text = newTime.ToString();
+        currentDifficulty.text = newDifficulty.ToString();
     }
 }

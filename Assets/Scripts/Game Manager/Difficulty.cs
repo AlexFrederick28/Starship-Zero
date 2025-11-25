@@ -4,8 +4,37 @@ public class Difficulty : MonoBehaviour
 {
     [Header("Difficulty Settings")]
     [SerializeField] protected float currentTime;
+    public float CurrentTime
+    {
+        get { return currentTime; }
+        private set
+        {
+            if (value < 0)
+            {
+                value = 0;
+            }
+            currentTime = value;
+        }
+    }
     [SerializeField] protected float timerLength;
     [SerializeField] protected float currentDifficulty;
+    public float CurrentDifficulty
+    {
+        get { return currentDifficulty; }
+        private set
+        {
+            if (value < 0)
+            {
+                value = 0;
+            }
+            if (value > maxDifficulty)
+            {
+                value = maxDifficulty;
+            }
+
+            currentDifficulty = value;
+        }
+    }
     [Tooltip("max difficulty / timer length = The lower the number, the higher the max difficulty can go - effecting how many scaling segments there will be in a single run")]
     [SerializeField] protected float maxDifficulty;
     [SerializeField] protected float scalingSegments;

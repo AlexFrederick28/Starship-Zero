@@ -65,6 +65,9 @@ public class PlayerBase : MonoBehaviour
     private void Update()
     {
         ExperienceNeeded();
+
+        // temp function
+        SetPlayerHealthSlider();
     }
 
     public void OnInteract(InputAction.CallbackContext context)
@@ -131,5 +134,12 @@ public class PlayerBase : MonoBehaviour
         {
             interactable.OnEndInteraction();
         }
+    }
+
+    private void SetPlayerHealthSlider()
+    {
+        UIManager.instance.playerHealthSlider.maxValue = maxHealth;
+        UIManager.instance.playerHealthSlider.minValue = 0f;
+        UIManager.instance.playerHealthSlider.value = currentHealth;
     }
 }
