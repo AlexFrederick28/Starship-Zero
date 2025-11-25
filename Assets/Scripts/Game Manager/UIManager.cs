@@ -7,6 +7,8 @@ public class UIManager : MonoBehaviour
 {
     [Header("Player")]
     public Slider playerHealthSlider;
+    public Slider playerLevelSlider;
+    public TextMeshProUGUI playerLevel;
 
     [Header("Infested Room")]
     public TextMeshProUGUI currentTime;
@@ -69,7 +71,6 @@ public class UIManager : MonoBehaviour
         // this is a temporary function to get the infested room and player health bar working for prototype testing
         int newTime = (int)Spawning.instance.CurrentTime;
         int newDifficulty = (int)Spawning.instance.CurrentDifficulty;
-
 
         currentTime.text = newTime.ToString();
         currentDifficulty.text = newDifficulty.ToString();

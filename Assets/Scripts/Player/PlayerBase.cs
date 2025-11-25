@@ -138,6 +138,10 @@ public class PlayerBase : MonoBehaviour
 
     private void SetPlayerHealthSlider()
     {
+        UIManager.instance.playerLevel.text = "Level: " + level;
+        UIManager.instance.playerLevelSlider.maxValue = experienceNeeded;
+        UIManager.instance.playerLevelSlider.minValue = 0f;
+        UIManager.instance.playerLevelSlider.value = currentExperience;
         UIManager.instance.playerHealthSlider.maxValue = maxHealth;
         UIManager.instance.playerHealthSlider.minValue = 0f;
         UIManager.instance.playerHealthSlider.value = currentHealth;
