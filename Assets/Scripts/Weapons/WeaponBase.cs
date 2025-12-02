@@ -69,7 +69,7 @@ public class WeaponBase : MonoBehaviour
 
     public void ItemScaling() // scale weapon stats with players items - TODO
     {
-        // (regions in order of the item manager list)
+        // (regions in order of the item manager list, 0 = first in list)
         #region Damage 
         if (itemManager.itemCountGO[0] > 0f) // if at least 1 itemas
         {
@@ -92,11 +92,45 @@ public class WeaponBase : MonoBehaviour
         #endregion
 
         #region Crit Chance
-        // TODO
+        if (itemManager.itemCountGO[1] > 0f)
+        {
+            // convert
+            float amount = itemManager.itemCountGO[1];
+            float scale = itemManager.itemScalingGO[1];
+
+            //Debug.Log("ItemCount [" + amount + "], Item Scaling [" + scale + "]");
+            float itemModifier = amount * scale;
+
+            critChance = baseCritChance + itemModifier;
+
+        }
+        else
+        {
+            critChance = baseCritChance;
+        }
+
+        //Debug.Log(weaponName + " Crit Chance = [" + critChance + "]");
         #endregion
 
         #region Crit Damage
-        // TODO
+        if (itemManager.itemCountGO[2] > 0f)
+        {
+            // convert
+            float amount = itemManager.itemCountGO[2];
+            float scale = itemManager.itemScalingGO[2];
+
+            //Debug.Log("ItemCount [" + amount + "], Item Scaling [" + scale + "]");
+            float itemModifier = amount * scale;
+
+            critDamage = baseCritDamage + itemModifier;
+
+        }
+        else
+        {
+            critDamage = baseCritDamage;
+        }
+
+        //Debug.Log(weaponName + " Crit Damage = [" + critDamage + "]");
         #endregion
 
         #region Fire Rate
