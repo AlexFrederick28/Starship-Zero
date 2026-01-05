@@ -64,6 +64,12 @@ public class PlayerBase : MonoBehaviour
 
     private void Update()
     {
+        if (GameState.instance != null && GameState.instance.player == null)
+        {
+            // setting the reference for the player so that global scripts can access the data if necessary
+            GameState.instance.player = this;
+        }
+
         ExperienceNeeded();
 
         // temp function
@@ -133,6 +139,7 @@ public class PlayerBase : MonoBehaviour
         if (interactable != null && interactable == collision.gameObject.GetComponent<IInteractable>())
         {
             interactable.OnEndInteraction();
+            interactable = null;
         }
     }
 

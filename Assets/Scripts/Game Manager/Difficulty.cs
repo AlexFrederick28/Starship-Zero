@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using UnityEngine;
 
 public class Difficulty : MonoBehaviour
@@ -12,6 +13,10 @@ public class Difficulty : MonoBehaviour
             if (value < 0)
             {
                 value = 0;
+            }
+            if (value > timerLength)
+            {
+                value = timerLength;
             }
             currentTime = value;
         }

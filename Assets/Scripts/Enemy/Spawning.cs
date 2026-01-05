@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Runtime.CompilerServices;
+using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -12,7 +13,6 @@ using Random = UnityEngine.Random;
 public class Spawning : Difficulty
 {
     [Space]
-    [Header("Spawn Settings")]
     [Header("Percent Chance")]
     [SerializeField] private float currentEasySpawnChance;
     private float CurrentEasySpawnChance
@@ -28,7 +28,7 @@ public class Spawning : Difficulty
             currentEasySpawnChance = value;
         }
     }
-    [SerializeField] private float currentMediumSpawnChance;
+    [SerializeField, ReadOnly] private float currentMediumSpawnChance;
     private float CurrentMediumSpawnChance
     {
         get { return currentMediumSpawnChance; }
@@ -91,8 +91,8 @@ public class Spawning : Difficulty
     [Header("Positions")]
     [SerializeField] private float spawnMinDistance;
     [SerializeField] private float spawnMaxDistance;
-    [SerializeField] private GameObject spawnBoundOne;
-    [SerializeField] private GameObject spawnBoundTwo;
+    [SerializeField] private Collider2D[] roomSpawnBounds;
+    private Collider2D roomToSpawnIn;
     [Header("Pool")]
     [SerializeField] private int totalEnemyPoolCount;
     [SerializeField] private int easyEnemyPoolCount;
@@ -111,7 +111,7 @@ public class Spawning : Difficulty
     [SerializeField] private List<GameObject> enemyPool;
     public List<GameObject> allEnemies;
 
-    private PlayerBase player;
+    public PlayerBase player { get; private set; }
 
     private int easyIndexNumb;
     private int mediumIndexNumb;
@@ -149,18 +149,20 @@ public class Spawning : Difficulty
 
     override public void Update()
     {
-        base.Update();
-        SpawnChance();
-
-        if (player == null)
+        if (GameState.instance.currentState == GameState.States.RoomClear)
         {
-            player = FindAnyObjectByType<PlayerBase>();
+            base.Update();
+            SpawnChance();
+
+            if (player == null)
+            {
+                player = FindAnyObjectByType<PlayerBase>();
+            }
+
+            amountOfEnemiesToSpawn = (currentDifficulty / scalingSegments) * spawnAmountMulitplier;
+
+            SpawnNewEnemy();
         }
-
-        amountOfEnemiesToSpawn = (currentDifficulty / scalingSegments) * spawnAmountMulitplier;
-
-        // here for testing - this should only start spawning enemies when entering a room
-        SpawnNewEnemy();
     }
 
     private void SpawnPool()
@@ -228,12 +230,28 @@ public class Spawning : Difficulty
 
         for (int i = 0; i < spawnAttempts; i++)
         {
-            Vector3 newSpawnPosition = new Vector3(Random.Range(spawnBoundOne.transform.position.x, spawnBoundTwo.transform.position.x), Random.Range(spawnBoundOne.transform.position.y, spawnBoundTwo.transform.position.y), 0f);
-            float distance = Vector3.Distance(newSpawnPosition, player.transform.position);
-
-            if (distance < spawnMaxDistance && distance > spawnMinDistance)
+            for (int x = 0; x < roomSpawnBounds.Length; x++)
             {
-                enemyTransform.position = newSpawnPosition;
+                // find the closest room to spawn in
+                if (roomToSpawnIn == null)
+                {
+                    // initial spawn room
+                    roomToSpawnIn = roomSpawnBounds[x];
+                }
+                else if (Vector3.Distance(roomSpawnBounds[x].transform.position, player.transform.position) < Vector3.Distance(roomToSpawnIn.transform.position, player.transform.position))
+                {
+                    // closer spawn room overriding the previous
+                    roomToSpawnIn = roomSpawnBounds[x];
+                }
+            }
+            Vector3 nspawnPosition = new Vector3(Random.Range(roomToSpawnIn.bounds.min.x, roomToSpawnIn.bounds.max.x), Random.Range(roomToSpawnIn.bounds.min.y, roomToSpawnIn.bounds.max.y), 0f);
+            float ndistance = Vector3.Distance(nspawnPosition, player.transform.position);
+
+            if (ndistance < spawnMaxDistance && ndistance > spawnMinDistance)
+            {
+                // if the new spawn location distance is correct, spawn the enemy, else retry
+                enemyTransform.position = nspawnPosition;
+                roomToSpawnIn = null;
                 return true; 
             }
         }

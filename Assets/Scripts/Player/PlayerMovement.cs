@@ -18,8 +18,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        rb.linearVelocity = moveInput * player.speed;
         MoveAnimations();
+    }
+
+    private void FixedUpdate()
+    {
+        rb.linearVelocity = moveInput * player.speed;
     }
 
     public void Move(InputAction.CallbackContext context)
