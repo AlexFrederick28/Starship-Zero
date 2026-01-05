@@ -64,6 +64,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuestManager
   questList: []
+  activeQuests: []
+  questUIList: []
+  completQuestSprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!114 &5562658886180886453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,6 +79,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6907a38c7d09844eb147c813a07a7af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
+  playerHealthSlider: {fileID: 0}
+  playerLevelSlider: {fileID: 0}
+  playerLevel: {fileID: 0}
+  currentTime: {fileID: 0}
+  currentDifficulty: {fileID: 0}
   canvas: {fileID: 0}
   dialogueParent: {fileID: 0}
   nameText: {fileID: 0}

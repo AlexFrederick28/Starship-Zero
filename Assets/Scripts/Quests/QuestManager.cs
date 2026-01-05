@@ -1,10 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class QuestManager : MonoBehaviour
 {
-    public List<Quest> questList = new List<Quest>();
+    public List<Quest> questList = new List<Quest>(); // not used yet
     public List<Quest> activeQuests = new List<Quest>();
+    public List<QuestUIParent> questUIList = new List<QuestUIParent>();
+    public Sprite completQuestSprite;
 
     public static QuestManager instance;
 
@@ -35,8 +38,12 @@ public class QuestManager : MonoBehaviour
         {
             if (instance.activeQuests[i].prerequisite.id == currentDialogue.quest.prerequisite.id && instance.activeQuests[i].prerequisite.complete == true)
             {
+                // this is where you can give the player their quest completions/rewards
                 currentDialogue.completedPrerequisite = true;
-                Debug.Log("Quest Complete");
+                instance.activeQuests.RemoveAt(i);
+                Destroy(instance.questUIList[i].gameObject);
+                instance.questUIList.RemoveAt(i);
+                Debug.Log("Quest Complete and rewards claimed!");
             }
         }
     }
@@ -53,6 +60,7 @@ public class QuestManager : MonoBehaviour
                 {
                     Debug.Log("Complete ACTIVE quest");
                     instance.activeQuests[i].prerequisite.complete = true;
+                    instance.questUIList[i].image.sprite = completQuestSprite;
                 }
                 else
                 {

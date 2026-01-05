@@ -104,11 +104,11 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
                 CompleteQuest();
                 CompleteTopic();
                 textIndex = 0;
+                StopAllCoroutines();
                 ClearText();
                 StartCoroutine(WriteLine_C());
             }
         }
-       
     }
 
     public void CompleteTopic()
@@ -156,7 +156,9 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
                         GameObject newQuestInstance = Instantiate(UIManager.instance.questPrefab);
                         newQuestInstance.transform.SetParent(UIManager.instance.questParent.transform);
                         newQuestInstance.GetComponentInChildren<TextMeshProUGUI>().text = currentDialogue.quest.description;
+                        newQuestInstance.GetComponent<QuestUIParent>().questID = currentDialogue.quest.prerequisite.id;
                         QuestManager.instance.activeQuests.Add(currentDialogue.quest);
+                        QuestManager.instance.questUIList.Add(newQuestInstance.GetComponent<QuestUIParent>());
                     }
                 }
             }

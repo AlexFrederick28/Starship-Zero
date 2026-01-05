@@ -2067,7 +2067,7 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 0.002307713, y: 0, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 3
@@ -2245,15 +2245,7 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  m_TileSpriteArray:
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  m_TileSpriteArray: []
   m_TileMatrixArray:
   - m_RefCount: 15
     m_Data:
@@ -2273,42 +2265,6 @@ Tilemap:
       e31: 0
       e32: 0
       e33: 1
-  - m_RefCount: 0
-    m_Data:
-      e00: -6.650889e-20
-      e01: 0
-      e02: 1.0211901e-12
-      e03: 8.762893e+19
-      e10: 4.5907e-41
-      e11: 0
-      e12: 6.4e-44
-      e13: 7.2e-43
-      e20: -1.9301846e-19
-      e21: 0
-      e22: -398928400
-      e23: -6.6599e-19
-      e30: 4.5907e-41
-      e31: 0
-      e32: 7.2e-43
-      e33: 7.2e-43
-  - m_RefCount: 0
-    m_Data:
-      e00: -6.650889e-20
-      e01: 0
-      e02: 1.0211901e-12
-      e03: 8.762893e+19
-      e10: 4.5907e-41
-      e11: 0
-      e12: 6.4e-44
-      e13: 7.2e-43
-      e20: -1.9301846e-19
-      e21: 0
-      e22: -398928400
-      e23: -1.8490878e-18
-      e30: 4.5907e-41
-      e31: 0
-      e32: 7.2e-43
-      e33: 7.2e-43
   m_TileColorArray:
   - m_RefCount: 15
     m_Data: {r: 1, g: 1, b: 1, a: 1}
@@ -3890,6 +3846,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6870090674624868283, guid: 5a6d9e2c934a7064980f349c321cee3c, type: 3}
+      propertyPath: completeQuestUI
+      value: 
+      objectReference: {fileID: 1417992952}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
