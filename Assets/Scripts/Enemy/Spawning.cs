@@ -7,6 +7,7 @@ using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
+using UnityEngine.Rendering;
 using static UnityEngine.EventSystems.EventTrigger;
 using Random = UnityEngine.Random;
 
@@ -92,7 +93,8 @@ public class Spawning : Difficulty
     [SerializeField] private float spawnMinDistance;
     [SerializeField] private float spawnMaxDistance;
     [SerializeField] private Collider2D[] roomSpawnBounds;
-    private Collider2D roomToSpawnIn;
+    private Collider2D closestSpawn;
+    private Collider2D secondClosestSpawn;
     [Header("Pool")]
     [SerializeField] private int totalEnemyPoolCount;
     [SerializeField] private int easyEnemyPoolCount;
@@ -233,25 +235,42 @@ public class Spawning : Difficulty
             for (int x = 0; x < roomSpawnBounds.Length; x++)
             {
                 // find the closest room to spawn in
-                if (roomToSpawnIn == null)
+                if (closestSpawn == null)
                 {
                     // initial spawn room
-                    roomToSpawnIn = roomSpawnBounds[x];
+                    closestSpawn = roomSpawnBounds[x];
                 }
-                else if (Vector3.Distance(roomSpawnBounds[x].transform.position, player.transform.position) < Vector3.Distance(roomToSpawnIn.transform.position, player.transform.position))
+                else if (Vector3.Distance(roomSpawnBounds[x].transform.position, player.transform.position) < Vector3.Distance(closestSpawn.transform.position, player.transform.position))
                 {
-                    // closer spawn room overriding the previous
-                    roomToSpawnIn = roomSpawnBounds[x];
+                    secondClosestSpawn = closestSpawn;
+                    if (Vector3.Distance(secondClosestSpawn.transform.position, player.transform.position) < 5f && Vector3.Distance(closestSpawn.transform.position, player.transform.position) < 5f)
+                    {
+                        // if the distance between two potential spawn rooms are close in proximity then use both at random
+                        int randNumb = Random.Range(0, 100);
+                        if (randNumb > 50)
+                        {
+                            closestSpawn = roomSpawnBounds[x];
+                        }
+                        else
+                        {
+                            closestSpawn = secondClosestSpawn;
+                        }
+                    }
+                    else
+                    {
+                        // by default the closer spawn room overrides the previous
+                        closestSpawn = roomSpawnBounds[x];
+                    }
                 }
             }
-            Vector3 nspawnPosition = new Vector3(Random.Range(roomToSpawnIn.bounds.min.x, roomToSpawnIn.bounds.max.x), Random.Range(roomToSpawnIn.bounds.min.y, roomToSpawnIn.bounds.max.y), 0f);
+            Vector3 nspawnPosition = new Vector3(Random.Range(closestSpawn.bounds.min.x, closestSpawn.bounds.max.x), Random.Range(closestSpawn.bounds.min.y, closestSpawn.bounds.max.y), 0f);
             float ndistance = Vector3.Distance(nspawnPosition, player.transform.position);
 
             if (ndistance < spawnMaxDistance && ndistance > spawnMinDistance)
             {
                 // if the new spawn location distance is correct, spawn the enemy, else retry
                 enemyTransform.position = nspawnPosition;
-                roomToSpawnIn = null;
+                closestSpawn = null;
                 return true; 
             }
         }
