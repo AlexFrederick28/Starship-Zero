@@ -4,19 +4,25 @@ public class Door : MonoBehaviour, IInteractable
 {
     [SerializeField] private Transform playerEntryPoint;
     [SerializeField] private Transform playerExitPoint;
+    private bool enteredRoom = false;
 
-    public void OnEndInteraction()
+    public virtual void OnEndInteraction()
     {
-        Debug.Log("Left door interaction");
+        // interaction ends when the player has left the distance of the door
     }
 
-    public void OnInteract()
+    public virtual void OnInteract()
     {
-        GameState.instance.ChangeStateToRoomClear();
-        GetComponent<Spawning>().enabled = true;
-        if (GameState.instance.player != null)
+        if (GameState.instance.player != null && GameState.instance.currentState == GameState.States.Main)
         {
-            GameState.instance.player.transform.position = playerEntryPoint.position;
+            if (enteredRoom == false)
+            {
+                GameState.instance.player.transform.position = playerEntryPoint.position;
+            }
+            else
+            {
+                GameState.instance.player.transform.position = playerExitPoint.position;
+            }
         }
     }
 }

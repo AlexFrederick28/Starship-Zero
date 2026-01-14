@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameState : MonoBehaviour
 {
-    public enum States { Paused, Main, RoomClear }
+    public enum States { Paused, Main, RoomClear, Upgrade }
     public States currentState;
     public bool gamePaused = false;
     private States previousState;

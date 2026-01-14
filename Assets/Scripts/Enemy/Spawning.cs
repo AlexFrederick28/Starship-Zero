@@ -73,13 +73,9 @@ public class Spawning : Difficulty
     }
     private float collectiveSpawnChance = 0f;
     [Header("Chance Multiplier")]
-    [Tooltip("Default 100% (Spawn chance lowers as the difficulty progresses)")]
     [SerializeField] private float easySpawnWeight;
-    [Tooltip("Default -25% (Spawn chance increases as the difficulty progresses)")]
     [SerializeField] private float mediumSpawnWeight;
-    [Tooltip("Default -50% (Spawn chance increases as the difficulty progresses)")]
     [SerializeField] private float hardSpawnWeight;
-    [Tooltip("Default 50 (Amount of enemies to spawn DIVIDED BY Boss spawn chance)")]
     [SerializeField] private float bossSpawnWeight;
     [Header("Amount")]
     [SerializeField] private float amountOfEnemiesToSpawn;
@@ -92,6 +88,8 @@ public class Spawning : Difficulty
     [Header("Positions")]
     [SerializeField] private float spawnMinDistance;
     [SerializeField] private float spawnMaxDistance;
+    [Tooltip("How far the player has to be between two 'closest' rooms for enemies to spawn from both")]
+    [SerializeField] private float splitSpawnDistance;
     [SerializeField] private Collider2D[] roomSpawnBounds;
     private Collider2D closestSpawn;
     private Collider2D secondClosestSpawn;
@@ -243,7 +241,7 @@ public class Spawning : Difficulty
                 else if (Vector3.Distance(roomSpawnBounds[x].transform.position, player.transform.position) < Vector3.Distance(closestSpawn.transform.position, player.transform.position))
                 {
                     secondClosestSpawn = closestSpawn;
-                    if (Vector3.Distance(secondClosestSpawn.transform.position, player.transform.position) < 5f && Vector3.Distance(closestSpawn.transform.position, player.transform.position) < 5f)
+                    if (Vector3.Distance(secondClosestSpawn.transform.position, player.transform.position) < splitSpawnDistance && Vector3.Distance(closestSpawn.transform.position, player.transform.position) < splitSpawnDistance)
                     {
                         // if the distance between two potential spawn rooms are close in proximity then use both at random
                         int randNumb = Random.Range(0, 100);
