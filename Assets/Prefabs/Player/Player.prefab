@@ -139,7 +139,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b753be4f9a387343b61cd464a77b9e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBase
-  level: 0
   currentExperience: 0
   experienceNeeded: 0
   experienceCurve:

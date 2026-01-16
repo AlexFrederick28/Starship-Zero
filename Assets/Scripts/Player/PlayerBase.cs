@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 public class PlayerBase : MonoBehaviour
 {
-    [SerializeField] private int level;
+    public int Level { get; private set; }
     [SerializeField] private int currentExperience;
     public int CurrentExperience
     {
@@ -18,10 +18,16 @@ public class PlayerBase : MonoBehaviour
         {
             currentExperience = value;
 
-            if (currentExperience >= experienceNeeded)
+            if (experienceNeeded <= 0)
+            {
+                return;
+            }
+
+            while (currentExperience >= experienceNeeded)
             {
                 LevelUp();
-                currentExperience = 0;
+                currentExperience -= experienceNeeded;
+                ExperienceNeeded();
             }
             if (currentExperience < 0)
             {
@@ -62,6 +68,11 @@ public class PlayerBase : MonoBehaviour
 
     private IInteractable interactable;
 
+    private void Start()
+    {
+        ExperienceNeeded();
+    }
+
     private void Update()
     {
         if (GameState.instance != null && GameState.instance.player == null)
@@ -69,8 +80,6 @@ public class PlayerBase : MonoBehaviour
             // setting the reference for the player so that global scripts can access the data if necessary
             GameState.instance.player = this;
         }
-
-        ExperienceNeeded();
 
         // temp function
         SetPlayerHealthSlider();
@@ -97,10 +106,10 @@ public class PlayerBase : MonoBehaviour
 
     private void ExperienceNeeded()
     {
-        if (experienceNeeded != (int)experienceCurve.Evaluate(level + 1))
+        if (experienceNeeded != (int)experienceCurve.Evaluate(Level + 1))
         {
             // calculation using animation curve to determine the experience needed for the next level
-            experienceNeeded = (int)experienceCurve.Evaluate(level + 1);
+            experienceNeeded = (int)experienceCurve.Evaluate(Level + 1);
             //Debug.Log("Updated Experience Needed");
         }
     }
@@ -113,7 +122,7 @@ public class PlayerBase : MonoBehaviour
     public void LevelUp()
     {
         Debug.Log("Leveled Up!");
-        level++;
+        Level++;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -145,7 +154,7 @@ public class PlayerBase : MonoBehaviour
 
     private void SetPlayerHealthSlider()
     {
-        UIManager.instance.playerLevel.text = "Level: " + level;
+        UIManager.instance.playerLevel.text = "Level: " + Level;
         UIManager.instance.playerLevelSlider.maxValue = experienceNeeded;
         UIManager.instance.playerLevelSlider.minValue = 0f;
         UIManager.instance.playerLevelSlider.value = currentExperience;

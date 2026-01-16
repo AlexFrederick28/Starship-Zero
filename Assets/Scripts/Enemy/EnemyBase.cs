@@ -1,3 +1,4 @@
+using Unity.Multiplayer.Center.Common;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -34,9 +35,18 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] protected float damage;
     [SerializeField] protected float speed;
     [SerializeField] protected int level;
+
+    [Space]
+    [Header("Stat Scaling")]
+    [SerializeField] protected int healthScale;
+    [SerializeField] protected int damageScale;
+    [SerializeField] protected int speedScale;
+
     public enum DifficultyType { Easy, Medium, Hard, Boss }
     public DifficultyType currentDifficultyType;
 
+    [Space]
+    [Header("Attack")]
     [SerializeField] protected float attackCooldown;
     [SerializeField] protected float cooldownTimer;
     [SerializeField] protected bool readyToAttack;
@@ -45,14 +55,10 @@ public class EnemyBase : MonoBehaviour
     {
         enemyName = enemyType.enemyName;
         Health = enemyType.health;
+        maxHealth = enemyType.health;
         damage = enemyType.damage;
         speed = enemyType.speed;
         level = enemyType.level;
-
-        // need to set enemy level to match player level
-        // stats scale based off player level (refer to enemy data table in Starship Zero document)
-
-        LevelScale();
     }
 
     protected virtual void OnEnable()
@@ -61,6 +67,8 @@ public class EnemyBase : MonoBehaviour
         {
             EnemyBrain.instance.MoveToPlayer += MoveToPlayer;
         }
+
+        LevelScale();
     }
 
     protected virtual void OnDisable()
@@ -79,7 +87,21 @@ public class EnemyBase : MonoBehaviour
     protected void LevelScale()
     {
         // scales enemy stats with levels to adjust game difficulty
-
+        if (Spawning.instance != null)
+        {
+            for (int i = 0; i < QuestManager.instance.activeQuests.Count; i++)
+            {
+                if (QuestManager.instance.activeQuests[i].prerequisite.id == Spawning.instance.questID)
+                {
+                    // checking the spawn ID matches an active quest and sets the enemies level
+                    level = QuestManager.instance.activeQuests[i].prerequisite.level;
+                    maxHealth += (healthScale * level);
+                    Health += (healthScale * level);
+                    damage += (damageScale * level);
+                    speed += (speedScale * level);
+                }
+            }
+        }
     }
 
     protected virtual void Attack()
@@ -135,7 +157,6 @@ public class EnemyBase : MonoBehaviour
         {
             readyToAttack = true;
         }
-
     }
 
     public void OnCollisionEnter2D(Collision2D collision)

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 6870090674624868283}
   - component: {fileID: 5562658886180886453}
   - component: {fileID: 5307932166547637836}
-  - component: {fileID: 4688768272980312557}
   - component: {fileID: 3386434121657024945}
   m_Layer: 0
   m_Name: Game Manager
@@ -51,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameState
   currentState: 1
   gamePaused: 0
+  player: {fileID: 0}
 --- !u!114 &6870090674624868283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,61 +110,6 @@ MonoBehaviour:
   experiencePointPrefab: {fileID: 3345650389857839163, guid: 13a8f6187eccbd74399a267b5b3f9572, type: 3}
   experiencePool: []
   selectedExperiencePoint: {fileID: 0}
---- !u!114 &4688768272980312557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3904750311189774911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcc1ec35092ae224c89df5bb40d4cf47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Spawning
-  currentTime: 0
-  timerLength: 600
-  currentDifficulty: 0
-  maxDifficulty: 2
-  scalingSegments: 0
-  currentEasySpawnChance: 0
-  currentMediumSpawnChance: 0
-  currentHardSpawnChance: 0
-  currentBossSpawnChance: 0
-  easySpawnWeight: 5
-  mediumSpawnWeight: 3
-  hardSpawnWeight: 1
-  bossSpawnWeight: 0.2
-  amountOfEnemiesToSpawn: 0
-  spawnAmountMulitplier: 500
-  easyEnemiesToSpawn:
-  - {fileID: 7749859244026942653, guid: 89b3369a00723ea408d0414c75daca8f, type: 3}
-  mediumEnemiesToSpawn:
-  - {fileID: 7749859244026942653, guid: 2525cc24bc7c69b43b5711a6887f8003, type: 3}
-  hardEnemiesToSpawn:
-  - {fileID: 7749859244026942653, guid: 04e3122e70df8d94c9bbb3bc2a1cbbeb, type: 3}
-  bossEnemiesToSpawn:
-  - {fileID: 7749859244026942653, guid: 3c2b2c6f7b3c4754ab1bc0a115517268, type: 3}
-  spawnMinDistance: 8
-  spawnMaxDistance: 20
-  spawnBoundOne: {fileID: 0}
-  spawnBoundTwo: {fileID: 0}
-  totalEnemyPoolCount: 0
-  easyEnemyPoolCount: 200
-  easyEnemiesSpawned: 0
-  mediumEnemyPoolCount: 200
-  mediumEnemiesSpawned: 0
-  hardEnemyPoolCount: 200
-  hardEnemiesSpawned: 0
-  bossEnemyPoolCount: 200
-  bossEnemiesSpawned: 0
-  totalEnemiesActive: 0
-  totalEnemiesInPool: 0
-  enemyBasePrefabToSpawn: {fileID: 0}
-  poolParentToSpawn: {fileID: 9027508375457356037, guid: 4e72d640888148348b35cf679c5539a7, type: 3}
-  poolParent: {fileID: 0}
-  enemyPool: []
-  allEnemies: []
 --- !u!114 &3386434121657024945
 MonoBehaviour:
   m_ObjectHideFlags: 0

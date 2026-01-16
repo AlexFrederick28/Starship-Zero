@@ -5,6 +5,7 @@ using System.Net;
 using System.Runtime.CompilerServices;
 using Unity.Collections;
 using Unity.VisualScripting;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.Rendering;
@@ -13,6 +14,11 @@ using Random = UnityEngine.Random;
 
 public class Spawning : Difficulty
 {
+    [Space]
+    [Header("Quest Level")]
+    [Tooltip("If this room is attached to a quest, enter its ID here to obtain its level and dynamically changing the scaling of enemies")]
+    public int questID;
+
     [Space]
     [Header("Percent Chance")]
     [SerializeField] private float currentEasySpawnChance;
@@ -104,7 +110,7 @@ public class Spawning : Difficulty
     [SerializeField] private int bossEnemyPoolCount;
     [SerializeField] private int bossEnemiesSpawned;
     [SerializeField] private int totalEnemiesActive;
-    [SerializeField] private int totalEnemiesInPool;
+    [SerializeField] private int totalEnemiesInactive;
     [SerializeField] private GameObject enemyBasePrefabToSpawn;
     [SerializeField] private GameObject poolParentToSpawn;
     [SerializeField] private GameObject poolParent;
@@ -369,7 +375,7 @@ public class Spawning : Difficulty
         enemyPool.Add(go);
         go.transform.position = poolParent.transform.position;
         go.SetActive(false);
-        totalEnemiesInPool++;
+        totalEnemiesInactive++;
     }
 
     public void AddToPool(GameObject go)
@@ -379,6 +385,7 @@ public class Spawning : Difficulty
         go.transform.position = poolParent.transform.position;
         go.SetActive(false);
         totalEnemiesActive--;
+        totalEnemiesInactive++;
     }
 
     public void RemoveFromPool(GameObject go)
@@ -387,6 +394,7 @@ public class Spawning : Difficulty
         enemyPool.Remove(go);
         go.SetActive(true);
         totalEnemiesActive++;
+        totalEnemiesInactive--;
     }
 
     private int SearchForEnemyTypeInPool(EnemyBase.DifficultyType type)
