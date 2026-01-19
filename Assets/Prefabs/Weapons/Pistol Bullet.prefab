@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7225269347232288195}
   - component: {fileID: 8746432159178278598}
   - component: {fileID: 2816250719307920095}
-  m_Layer: 0
+  m_Layer: 29
   m_Name: Pistol Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97ec39d032bd2184a97a71f47559378c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PistolBullet
-  bulletSpeed: 10
   projectileLifeTime: 3
   RB2D: {fileID: 0}
   baseWeapon: {fileID: 0}
@@ -124,7 +123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7615325489008851020}
   - component: {fileID: 1420159842031405005}
-  m_Layer: 0
+  m_Layer: 29
   m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}

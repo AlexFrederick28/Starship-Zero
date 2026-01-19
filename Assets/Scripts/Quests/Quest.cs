@@ -9,6 +9,8 @@ public class Quest
     {
         public string name;
         public int id;
+        public int level;
+        public int currencyReward;
         public bool complete;
     }
 

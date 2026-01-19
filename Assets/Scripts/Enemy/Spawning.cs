@@ -3,16 +3,23 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Runtime.CompilerServices;
+using Unity.Collections;
 using Unity.VisualScripting;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.Pool;
+using UnityEngine.Rendering;
 using static UnityEngine.EventSystems.EventTrigger;
 using Random = UnityEngine.Random;
 
 public class Spawning : Difficulty
 {
     [Space]
-    [Header("Spawn Settings")]
+    [Header("Quest Level")]
+    [Tooltip("If this room is attached to a quest, enter its ID here to obtain its level and dynamically changing the scaling of enemies")]
+    public int questID;
+
+    [Space]
     [Header("Percent Chance")]
     [SerializeField] private float currentEasySpawnChance;
     private float CurrentEasySpawnChance
@@ -28,7 +35,7 @@ public class Spawning : Difficulty
             currentEasySpawnChance = value;
         }
     }
-    [SerializeField] private float currentMediumSpawnChance;
+    [SerializeField, ReadOnly] private float currentMediumSpawnChance;
     private float CurrentMediumSpawnChance
     {
         get { return currentMediumSpawnChance; }
@@ -72,13 +79,9 @@ public class Spawning : Difficulty
     }
     private float collectiveSpawnChance = 0f;
     [Header("Chance Multiplier")]
-    [Tooltip("Default 100% (Spawn chance lowers as the difficulty progresses)")]
     [SerializeField] private float easySpawnWeight;
-    [Tooltip("Default -25% (Spawn chance increases as the difficulty progresses)")]
     [SerializeField] private float mediumSpawnWeight;
-    [Tooltip("Default -50% (Spawn chance increases as the difficulty progresses)")]
     [SerializeField] private float hardSpawnWeight;
-    [Tooltip("Default 50 (Amount of enemies to spawn DIVIDED BY Boss spawn chance)")]
     [SerializeField] private float bossSpawnWeight;
     [Header("Amount")]
     [SerializeField] private float amountOfEnemiesToSpawn;
@@ -91,8 +94,11 @@ public class Spawning : Difficulty
     [Header("Positions")]
     [SerializeField] private float spawnMinDistance;
     [SerializeField] private float spawnMaxDistance;
-    [SerializeField] private GameObject spawnBoundOne;
-    [SerializeField] private GameObject spawnBoundTwo;
+    [Tooltip("How far the player has to be between two 'closest' rooms for enemies to spawn from both")]
+    [SerializeField] private float splitSpawnDistance;
+    [SerializeField] private Collider2D[] roomSpawnBounds;
+    private Collider2D closestSpawn;
+    private Collider2D secondClosestSpawn;
     [Header("Pool")]
     [SerializeField] private int totalEnemyPoolCount;
     [SerializeField] private int easyEnemyPoolCount;
@@ -104,14 +110,14 @@ public class Spawning : Difficulty
     [SerializeField] private int bossEnemyPoolCount;
     [SerializeField] private int bossEnemiesSpawned;
     [SerializeField] private int totalEnemiesActive;
-    [SerializeField] private int totalEnemiesInPool;
+    [SerializeField] private int totalEnemiesInactive;
     [SerializeField] private GameObject enemyBasePrefabToSpawn;
     [SerializeField] private GameObject poolParentToSpawn;
     [SerializeField] private GameObject poolParent;
     [SerializeField] private List<GameObject> enemyPool;
     public List<GameObject> allEnemies;
 
-    private PlayerBase player;
+    public PlayerBase player { get; private set; }
 
     private int easyIndexNumb;
     private int mediumIndexNumb;
@@ -149,18 +155,20 @@ public class Spawning : Difficulty
 
     override public void Update()
     {
-        base.Update();
-        SpawnChance();
-
-        if (player == null)
+        if (GameState.instance.currentState == GameState.States.RoomClear)
         {
-            player = FindAnyObjectByType<PlayerBase>();
+            base.Update();
+            SpawnChance();
+
+            if (player == null)
+            {
+                player = FindAnyObjectByType<PlayerBase>();
+            }
+
+            amountOfEnemiesToSpawn = (currentDifficulty / scalingSegments) * spawnAmountMulitplier;
+
+            SpawnNewEnemy();
         }
-
-        amountOfEnemiesToSpawn = (currentDifficulty / scalingSegments) * spawnAmountMulitplier;
-
-        // here for testing - this should only start spawning enemies when entering a room
-        SpawnNewEnemy();
     }
 
     private void SpawnPool()
@@ -228,12 +236,45 @@ public class Spawning : Difficulty
 
         for (int i = 0; i < spawnAttempts; i++)
         {
-            Vector3 newSpawnPosition = new Vector3(Random.Range(spawnBoundOne.transform.position.x, spawnBoundTwo.transform.position.x), Random.Range(spawnBoundOne.transform.position.y, spawnBoundTwo.transform.position.y), 0f);
-            float distance = Vector3.Distance(newSpawnPosition, player.transform.position);
-
-            if (distance < spawnMaxDistance && distance > spawnMinDistance)
+            for (int x = 0; x < roomSpawnBounds.Length; x++)
             {
-                enemyTransform.position = newSpawnPosition;
+                // find the closest room to spawn in
+                if (closestSpawn == null)
+                {
+                    // initial spawn room
+                    closestSpawn = roomSpawnBounds[x];
+                }
+                else if (Vector3.Distance(roomSpawnBounds[x].transform.position, player.transform.position) < Vector3.Distance(closestSpawn.transform.position, player.transform.position))
+                {
+                    secondClosestSpawn = closestSpawn;
+                    if (Vector3.Distance(secondClosestSpawn.transform.position, player.transform.position) < splitSpawnDistance && Vector3.Distance(closestSpawn.transform.position, player.transform.position) < splitSpawnDistance)
+                    {
+                        // if the distance between two potential spawn rooms are close in proximity then use both at random
+                        int randNumb = Random.Range(0, 100);
+                        if (randNumb > 50)
+                        {
+                            closestSpawn = roomSpawnBounds[x];
+                        }
+                        else
+                        {
+                            closestSpawn = secondClosestSpawn;
+                        }
+                    }
+                    else
+                    {
+                        // by default the closer spawn room overrides the previous
+                        closestSpawn = roomSpawnBounds[x];
+                    }
+                }
+            }
+            Vector3 nspawnPosition = new Vector3(Random.Range(closestSpawn.bounds.min.x, closestSpawn.bounds.max.x), Random.Range(closestSpawn.bounds.min.y, closestSpawn.bounds.max.y), 0f);
+            float ndistance = Vector3.Distance(nspawnPosition, player.transform.position);
+
+            if (ndistance < spawnMaxDistance && ndistance > spawnMinDistance)
+            {
+                // if the new spawn location distance is correct, spawn the enemy, else retry
+                enemyTransform.position = nspawnPosition;
+                closestSpawn = null;
                 return true; 
             }
         }
@@ -334,7 +375,7 @@ public class Spawning : Difficulty
         enemyPool.Add(go);
         go.transform.position = poolParent.transform.position;
         go.SetActive(false);
-        totalEnemiesInPool++;
+        totalEnemiesInactive++;
     }
 
     public void AddToPool(GameObject go)
@@ -344,6 +385,7 @@ public class Spawning : Difficulty
         go.transform.position = poolParent.transform.position;
         go.SetActive(false);
         totalEnemiesActive--;
+        totalEnemiesInactive++;
     }
 
     public void RemoveFromPool(GameObject go)
@@ -352,6 +394,7 @@ public class Spawning : Difficulty
         enemyPool.Remove(go);
         go.SetActive(true);
         totalEnemiesActive++;
+        totalEnemiesInactive--;
     }
 
     private int SearchForEnemyTypeInPool(EnemyBase.DifficultyType type)

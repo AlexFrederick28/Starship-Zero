@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using UnityEngine;
 
 public class Difficulty : MonoBehaviour
@@ -13,10 +14,22 @@ public class Difficulty : MonoBehaviour
             {
                 value = 0;
             }
+            if (value > timerLength)
+            {
+                value = timerLength;
+            }
             currentTime = value;
         }
     }
     [SerializeField] protected float timerLength;
+    public float TimerLength
+    {
+        get { return timerLength; }
+        set
+        {
+            timerLength = value;
+        }
+    }
     [SerializeField] protected float currentDifficulty;
     public float CurrentDifficulty
     {

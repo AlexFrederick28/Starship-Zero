@@ -104,11 +104,11 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
                 CompleteQuest();
                 CompleteTopic();
                 textIndex = 0;
+                StopAllCoroutines();
                 ClearText();
                 StartCoroutine(WriteLine_C());
             }
         }
-       
     }
 
     public void CompleteTopic()
@@ -140,10 +140,17 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
             currentDialogue = newDialogue[dialogueIndex];
             textIndex = 0;
         }
+
+        if (currentDialogue.dialogueText.Length == 1)
+        {
+            // if there is only one entry for the current dialogue topic, start the quest if there is one
+            ActivateQuest();
+        }
     }
 
     public void ActivateQuest()
     {
+        // to active a quest it must already be in the QuestManagers quest list
         if (currentDialogue.isQuest == true && currentDialogue.completedPrerequisite == false)
         {
             if (!QuestManager.instance.activeQuests.Contains(currentDialogue.quest))
@@ -153,10 +160,13 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
                     if (QuestManager.instance.questList[i].prerequisite.id == currentDialogue.quest.prerequisite.id)
                     {
                         Debug.Log("Activated quest");
+                        currentDialogue.quest.prerequisite.level = GameState.instance.player.Level; // as the quest is activated, so is the quest level which is used in circumstances such as entering an infested room
                         GameObject newQuestInstance = Instantiate(UIManager.instance.questPrefab);
                         newQuestInstance.transform.SetParent(UIManager.instance.questParent.transform);
                         newQuestInstance.GetComponentInChildren<TextMeshProUGUI>().text = currentDialogue.quest.description;
+                        newQuestInstance.GetComponent<QuestUIParent>().questID = currentDialogue.quest.prerequisite.id;
                         QuestManager.instance.activeQuests.Add(currentDialogue.quest);
+                        QuestManager.instance.questUIList.Add(newQuestInstance.GetComponent<QuestUIParent>());
                     }
                 }
             }
