@@ -2,15 +2,19 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem.LowLevel;
 
-public class PowerGridSwitch : MonoBehaviour
+public class PowerGridSwitch : QuestTaskBase, IInteractable
 {
-    public Quest[] quest;
-
-    private void Start()
+    public void OnEndInteraction()
     {
-        if (QuestManager.instance != null)
+        
+    }
+
+    public void OnInteract()
+    {
+        if (Spawning.instance != null && Spawning.instance.CurrentTime >= Spawning.instance.TimerLength)
         {
-            QuestManager.instance.AddQuestToQuestManagerOnStart(quest);
+            // switch animation
+            RegisterQuestInteraction();
         }
     }
 }

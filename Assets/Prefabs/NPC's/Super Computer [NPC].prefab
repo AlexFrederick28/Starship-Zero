@@ -95,12 +95,26 @@ MonoBehaviour:
     quest:
       description: Movement Tutorial
       prerequisite:
-        name: moveTutorial
+        name: MoveTutorial
         id: 3
         level: 0
         currencyReward: 0
         complete: 0
-  - topic: Tutorial pt.2 (First Infested Room)
+  - topic: "Tutorial/First Quest pt.2 \u201CTurn on the power grid\u201D"
+    dialogueText:
+    - FIGHT FIGHT
+    completedTopic: 0
+    completedPrerequisite: 0
+    isQuest: 1
+    quest:
+      description: Attempt to turn on the power grid
+      prerequisite:
+        name: PowerGridSwitch
+        id: 4
+        level: 0
+        currencyReward: 0
+        complete: 0
+  - topic: Temp Prototype End
     dialogueText:
     - Good work!
     - This is the end of the current prototype

@@ -70,6 +70,7 @@ MonoBehaviour:
   currentDifficulty: 0
   maxDifficulty: 0.5
   scalingSegments: 0
+  questID: 4
   currentEasySpawnChance: 0
   currentMediumSpawnChance: 0
   currentHardSpawnChance: 0
@@ -104,7 +105,7 @@ MonoBehaviour:
   bossEnemyPoolCount: 200
   bossEnemiesSpawned: 0
   totalEnemiesActive: 0
-  totalEnemiesInPool: 0
+  totalEnemiesInactive: 0
   enemyBasePrefabToSpawn: {fileID: 0}
   poolParentToSpawn: {fileID: 9027508375457356037, guid: 4e72d640888148348b35cf679c5539a7, type: 3}
   poolParent: {fileID: 0}

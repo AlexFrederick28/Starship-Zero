@@ -22,6 +22,14 @@ public class Difficulty : MonoBehaviour
         }
     }
     [SerializeField] protected float timerLength;
+    public float TimerLength
+    {
+        get { return timerLength; }
+        set
+        {
+            timerLength = value;
+        }
+    }
     [SerializeField] protected float currentDifficulty;
     public float CurrentDifficulty
     {

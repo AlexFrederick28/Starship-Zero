@@ -1,14 +1,23 @@
 using NUnit.Framework;
+using System;
+using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     [Header("Player")]
+    public GameObject playerUIParent;
     public Slider playerHealthSlider;
     public Slider playerLevelSlider;
     public TextMeshProUGUI playerLevel;
+    public GameObject notificationPrefab;
+    public float notificationTime;
+    public float notificationYPosition;
+    public float notificationYDestination;
+    public float notificationSpeed;
 
     [Header("Infested Room")]
     public TextMeshProUGUI currentTime;
@@ -74,5 +83,25 @@ public class UIManager : MonoBehaviour
 
         currentTime.text = newTime.ToString();
         currentDifficulty.text = newDifficulty.ToString();
+    }
+
+    public IEnumerator NewNotification(string description)
+    {
+        GameObject newNotification = Instantiate(instance.notificationPrefab);
+        newNotification.transform.SetParent(instance.playerUIParent.transform);
+        newNotification.GetComponent<TextMeshProUGUI>().text = description;
+        newNotification.GetComponent<RectTransform>().localPosition = new Vector3(0, notificationYPosition, 0);
+
+        float timer = 0;
+        while (timer < notificationTime)
+        {
+            Vector3 newPos = new Vector3(0, notificationYPosition, 0) - new Vector3 (0, notificationYDestination, 0);
+            newNotification.transform.localPosition -= newPos * Time.deltaTime * notificationSpeed;
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        yield return new WaitForEndOfFrame();
+        Destroy(newNotification);
     }
 }

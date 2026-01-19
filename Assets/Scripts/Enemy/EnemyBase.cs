@@ -38,9 +38,10 @@ public class EnemyBase : MonoBehaviour
 
     [Space]
     [Header("Stat Scaling")]
-    [SerializeField] protected int healthScale;
-    [SerializeField] protected int damageScale;
-    [SerializeField] protected int speedScale;
+    [SerializeField] protected float healthScale;
+    [SerializeField] protected float damageScale;
+    [SerializeField] protected float speedScale;
+    private bool scaledStats = false;
 
     public enum DifficultyType { Easy, Medium, Hard, Boss }
     public DifficultyType currentDifficultyType;
@@ -51,7 +52,7 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] protected float cooldownTimer;
     [SerializeField] protected bool readyToAttack;
 
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         enemyName = enemyType.enemyName;
         Health = enemyType.health;
@@ -59,6 +60,9 @@ public class EnemyBase : MonoBehaviour
         damage = enemyType.damage;
         speed = enemyType.speed;
         level = enemyType.level;
+        healthScale = enemyType.healthScaling;
+        damageScale = enemyType.damageScaling;
+        speedScale = enemyType.speedScaling;
     }
 
     protected virtual void OnEnable()
@@ -68,7 +72,12 @@ public class EnemyBase : MonoBehaviour
             EnemyBrain.instance.MoveToPlayer += MoveToPlayer;
         }
 
-        LevelScale();
+        if (scaledStats == false)
+        {
+            // only scales the stats once per mite - this will have to be updated if the spawn pools are changed in future
+            LevelScale();
+            scaledStats = true;
+        }
     }
 
     protected virtual void OnDisable()
@@ -94,6 +103,7 @@ public class EnemyBase : MonoBehaviour
                 if (QuestManager.instance.activeQuests[i].prerequisite.id == Spawning.instance.questID)
                 {
                     // checking the spawn ID matches an active quest and sets the enemies level
+                    Debug.Log("Set new enemy level to quest level");
                     level = QuestManager.instance.activeQuests[i].prerequisite.level;
                     maxHealth += (healthScale * level);
                     Health += (healthScale * level);

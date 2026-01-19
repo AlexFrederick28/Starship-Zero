@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4480558313169863424}
   - component: {fileID: 5447878479332819472}
   - component: {fileID: 3125969707835165516}
-  m_Layer: 0
+  m_Layer: 29
   m_Name: Temp Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97ec39d032bd2184a97a71f47559378c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PistolBullet
-  bulletSpeed: 10
   projectileLifeTime: 5
   RB2D: {fileID: 0}
   baseWeapon: {fileID: 0}
@@ -124,7 +123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4364355589959570013}
   - component: {fileID: 6758404494477273904}
-  m_Layer: 0
+  m_Layer: 29
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

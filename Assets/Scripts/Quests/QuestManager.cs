@@ -7,7 +7,7 @@ public class QuestManager : MonoBehaviour
     public List<Quest> questList = new List<Quest>(); // not used yet
     public List<Quest> activeQuests = new List<Quest>();
     public List<QuestUIParent> questUIList = new List<QuestUIParent>();
-    public Sprite completQuestSprite;
+    public Sprite completeQuestSprite;
 
     public static QuestManager instance;
 
@@ -60,7 +60,7 @@ public class QuestManager : MonoBehaviour
                 {
                     Debug.Log("Complete ACTIVE quest");
                     instance.activeQuests[i].prerequisite.complete = true;
-                    instance.questUIList[i].image.sprite = completQuestSprite;
+                    instance.questUIList[i].image.sprite = completeQuestSprite;
                 }
                 else
                 {
@@ -74,6 +74,7 @@ public class QuestManager : MonoBehaviour
     {
         foreach (Quest q in quest)
         {
+            Debug.Log("Added quest to QuestManager " + q.prerequisite.name);
             instance.questList.Add(q);
         }
     }

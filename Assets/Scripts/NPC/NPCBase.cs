@@ -140,10 +140,17 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
             currentDialogue = newDialogue[dialogueIndex];
             textIndex = 0;
         }
+
+        if (currentDialogue.dialogueText.Length == 1)
+        {
+            // if there is only one entry for the current dialogue topic, start the quest if there is one
+            ActivateQuest();
+        }
     }
 
     public void ActivateQuest()
     {
+        // to active a quest it must already be in the QuestManagers quest list
         if (currentDialogue.isQuest == true && currentDialogue.completedPrerequisite == false)
         {
             if (!QuestManager.instance.activeQuests.Contains(currentDialogue.quest))

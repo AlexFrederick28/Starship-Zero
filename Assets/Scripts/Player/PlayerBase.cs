@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -71,6 +72,7 @@ public class PlayerBase : MonoBehaviour
     private void Start()
     {
         ExperienceNeeded();
+        //CurrentExperience += 1000;
     }
 
     private void Update()
@@ -122,6 +124,7 @@ public class PlayerBase : MonoBehaviour
     public void LevelUp()
     {
         Debug.Log("Leveled Up!");
+        StartCoroutine(UIManager.instance.NewNotification("Level +1"));
         Level++;
     }
 

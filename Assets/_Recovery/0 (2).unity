@@ -3790,7 +3790,7 @@ PrefabInstance:
       objectReference: {fileID: 781748675}
     - target: {fileID: 5562658886180886453, guid: 5a6d9e2c934a7064980f349c321cee3c, type: 3}
       propertyPath: notificationSpeed
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5562658886180886453, guid: 5a6d9e2c934a7064980f349c321cee3c, type: 3}
       propertyPath: playerLevelSlider
@@ -3800,14 +3800,6 @@ PrefabInstance:
       propertyPath: playerHealthSlider
       value: 
       objectReference: {fileID: 177321726}
-    - target: {fileID: 5562658886180886453, guid: 5a6d9e2c934a7064980f349c321cee3c, type: 3}
-      propertyPath: notificationYPosition
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 5562658886180886453, guid: 5a6d9e2c934a7064980f349c321cee3c, type: 3}
-      propertyPath: notificationYDestination
-      value: 160
-      objectReference: {fileID: 0}
     - target: {fileID: 6467625082563482837, guid: 5a6d9e2c934a7064980f349c321cee3c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
