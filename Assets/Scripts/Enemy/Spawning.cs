@@ -117,6 +117,9 @@ public class Spawning : Difficulty
     [SerializeField] private List<GameObject> enemyPool;
     public List<GameObject> allEnemies;
 
+    [Header("Experience")]
+    [SerializeField] private Experience Experience;
+
     public PlayerBase player { get; private set; }
 
     private int easyIndexNumb;
@@ -148,11 +151,6 @@ public class Spawning : Difficulty
         }
     }
 
-    private void Start()
-    {
-        SpawnPool();
-    }
-
     override public void Update()
     {
         if (GameState.instance.currentState == GameState.States.RoomClear)
@@ -169,6 +167,13 @@ public class Spawning : Difficulty
 
             SpawnNewEnemy();
         }
+    }
+
+    public void SpawnPoolsUponEnteringDoor()
+    {
+        SpawnPool(); // enemy pool
+        Experience.SpawnPool(); // experience pool
+        ScaleEntireExperiencePool(); // scale experience with quest level
     }
 
     private void SpawnPool()
@@ -432,6 +437,14 @@ public class Spawning : Difficulty
         if (type == EnemyBase.DifficultyType.Boss)
         {
             bossEnemiesSpawned--;
+        }
+    }
+
+    public void ScaleEntireExperiencePool()
+    {
+        foreach (ExperiencePoint point in Experience.experiencePool)
+        {
+            point.ScaleExperience(point.currentExperienceAmount);
         }
     }
 }

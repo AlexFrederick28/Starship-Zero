@@ -12,14 +12,8 @@ public class Experience : MonoBehaviour
     [SerializeField] private GameObject poolParent;
     [SerializeField] private GameObject poolParentToSpawn;
     [SerializeField] private GameObject experiencePointPrefab;
-    [SerializeField] private List<ExperiencePoint> experiencePool;
+    public List<ExperiencePoint> experiencePool;
     public ExperiencePoint selectedExperiencePoint;
-
-    private void Start()
-    {
-        // this should only be spawned when entering a room, just like the enemies
-        SpawnPool();
-    }
 
     private void Update()
     {
@@ -29,7 +23,7 @@ public class Experience : MonoBehaviour
         }
     }
 
-    private void SpawnPool()
+    public void SpawnPool()
     {
         if (poolParent == null)
         {

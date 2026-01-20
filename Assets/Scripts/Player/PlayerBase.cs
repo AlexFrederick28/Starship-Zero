@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Threading;
 using Unity.VisualScripting;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -28,7 +29,7 @@ public class PlayerBase : MonoBehaviour
             {
                 LevelUp();
                 currentExperience -= experienceNeeded;
-                ExperienceNeeded();
+                CalculateExperienceNeeded();
             }
             if (currentExperience < 0)
             {
@@ -38,6 +39,14 @@ public class PlayerBase : MonoBehaviour
     }
 
     [SerializeField] private int experienceNeeded;
+    public int ExperienceNeeded
+    {
+        get { return experienceNeeded; }
+        private set
+        {
+            experienceNeeded = value;
+        }
+    }
     [SerializeField] private AnimationCurve experienceCurve;
 
     [Space]
@@ -66,12 +75,25 @@ public class PlayerBase : MonoBehaviour
     }
 
     public float speed;
+    public bool playerDead()
+    {
+        if (currentHealth <= 0)
+        {
+            // TODO: checkpoint system for respawn points 
+
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
     private IInteractable interactable;
 
     private void Start()
     {
-        ExperienceNeeded();
+        CalculateExperienceNeeded();
         //CurrentExperience += 1000;
     }
 
@@ -83,8 +105,8 @@ public class PlayerBase : MonoBehaviour
             GameState.instance.player = this;
         }
 
-        // temp function
-        SetPlayerHealthSlider();
+        // temp function for player UI
+        SetPlayerUI();
     }
 
     public void OnInteract(InputAction.CallbackContext context)
@@ -106,12 +128,12 @@ public class PlayerBase : MonoBehaviour
         Debug.Log(name + " took " + damage + "!");
     }
 
-    private void ExperienceNeeded()
+    private void CalculateExperienceNeeded()
     {
-        if (experienceNeeded != (int)experienceCurve.Evaluate(Level + 1))
+        if (ExperienceNeeded != (int)experienceCurve.Evaluate(Level + 1))
         {
             // calculation using animation curve to determine the experience needed for the next level
-            experienceNeeded = (int)experienceCurve.Evaluate(Level + 1);
+            ExperienceNeeded = (int)experienceCurve.Evaluate(Level + 1);
             //Debug.Log("Updated Experience Needed");
         }
     }
@@ -119,6 +141,7 @@ public class PlayerBase : MonoBehaviour
     public void AddExperience(int amount)
     {
         CurrentExperience += amount;
+        StartCoroutine(UIManager.instance.NewNotification("Exp +" + amount));
     }
 
     public void LevelUp()
@@ -155,10 +178,10 @@ public class PlayerBase : MonoBehaviour
         }
     }
 
-    private void SetPlayerHealthSlider()
+    private void SetPlayerUI()
     {
         UIManager.instance.playerLevel.text = "Level: " + Level;
-        UIManager.instance.playerLevelSlider.maxValue = experienceNeeded;
+        UIManager.instance.playerLevelSlider.maxValue = ExperienceNeeded;
         UIManager.instance.playerLevelSlider.minValue = 0f;
         UIManager.instance.playerLevelSlider.value = currentExperience;
         UIManager.instance.playerHealthSlider.maxValue = maxHealth;

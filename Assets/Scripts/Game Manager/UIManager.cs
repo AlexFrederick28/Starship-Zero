@@ -85,6 +85,11 @@ public class UIManager : MonoBehaviour
         currentDifficulty.text = newDifficulty.ToString();
     }
 
+    /// <summary>
+    /// A coroutine that displays a notification above the player
+    /// </summary>
+    /// <param name="description"></param>
+    /// <returns></returns>
     public IEnumerator NewNotification(string description)
     {
         GameObject newNotification = Instantiate(instance.notificationPrefab);
