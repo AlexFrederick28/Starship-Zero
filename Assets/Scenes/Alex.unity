@@ -3912,12 +3912,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3809810868755407778, guid: bfabccc16738507478c6e22ea4da5046, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3809810868755407778, guid: bfabccc16738507478c6e22ea4da5046, type: 3}
+      propertyPath: Experience
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3809810868755407778, guid: bfabccc16738507478c6e22ea4da5046, type: 3}
       propertyPath: timerLength
-      value: 5
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 5131161820957504457, guid: bfabccc16738507478c6e22ea4da5046, type: 3}
       propertyPath: sceneName
       value: InfestedRoom01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5979966899042528888, guid: bfabccc16738507478c6e22ea4da5046, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

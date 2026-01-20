@@ -66,4 +66,12 @@ public class Experience : MonoBehaviour
             selectedExperiencePoint = null;
         }
     }
+
+    public void ScaleEntireExperiencePool()
+    {
+        foreach (ExperiencePoint point in experiencePool)
+        {
+            point.ScaleExperience(point.currentExperienceAmount);
+        }
+    }
 }

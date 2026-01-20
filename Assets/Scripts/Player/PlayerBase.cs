@@ -94,7 +94,7 @@ public class PlayerBase : MonoBehaviour
     private void Start()
     {
         CalculateExperienceNeeded();
-        //CurrentExperience += 1000;
+        CurrentExperience += 1000;
     }
 
     private void Update()

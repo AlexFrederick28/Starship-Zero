@@ -142,6 +142,10 @@ MonoBehaviour:
   mediumDefaultExperience: 8
   hardDefaultExperience: 10
   bossDefaultExperience: 15
+  easyScaleExperience: 0.2
+  mediumScaleExperience: 0.3
+  hardScaleExperience: 0.35
+  bossScaleExperience: 0.5
 --- !u!61 &407306473147868651
 BoxCollider2D:
   m_ObjectHideFlags: 0

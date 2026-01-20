@@ -77,12 +77,15 @@ public class UIManager : MonoBehaviour
     }
     public void GetUINumbersTEMP()
     {
-        // this is a temporary function to get the infested room and player health bar working for prototype testing
-        int newTime = (int)Spawning.instance.CurrentTime;
-        int newDifficulty = (int)Spawning.instance.CurrentDifficulty;
+        if (Spawning.instance != null)
+        {
+            // this is a temporary function to get the infested room and player health bar working for prototype testing
+            int newTime = (int)Spawning.instance.CurrentTime;
+            int newDifficulty = (int)Spawning.instance.CurrentDifficulty;
 
-        currentTime.text = newTime.ToString();
-        currentDifficulty.text = newDifficulty.ToString();
+            currentTime.text = newTime.ToString();
+            currentDifficulty.text = newDifficulty.ToString();
+        }
     }
 
     /// <summary>

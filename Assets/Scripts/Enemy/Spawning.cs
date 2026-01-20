@@ -118,7 +118,7 @@ public class Spawning : Difficulty
     public List<GameObject> allEnemies;
 
     [Header("Experience")]
-    [SerializeField] private Experience Experience;
+    [SerializeField] private Experience experience;
 
     public PlayerBase player { get; private set; }
 
@@ -151,6 +151,12 @@ public class Spawning : Difficulty
         }
     }
 
+    private void Start()
+    {
+        // pools get spawned when this script is turned on, by default it is off until the player interacts with the infested door
+        SpawnPools();
+    }
+
     override public void Update()
     {
         if (GameState.instance.currentState == GameState.States.RoomClear)
@@ -169,11 +175,13 @@ public class Spawning : Difficulty
         }
     }
 
-    public void SpawnPoolsUponEnteringDoor()
+    public void SpawnPools()
     {
         SpawnPool(); // enemy pool
-        Experience.SpawnPool(); // experience pool
-        ScaleEntireExperiencePool(); // scale experience with quest level
+        experience = GetComponent<Experience>();
+        experience.enabled = true;
+        experience.SpawnPool(); // experience pool
+        experience.ScaleEntireExperiencePool(); // scale experience with quest level
     }
 
     private void SpawnPool()
@@ -437,14 +445,6 @@ public class Spawning : Difficulty
         if (type == EnemyBase.DifficultyType.Boss)
         {
             bossEnemiesSpawned--;
-        }
-    }
-
-    public void ScaleEntireExperiencePool()
-    {
-        foreach (ExperiencePoint point in Experience.experiencePool)
-        {
-            point.ScaleExperience(point.currentExperienceAmount);
         }
     }
 }
