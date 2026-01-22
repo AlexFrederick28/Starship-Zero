@@ -10,5 +10,6 @@ public class InfestedDoor : Door
 
         GameState.instance.ChangeStateToRoomClear();
         GetComponent<Spawning>().enabled = true;
+        GetComponent<RespawnCheckpoint>().respawnActive = true;
     }
 }

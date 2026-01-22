@@ -71,25 +71,59 @@ public class PlayerBase : MonoBehaviour
             }
 
             currentHealth = value;
+            PlayerDead(); // will play each time the player takes damage (Checks to see if the player should be dead)
         }
     }
 
     public float speed;
-    public bool playerDead()
+
+    private IInteractable interactable;
+
+    public bool PlayerDead()
     {
         if (currentHealth <= 0)
         {
-            // TODO: checkpoint system for respawn points 
-
+            UIManager.instance.deathMenuParent.SetActive(true);
+            if (Spawning.instance != null)
+            {
+                UIManager.instance.respawnButton.onClick.AddListener(Spawning.instance.checkpoint.Respawn);
+                UIManager.instance.retryInfestedRoomButton.onClick.AddListener(Spawning.instance.checkpoint.RetryInfestedRoom);
+                PausePlayer();
+            }
             return true;
         }
         else
         {
+            // this part will play once the player has pressed respawn or retry, as that resets the players health to max
+            if (UIManager.instance.deathMenuParent.activeSelf == true)
+            {
+                UIManager.instance.deathMenuParent.SetActive(false);
+                PausePlayer();
+                if (Spawning.instance != null)
+                {
+                    UIManager.instance.respawnButton.onClick.RemoveAllListeners();
+                    UIManager.instance.retryInfestedRoomButton.onClick.RemoveAllListeners();
+                }
+            }
             return false;
         }
     }
 
-    private IInteractable interactable;
+    public bool PausePlayer()
+    {
+        if (GetComponent<PlayerMovement>().enabled == false)
+        {
+            // TODO: pause weapon as well
+            GetComponent<PlayerMovement>().enabled = true;
+            return true;
+        }
+        else
+        {
+            GetComponent<PlayerMovement>().enabled = false;
+            GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+            return false;
+        }
+    }
 
     private void Start()
     {
@@ -102,6 +136,7 @@ public class PlayerBase : MonoBehaviour
         if (GameState.instance != null && GameState.instance.player == null)
         {
             // setting the reference for the player so that global scripts can access the data if necessary
+            GameState.instance.playerTransform = transform;
             GameState.instance.player = this;
         }
 
@@ -187,5 +222,10 @@ public class PlayerBase : MonoBehaviour
         UIManager.instance.playerHealthSlider.maxValue = maxHealth;
         UIManager.instance.playerHealthSlider.minValue = 0f;
         UIManager.instance.playerHealthSlider.value = currentHealth;
+    }
+
+    public void ResetPlayerStatsOnRespawn()
+    {
+        Health = maxHealth;
     }
 }

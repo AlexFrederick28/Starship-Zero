@@ -20,6 +20,10 @@ public class Spawning : Difficulty
     public int questID;
 
     [Space]
+    [Header("Checkpoint")]
+    public RespawnCheckpoint checkpoint;
+
+    [Space]
     [Header("Percent Chance")]
     [SerializeField] private float currentEasySpawnChance;
     private float CurrentEasySpawnChance
@@ -231,8 +235,8 @@ public class Spawning : Difficulty
         // As difficulty increases, easier enemies lose weight and harder ones gain
         float easyScaled = easySpawnWeight / currentDifficulty;
         float mediumScaled = mediumSpawnWeight * Mathf.Lerp(0f, 1f, currentDifficulty / scalingSegments);
-        float hardScaled = hardSpawnWeight * Mathf.Lerp(0f, 3.5f, currentDifficulty / scalingSegments);
-        float bossScaled = bossSpawnWeight * Mathf.Lerp(0f, 2.5f, currentDifficulty / scalingSegments);
+        float hardScaled = hardSpawnWeight * Mathf.Lerp(0f, 1f, currentDifficulty / scalingSegments);
+        float bossScaled = bossSpawnWeight * Mathf.Lerp(0f, 1f, currentDifficulty / scalingSegments);
 
         // Normalize so total = 100%
         collectiveSpawnChance = easyScaled + mediumScaled + hardScaled + bossScaled;

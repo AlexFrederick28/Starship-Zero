@@ -84,8 +84,12 @@ MonoBehaviour:
   playerLevel: {fileID: 0}
   notificationPrefab: {fileID: 5283195962082511771, guid: cc160ab4bae2a4a4c9292e7f8b3ffc39, type: 3}
   notificationTime: 1
-  notificationSpeed: 2
-  notificationYPosition: 100
+  notificationYPosition: 80
+  notificationYDestination: 160
+  notificationSpeed: 0.5
+  deathMenuParent: {fileID: 0}
+  respawnButton: {fileID: 0}
+  retryInfestedRoomButton: {fileID: 0}
   currentTime: {fileID: 0}
   currentDifficulty: {fileID: 0}
   canvas: {fileID: 0}

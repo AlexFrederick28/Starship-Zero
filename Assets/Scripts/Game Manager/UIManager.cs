@@ -19,6 +19,11 @@ public class UIManager : MonoBehaviour
     public float notificationYDestination;
     public float notificationSpeed;
 
+    [Header("Death Menu")]
+    public GameObject deathMenuParent;
+    public Button respawnButton;
+    public Button retryInfestedRoomButton;
+
     [Header("Infested Room")]
     public TextMeshProUGUI currentTime;
     public TextMeshProUGUI currentDifficulty;

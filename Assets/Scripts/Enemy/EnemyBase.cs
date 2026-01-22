@@ -78,6 +78,9 @@ public class EnemyBase : MonoBehaviour
             LevelScale();
             scaledStats = true;
         }
+
+        cooldownTimer = attackCooldown;
+        readyToAttack = true;
     }
 
     protected virtual void OnDisable()
@@ -129,11 +132,6 @@ public class EnemyBase : MonoBehaviour
 
         Health -= damage;
         Debug.Log(name + " took " + damage + " damage!");
-
-        if (Health == 0)
-        {
-            Death();
-        }
     }
 
     protected void Death()
@@ -162,40 +160,26 @@ public class EnemyBase : MonoBehaviour
         if (readyToAttack == false)
         {
             cooldownTimer += Time.deltaTime;
-        }
-        if (cooldownTimer > attackCooldown)
-        {
-            readyToAttack = true;
-        }
-    }
 
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.GetComponent<PlayerBase>())
-        {
-            if (collision.gameObject.GetComponent<PlayerBase>().Health != 0)
+            if (cooldownTimer > attackCooldown)
             {
-                if (readyToAttack)
-                {
-                    Attack();
-                    collision.gameObject.GetComponent<PlayerBase>().TakeDamage(damage);
-                }
+                readyToAttack = true;
             }
         }
     }
 
     public void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerBase>())
+        if (readyToAttack == true)
         {
-            if (collision.gameObject.GetComponent<PlayerBase>().Health != 0)
+            if (collision.gameObject.GetComponent<PlayerBase>())
             {
-                if (readyToAttack)
+                if (collision.gameObject.GetComponent<PlayerBase>().Health != 0)
                 {
                     Attack();
                     collision.gameObject.GetComponent<PlayerBase>().TakeDamage(damage);
                 }
             }
         }
+        }
     }
-}

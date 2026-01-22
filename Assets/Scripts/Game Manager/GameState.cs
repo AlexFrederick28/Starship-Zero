@@ -7,6 +7,7 @@ public class GameState : MonoBehaviour
     public bool gamePaused = false;
     private States previousState;
     public PlayerBase player;
+    public Transform playerTransform;
 
     public static GameState instance;
 

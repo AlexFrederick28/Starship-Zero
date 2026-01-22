@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemyBrain : MonoBehaviour
 {
-    [SerializeField] private PlayerBase player;
-
     public delegate void EnemyBrainDelegate(Transform playerTransform);
     public EnemyBrainDelegate MoveToPlayer;
 
@@ -23,19 +21,11 @@ public class EnemyBrain : MonoBehaviour
         }
     }
 
-    private void OnEnable()
-    {
-        if (player == null)
-        {
-            player = FindAnyObjectByType<PlayerBase>();
-        }
-    }
-
     public void FixedUpdate()
     {
-        if (player != null)
+        if (GameState.instance.player != null)
         {
-            MoveToPlayer?.Invoke(player.transform);
+            MoveToPlayer?.Invoke(GameState.instance.playerTransform);
         }
     }
 }

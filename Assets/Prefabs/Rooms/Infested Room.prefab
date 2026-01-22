@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5131161820957504457}
   - component: {fileID: 3809810868755407778}
   - component: {fileID: 5979966899042528888}
+  - component: {fileID: 7394811238170021128}
   - component: {fileID: 7289918670357159422}
   - component: {fileID: 1046783313364148646}
   - component: {fileID: 3425855907889836654}
@@ -37,6 +38,8 @@ Transform:
   m_Children:
   - {fileID: 5274767171922712193}
   - {fileID: 523759686364634917}
+  - {fileID: 740508485526439084}
+  - {fileID: 208186571845136894}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5131161820957504457
@@ -71,14 +74,15 @@ MonoBehaviour:
   maxDifficulty: 0.5
   scalingSegments: 0
   questID: 4
+  checkpoint: {fileID: 7394811238170021128}
   currentEasySpawnChance: 0
   currentMediumSpawnChance: 0
   currentHardSpawnChance: 0
   currentBossSpawnChance: 0
   easySpawnWeight: 5
-  mediumSpawnWeight: 3
-  hardSpawnWeight: 1
-  bossSpawnWeight: 0.2
+  mediumSpawnWeight: 1.5
+  hardSpawnWeight: 0.7
+  bossSpawnWeight: 0.3
   amountOfEnemiesToSpawn: 0
   spawnAmountMulitplier: 500
   easyEnemiesToSpawn:
@@ -111,6 +115,7 @@ MonoBehaviour:
   poolParent: {fileID: 0}
   enemyPool: []
   allEnemies: []
+  experience: {fileID: 0}
 --- !u!114 &5979966899042528888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,6 +135,21 @@ MonoBehaviour:
   experiencePointPrefab: {fileID: 3345650389857839163, guid: 13a8f6187eccbd74399a267b5b3f9572, type: 3}
   experiencePool: []
   selectedExperiencePoint: {fileID: 0}
+--- !u!114 &7394811238170021128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322985635382179666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9e8ebd7c062b4542820815647ff6603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RespawnCheckpoint
+  respawnPoint: {fileID: 740508485526439084}
+  retryInfestedRoomPoint: {fileID: 208186571845136894}
+  respawnActive: 0
 --- !u!50 &7289918670357159422
 Rigidbody2D:
   serializedVersion: 5
@@ -580,5 +600,67 @@ Transform:
   m_Children:
   - {fileID: 3725136872326430555}
   - {fileID: 7706962152283076425}
+  m_Father: {fileID: 2329506998765629602}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8273288963511749975
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 740508485526439084}
+  m_Layer: 0
+  m_Name: RespawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &740508485526439084
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8273288963511749975}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2329506998765629602}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8972151734361307998
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 208186571845136894}
+  m_Layer: 0
+  m_Name: RetryInfestedRoomPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &208186571845136894
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8972151734361307998}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 2329506998765629602}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
