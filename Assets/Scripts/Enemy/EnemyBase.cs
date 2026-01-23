@@ -81,6 +81,9 @@ public class EnemyBase : MonoBehaviour
 
         cooldownTimer = attackCooldown;
         readyToAttack = true;
+
+        // reset health on spawn to ensure max health (Incase the room is being re-attempted by the player)
+        currentHealth = maxHealth;
     }
 
     protected virtual void OnDisable()
@@ -181,5 +184,5 @@ public class EnemyBase : MonoBehaviour
                 }
             }
         }
-        }
     }
+}

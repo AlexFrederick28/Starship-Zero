@@ -10,11 +10,16 @@ public class RespawnCheckpoint : MonoBehaviour
     {
         GameState.instance.player.transform.position = respawnPoint.position;
         GameState.instance.player.ResetPlayerStatsOnRespawn();
+        Spawning.instance.ResetInfestedRoom();
+        Spawning.instance.GetComponent<InfestedDoor>().enteredRoom = false;
+        Spawning.instance.enabled = false;
+        GameState.instance.ChangeStateToMain();
     }
 
     public void RetryInfestedRoom()
     {
         GameState.instance.player.transform.position = retryInfestedRoomPoint.position;
         GameState.instance.player.ResetPlayerStatsOnRespawn();
+        Spawning.instance.ResetInfestedRoom();
     }
 }

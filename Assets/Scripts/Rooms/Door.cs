@@ -4,7 +4,7 @@ public class Door : MonoBehaviour, IInteractable
 {
     [SerializeField] private Transform playerEntryPoint;
     [SerializeField] private Transform playerExitPoint;
-    private bool enteredRoom = false;
+    public bool enteredRoom = false;
 
     public virtual void OnEndInteraction()
     {
@@ -18,8 +18,9 @@ public class Door : MonoBehaviour, IInteractable
             if (enteredRoom == false)
             {
                 GameState.instance.player.transform.position = playerEntryPoint.position;
+                enteredRoom = true;
             }
-            else
+            else if (enteredRoom == true && Spawning.instance.timerReachedMaxLength == true)
             {
                 GameState.instance.player.transform.position = playerExitPoint.position;
             }

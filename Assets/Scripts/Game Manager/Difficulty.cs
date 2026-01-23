@@ -14,8 +14,13 @@ public class Difficulty : MonoBehaviour
             {
                 value = 0;
             }
-            if (value > timerLength)
+            if (value < timerLength)
             {
+                if (timerReachedMaxLength == true) { timerReachedMaxLength = false; } // reset timer if it has been manipulated somehow
+            }
+            if (value >= timerLength)
+            {
+                timerReachedMaxLength = true; // can be a win condition for the player
                 value = timerLength;
             }
             currentTime = value;
@@ -51,6 +56,7 @@ public class Difficulty : MonoBehaviour
     [Tooltip("max difficulty / timer length = The lower the number, the higher the max difficulty can go - effecting how many scaling segments there will be in a single run")]
     [SerializeField] protected float maxDifficulty;
     [SerializeField] protected float scalingSegments;
+    public bool timerReachedMaxLength = false;
 
     public virtual void Update()
     {

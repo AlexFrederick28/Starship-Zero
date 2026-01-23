@@ -4445,7 +4445,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3809810868755407778, guid: bfabccc16738507478c6e22ea4da5046, type: 3}
       propertyPath: currentTime
-      value: 400
+      value: 580
       objectReference: {fileID: 0}
     - target: {fileID: 3809810868755407778, guid: bfabccc16738507478c6e22ea4da5046, type: 3}
       propertyPath: timerLength
