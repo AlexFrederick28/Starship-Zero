@@ -6,10 +6,19 @@ public class InfestedDoor : Door
 {
     public override void OnInteract()
     {
-        base.OnInteract();
+        if (GameState.instance.currentState != GameState.States.RoomClear && GetComponentInParent<Room>().playerInsideRoom == false)
+        {
+            GameState.instance.ChangeStateToRoomClear();
+            GetComponent<Spawning>().enabled = true;
+            GetComponent<RespawnCheckpoint>().respawnActive = true;
+        }
+        else
+        {
+            GameState.instance.ChangeStateToMain();
+            GetComponent<Spawning>().enabled = false;
+            GetComponent<RespawnCheckpoint>().respawnActive = false;
+        }
 
-        GameState.instance.ChangeStateToRoomClear();
-        GetComponent<Spawning>().enabled = true;
-        GetComponent<RespawnCheckpoint>().respawnActive = true;
+        base.OnInteract();
     }
 }

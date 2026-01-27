@@ -141,7 +141,7 @@ public class Spawning : Difficulty
         {
             ResetInfestedRoom();
             playerClearedRoom = true;
-            GetComponentInParent<Room>().currentState = GetComponentInParent<Room>().clearedState;  
+            GameState.instance.ChangeStateToMain();
             foreach (GameObject go in questObjects)
             {
                 if (go.GetComponent<QuestTaskBase>())
@@ -150,6 +150,7 @@ public class Spawning : Difficulty
                     continue;
                 }
             }
+            GetComponentInParent<Room>().currentState = GetComponentInParent<Room>().clearedState;
             return true;
         }
         else

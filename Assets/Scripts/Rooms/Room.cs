@@ -33,6 +33,7 @@ public class Room : MonoBehaviour
     [SerializeField] private GameObject infestedRoom;
     [SerializeField] private GameObject weaponsRoom;
     [SerializeField] private GameObject upgradeRoom;
+    public bool playerInsideRoom = false;
 
     private void Update()
     {

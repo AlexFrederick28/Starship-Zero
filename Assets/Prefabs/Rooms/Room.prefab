@@ -115,6 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Room
   currentState: 0
+  clearedState: 0
   emptyRoom: {fileID: 6421958285912189900}
   infestedRoom: {fileID: 4189630379278049378}
   weaponsRoom: {fileID: 8646567814421255547}
@@ -364,6 +365,7 @@ MonoBehaviour:
   scalingSegments: 0
   timerReachedMaxLength: 0
   questID: 4
+  questObjects: []
   checkpoint: {fileID: 1161056620814535618}
   currentEasySpawnChance: 0
   currentMediumSpawnChance: 0
@@ -542,6 +544,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3420481106335605635}
+  - component: {fileID: 8826072948771423411}
   m_Layer: 0
   m_Name: Empty Room
   m_TagString: Untagged
@@ -564,6 +567,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2799821837631452422}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8826072948771423411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6421958285912189900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e21a6510d0591428e33d1b9b2b58c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmptyDoor
+  playerEntryPoint: {fileID: 1000187462187205667}
+  playerExitPoint: {fileID: 4068341901873724054}
+  enteredRoom: 0
 --- !u!1 &6833520512639123060
 GameObject:
   m_ObjectHideFlags: 0

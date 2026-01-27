@@ -16,7 +16,7 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
     [SerializeField] protected string nameNPC;
     [SerializeField] protected NPCScriptableObject.NPCType type;
     [SerializeField] private Dialogue[] newDialogue = new Dialogue[0];
-    [SerializeField] private Dialogue currentDialogue;
+    public Dialogue currentDialogue { get; private set; }
     [SerializeField] private int textIndex = 0;
     [SerializeField] private int dialogueIndex;
     [SerializeField] private float textSpeed;
@@ -183,8 +183,7 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
         {
             if (currentDialogue.quest.prerequisite.currencyReward > 0)
             {
-                GameState.instance.player.currency += currentDialogue.quest.prerequisite.currencyReward;
-                StartCoroutine(UIManager.instance.NewNotification("Currency +" + currentDialogue.quest.prerequisite.currencyReward));
+                GameState.instance.player.AddCurrencyFromNPC(this);
             }
             CompleteTopic();
         }

@@ -39,12 +39,14 @@ public class GameState : MonoBehaviour
             Time.timeScale = 0f;
             previousState = currentState;
             currentState = States.Paused;
+            Debug.Log("Game paused");
             gamePaused = true;
         }
         else if (gamePaused == true)
         {
             Time.timeScale = 1f;
             currentState = previousState;
+            Debug.Log("Game un-paused");
             gamePaused = false;
         }
     }
@@ -52,10 +54,12 @@ public class GameState : MonoBehaviour
     public void ChangeStateToMain()
     {
         currentState = States.Main;
+        Debug.Log("State changed to main");
     }
 
     public void ChangeStateToRoomClear()
     {
         currentState = States.RoomClear;
+        Debug.Log("State changed to room clear");
     }
 }

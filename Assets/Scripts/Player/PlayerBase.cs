@@ -187,6 +187,15 @@ public class PlayerBase : MonoBehaviour
         Level++;
     }
 
+    public void AddCurrencyFromNPC(NPCBase npc)
+    {
+        if (npc.currentDialogue.quest.prerequisite.currencyReward > 0)
+        {
+            currency += npc.currentDialogue.quest.prerequisite.currencyReward;
+            StartCoroutine(UIManager.instance.NewNotification("Currency +" + npc.currentDialogue.quest.prerequisite.currencyReward));
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.GetComponent<ExperiencePoint>())
