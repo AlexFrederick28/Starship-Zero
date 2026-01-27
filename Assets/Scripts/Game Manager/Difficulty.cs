@@ -67,9 +67,9 @@ public class Difficulty : MonoBehaviour
 
     private void StartTimer()
     {
-        if (currentTime < timerLength)
+        if (CurrentTime < timerLength)
         {
-            currentTime += Time.deltaTime;
+            CurrentTime += Time.deltaTime;
         }
     }
 
@@ -81,6 +81,6 @@ public class Difficulty : MonoBehaviour
         }
 
         // scaling the difficulty based off of the current time and the amount of segments (How many times there will be a difficulty increase)
-        currentDifficulty = ((timerLength / 60) + currentTime) / maxDifficulty / 60;
+        currentDifficulty = ((timerLength / 60) + CurrentTime) / maxDifficulty / 60;
     }
 }

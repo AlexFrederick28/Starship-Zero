@@ -76,6 +76,7 @@ public class PlayerBase : MonoBehaviour
     }
 
     public float speed;
+    public int currency;
 
     private IInteractable interactable;
 
@@ -201,6 +202,10 @@ public class PlayerBase : MonoBehaviour
         if (collision.gameObject.GetComponent<IInteractable>() != null)
         {
             interactable = collision.gameObject.GetComponent<IInteractable>();
+        }
+        else if (collision.gameObject.GetComponentInChildren<IInteractable>() != null)
+        {
+            interactable = collision.gameObject.GetComponentInChildren<IInteractable>();
         }
     }
 

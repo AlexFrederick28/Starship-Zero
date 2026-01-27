@@ -17,10 +17,15 @@ public class Door : MonoBehaviour, IInteractable
         {
             if (enteredRoom == false)
             {
+                // enter infested room
                 GameState.instance.player.transform.position = playerEntryPoint.position;
                 enteredRoom = true;
             }
-            else if (enteredRoom == true && Spawning.instance.timerReachedMaxLength == true)
+        }
+        else if (GameState.instance.player != null && GameState.instance.currentState == GameState.States.RoomClear)
+        {
+            // leave cleared infested room
+            if (enteredRoom == true && Spawning.instance.timerReachedMaxLength == true)
             {
                 GameState.instance.player.transform.position = playerExitPoint.position;
             }

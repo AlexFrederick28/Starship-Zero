@@ -112,7 +112,7 @@ MonoBehaviour:
         name: PowerGridSwitch
         id: 4
         level: 0
-        currencyReward: 0
+        currencyReward: 50
         complete: 0
   - topic: Temp Prototype End
     dialogueText:

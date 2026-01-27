@@ -18,6 +18,8 @@ public class Spawning : Difficulty
     [Header("Quest Level")]
     [Tooltip("If this room is attached to a quest, enter its ID here to obtain its level and dynamically changing the scaling of enemies")]
     public int questID;
+    [Tooltip("Objects that will activate once the player has cleared the room")]
+    public GameObject[] questObjects;
 
     [Space]
     [Header("Checkpoint")]
@@ -132,6 +134,30 @@ public class Spawning : Difficulty
     private int hardIndexNumb;
     private int bossIndexNumb;
 
+    public bool playerClearedRoom = false;
+    private bool PlayerWinCondition()
+    {
+        if (timerReachedMaxLength == true && playerClearedRoom == false)
+        {
+            ResetInfestedRoom();
+            playerClearedRoom = true;
+            GetComponentInParent<Room>().currentState = GetComponentInParent<Room>().clearedState;  
+            foreach (GameObject go in questObjects)
+            {
+                if (go.GetComponent<QuestTaskBase>())
+                {
+                    go.GetComponent<QuestTaskBase>().enabled = true;
+                    continue;
+                }
+            }
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     // for the instance of a spawner to work for each room, the gameobject must only be active when the room is entered as to not have multiple instances destroyed when they're needed later
     public static Spawning instance;
 
@@ -160,23 +186,25 @@ public class Spawning : Difficulty
     {
         // pools get spawned when this script is turned on, by default it is off until the player interacts with the infested door
         SpawnPools();
+        DisabledQuestObjects();
     }
 
     override public void Update()
     {
-        if (GameState.instance.currentState == GameState.States.RoomClear && timerReachedMaxLength == false)
+        if (GameState.instance.currentState == GameState.States.RoomClear && playerClearedRoom == false)
         {
             base.Update();
             SpawnChance();
 
             if (player == null)
             {
-                player = FindAnyObjectByType<PlayerBase>();
+                player = GameState.instance.player;
             }
 
             amountOfEnemiesToSpawn = (currentDifficulty / scalingSegments) * spawnAmountMulitplier;
 
             SpawnNewEnemy();
+            PlayerWinCondition();
         }
     }
 
@@ -449,7 +477,10 @@ public class Spawning : Difficulty
     public void ResetInfestedRoom()
     {
         Debug.Log("Reset room");
-        currentTime = 0;
+        if (timerReachedMaxLength == false)
+        {
+            currentTime = 0;
+        }
         easyEnemiesSpawned = 0;
         mediumEnemiesSpawned = 0;
         hardEnemiesSpawned = 0;
@@ -461,6 +492,18 @@ public class Spawning : Difficulty
             {
                 Debug.Log("Reset " + allEnemies[i].name);
                 AddToPool(allEnemies[i]);
+            }
+        }
+    }
+
+    public void DisabledQuestObjects()
+    {
+        foreach (GameObject go in questObjects)
+        {
+            if (go.GetComponent<QuestTaskBase>())
+            {
+                go.GetComponent<QuestTaskBase>().enabled = false;
+                continue;
             }
         }
     }

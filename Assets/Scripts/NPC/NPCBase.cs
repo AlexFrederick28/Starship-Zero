@@ -141,7 +141,7 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
             textIndex = 0;
         }
 
-        if (currentDialogue.dialogueText.Length == 1)
+        if (currentDialogue.dialogueText.Length == 1 && currentDialogue.isQuest == true)
         {
             // if there is only one entry for the current dialogue topic, start the quest if there is one
             ActivateQuest();
@@ -181,6 +181,11 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
         }
         if (currentDialogue.completedPrerequisite == true)
         {
+            if (currentDialogue.quest.prerequisite.currencyReward > 0)
+            {
+                GameState.instance.player.currency += currentDialogue.quest.prerequisite.currencyReward;
+                StartCoroutine(UIManager.instance.NewNotification("Currency +" + currentDialogue.quest.prerequisite.currencyReward));
+            }
             CompleteTopic();
         }
     }
