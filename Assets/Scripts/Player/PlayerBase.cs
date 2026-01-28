@@ -240,6 +240,9 @@ public class PlayerBase : MonoBehaviour
 
     public void ResetPlayerStatsOnRespawn()
     {
+        Level = (int)Spawning.instance.questLevel.x;
+        CalculateExperienceNeeded();
+        CurrentExperience = (int)Spawning.instance.questLevel.y;
         Health = maxHealth;
     }
 }

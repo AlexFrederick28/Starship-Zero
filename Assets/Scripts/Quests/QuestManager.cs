@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -38,7 +39,6 @@ public class QuestManager : MonoBehaviour
         {
             if (instance.activeQuests[i].prerequisite.id == currentDialogue.quest.prerequisite.id && instance.activeQuests[i].prerequisite.complete == true)
             {
-                // this is where you can give the player their quest completions/rewards
                 currentDialogue.completedPrerequisite = true;
                 instance.activeQuests.RemoveAt(i);
                 Destroy(instance.questUIList[i].gameObject);

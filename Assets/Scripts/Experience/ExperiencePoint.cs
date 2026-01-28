@@ -16,8 +16,15 @@ public class ExperiencePoint : MonoBehaviour
 
     private void OnEnable()
     {
+        Spawning.instance.OnInfestedRoomReset += AddExperiencePointBackToSpawnPool;
+
         // setting the experience upon enabing the game object as to allow for the correct type of experience to spawn when a certain type of enemy dies
         SetExperience(currentExperienceType);
+    }
+
+    private void OnDisable()
+    {
+        Spawning.instance.OnInfestedRoomReset -= AddExperiencePointBackToSpawnPool;
     }
 
     public void SetExperience(EnemyBase.DifficultyType currentType)
@@ -64,5 +71,10 @@ public class ExperiencePoint : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void AddExperiencePointBackToSpawnPool()
+    {
+        Spawning.instance.experience.AddToPool(this);
     }
 }

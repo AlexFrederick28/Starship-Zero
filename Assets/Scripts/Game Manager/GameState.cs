@@ -8,6 +8,7 @@ public class GameState : MonoBehaviour
     private States previousState;
     public PlayerBase player;
     public Transform playerTransform;
+    public RespawnCheckpoint latestCheckpoint;
 
     public static GameState instance;
 

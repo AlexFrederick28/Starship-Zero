@@ -4380,6 +4380,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 974008507174762601, guid: eb137bc84a4855c45a346dc6cae4baf7, type: 3}
+      propertyPath: currentTime
+      value: 550
+      objectReference: {fileID: 0}
+    - target: {fileID: 974008507174762601, guid: eb137bc84a4855c45a346dc6cae4baf7, type: 3}
       propertyPath: questObjects.Array.size
       value: 1
       objectReference: {fileID: 0}

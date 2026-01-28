@@ -17,6 +17,7 @@ public class Spawning : Difficulty
     [Space]
     [Header("Quest Level")]
     [Tooltip("If this room is attached to a quest, enter its ID here to obtain its level and dynamically changing the scaling of enemies")]
+    public Vector2 questLevel;
     public int questID;
     [Tooltip("Objects that will activate once the player has cleared the room")]
     public GameObject[] questObjects;
@@ -125,7 +126,7 @@ public class Spawning : Difficulty
     public List<GameObject> allEnemies;
 
     [Header("Experience")]
-    [SerializeField] private Experience experience;
+    public Experience experience;
 
     public PlayerBase player { get; private set; }
 
@@ -133,6 +134,8 @@ public class Spawning : Difficulty
     private int mediumIndexNumb;
     private int hardIndexNumb;
     private int bossIndexNumb;
+
+    public Action OnInfestedRoomReset;
 
     public bool playerClearedRoom = false;
     private bool PlayerWinCondition()
@@ -164,6 +167,8 @@ public class Spawning : Difficulty
 
     private void OnEnable()
     {
+        GetComponent<RespawnCheckpoint>().OnPlayerRespawn += ResetInfestedRoom;
+
         if (instance == null)
         {
             instance = this;
@@ -177,6 +182,8 @@ public class Spawning : Difficulty
 
     private void OnDisable()
     {
+        GetComponent<RespawnCheckpoint>().OnPlayerRespawn -= ResetInfestedRoom;
+
         if (instance == this)
         {
             instance = null;
@@ -480,21 +487,17 @@ public class Spawning : Difficulty
         Debug.Log("Reset room");
         if (timerReachedMaxLength == false)
         {
+            // only reset timer if the player has been respawned or retried the room
             currentTime = 0;
         }
+
         easyEnemiesSpawned = 0;
         mediumEnemiesSpawned = 0;
         hardEnemiesSpawned = 0;
         bossEnemiesSpawned = 0;
 
-        for (int i = 0; i < allEnemies.Count; i++)
-        {
-            if (allEnemies[i].activeInHierarchy == true)
-            {
-                Debug.Log("Reset " + allEnemies[i].name);
-                AddToPool(allEnemies[i]);
-            }
-        }
+        // enemies reset themselves back into the pool
+        OnInfestedRoomReset?.Invoke();
     }
 
     public void DisabledQuestObjects()

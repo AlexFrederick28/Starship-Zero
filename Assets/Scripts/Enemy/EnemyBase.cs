@@ -67,6 +67,8 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void OnEnable()
     {
+        Spawning.instance.OnInfestedRoomReset += AddEnemyBackToSpawnPool;
+
         if (EnemyBrain.instance != null)
         {
             EnemyBrain.instance.MoveToPlayer += MoveToPlayer;
@@ -88,6 +90,8 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void OnDisable()
     {
+        Spawning.instance.OnInfestedRoomReset -= AddEnemyBackToSpawnPool;
+
         if (EnemyBrain.instance != null)
         {
             EnemyBrain.instance.MoveToPlayer -= MoveToPlayer;
@@ -104,19 +108,11 @@ public class EnemyBase : MonoBehaviour
         // scales enemy stats with levels to adjust game difficulty
         if (Spawning.instance != null)
         {
-            for (int i = 0; i < QuestManager.instance.activeQuests.Count; i++)
-            {
-                if (QuestManager.instance.activeQuests[i].prerequisite.id == Spawning.instance.questID)
-                {
-                    // checking the spawn ID matches an active quest and sets the enemies level
-                    Debug.Log("Set new enemy level to quest level");
-                    level = QuestManager.instance.activeQuests[i].prerequisite.level;
-                    maxHealth += (healthScale * level);
-                    Health += (healthScale * level);
-                    damage += (damageScale * level);
-                    speed += (speedScale * level);
-                }
-            }
+            level = (int)Spawning.instance.questLevel.x;
+            maxHealth += (healthScale * level);
+            Health += (healthScale * level);
+            damage += (damageScale * level);
+            speed += (speedScale * level);
         }
     }
 
@@ -169,6 +165,11 @@ public class EnemyBase : MonoBehaviour
                 readyToAttack = true;
             }
         }
+    }
+
+    protected void AddEnemyBackToSpawnPool()
+    {
+        Spawning.instance.AddToPool(gameObject);
     }
 
     public void OnCollisionStay2D(Collision2D collision)

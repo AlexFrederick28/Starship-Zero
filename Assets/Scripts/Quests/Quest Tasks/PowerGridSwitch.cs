@@ -12,6 +12,9 @@ public class PowerGridSwitch : QuestTaskBase, IInteractable
     public void OnInteract()
     {
         // switch animation
-        RegisterQuestInteraction();
+        if (this.enabled == true)
+        {
+            RegisterQuestInteraction();
+        }
     }
 }
