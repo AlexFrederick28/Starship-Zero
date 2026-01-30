@@ -131,12 +131,14 @@ public class PlayerBase : MonoBehaviour
         if (GameState.instance != null)
         {
             GameState.instance.OnPlayerRespawn += ResetPlayerStatsOnRespawn;
+            GameState.instance.OnPlayerRetry += ResetPlayerStatsOnRespawn;
         }
     }
 
     private void OnDisable()
     {
         GameState.instance.OnPlayerRespawn -= ResetPlayerStatsOnRespawn;
+        GameState.instance.OnPlayerRetry -= ResetPlayerStatsOnRespawn;
     }
 
     private void Start()
