@@ -35,6 +35,20 @@ public class Room : MonoBehaviour
     [SerializeField] private GameObject upgradeRoom;
     public bool playerInsideRoom = false;
 
+    private void OnEnable()
+    {
+        if (GameState.instance != null)
+        {
+            Debug.Log(this.name + "Subscribed");
+            GameState.instance.OnPlayerRespawn += PlayerOutsideRoomOnRespawn;
+        }
+    }
+
+    private void OnDisable()
+    {
+        GameState.instance.OnPlayerRespawn -= PlayerOutsideRoomOnRespawn;
+    }
+
     private void Update()
     {
         if (State() != currentState)
@@ -74,5 +88,10 @@ public class Room : MonoBehaviour
         emptyRoom.SetActive(false);
         weaponsRoom.SetActive(false);
         upgradeRoom.SetActive(true);
+    }
+
+    private void PlayerOutsideRoomOnRespawn()
+    {
+        playerInsideRoom = false;
     }
 }

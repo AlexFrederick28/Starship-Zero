@@ -4,40 +4,32 @@ using UnityEngine;
 public class RespawnCheckpoint : MonoBehaviour 
 {
     public Transform respawnPoint;
-    public Transform retryInfestedRoomPoint;
+    public Transform retryPoint;
     public bool respawnActive = false;
-
-    public Action OnPlayerRespawn;
-    public Action OnPlayerRetry;
 
     private void OnEnable()
     {
-        GameState.instance.latestCheckpoint = this;
+        if (GameState.instance != null)
+        {
+            GameState.instance.latestCheckpoint = this;
+        }
     }
 
     private void OnDisable()
     {
-        GameState.instance.latestCheckpoint = null;
+        if (GameState.instance.latestCheckpoint == this)
+        {
+            GameState.instance.latestCheckpoint = null;
+        }
     }
 
     public void Respawn()
     {
-        OnPlayerRespawn?.Invoke();
-
-        GameState.instance.player.transform.position = respawnPoint.position;
-        GameState.instance.player.ResetPlayerStatsOnRespawn();
-        //Spawning.instance.ResetInfestedRoom
-        Spawning.instance.GetComponentInParent<Room>().playerInsideRoom = false;
-        Spawning.instance.enabled = false;
-        GameState.instance.ChangeStateToMain();
+        GameState.instance.OnPlayerRespawn?.Invoke();
     }
 
     public void RetryInfestedRoom()
     {
-        OnPlayerRetry?.Invoke();
-
-        GameState.instance.player.transform.position = retryInfestedRoomPoint.position;
-        GameState.instance.player.ResetPlayerStatsOnRespawn();
-        Spawning.instance.ResetInfestedRoom();
+        GameState.instance.OnPlayerRetry?.Invoke();
     }
 }

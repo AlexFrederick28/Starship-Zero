@@ -167,7 +167,13 @@ public class Spawning : Difficulty
 
     private void OnEnable()
     {
-        GetComponent<RespawnCheckpoint>().OnPlayerRespawn += ResetInfestedRoom;
+        if (GameState.instance != null)
+        {
+            Debug.Log(this.name + "Subscribed");
+            GameState.instance.OnPlayerRespawn += ResetInfestedRoom;
+            GameState.instance.OnPlayerRetry += ResetInfestedRoom;
+            GameState.instance.OnPlayerRespawn += DisableInstanceOnPlayerRespawn;
+        }
 
         if (instance == null)
         {
@@ -182,7 +188,9 @@ public class Spawning : Difficulty
 
     private void OnDisable()
     {
-        GetComponent<RespawnCheckpoint>().OnPlayerRespawn -= ResetInfestedRoom;
+        GameState.instance.OnPlayerRespawn -= ResetInfestedRoom;
+        GameState.instance.OnPlayerRetry -= ResetInfestedRoom;
+        GameState.instance.OnPlayerRespawn -= DisableInstanceOnPlayerRespawn;
 
         if (instance == this)
         {
@@ -510,5 +518,10 @@ public class Spawning : Difficulty
                 continue;
             }
         }
+    }
+
+    public void DisableInstanceOnPlayerRespawn()
+    {
+        instance.enabled = false;
     }
 }

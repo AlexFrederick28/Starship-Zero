@@ -1134,6 +1134,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 314361564}
   m_CullTransparentMesh: 1
+--- !u!4 &314429263 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1697629377559099862, guid: eb137bc84a4855c45a346dc6cae4baf7, type: 3}
+  m_PrefabInstance: {fileID: 2945149206986624994}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &395833143
 GameObject:
   m_ObjectHideFlags: 0
@@ -4375,6 +4380,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 377008074426079771, guid: eb137bc84a4855c45a346dc6cae4baf7, type: 3}
+      propertyPath: m_Name
+      value: RetryPoint
+      objectReference: {fileID: 0}
     - target: {fileID: 803046030391801484, guid: eb137bc84a4855c45a346dc6cae4baf7, type: 3}
       propertyPath: currentState
       value: 1
@@ -4395,6 +4404,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room
       objectReference: {fileID: 0}
+    - target: {fileID: 1161056620814535618, guid: eb137bc84a4855c45a346dc6cae4baf7, type: 3}
+      propertyPath: retryPoint
+      value: 
+      objectReference: {fileID: 314429263}
     - target: {fileID: 2799821837631452422, guid: eb137bc84a4855c45a346dc6cae4baf7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.95067

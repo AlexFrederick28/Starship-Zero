@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class GameState : MonoBehaviour
 {
@@ -10,7 +11,19 @@ public class GameState : MonoBehaviour
     public Transform playerTransform;
     public RespawnCheckpoint latestCheckpoint;
 
+    // respawn and retry is invoked by the respawn chekpoint once the player has clicked one of the buttons
+    public Action OnPlayerRespawn;
+    public Action OnPlayerRetry;
+
     public static GameState instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
 
     private void OnEnable()
     {
@@ -18,11 +31,14 @@ public class GameState : MonoBehaviour
         {
             instance = this;
         }
-        else
+        else if (instance != this)
         {
             // turns off duplicate instances if there are more than one enabled
             gameObject.SetActive(false);
         }
+
+        OnPlayerRespawn += PlayerRespawnFromCheckpoint;
+        OnPlayerRetry += PlayerRetryFromCheckpoint;
     }
 
     private void OnDisable()
@@ -31,6 +47,9 @@ public class GameState : MonoBehaviour
         {
             instance = null;
         }
+
+        OnPlayerRespawn -= PlayerRespawnFromCheckpoint;
+        OnPlayerRetry -= PlayerRetryFromCheckpoint;
     }
 
     public void PauseAndResumeGame()
@@ -62,5 +81,16 @@ public class GameState : MonoBehaviour
     {
         currentState = States.RoomClear;
         Debug.Log("State changed to room clear");
+    }
+
+    public void PlayerRespawnFromCheckpoint()
+    {
+        player.transform.position = latestCheckpoint.respawnPoint.position;
+        ChangeStateToMain();
+    }
+
+    public void PlayerRetryFromCheckpoint()
+    {
+        player.transform.position = latestCheckpoint.retryPoint.position;
     }
 }

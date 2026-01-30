@@ -126,6 +126,19 @@ public class PlayerBase : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        if (GameState.instance != null)
+        {
+            GameState.instance.OnPlayerRespawn += ResetPlayerStatsOnRespawn;
+        }
+    }
+
+    private void OnDisable()
+    {
+        GameState.instance.OnPlayerRespawn -= ResetPlayerStatsOnRespawn;
+    }
+
     private void Start()
     {
         CalculateExperienceNeeded();
