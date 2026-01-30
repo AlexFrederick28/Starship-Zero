@@ -89,7 +89,5 @@ public class ExperiencePoint : MonoBehaviour, ICollectable
 
             yield return null;
         }
-
-        Debug.Log("Finished collecting");
     }
 }

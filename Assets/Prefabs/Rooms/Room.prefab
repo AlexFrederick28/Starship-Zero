@@ -120,6 +120,7 @@ MonoBehaviour:
   infestedRoom: {fileID: 4189630379278049378}
   weaponsRoom: {fileID: 8646567814421255547}
   upgradeRoom: {fileID: 964762226071410360}
+  playerInsideRoom: 0
 --- !u!50 &5969774344006428218
 Rigidbody2D:
   serializedVersion: 5
@@ -304,6 +305,7 @@ GameObject:
   - component: {fileID: 8142883366373027167}
   - component: {fileID: 8851322571293235059}
   - component: {fileID: 974008507174762601}
+  - component: {fileID: 5228284488288670509}
   - component: {fileID: 7887671804822249061}
   - component: {fileID: 1161056620814535618}
   m_Layer: 0
@@ -345,7 +347,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InfestedDoor
   playerEntryPoint: {fileID: 1000187462187205667}
   playerExitPoint: {fileID: 4068341901873724054}
-  enteredRoom: 0
 --- !u!114 &974008507174762601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,6 +365,7 @@ MonoBehaviour:
   maxDifficulty: 0.5
   scalingSegments: 0
   timerReachedMaxLength: 0
+  questLevel: {x: 0, y: 0}
   questID: 4
   questObjects: []
   checkpoint: {fileID: 1161056620814535618}
@@ -409,6 +411,24 @@ MonoBehaviour:
   allEnemies: []
   experience: {fileID: 0}
   playerClearedRoom: 0
+--- !u!114 &5228284488288670509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4189630379278049378}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 295c347cd598ab247977d68af0f54a00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpecimenPool
+  maxSpecimenPoolCount: 200
+  totalSpecimensInPool: 0
+  poolParent: {fileID: 0}
+  poolParentToSpawn: {fileID: 5143114912004970901, guid: b2af3b64bf8f08c4caf1bd23e4c5895d, type: 3}
+  specimenPrefab: {fileID: 206851277376921028, guid: dcf48d56a3563574f9313ba940d4fc98, type: 3}
+  specimenPool: []
 --- !u!114 &7887671804822249061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,7 +461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RespawnCheckpoint
   respawnPoint: {fileID: 5741862051603556236}
-  retryInfestedRoomPoint: {fileID: 1697629377559099862}
+  retryPoint: {fileID: 0}
   respawnActive: 0
 --- !u!1 &6381008139255125533
 GameObject:
@@ -581,7 +601,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EmptyDoor
   playerEntryPoint: {fileID: 1000187462187205667}
   playerExitPoint: {fileID: 4068341901873724054}
-  enteredRoom: 0
 --- !u!1 &6833520512639123060
 GameObject:
   m_ObjectHideFlags: 0

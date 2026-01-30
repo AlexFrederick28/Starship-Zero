@@ -3,7 +3,7 @@ using Unity.Multiplayer.Center.Common;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyBase : MonoBehaviour, ICollectable 
+public class EnemyBase : MonoBehaviour 
 {
     [Header("Base Settings")]
     [SerializeField] private EnemyScriptableObject enemyType;
@@ -55,7 +55,10 @@ public class EnemyBase : MonoBehaviour, ICollectable
 
     [Space]
     [Header("Drops")]
-    [SerializeField] protected Specimens[] specimens = new Specimens[0];
+    [SerializeField] protected SpecimenType[] specimens = new SpecimenType[0];
+    private int totalSpecimenWeight = 0;
+    [Tooltip("Out of 100")]
+    [SerializeField] protected int dropFrequencyPercentChance;
 
     protected virtual void Awake()
     {
@@ -68,6 +71,8 @@ public class EnemyBase : MonoBehaviour, ICollectable
         healthScale = enemyType.healthScaling;
         damageScale = enemyType.damageScaling;
         speedScale = enemyType.speedScaling;
+
+        CalculateTotalSpecimenWeight();
     }
 
     protected virtual void OnEnable()
@@ -144,7 +149,8 @@ public class EnemyBase : MonoBehaviour, ICollectable
 
         if (Health == 0)
         {
-            Spawning.instance.GetComponent<Experience>().RemoveFromPool(Spawning.instance.GetComponent<Experience>().selectedExperiencePoint, currentDifficultyType, transform);
+            Spawning.instance.experience.RemoveFromPool(Spawning.instance.experience.selectedExperiencePoint, currentDifficultyType, transform);
+            DropRandomSpecimen();
             Spawning.instance.AddToPool(gameObject);
             Spawning.instance.EnemyDeath(currentDifficultyType);
             Health = maxHealth;
@@ -192,9 +198,30 @@ public class EnemyBase : MonoBehaviour, ICollectable
         }
     }
 
-    IEnumerator ICollectable.Collect()
+    public void CalculateTotalSpecimenWeight()
     {
-        // collect dropped specimen
-        yield return null;
+        for (int i = 0; i < specimens.Length; i++)
+        {
+            totalSpecimenWeight += specimens[i].dropChance;
+        }
+    }
+
+    public void DropRandomSpecimen()
+    {
+        int rand = Random.Range(0, 100);
+
+        if (rand > dropFrequencyPercentChance)
+        {
+            int randomNumb = Random.Range(0, totalSpecimenWeight);
+            for (int i = 0; i < specimens.Length; i++)
+            {
+                if (randomNumb < specimens[i].dropChance)
+                {
+                    Spawning.instance.specimenPool.RemoveFromPool(Spawning.instance.specimenPool.selectedSpecimen, specimens[i], transform);
+                    Debug.Log("Spawned new specimen");
+                    return;
+                }
+            }
+        }
     }
 }

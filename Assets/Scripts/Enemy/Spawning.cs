@@ -128,6 +128,10 @@ public class Spawning : Difficulty
     [Header("Experience")]
     public Experience experience;
 
+    [Space]
+    [Header("Specimens")]
+    public SpecimenPool specimenPool;
+
     public PlayerBase player { get; private set; }
 
     private int easyIndexNumb;
@@ -231,6 +235,9 @@ public class Spawning : Difficulty
         experience.enabled = true;
         experience.SpawnPool(); // experience pool
         experience.ScaleEntireExperiencePool(); // scale experience with quest level
+        specimenPool = GetComponent<SpecimenPool>();
+        specimenPool.enabled = true;
+        specimenPool.SpawnPool();
     }
 
     private void SpawnPool()

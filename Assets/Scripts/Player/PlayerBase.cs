@@ -218,7 +218,12 @@ public class PlayerBase : MonoBehaviour
         {
             ExperiencePoint point = collision.gameObject.GetComponent<ExperiencePoint>();
             AddExperience((int)point.currentExperienceAmount);
-            Spawning.instance.GetComponent<Experience>().AddToPool(point);
+            Spawning.instance.experience.AddToPool(point);
+        }
+        else if (collision.gameObject.GetComponent<SpecimenObject>())
+        {
+            SpecimenObject obj = collision.gameObject.GetComponent<SpecimenObject>();
+            Spawning.instance.specimenPool.AddToPool(obj);
         }
     }
 

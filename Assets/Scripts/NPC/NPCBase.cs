@@ -60,6 +60,8 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
             }
         }
 
+        StopAllCoroutines();
+        ClearText();
         SetDialogueInActive();
         startedDialogue = false;
     }
@@ -74,6 +76,7 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
         {
             UIManager.instance.nameText.text = nameNPC;
             UIManager.instance.continueButton.GetComponent<Button>().onClick.AddListener(NextLine);
+            Debug.Log("Started Dialogue");
 
             CompleteQuest();
             CompleteTopic();

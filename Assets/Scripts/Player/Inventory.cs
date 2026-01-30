@@ -7,12 +7,13 @@ public class Inventory : MonoBehaviour
 {
     // need to create seperate list for other objects that are not specimens
     public int MaxInventorySlots { get; private set; }
-    public List<Specimens> InventoryList
+    public List<SpecimenType> inventoryList;
+    public List<SpecimenType> InventoryList
     {
-        get { return InventoryList; }
+        get { return inventoryList; }
         set
         {
-            if (InventoryList.Count >= MaxInventorySlots)
+            if (inventoryList.Count >= MaxInventorySlots)
             {
                 Debug.Log("Inventory full!");
                 return;
@@ -67,6 +68,17 @@ public class Inventory : MonoBehaviour
             }
 
             collectionTimer = 0f;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.GetComponent<SpecimenObject>())
+        {
+            SpecimenType obj = collision.gameObject.GetComponent<SpecimenObject>().specimenType;
+            InventoryList.Add(obj);
+            Spawning.instance.specimenPool.AddToPool(collision.gameObject.GetComponent<SpecimenObject>());
+            Debug.Log("Added new specimen to inventory: " + obj.name);
         }
     }
 }
