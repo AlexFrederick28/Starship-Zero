@@ -153,6 +153,7 @@ public class PlayerBase : MonoBehaviour
         {
             // setting the reference for the player so that global scripts can access the data if necessary
             GameState.instance.playerTransform = transform;
+            GameState.instance.playerInventory = GetComponent<Inventory>();
             GameState.instance.player = this;
         }
 

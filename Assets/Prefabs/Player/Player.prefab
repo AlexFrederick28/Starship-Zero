@@ -99,6 +99,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7311839100965269547}
+  - component: {fileID: 8215110890558832416}
   - component: {fileID: 5574114283436868701}
   - component: {fileID: 5333308945747673273}
   - component: {fileID: 3468034756832663561}
@@ -128,6 +129,24 @@ Transform:
   - {fileID: 9116013883404478746}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8215110890558832416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4466290808661980776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f66a1e35514fb348880fbeced4e7f23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Inventory
+  collectionRadius: 2
+  collectionInterval: 0.5
+  collectionSpeed: 2
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!114 &5574114283436868701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,6 +188,7 @@ MonoBehaviour:
   currentHealth: 100
   maxHealth: 100
   speed: 4
+  currency: 0
 --- !u!114 &5333308945747673273
 MonoBehaviour:
   m_ObjectHideFlags: 0

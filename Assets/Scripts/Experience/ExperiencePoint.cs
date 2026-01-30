@@ -1,6 +1,7 @@
+using System.Collections;
 using UnityEngine;
 
-public class ExperiencePoint : MonoBehaviour
+public class ExperiencePoint : MonoBehaviour, ICollectable
 {
     public EnemyBase.DifficultyType currentExperienceType;
 
@@ -76,5 +77,19 @@ public class ExperiencePoint : MonoBehaviour
     public void AddExperiencePointBackToSpawnPool()
     {
         Spawning.instance.experience.AddToPool(this);
+    }
+
+    IEnumerator ICollectable.Collect()
+    {
+        while (gameObject.activeSelf == true)
+        {
+            // once the object has been collected and turn off, the coroutine will stop
+            Vector3 targetPosition = (GameState.instance.playerTransform.position - transform.position).normalized;
+            transform.position += targetPosition * GameState.instance.playerInventory.collectionSpeed * Time.deltaTime;
+
+            yield return null;
+        }
+
+        Debug.Log("Finished collecting");
     }
 }

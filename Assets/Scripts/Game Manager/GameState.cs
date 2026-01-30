@@ -9,6 +9,7 @@ public class GameState : MonoBehaviour
     private States previousState;
     public PlayerBase player;
     public Transform playerTransform;
+    public Inventory playerInventory;
     public RespawnCheckpoint latestCheckpoint;
 
     // respawn and retry is invoked by the respawn chekpoint once the player has clicked one of the buttons

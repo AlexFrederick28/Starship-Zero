@@ -1,8 +1,9 @@
+using System.Collections;
 using Unity.Multiplayer.Center.Common;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyBase : MonoBehaviour
+public class EnemyBase : MonoBehaviour, ICollectable 
 {
     [Header("Base Settings")]
     [SerializeField] private EnemyScriptableObject enemyType;
@@ -51,6 +52,10 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] protected float attackCooldown;
     [SerializeField] protected float cooldownTimer;
     [SerializeField] protected bool readyToAttack;
+
+    [Space]
+    [Header("Drops")]
+    [SerializeField] protected Specimens[] specimens = new Specimens[0];
 
     protected virtual void Awake()
     {
@@ -185,5 +190,11 @@ public class EnemyBase : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator ICollectable.Collect()
+    {
+        // collect dropped specimen
+        yield return null;
     }
 }
