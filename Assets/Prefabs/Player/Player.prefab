@@ -141,12 +141,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f66a1e35514fb348880fbeced4e7f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Inventory
+  maxInventorySlots: 48
+  selectedSlot: {fileID: 0}
+  inventoryList: []
   collectionRadius: 2
   collectionInterval: 0.5
   collectionSpeed: 2
   layerMask:
     serializedVersion: 2
     m_Bits: 4294967295
+  inventoryUI: {fileID: 0}
 --- !u!114 &5574114283436868701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,6 +396,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8215110890558832416}
+        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
+        m_MethodName: ShowOrCloseInventory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c33f45f3-e11c-4902-9f2b-ceb66dc855a9
+    m_ActionName: 'Player/Inventory[/Keyboard/i]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player

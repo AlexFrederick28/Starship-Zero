@@ -1,19 +1,24 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Collections;
 using Unity.VisualScripting;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Inventory : MonoBehaviour
 {
     // need to create seperate list for other objects that are not specimens
-    public int MaxInventorySlots { get; private set; }
+    public int maxInventorySlots;
+    public InventorySlot selectedSlot;
+    public List<InventorySlot> inventorySlots;
     public List<SpecimenType> inventoryList;
     public List<SpecimenType> InventoryList
     {
         get { return inventoryList; }
         set
         {
-            if (inventoryList.Count >= MaxInventorySlots)
+            if (inventoryList.Count >= maxInventorySlots)
             {
                 Debug.Log("Inventory full!");
                 return;
@@ -31,11 +36,41 @@ public class Inventory : MonoBehaviour
     public float collectionInterval;
     public float collectionSpeed;
     public LayerMask layerMask;
+    public GameObject inventoryUI;
 
+    private void Start()
+    {
+        if (UIManager.instance != null)
+        {
+            SetInventoryOnStart();
+            inventoryUI = UIManager.instance.inventoryParent;
+            Debug.Log("Added inventory slots");
+        }
+    }
 
     private void Update()
     {
         CollectNearbyResource();
+    }
+
+    public void SetInventoryOnStart()
+    {
+        for (int i = 0; i < maxInventorySlots; i++)
+        {
+            GameObject newSlot = Instantiate(UIManager.instance.slot, UIManager.instance.inventoryContentParent.transform);
+            inventorySlots.Add(newSlot.GetComponent<InventorySlot>());
+        }
+    }
+
+    public void SelectItem(InventorySlot slot)
+    {
+        if (selectedSlot != null)
+        {
+            selectedSlot = null;
+        }
+
+        selectedSlot = slot;
+        selectedSlot.SelectSlot();
     }
 
     public void RemoveGapsFromInventory()
@@ -45,6 +80,20 @@ public class Inventory : MonoBehaviour
             if (InventoryList[i] == null)
             {
                 InventoryList.RemoveAt(i);
+            }
+        }
+    }
+
+    public void AddItemToInventory(SpecimenType type)
+    {
+        InventoryList.Add(type);
+        for (int i = 0; i < inventorySlots.Count; i++)
+        {
+            if (inventorySlots[i].specimenType.name == string.Empty)
+            {
+                Debug.Log("Added specimen to slot: " + inventorySlots[i]);
+                inventorySlots[i].specimenType = type;
+                return;
             }
         }
     }
@@ -71,12 +120,32 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public void ShowOrCloseInventory(InputAction.CallbackContext context)
+    {
+        if (GameState.instance.currentState != GameState.States.RoomClear && context.performed)
+        {
+            if (inventoryUI.activeSelf == true)
+            {
+                inventoryUI.SetActive(false);
+                GameState.instance.ChangeToPreviousState();
+            }
+            else
+            {
+                GameState.instance.ChangeStateToOpenUI();
+                RemoveGapsFromInventory();
+                inventoryUI.SetActive(true);
+            }
+
+            Debug.Log("Inventory key pressed");
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.GetComponent<SpecimenObject>())
         {
             SpecimenType obj = collision.gameObject.GetComponent<SpecimenObject>().specimenType;
-            InventoryList.Add(obj);
+            AddItemToInventory(obj);
             Spawning.instance.specimenPool.AddToPool(collision.gameObject.GetComponent<SpecimenObject>());
             Debug.Log("Added new specimen to inventory: " + obj.name);
         }

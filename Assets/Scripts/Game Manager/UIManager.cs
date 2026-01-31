@@ -19,11 +19,19 @@ public class UIManager : MonoBehaviour
     public float notificationYDestination;
     public float notificationSpeed;
 
+    [Space]
+    [Header("Inventory")]
+    public GameObject inventoryParent;
+    public GameObject inventoryContentParent;
+    public GameObject slot;
+
+    [Space]
     [Header("Death Menu")]
     public GameObject deathMenuParent;
     public Button respawnButton;
     public Button retryInfestedRoomButton;
 
+    [Space]
     [Header("Infested Room")]
     public TextMeshProUGUI currentTime;
     public TextMeshProUGUI currentDifficulty;

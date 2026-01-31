@@ -3,7 +3,7 @@ using System;
 
 public class GameState : MonoBehaviour
 {
-    public enum States { Paused, Main, RoomClear, Upgrade }
+    public enum States { Paused, Main, RoomClear, OpenUI }
     public States currentState;
     public bool gamePaused = false;
     private States previousState;
@@ -82,6 +82,18 @@ public class GameState : MonoBehaviour
     {
         currentState = States.RoomClear;
         Debug.Log("State changed to room clear");
+    }
+
+    public void ChangeStateToOpenUI()
+    {
+        previousState = currentState;
+        currentState = States.OpenUI;
+        Debug.Log("State changed to OpenUI");
+    }
+
+    public void ChangeToPreviousState()
+    {
+        currentState = previousState;
     }
 
     public void PlayerRespawnFromCheckpoint()

@@ -50,6 +50,9 @@ MonoBehaviour:
   currentState: 1
   gamePaused: 0
   player: {fileID: 0}
+  playerTransform: {fileID: 0}
+  playerInventory: {fileID: 0}
+  latestCheckpoint: {fileID: 0}
 --- !u!114 &6870090674624868283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,6 +90,9 @@ MonoBehaviour:
   notificationYPosition: 80
   notificationYDestination: 160
   notificationSpeed: 0.5
+  inventoryParent: {fileID: 0}
+  contentParent: {fileID: 0}
+  slot: {fileID: 2477720363533150392, guid: a91f7fefa0e626a438287925bc7b264d, type: 3}
   deathMenuParent: {fileID: 0}
   respawnButton: {fileID: 0}
   retryInfestedRoomButton: {fileID: 0}
@@ -111,4 +117,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82129b99762eb824fbf5eb0c48330f3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBrain
-  player: {fileID: 0}
