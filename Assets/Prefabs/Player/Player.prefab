@@ -141,8 +141,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f66a1e35514fb348880fbeced4e7f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Inventory
-  maxInventorySlots: 48
+  maxInventorySlots: 99
   selectedSlot: {fileID: 0}
+  inventorySlots: []
   inventoryList: []
   collectionRadius: 2
   collectionInterval: 0.5

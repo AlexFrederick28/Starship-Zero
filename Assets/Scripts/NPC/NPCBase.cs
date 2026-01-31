@@ -63,6 +63,7 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
         StopAllCoroutines();
         ClearText();
         SetDialogueInActive();
+        textIndex = 0;
         startedDialogue = false;
     }
 
@@ -78,10 +79,16 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
             UIManager.instance.continueButton.GetComponent<Button>().onClick.AddListener(NextLine);
             Debug.Log("Started Dialogue");
 
-            CompleteQuest();
-            CompleteTopic();
             textIndex = 0;
             SetDialogueActive();
+            if (currentDialogue.isQuest == true)
+            {
+                CompleteQuest();
+            }
+            else
+            {
+                CompleteTopic();
+            }
             ClearText();
             StartCoroutine(WriteLine_C());
 
@@ -125,9 +132,10 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
                 GoNextDialogue();
             }
         }
-        else if (currentDialogue.isQuest == true && textIndex == currentDialogue.dialogueText.Length - 1 && currentDialogue.quest.prerequisite.complete == true)
+        else if (currentDialogue.isQuest == true && currentDialogue.quest.prerequisite.complete == true)
         {
             currentDialogue.completedPrerequisite = true;
+            currentDialogue.completedTopic = true;
             GoNextDialogue();
         }
     }

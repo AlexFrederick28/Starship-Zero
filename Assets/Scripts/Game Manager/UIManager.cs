@@ -22,8 +22,11 @@ public class UIManager : MonoBehaviour
     [Space]
     [Header("Inventory")]
     public GameObject inventoryParent;
-    public GameObject inventoryContentParent;
+    public GameObject inventorySlotContentParent;
     public GameObject slot;
+    public TextMeshProUGUI infoName;
+    public Image infoImage;
+    public TextMeshProUGUI infoText;
 
     [Space]
     [Header("Death Menu")]

@@ -56,7 +56,7 @@ public class EnemyBase : MonoBehaviour
     [Space]
     [Header("Drops")]
     [SerializeField] protected SpecimenType[] specimens = new SpecimenType[0];
-    private int totalSpecimenWeight = 0;
+    private int totalSpecimenWeight;
     [Tooltip("Out of 100")]
     [SerializeField] protected int dropFrequencyPercentChance;
 
@@ -210,7 +210,7 @@ public class EnemyBase : MonoBehaviour
     {
         int rand = Random.Range(0, 100);
 
-        if (rand > dropFrequencyPercentChance)
+        if (rand < dropFrequencyPercentChance)
         {
             int randomNumb = Random.Range(0, totalSpecimenWeight);
             for (int i = 0; i < specimens.Length; i++)
@@ -220,6 +220,11 @@ public class EnemyBase : MonoBehaviour
                     Spawning.instance.specimenPool.RemoveFromPool(Spawning.instance.specimenPool.selectedSpecimen, specimens[i], transform);
                     Debug.Log("Spawned new specimen");
                     return;
+                }
+                else
+                {
+                    randomNumb -= specimens[i].dropChance;
+                    continue;
                 }
             }
         }

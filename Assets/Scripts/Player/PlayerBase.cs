@@ -212,6 +212,11 @@ public class PlayerBase : MonoBehaviour
         }
     }
 
+    public void AddCurrency(int amount)
+    {
+        currency += amount;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.GetComponent<ExperiencePoint>())
@@ -220,13 +225,6 @@ public class PlayerBase : MonoBehaviour
             AddExperience((int)point.currentExperienceAmount);
             Spawning.instance.experience.AddToPool(point);
         }
-        //else if (collision.gameObject.GetComponent<SpecimenObject>())
-        //{
-        //    SpecimenObject obj = collision.gameObject.GetComponent<SpecimenObject>();
-        //    GameState.instance.playerInventory.AddItemToInventory(obj.specimenType);
-        //    Spawning.instance.specimenPool.AddToPool(obj);
-        //    Debug.Log("Added new specimen to inventory: " + obj.name);
-        //}
     }
 
     private void OnTriggerStay2D(Collider2D collision)

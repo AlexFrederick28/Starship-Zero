@@ -38,6 +38,8 @@ public class Inventory : MonoBehaviour
     public LayerMask layerMask;
     public GameObject inventoryUI;
 
+    public List<InventorySlot> multiSelectedSlots;
+
     private void Start()
     {
         if (UIManager.instance != null)
@@ -57,7 +59,7 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < maxInventorySlots; i++)
         {
-            GameObject newSlot = Instantiate(UIManager.instance.slot, UIManager.instance.inventoryContentParent.transform);
+            GameObject newSlot = Instantiate(UIManager.instance.slot, UIManager.instance.inventorySlotContentParent.transform);
             inventorySlots.Add(newSlot.GetComponent<InventorySlot>());
         }
     }
@@ -127,6 +129,9 @@ public class Inventory : MonoBehaviour
             if (inventoryUI.activeSelf == true)
             {
                 inventoryUI.SetActive(false);
+                UIManager.instance.infoName.text = string.Empty;
+                UIManager.instance.infoImage.sprite = null;
+                UIManager.instance.infoText.text = string.Empty;
                 GameState.instance.ChangeToPreviousState();
             }
             else
@@ -140,13 +145,46 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public void SellSelectedItems()
+    {
+        int earned = 0;
+        if (multiSelectedSlots.Count != 0)
+        {
+            for (int i = 0; i < multiSelectedSlots.Count; i++)
+            {
+                earned += multiSelectedSlots[i].specimenType.sellAmount;
+                multiSelectedSlots[i].SellItem();
+            }
+            RemoveGapsFromInventory();
+        }
+        else
+        {
+            return;
+        }
+
+        for (int i = 0; i < multiSelectedSlots.Count; i++)
+        {
+            multiSelectedSlots[i].DeselectSlot();
+        }
+
+        StartCoroutine(UIManager.instance.NewNotification("Currency + " + earned));
+        multiSelectedSlots.Clear();
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.GetComponent<SpecimenObject>())
         {
             SpecimenType obj = collision.gameObject.GetComponent<SpecimenObject>().specimenType;
             AddItemToInventory(obj);
-            Spawning.instance.specimenPool.AddToPool(collision.gameObject.GetComponent<SpecimenObject>());
+            if (Spawning.instance != null)
+            {
+                Spawning.instance.specimenPool.AddToPool(collision.gameObject.GetComponent<SpecimenObject>());
+            }
+            else
+            {
+                collision.gameObject.SetActive(false);
+            }
             Debug.Log("Added new specimen to inventory: " + obj.name);
         }
     }
