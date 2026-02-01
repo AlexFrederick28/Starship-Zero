@@ -152,6 +152,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   inventoryUI: {fileID: 0}
+  multiSelectedSlots: []
 --- !u!114 &5574114283436868701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,6 +195,10 @@ MonoBehaviour:
   maxHealth: 100
   speed: 4
   currency: 0
+  volume: 0.1
+  minPitch: 1
+  maxPitch: 1.5
+  playerHurtClip: {fileID: 8300000, guid: ba9883d2e4ce0154fa44a4db5694d91b, type: 3}
 --- !u!114 &5333308945747673273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,6 +213,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   player: {fileID: 5574114283436868701}
   moveInput: {x: 0, y: 0}
+  volume: 0.5
+  footstepClip: {fileID: 8300000, guid: 4630f484283440b46826ceb8ecd9b582, type: 3}
 --- !u!70 &3468034756832663561
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

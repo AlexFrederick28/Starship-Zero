@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6467625082563482837}
   - component: {fileID: 6283190580603290024}
+  - component: {fileID: 7095342941005253738}
   - component: {fileID: 6870090674624868283}
   - component: {fileID: 5562658886180886453}
   - component: {fileID: 3386434121657024945}
@@ -53,6 +54,20 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   playerInventory: {fileID: 0}
   latestCheckpoint: {fileID: 0}
+--- !u!114 &7095342941005253738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3904750311189774911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c80a5aef2e87f14ea9c3c202a36ae32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundManager
+  instance: {fileID: 0}
+  soundObject: {fileID: 7917900519422113262, guid: a0709ac2481edc54b8950b3c87142ef0, type: 3}
 --- !u!114 &6870090674624868283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,8 +106,11 @@ MonoBehaviour:
   notificationYDestination: 160
   notificationSpeed: 0.5
   inventoryParent: {fileID: 0}
-  contentParent: {fileID: 0}
+  inventorySlotContentParent: {fileID: 0}
   slot: {fileID: 2477720363533150392, guid: a91f7fefa0e626a438287925bc7b264d, type: 3}
+  infoName: {fileID: 0}
+  infoImage: {fileID: 0}
+  infoText: {fileID: 0}
   deathMenuParent: {fileID: 0}
   respawnButton: {fileID: 0}
   retryInfestedRoomButton: {fileID: 0}

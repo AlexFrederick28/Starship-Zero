@@ -12,6 +12,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     public Color originalColour;
     public Color highlightedColour;
     private bool selectedSlot = false;
+    private bool viewingSlot = false;
 
     private void OnEnable()
     {
@@ -36,12 +37,32 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         DeselectSlot();
     }
 
+    private void Update()
+    {
+        // maybe change this to an event handled by the inventory instead of update
+        if (viewingSlot == true && GameState.instance.playerInventory.selectedSlot != this)
+        {
+            slotImage.color = originalColour;
+            viewingSlot = false;
+        }
+    }
+
     public void SelectSlot()
     {
-        UIManager.instance.infoName.text = specimenType.name;
-        UIManager.instance.infoImage.sprite = specimenType.sprite;
-        UIManager.instance.infoText.text = specimenType.description;
-        Debug.Log("Selected slot + " + transform.name);
+        if (viewingSlot == true)
+        {
+            slotImage.color = originalColour;
+            viewingSlot = false;
+        }
+        else
+        {
+            UIManager.instance.infoName.text = specimenType.name;
+            UIManager.instance.infoImage.sprite = specimenType.sprite;
+            UIManager.instance.infoText.text = specimenType.description;
+            slotImage.color = Color.white;
+            GameState.instance.playerInventory.selectedSlot = this;
+            viewingSlot = true;
+        }
     }
 
     public void MultiSelectSlot()

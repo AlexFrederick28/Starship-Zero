@@ -21,6 +21,13 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
     [SerializeField] private int dialogueIndex;
     [SerializeField] private float textSpeed;
 
+    [Space]
+    [Header("Audio")]
+    [SerializeField] protected float volume;
+    [SerializeField] protected float minPitch;
+    [SerializeField] protected float maxPitch;
+    [SerializeField] protected AudioClip typingClip;
+
     private bool startedDialogue = false;
 
     /// <summary>
@@ -213,6 +220,7 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
         foreach (char c in currentDialogue.dialogueText[textIndex])
         {
             UIManager.instance.dialogueText.text += c;
+            SoundManager.instance.PlaySoundClip(typingClip, transform, volume, true, true, minPitch, maxPitch);
             yield return new WaitForSeconds(textSpeed);
         }
     }

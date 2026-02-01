@@ -80,6 +80,13 @@ public class PlayerBase : MonoBehaviour
 
     private IInteractable interactable;
 
+    [Space]
+    [Header("Audio")]
+    [SerializeField] protected float volume;
+    [SerializeField] protected float minPitch;
+    [SerializeField] protected float maxPitch;
+    [SerializeField] protected AudioClip playerHurtClip;
+
     public bool PlayerDead()
     {
         if (currentHealth <= 0)
@@ -176,8 +183,12 @@ public class PlayerBase : MonoBehaviour
     {
         // enemy take damage from player
 
-        Health -= damage;
-        Debug.Log(name + " took " + damage + "!");
+        if (Health != 0)
+        {
+            Health -= damage;
+            SoundManager.instance.PlaySoundClip(playerHurtClip, transform, volume, true, true, minPitch, maxPitch);
+            Debug.Log(name + " took " + damage + "!");
+        }
     }
 
     private void CalculateExperienceNeeded()
@@ -218,6 +229,16 @@ public class PlayerBase : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //if (collision.gameObject.GetComponent<ExperiencePoint>())
+        //{
+        //    ExperiencePoint point = collision.gameObject.GetComponent<ExperiencePoint>();
+        //    AddExperience((int)point.currentExperienceAmount);
+        //    Spawning.instance.experience.AddToPool(point);
+        //}
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<ExperiencePoint>())
         {

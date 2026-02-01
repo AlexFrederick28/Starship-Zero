@@ -6341,10 +6341,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2023707344181429463, guid: 409208cff23b95d4084a2f5083c76bd0, type: 3}
-      propertyPath: newDialogue.Array.data[3].dialogueText.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2023707344181429463, guid: 409208cff23b95d4084a2f5083c76bd0, type: 3}
       propertyPath: 'newDialogue.Array.data[0].dialogueText.Array.data[2]'
       value: 
       objectReference: {fileID: 0}
@@ -6357,10 +6353,6 @@ PrefabInstance:
     - target: {fileID: 2023707344181429463, guid: 409208cff23b95d4084a2f5083c76bd0, type: 3}
       propertyPath: 'newDialogue.Array.data[2].dialogueText.Array.data[3]'
       value: These will prove to be necessary as the foe before us is no weak threat
-      objectReference: {fileID: 0}
-    - target: {fileID: 2023707344181429463, guid: 409208cff23b95d4084a2f5083c76bd0, type: 3}
-      propertyPath: 'newDialogue.Array.data[3].dialogueText.Array.data[0]'
-      value: Activated power grid quest
       objectReference: {fileID: 0}
     - target: {fileID: 2023707344181429463, guid: 409208cff23b95d4084a2f5083c76bd0, type: 3}
       propertyPath: 'newDialogue.Array.data[3].dialogueText.Array.data[1]'

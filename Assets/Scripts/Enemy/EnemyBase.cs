@@ -60,6 +60,13 @@ public class EnemyBase : MonoBehaviour
     [Tooltip("Out of 100")]
     [SerializeField] protected int dropFrequencyPercentChance;
 
+    [Space]
+    [Header("Audio")]
+    [SerializeField] protected float volume;
+    [SerializeField] protected float minPitch;
+    [SerializeField] protected float maxPitch;
+    [SerializeField] protected AudioClip enemyHurtClip;
+
     protected virtual void Awake()
     {
         enemyName = enemyType.enemyName;
@@ -140,6 +147,7 @@ public class EnemyBase : MonoBehaviour
         // enemy take damage from player
 
         Health -= damage;
+        SoundManager.instance.PlaySoundClip(enemyHurtClip, transform, volume, false, true, minPitch, maxPitch);
         Debug.Log(name + " took " + damage + " damage!");
     }
 

@@ -102,7 +102,7 @@ MonoBehaviour:
         complete: 0
   - topic: "Tutorial/First Quest pt.2 \u201CTurn on the power grid\u201D"
     dialogueText:
-    - FIGHT FIGHT
+    - Activated power grid quest
     completedTopic: 0
     completedPrerequisite: 0
     isQuest: 1
@@ -130,23 +130,13 @@ MonoBehaviour:
         level: 0
         currencyReward: 0
         complete: 0
-  currentDialogue:
-    topic: 
-    dialogueText: []
-    completedTopic: 0
-    completedPrerequisite: 0
-    isQuest: 0
-    quest:
-      description: 
-      prerequisite:
-        name: 
-        id: 0
-        level: 0
-        currencyReward: 0
-        complete: 0
   textIndex: 0
   dialogueIndex: 0
   textSpeed: 0.01
+  volume: 0.25
+  minPitch: 1
+  maxPitch: 3
+  typingClip: {fileID: 8300000, guid: ab067bb39c26eef4a97273f69afcfbb2, type: 3}
 --- !u!58 &7801706641096688389
 CircleCollider2D:
   m_ObjectHideFlags: 0

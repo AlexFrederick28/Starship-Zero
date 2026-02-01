@@ -177,6 +177,10 @@ MonoBehaviour:
     rarity: 0
     sprite: {fileID: 6363875592875451746, guid: b5af269fbc3a98d44af25a9faf410703, type: 3}
   dropFrequencyPercentChance: 30
+  volume: 0.1
+  minPitch: 1
+  maxPitch: 1.8
+  enemyHurtClip: {fileID: 8300000, guid: d09780df048227840bba6e2113afedf7, type: 3}
 --- !u!50 &8302320551027633761
 Rigidbody2D:
   serializedVersion: 5

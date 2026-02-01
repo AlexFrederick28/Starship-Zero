@@ -171,7 +171,25 @@ public class Inventory : MonoBehaviour
         multiSelectedSlots.Clear();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.GetComponent<SpecimenObject>())
+    //    {
+    //        SpecimenType obj = collision.gameObject.GetComponent<SpecimenObject>().specimenType;
+    //        AddItemToInventory(obj);
+    //        if (Spawning.instance != null)
+    //        {
+    //            Spawning.instance.specimenPool.AddToPool(collision.gameObject.GetComponent<SpecimenObject>());
+    //        }
+    //        else
+    //        {
+    //            collision.gameObject.SetActive(false);
+    //        }
+    //        Debug.Log("Added new specimen to inventory: " + obj.name);
+    //    }
+    //}
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<SpecimenObject>())
         {
