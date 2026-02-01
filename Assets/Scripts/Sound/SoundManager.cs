@@ -1,9 +1,11 @@
+using NUnit.Framework;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
     [SerializeField] private AudioSource soundObject;
+    [SerializeField] private AudioSource dialogueClip;
 
     private void Awake()
     {
@@ -33,5 +35,20 @@ public class SoundManager : MonoBehaviour
         audioSource.Play();
         float clipLength = audioSource.clip.length;
         Destroy(audioSource.gameObject, clipLength);
+    }
+
+    public void PlayDialogueSoundClip(AudioClip clip, Transform transform, float volume, bool isSound2D, bool randomisePitch, float minPitch, float maxPitch)
+    {
+        // destroy any existing clip if the player is spamming next dialogue
+        Destroy(dialogueClip);
+        dialogueClip = Instantiate(soundObject, transform.position, Quaternion.identity);
+        dialogueClip.clip = clip;
+        dialogueClip.volume = volume;
+        if (isSound2D == true) { dialogueClip.spatialBlend = 0f; }
+        else { dialogueClip.spatialBlend = 1f; }
+        if (randomisePitch == true) { dialogueClip.pitch = Random.Range(minPitch, maxPitch); }
+        dialogueClip.Play();
+        float clipLength = dialogueClip.clip.length;
+        Destroy(dialogueClip.gameObject, clipLength);
     }
 }

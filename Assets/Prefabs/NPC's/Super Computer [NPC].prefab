@@ -55,6 +55,9 @@ MonoBehaviour:
     - Welcome aboard
     - 'WARNING: the ship has been infested with alien parasites, all power systems
       are failing'
+    dialogueClip:
+    - {fileID: 8300000, guid: 8277b26a8f016f143b6e53ed131d2e70, type: 3}
+    - {fileID: 8300000, guid: 6a1209bf8174f6b438647659a43635b0, type: 3}
     completedTopic: 0
     completedPrerequisite: 0
     isQuest: 0
@@ -74,6 +77,11 @@ MonoBehaviour:
     - Please allow me to be your guide, I can direct you to this ships main pieces
       of infrastructure that will give you access to new weapons and cybernetic upgrades
     - These will prove to be necessary as the foe before us is no weak threat
+    dialogueClip:
+    - {fileID: 8300000, guid: 9c47570c8316e6645ab1f21d31d6aca8, type: 3}
+    - {fileID: 8300000, guid: 4ec42d02fe04fee41a948a1fd32803b4, type: 3}
+    - {fileID: 0}
+    - {fileID: 8300000, guid: a29b157abc513984a98d32f763bfc347, type: 3}
     completedTopic: 0
     completedPrerequisite: 0
     isQuest: 0
@@ -89,6 +97,9 @@ MonoBehaviour:
     dialogueText:
     - First, let's make sure you're up to the task
     - Use WASD to move
+    dialogueClip:
+    - {fileID: 8300000, guid: 1e44bd18108db5f4aa489fea210e7454, type: 3}
+    - {fileID: 8300000, guid: 2d04a67487f537341a05511c09590d00, type: 3}
     completedTopic: 0
     completedPrerequisite: 0
     isQuest: 1
@@ -103,6 +114,8 @@ MonoBehaviour:
   - topic: "Tutorial/First Quest pt.2 \u201CTurn on the power grid\u201D"
     dialogueText:
     - Activated power grid quest
+    dialogueClip:
+    - {fileID: 0}
     completedTopic: 0
     completedPrerequisite: 0
     isQuest: 1
@@ -119,6 +132,7 @@ MonoBehaviour:
     - Good work!
     - This is the end of the current prototype
     - Feel free to fight the parasites and see how challenging it can get
+    dialogueClip: []
     completedTopic: 0
     completedPrerequisite: 0
     isQuest: 0
@@ -133,6 +147,7 @@ MonoBehaviour:
   textIndex: 0
   dialogueIndex: 0
   textSpeed: 0.01
+  useVoiceLines: 1
   volume: 0.25
   minPitch: 1
   maxPitch: 3

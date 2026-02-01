@@ -23,6 +23,7 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
 
     [Space]
     [Header("Audio")]
+    [SerializeField] protected bool useVoiceLines = true;
     [SerializeField] protected float volume;
     [SerializeField] protected float minPitch;
     [SerializeField] protected float maxPitch;
@@ -217,10 +218,17 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
 
     public IEnumerator WriteLine_C()
     {
+        if (currentDialogue.dialogueClip != null && currentDialogue.dialogueClip[textIndex] != null && useVoiceLines == true)
+        {
+            SoundManager.instance.PlayDialogueSoundClip(currentDialogue.dialogueClip[textIndex], transform, volume, true, false, 0f, 0f);
+        }
         foreach (char c in currentDialogue.dialogueText[textIndex])
         {
             UIManager.instance.dialogueText.text += c;
-            SoundManager.instance.PlaySoundClip(typingClip, transform, volume, true, true, minPitch, maxPitch);
+            if (useVoiceLines == false)
+            {
+                SoundManager.instance.PlaySoundClip(typingClip, transform, volume, true, true, minPitch, maxPitch);
+            }
             yield return new WaitForSeconds(textSpeed);
         }
     }
