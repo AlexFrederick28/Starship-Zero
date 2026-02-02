@@ -54,6 +54,7 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   playerInventory: {fileID: 0}
   latestCheckpoint: {fileID: 0}
+  musicVolume: 0.1
 --- !u!114 &7095342941005253738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,8 +67,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c80a5aef2e87f14ea9c3c202a36ae32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
-  instance: {fileID: 0}
+  musicObject: {fileID: 0}
+  mainMusic:
+  - {fileID: 8300000, guid: 5e7873d3065a41743b9db724dff4189c, type: 3}
+  - {fileID: 8300000, guid: 2e3104d03f1c1234d92ce36ede3c2112, type: 3}
+  - {fileID: 8300000, guid: 86e06b6ff7c340e4a8e2a54a7753b286, type: 3}
+  battleMusic:
+  - {fileID: 8300000, guid: a6388af41684ed14186ddd5c21007b21, type: 3}
+  - {fileID: 8300000, guid: c49bb4488db105d48ab2ee9ffd06886c, type: 3}
+  tutorialMusic:
+  - {fileID: 0}
   soundObject: {fileID: 7917900519422113262, guid: a0709ac2481edc54b8950b3c87142ef0, type: 3}
+  dialogueClip: {fileID: 0}
 --- !u!114 &6870090674624868283
 MonoBehaviour:
   m_ObjectHideFlags: 0

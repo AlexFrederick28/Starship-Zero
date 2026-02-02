@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using TreeEditor;
 
 public class GameState : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class GameState : MonoBehaviour
     public Action OnPlayerRespawn;
     public Action OnPlayerRetry;
 
+    [Space]
+    [Header("Audio")]
+    [SerializeField] protected float musicVolume;
+
     public static GameState instance;
 
     private void Awake()
@@ -24,6 +29,11 @@ public class GameState : MonoBehaviour
         {
             instance = this;
         }
+    }
+
+    private void Start()
+    {
+        ChangeStateToMain();
     }
 
     private void OnEnable()
@@ -74,13 +84,17 @@ public class GameState : MonoBehaviour
 
     public void ChangeStateToMain()
     {
+        StopAllCoroutines();
         currentState = States.Main;
+        StartCoroutine(SoundManager.instance.PlayMusicClipCoroutine(SoundManager.instance.mainMusic, transform, musicVolume, true));
         Debug.Log("State changed to main");
     }
 
     public void ChangeStateToRoomClear()
     {
+        StopAllCoroutines();
         currentState = States.RoomClear;
+        StartCoroutine(SoundManager.instance.PlayMusicClipCoroutine(SoundManager.instance.battleMusic, transform, musicVolume, true));
         Debug.Log("State changed to room clear");
     }
 

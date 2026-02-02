@@ -1,9 +1,18 @@
 using NUnit.Framework;
+using System.Collections;
+using System.Data;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.Rendering;
+using UnityEngine.UIElements;
 
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
+    public AudioSource musicObject;
+    public AudioClip[] mainMusic;
+    public AudioClip[] battleMusic;
+    public AudioClip[] tutorialMusic;
     [SerializeField] private AudioSource soundObject;
     [SerializeField] private AudioSource dialogueClip;
 
@@ -50,5 +59,38 @@ public class SoundManager : MonoBehaviour
         dialogueClip.Play();
         float clipLength = dialogueClip.clip.length;
         Destroy(dialogueClip.gameObject, clipLength);
+    }
+
+    public IEnumerator PlayMusicClipCoroutine(AudioClip[] clip, Transform transform, float volume, bool repeat)
+    {
+        // Gamestate.cs handles music calls
+        if (musicObject == null)
+        {
+            // only need one music object in the scene
+            musicObject = Instantiate(soundObject, transform.position, Quaternion.identity);
+        }
+
+        // 2D sound
+        musicObject.spatialBlend = 0f;
+
+        if (repeat == true)
+        {
+            while (repeat == true)
+            {
+                musicObject.clip = clip[Random.Range(0, clip.Length)];
+                musicObject.volume = volume;
+                musicObject.Play();
+                float clipLength = musicObject.clip.length;
+                yield return new WaitForSeconds(clipLength);
+            }
+        }
+        else
+        {
+            musicObject.clip = clip[Random.Range(0, clip.Length)];
+            musicObject.volume = volume;
+            musicObject.Play();
+            float clipLength = musicObject.clip.length;
+            yield return new WaitForSeconds(clipLength);
+        }
     }
 }

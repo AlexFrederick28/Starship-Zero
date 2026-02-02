@@ -218,7 +218,7 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
 
     public IEnumerator WriteLine_C()
     {
-        if (currentDialogue.dialogueClip != null && currentDialogue.dialogueClip[textIndex] != null && useVoiceLines == true)
+        if (currentDialogue.dialogueClip != null && currentDialogue.dialogueClip.Length > 0 && currentDialogue.dialogueClip[textIndex] != null && useVoiceLines == true)
         {
             SoundManager.instance.PlayDialogueSoundClip(currentDialogue.dialogueClip[textIndex], transform, volume, true, false, 0f, 0f);
         }
