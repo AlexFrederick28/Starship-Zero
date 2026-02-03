@@ -1,4 +1,3 @@
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,7 +21,7 @@ public class InfestedDoor : Door
                     questEnabled = true;
                     break;
                 }
-                else
+                else if (GameState.instance.currentState != GameState.States.RoomClear && GetComponentInParent<Room>().playerInsideRoom == true)
                 {
                     // leaving the infested room and disabling spawning and respawn
                     GameState.instance.ChangeStateToMain();

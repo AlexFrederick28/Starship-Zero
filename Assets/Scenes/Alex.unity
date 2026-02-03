@@ -6265,7 +6265,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 974008507174762601, guid: eb137bc84a4855c45a346dc6cae4baf7, type: 3}
       propertyPath: timerLength
-      value: 20
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 974008507174762601, guid: eb137bc84a4855c45a346dc6cae4baf7, type: 3}
       propertyPath: maxDifficulty
@@ -6355,8 +6355,8 @@ PrefabInstance:
       value: These will prove to be necessary as the foe before us is no weak threat
       objectReference: {fileID: 0}
     - target: {fileID: 2023707344181429463, guid: 409208cff23b95d4084a2f5083c76bd0, type: 3}
-      propertyPath: 'newDialogue.Array.data[3].dialogueText.Array.data[1]'
-      value: Activated power grid quest
+      propertyPath: 'newDialogue.Array.data[4].dialogueText.Array.data[2]'
+      value: Thanks for playing :)
       objectReference: {fileID: 0}
     - target: {fileID: 3794775192171156028, guid: 409208cff23b95d4084a2f5083c76bd0, type: 3}
       propertyPath: m_Name

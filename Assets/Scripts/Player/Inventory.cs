@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.Collections;
 using Unity.VisualScripting;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -152,8 +151,11 @@ public class Inventory : MonoBehaviour
         {
             for (int i = 0; i < multiSelectedSlots.Count; i++)
             {
-                earned += multiSelectedSlots[i].specimenType.sellAmount;
-                multiSelectedSlots[i].SellItem();
+                if (multiSelectedSlots[i] != null)
+                {
+                    earned += multiSelectedSlots[i].specimenType.sellAmount;
+                    multiSelectedSlots[i].SellItem();
+                }
             }
             RemoveGapsFromInventory();
         }

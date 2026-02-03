@@ -113,8 +113,12 @@ MonoBehaviour:
         complete: 0
   - topic: "Tutorial/First Quest pt.2 \u201CTurn on the power grid\u201D"
     dialogueText:
-    - Activated power grid quest
+    - We may be able to restore some systems by turning on the local powergrid
+    - Ill send you the location, refer to your tracking device
+    - (No tracking device yet, it is the door directly above)
     dialogueClip:
+    - {fileID: 0}
+    - {fileID: 0}
     - {fileID: 0}
     completedTopic: 0
     completedPrerequisite: 0
