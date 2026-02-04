@@ -1,3 +1,5 @@
+using JetBrains.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Collections;
@@ -38,6 +40,7 @@ public class Inventory : MonoBehaviour
     public GameObject inventoryUI;
 
     public List<InventorySlot> multiSelectedSlots;
+    public Action OnClearingMultiSelectedSlotsFromList;
 
     private void Start()
     {
@@ -76,11 +79,26 @@ public class Inventory : MonoBehaviour
 
     public void RemoveGapsFromInventory()
     {
-        for (int i = 0; i < InventoryList.Count; i++)
+        int desiredPosition = 0;
+
+        for (int i = 0; i < inventorySlots.Count; i++)
         {
-            if (InventoryList[i] == null)
+            // scan through the inventory
+            if (inventorySlots[i].specimenType.name != string.Empty)
             {
-                InventoryList.RemoveAt(i);
+                // if the current inventory slots (i) name is not empty, then it is occupied 
+                if (i != desiredPosition)
+                {
+                    // if the occupied position is not equal to the desired position, move slots
+                    inventorySlots[desiredPosition].specimenType = inventorySlots[i].specimenType;
+
+                    inventorySlots[i].RenewObject();
+                    inventorySlots[desiredPosition].RefreshSlot();
+                    inventorySlots[i].RefreshSlot();
+                }
+
+                // if the current occupied slot (i) is equal to the desired position keep looking for an empty slot
+                desiredPosition++;
             }
         }
     }
@@ -96,6 +114,14 @@ public class Inventory : MonoBehaviour
                 inventorySlots[i].specimenType = type;
                 return;
             }
+        }
+    }
+
+    public void RemoveNullItemsFromList()
+    {
+        for (int i = 0; i < inventoryList.Count; i++)
+        {
+            InventoryList.RemoveAt(i);
         }
     }
 
@@ -155,41 +181,22 @@ public class Inventory : MonoBehaviour
                 {
                     earned += multiSelectedSlots[i].specimenType.sellAmount;
                     multiSelectedSlots[i].SellItem();
+                    multiSelectedSlots[i].RefreshSlot();
                 }
             }
             RemoveGapsFromInventory();
+            RemoveNullItemsFromList();
         }
         else
         {
             return;
         }
 
-        for (int i = 0; i < multiSelectedSlots.Count; i++)
-        {
-            multiSelectedSlots[i].DeselectSlot();
-        }
+        OnClearingMultiSelectedSlotsFromList?.Invoke();
 
         StartCoroutine(UIManager.instance.NewNotification("Currency + " + earned));
         multiSelectedSlots.Clear();
     }
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.GetComponent<SpecimenObject>())
-    //    {
-    //        SpecimenType obj = collision.gameObject.GetComponent<SpecimenObject>().specimenType;
-    //        AddItemToInventory(obj);
-    //        if (Spawning.instance != null)
-    //        {
-    //            Spawning.instance.specimenPool.AddToPool(collision.gameObject.GetComponent<SpecimenObject>());
-    //        }
-    //        else
-    //        {
-    //            collision.gameObject.SetActive(false);
-    //        }
-    //        Debug.Log("Added new specimen to inventory: " + obj.name);
-    //    }
-    //}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

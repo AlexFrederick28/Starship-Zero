@@ -16,6 +16,8 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
     private void OnEnable()
     {
+        GameState.instance.playerInventory.OnClearingMultiSelectedSlotsFromList += DeselectSlot;
+
         if (specimenType == null)
         {
             specimenType = new SpecimenType();
@@ -34,6 +36,8 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
     private void OnDisable()
     {
+        GameState.instance.playerInventory.OnClearingMultiSelectedSlotsFromList += DeselectSlot;
+
         DeselectSlot();
     }
 
@@ -47,6 +51,30 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         }
     }
 
+    public void RenewObject()
+    {
+        specimenType = new SpecimenType();
+        specimenType.name = string.Empty;
+    }
+
+    public void RefreshSlot()
+    {
+        if (specimenType == null)
+        {
+            RenewObject();
+        }
+        if (specimenType.name == string.Empty)
+        {
+            // if there is essentially no object
+            childImage.enabled = false;
+        }
+        else
+        {
+            childImage.sprite = specimenType.sprite;
+            childImage.enabled = true;
+        }
+    }
+
     public void SelectSlot()
     {
         if (viewingSlot == true)
@@ -54,7 +82,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
             slotImage.color = originalColour;
             viewingSlot = false;
         }
-        else
+        else if (specimenType.name != string.Empty && viewingSlot == false)
         {
             UIManager.instance.infoName.text = specimenType.name;
             UIManager.instance.infoImage.sprite = specimenType.sprite;
@@ -67,6 +95,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
     public void MultiSelectSlot()
     {
+        // selecting and deselct parameters are handled by the OnClickEvent
         GameState.instance.playerInventory.multiSelectedSlots.Add(this);
         slotImage.color = highlightedColour;
         selectedSlot = true;
@@ -74,6 +103,8 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
     public void DeselectSlot()
     {
+        // selecting and deselct parameters are handled by the OnClickEvent
+        GameState.instance.playerInventory.multiSelectedSlots.Remove(this);
         slotImage.color = originalColour;
         selectedSlot = false;
     }
