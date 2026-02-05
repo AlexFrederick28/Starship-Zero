@@ -10,6 +10,7 @@ public class WeaponBase : MonoBehaviour
 
     [Header("Base Settings")]
     [SerializeField] private string weaponName;
+    [SerializeField] private string weaponDescription;
 
     // TODO - add base and modified stats to weapon
     [SerializeField] private float baseDamage;
@@ -33,6 +34,8 @@ public class WeaponBase : MonoBehaviour
     [SerializeField] private Transform closestTarget;
     [SerializeField] private bool canWeaponFire;
 
+    public InventoryItem.Rarity rarity;
+
     // bullets from weapon
     [SerializeField] protected GameObject newBullet; // newest bullet
     [SerializeField] public List<GameObject> currentBullets; // all bullets
@@ -49,6 +52,7 @@ public class WeaponBase : MonoBehaviour
         }
 
         weaponName = weaponType.weaponName;
+        weaponDescription = weaponType.weaponDescription;
         baseDamage = weaponType.damage;
         baseFireRate = weaponType.fireRate;
         baseCritChance = weaponType.critChance;
@@ -67,7 +71,7 @@ public class WeaponBase : MonoBehaviour
         FindClosetTarget();
     }
 
-    public void ItemScaling() // scale weapon stats with players items - TODO
+    public void ItemScaling()
     {
         // (regions in order of the item manager list, 0 = first in list)
         #region Damage 
