@@ -8,6 +8,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 {
     // must be changed to a generic type if there will be weapons etc in the inventory not just specimens
     public int currentStackSize;
+    public int amountFromStackToSell;
     public InventoryItem inventoryItem;
     public Image childImage;
     public Image slotImage;
@@ -65,6 +66,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
     public void RefreshSlot()
     {
+        stackNumberText.text = currentStackSize.ToString();
         if (inventoryItem == null)
         {
             RenewObject();
@@ -117,7 +119,10 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
     public void SellItem()
     {
-        GameState.instance.player.AddCurrency(inventoryItem.sellAmount);
+        // TODO: amountFromStackToSell needs a slider on the inventory info screen that the player can use to determine how many items they're going to sell out of that stack
+        GameState.instance.player.AddCurrency(inventoryItem.sellAmount * amountFromStackToSell);
+        currentStackSize -= amountFromStackToSell;
+        stackNumberText.text = currentStackSize.ToString(); 
         inventoryItem = null;
         childImage.sprite = null;
         childImage.enabled = false;

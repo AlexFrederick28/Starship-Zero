@@ -86,6 +86,7 @@ public class Inventory : MonoBehaviour
                 {
                     // if the occupied position is not equal to the desired position, move slots
                     inventorySlots[desiredPosition].inventoryItem = inventorySlots[i].inventoryItem;
+                    inventorySlots[desiredPosition].currentStackSize = inventorySlots[i].currentStackSize;
 
                     inventorySlots[i].RenewObject();
                     inventorySlots[desiredPosition].RefreshSlot();
@@ -100,46 +101,28 @@ public class Inventory : MonoBehaviour
 
     public void AddItemToInventory(InventoryItem type)
     {
-        // WEAPONS SHOULD NOT STACK
-        if (inventoryList.Count > 0)
+        // WEAPONS SHOULD NOT STACK 
+        inventoryList.Add(type);
+        int desiredStack = 0;
+        for (int i = 0; i < inventorySlots.Count; i++)
         {
-            inventoryList.Add(type);
-            int desiredStack = 0;
-            // there must be an item already in the list to be able to start stacking
-            for (int i = 0; i < inventorySlots.Count; i++)
+            if (inventorySlots[i].inventoryItem == null || i > inventoryList.Count) { continue; }
+            Debug.Log("List count: " + inventoryList.Count + " Iteration: " + i);
+            if (inventorySlots[desiredStack].inventoryItem.name == type.name && InventoryList[desiredStack].maxStackSize > 1 && inventorySlots[desiredStack].currentStackSize < InventoryList[desiredStack].maxStackSize)
             {
-                if (inventorySlots[i].inventoryItem == null || i > inventoryList.Count) { continue; }
-                Debug.Log("List count: " + inventoryList.Count + " Iteration: " + i);
-                if (inventorySlots[desiredStack].inventoryItem.name == type.name && InventoryList[desiredStack].maxStackSize > 1 && inventorySlots[desiredStack].currentStackSize < InventoryList[desiredStack].maxStackSize)
-                {
-                    inventorySlots[desiredStack].currentStackSize++;
-                    inventorySlots[desiredStack].stackNumberText.text = inventorySlots[desiredStack].currentStackSize.ToString();
-                    Debug.Log("FOUND SAME TYPE AND ADDED TO DESIRED STACK");
-                    desiredStack = 0;
-                    return;
-                }
-                else if (i < inventoryList.Count)
-                {
-                    desiredStack++;
-                    continue;
-                }
-
-                // if there are no spots available for stacking, make a new stack
-                for (int x = 0; x < inventorySlots.Count; x++)
-                {
-                    if (inventorySlots[x].inventoryItem.name == string.Empty)
-                    {
-                        Debug.Log("Added specimen to NEW slot: " + inventorySlots[x]);
-                        inventorySlots[x].inventoryItem = type;
-                        return;
-                    }
-                }
+                inventorySlots[desiredStack].currentStackSize++;
+                inventorySlots[desiredStack].stackNumberText.text = inventorySlots[desiredStack].currentStackSize.ToString();
+                Debug.Log("FOUND SAME TYPE AND ADDED TO DESIRED STACK");
+                desiredStack = 0;
+                return;
             }
-        }
-        else
-        {
-            // if there is absolutely no items in the inventory, add the inital one
-            InventoryList.Add(type);
+            else if (i < inventoryList.Count)
+            {
+                desiredStack++;
+                continue;
+            }
+
+            // if there are no spots available for stacking, make a new stack
             for (int x = 0; x < inventorySlots.Count; x++)
             {
                 if (inventorySlots[x].inventoryItem.name == string.Empty)
@@ -207,14 +190,14 @@ public class Inventory : MonoBehaviour
 
     public void SellSelectedItems()
     {
-        int earned = 0;
+        int totalEarned = 0;
         if (multiSelectedSlots.Count != 0)
         {
             for (int i = 0; i < multiSelectedSlots.Count; i++)
             {
                 if (multiSelectedSlots[i] != null)
                 {
-                    earned += multiSelectedSlots[i].inventoryItem.sellAmount;
+                    totalEarned += multiSelectedSlots[i].inventoryItem.sellAmount;
                     multiSelectedSlots[i].SellItem();
                     multiSelectedSlots[i].RefreshSlot();
                 }
@@ -229,7 +212,7 @@ public class Inventory : MonoBehaviour
 
         OnClearingMultiSelectedSlotsFromList?.Invoke();
 
-        StartCoroutine(UIManager.instance.NewNotification("Currency + " + earned));
+        StartCoroutine(UIManager.instance.NewNotification("Currency + " + totalEarned));
         multiSelectedSlots.Clear();
     }
 
