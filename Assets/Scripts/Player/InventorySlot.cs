@@ -1,3 +1,4 @@
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -6,9 +7,11 @@ using UnityEngine.UI;
 public class InventorySlot : MonoBehaviour, IPointerClickHandler
 {
     // must be changed to a generic type if there will be weapons etc in the inventory not just specimens
-    public InventoryItem specimenType;
+    public int currentStackSize;
+    public InventoryItem inventoryItem;
     public Image childImage;
     public Image slotImage;
+    public TextMeshProUGUI stackNumberText;
     public Color originalColour;
     public Color highlightedColour;
     private bool selectedSlot = false;
@@ -18,15 +21,16 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     {
         GameState.instance.playerInventory.OnClearingMultiSelectedSlotsFromList += DeselectSlot;
 
-        if (specimenType == null)
+        if (inventoryItem == null)
         {
-            specimenType = new InventoryItem();
-            specimenType.name = string.Empty;   
+            inventoryItem = new InventoryItem();
+            inventoryItem.name = string.Empty;
         }
-        if (specimenType.name != string.Empty)
+        if (inventoryItem.name != string.Empty)
         {
             childImage.enabled = true;
-            childImage.sprite = specimenType.sprite;
+            childImage.sprite = inventoryItem.sprite;
+            currentStackSize = inventoryItem.maxStackSize;
         }
         else
         {
@@ -46,6 +50,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         // maybe change this to an event handled by the inventory instead of update
         if (viewingSlot == true && GameState.instance.playerInventory.selectedSlot != this)
         {
+            // if another slot has been selected after this one, deselect it (no longer viewing this slot)
             slotImage.color = originalColour;
             viewingSlot = false;
         }
@@ -53,24 +58,25 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
     public void RenewObject()
     {
-        specimenType = new InventoryItem();
-        specimenType.name = string.Empty;
+        inventoryItem = new InventoryItem();
+        inventoryItem.name = string.Empty;
+        currentStackSize = inventoryItem.maxStackSize;
     }
 
     public void RefreshSlot()
     {
-        if (specimenType == null)
+        if (inventoryItem == null)
         {
             RenewObject();
         }
-        if (specimenType.name == string.Empty)
+        if (inventoryItem.name == string.Empty)
         {
             // if there is essentially no object
             childImage.enabled = false;
         }
         else
         {
-            childImage.sprite = specimenType.sprite;
+            childImage.sprite = inventoryItem.sprite;
             childImage.enabled = true;
         }
     }
@@ -82,11 +88,11 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
             slotImage.color = originalColour;
             viewingSlot = false;
         }
-        else if (specimenType.name != string.Empty && viewingSlot == false)
+        else if (inventoryItem.name != string.Empty && viewingSlot == false)
         {
-            UIManager.instance.infoName.text = specimenType.name;
-            UIManager.instance.infoImage.sprite = specimenType.sprite;
-            UIManager.instance.infoText.text = specimenType.description;
+            UIManager.instance.infoName.text = inventoryItem.name;
+            UIManager.instance.infoImage.sprite = inventoryItem.sprite;
+            UIManager.instance.infoText.text = inventoryItem.description;
             slotImage.color = Color.white;
             GameState.instance.playerInventory.selectedSlot = this;
             viewingSlot = true;
@@ -111,8 +117,8 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
     public void SellItem()
     {
-        GameState.instance.player.AddCurrency(specimenType.sellAmount);
-        specimenType = null;
+        GameState.instance.player.AddCurrency(inventoryItem.sellAmount);
+        inventoryItem = null;
         childImage.sprite = null;
         childImage.enabled = false;
     }
@@ -121,13 +127,13 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            if (specimenType != null)
+            if (inventoryItem != null)
             {
                 // Tell the manager this slot was clicked
                 GameState.instance.playerInventory.SelectItem(this);
             }
         }
-        else if (eventData.button == PointerEventData.InputButton.Right && selectedSlot == false && specimenType.name != string.Empty)
+        else if (eventData.button == PointerEventData.InputButton.Right && selectedSlot == false && inventoryItem.name != string.Empty)
         {
             MultiSelectSlot();
         }

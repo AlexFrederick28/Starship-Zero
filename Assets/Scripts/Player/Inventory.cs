@@ -24,11 +24,6 @@ public class Inventory : MonoBehaviour
                 Debug.Log("Inventory full!");
                 return;
             }
-            else
-            {
-                // sort inventory (no gaps): Rather than calling this each time the inventory is updated, only update it when the inventory is opened visually (Perhaps a keybind)
-                //RemoveGapsFromInventory();
-            }
         }
     }
 
@@ -84,13 +79,13 @@ public class Inventory : MonoBehaviour
         for (int i = 0; i < inventorySlots.Count; i++)
         {
             // scan through the inventory
-            if (inventorySlots[i].specimenType.name != string.Empty)
+            if (inventorySlots[i].inventoryItem.name != string.Empty)
             {
                 // if the current inventory slots (i) name is not empty, then it is occupied 
                 if (i != desiredPosition)
                 {
                     // if the occupied position is not equal to the desired position, move slots
-                    inventorySlots[desiredPosition].specimenType = inventorySlots[i].specimenType;
+                    inventorySlots[desiredPosition].inventoryItem = inventorySlots[i].inventoryItem;
 
                     inventorySlots[i].RenewObject();
                     inventorySlots[desiredPosition].RefreshSlot();
@@ -105,14 +100,54 @@ public class Inventory : MonoBehaviour
 
     public void AddItemToInventory(InventoryItem type)
     {
-        InventoryList.Add(type);
-        for (int i = 0; i < inventorySlots.Count; i++)
+        // WEAPONS SHOULD NOT STACK
+        if (inventoryList.Count > 0)
         {
-            if (inventorySlots[i].specimenType.name == string.Empty)
+            inventoryList.Add(type);
+            int desiredStack = 0;
+            // there must be an item already in the list to be able to start stacking
+            for (int i = 0; i < inventorySlots.Count; i++)
             {
-                Debug.Log("Added specimen to slot: " + inventorySlots[i]);
-                inventorySlots[i].specimenType = type;
-                return;
+                if (inventorySlots[i].inventoryItem == null || i > inventoryList.Count) { continue; }
+                Debug.Log("List count: " + inventoryList.Count + " Iteration: " + i);
+                if (inventorySlots[desiredStack].inventoryItem.name == type.name && InventoryList[desiredStack].maxStackSize > 1 && inventorySlots[desiredStack].currentStackSize < InventoryList[desiredStack].maxStackSize)
+                {
+                    inventorySlots[desiredStack].currentStackSize++;
+                    inventorySlots[desiredStack].stackNumberText.text = inventorySlots[desiredStack].currentStackSize.ToString();
+                    Debug.Log("FOUND SAME TYPE AND ADDED TO DESIRED STACK");
+                    desiredStack = 0;
+                    return;
+                }
+                else if (i < inventoryList.Count)
+                {
+                    desiredStack++;
+                    continue;
+                }
+
+                // if there are no spots available for stacking, make a new stack
+                for (int x = 0; x < inventorySlots.Count; x++)
+                {
+                    if (inventorySlots[x].inventoryItem.name == string.Empty)
+                    {
+                        Debug.Log("Added specimen to NEW slot: " + inventorySlots[x]);
+                        inventorySlots[x].inventoryItem = type;
+                        return;
+                    }
+                }
+            }
+        }
+        else
+        {
+            // if there is absolutely no items in the inventory, add the inital one
+            InventoryList.Add(type);
+            for (int x = 0; x < inventorySlots.Count; x++)
+            {
+                if (inventorySlots[x].inventoryItem.name == string.Empty)
+                {
+                    Debug.Log("Added specimen to NEW slot: " + inventorySlots[x]);
+                    inventorySlots[x].inventoryItem = type;
+                    return;
+                }
             }
         }
     }
@@ -179,7 +214,7 @@ public class Inventory : MonoBehaviour
             {
                 if (multiSelectedSlots[i] != null)
                 {
-                    earned += multiSelectedSlots[i].specimenType.sellAmount;
+                    earned += multiSelectedSlots[i].inventoryItem.sellAmount;
                     multiSelectedSlots[i].SellItem();
                     multiSelectedSlots[i].RefreshSlot();
                 }
@@ -212,7 +247,7 @@ public class Inventory : MonoBehaviour
             {
                 collision.gameObject.SetActive(false);
             }
-            Debug.Log("Added new specimen to inventory: " + obj.name);
+            Debug.Log("Added new object to inventory: " + obj.name);
         }
     }
 }

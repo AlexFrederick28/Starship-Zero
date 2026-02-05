@@ -75,13 +75,20 @@ public class SoundManager : MonoBehaviour
 
         if (repeat == true)
         {
+            bool newClip = false;
             while (repeat == true)
             {
-                musicObject.clip = clip[Random.Range(0, clip.Length)];
-                musicObject.volume = volume;
-                musicObject.Play();
+                if (newClip == false)
+                {
+                    musicObject.clip = clip[Random.Range(0, clip.Length)];
+                    musicObject.volume = volume;
+                    musicObject.Play();
+                    newClip = true;
+                }
+
                 float clipLength = musicObject.clip.length;
                 yield return new WaitForSeconds(clipLength);
+                newClip = false;
             }
         }
         else
