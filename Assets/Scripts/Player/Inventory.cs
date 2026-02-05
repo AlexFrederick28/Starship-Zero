@@ -13,8 +13,8 @@ public class Inventory : MonoBehaviour
     public int maxInventorySlots;
     public InventorySlot selectedSlot;
     public List<InventorySlot> inventorySlots;
-    public List<SpecimenType> inventoryList;
-    public List<SpecimenType> InventoryList
+    public List<InventoryItem> inventoryList;
+    public List<InventoryItem> InventoryList
     {
         get { return inventoryList; }
         set
@@ -103,7 +103,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void AddItemToInventory(SpecimenType type)
+    public void AddItemToInventory(InventoryItem type)
     {
         InventoryList.Add(type);
         for (int i = 0; i < inventorySlots.Count; i++)
@@ -202,7 +202,7 @@ public class Inventory : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<SpecimenObject>())
         {
-            SpecimenType obj = collision.gameObject.GetComponent<SpecimenObject>().specimenType;
+            InventoryItem obj = collision.gameObject.GetComponent<SpecimenObject>().specimenType;
             AddItemToInventory(obj);
             if (Spawning.instance != null)
             {

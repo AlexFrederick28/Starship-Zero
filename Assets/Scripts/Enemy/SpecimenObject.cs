@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SpecimenObject : MonoBehaviour, ICollectable
 {
-    public SpecimenType specimenType = new SpecimenType();
+    public InventoryItem specimenType = new InventoryItem();
     public SpriteRenderer spriteRenderer;
 
     public void AddSpecimenBackToSpawnPool()

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class InventorySlot : MonoBehaviour, IPointerClickHandler
 {
     // must be changed to a generic type if there will be weapons etc in the inventory not just specimens
-    public SpecimenType specimenType;
+    public InventoryItem specimenType;
     public Image childImage;
     public Image slotImage;
     public Color originalColour;
@@ -20,7 +20,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
         if (specimenType == null)
         {
-            specimenType = new SpecimenType();
+            specimenType = new InventoryItem();
             specimenType.name = string.Empty;   
         }
         if (specimenType.name != string.Empty)
@@ -53,7 +53,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
     public void RenewObject()
     {
-        specimenType = new SpecimenType();
+        specimenType = new InventoryItem();
         specimenType.name = string.Empty;
     }
 

@@ -51,7 +51,7 @@ public class SpecimenPool : MonoBehaviour
         totalSpecimensInPool++;
     }
 
-    public void RemoveFromPool(SpecimenObject obj, SpecimenType type, Transform spawnArea)
+    public void RemoveFromPool(SpecimenObject obj, InventoryItem type, Transform spawnArea)
     {
         if (obj != null)
         {

@@ -69,7 +69,7 @@ public class SoundManager : MonoBehaviour
             // only need one music object in the scene
             musicObject = Instantiate(soundObject, transform.position, Quaternion.identity);
         }
-
+        
         // 2D sound
         musicObject.spatialBlend = 0f;
 
