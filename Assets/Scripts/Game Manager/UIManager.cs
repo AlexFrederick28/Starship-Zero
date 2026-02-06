@@ -27,6 +27,8 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI infoName;
     public Image infoImage;
     public TextMeshProUGUI infoText;
+    public TextMeshProUGUI selectedStackAmount;
+    public Slider stackAmountSlider;
 
     [Space]
     [Header("Death Menu")]

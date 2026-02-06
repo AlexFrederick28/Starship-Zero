@@ -197,13 +197,22 @@ public class Inventory : MonoBehaviour
             {
                 if (multiSelectedSlots[i] != null)
                 {
-                    totalEarned += multiSelectedSlots[i].inventoryItem.sellAmount;
+                    totalEarned += multiSelectedSlots[i].inventoryItem.sellAmount * multiSelectedSlots[i].currentStackSize;
                     multiSelectedSlots[i].SellItem();
                     multiSelectedSlots[i].RefreshSlot();
                 }
             }
             RemoveGapsFromInventory();
             RemoveNullItemsFromList();
+        }
+        else if (selectedSlot.inventoryItem != null && selectedSlot.viewingSlot == true || selectedSlot.inventoryItem.name != string.Empty && selectedSlot.viewingSlot == true)
+        {
+            totalEarned += selectedSlot.inventoryItem.sellAmount * selectedSlot.amountFromStackToSell;
+            selectedSlot.SellItem();
+            if (selectedSlot.currentStackSize <= 0)
+            {
+                selectedSlot.SelectSlot(); // deselect the sold item
+            }
         }
         else
         {

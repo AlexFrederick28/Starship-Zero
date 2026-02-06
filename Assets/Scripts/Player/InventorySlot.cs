@@ -15,8 +15,8 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     public TextMeshProUGUI stackNumberText;
     public Color originalColour;
     public Color highlightedColour;
-    private bool selectedSlot = false;
-    private bool viewingSlot = false;
+    public bool selectedSlot = false;
+    public bool viewingSlot = false;
 
     private void OnEnable()
     {
@@ -31,7 +31,6 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         {
             childImage.enabled = true;
             childImage.sprite = inventoryItem.sprite;
-            currentStackSize = inventoryItem.maxStackSize;
         }
         else
         {
@@ -41,7 +40,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
     private void OnDisable()
     {
-        GameState.instance.playerInventory.OnClearingMultiSelectedSlotsFromList += DeselectSlot;
+        GameState.instance.playerInventory.OnClearingMultiSelectedSlotsFromList -= DeselectSlot;
 
         DeselectSlot();
     }
@@ -55,13 +54,24 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
             slotImage.color = originalColour;
             viewingSlot = false;
         }
+        if (viewingSlot == true)
+        {
+            UIManager.instance.selectedStackAmount.text = UIManager.instance.stackAmountSlider.value.ToString();
+            amountFromStackToSell = (int)UIManager.instance.stackAmountSlider.value;
+        }
+        else
+        {
+            amountFromStackToSell = 0;
+        }
     }
 
     public void RenewObject()
     {
         inventoryItem = new InventoryItem();
         inventoryItem.name = string.Empty;
-        currentStackSize = inventoryItem.maxStackSize;
+        currentStackSize = 0;
+        childImage.sprite = null;
+        childImage.enabled = false;
     }
 
     public void RefreshSlot()
@@ -95,6 +105,8 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
             UIManager.instance.infoName.text = inventoryItem.name;
             UIManager.instance.infoImage.sprite = inventoryItem.sprite;
             UIManager.instance.infoText.text = inventoryItem.description;
+            UIManager.instance.stackAmountSlider.minValue = 0;
+            UIManager.instance.stackAmountSlider.maxValue = currentStackSize;
             slotImage.color = Color.white;
             GameState.instance.playerInventory.selectedSlot = this;
             viewingSlot = true;
@@ -119,13 +131,22 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
     public void SellItem()
     {
-        // TODO: amountFromStackToSell needs a slider on the inventory info screen that the player can use to determine how many items they're going to sell out of that stack
-        GameState.instance.player.AddCurrency(inventoryItem.sellAmount * amountFromStackToSell);
-        currentStackSize -= amountFromStackToSell;
-        stackNumberText.text = currentStackSize.ToString(); 
-        inventoryItem = null;
-        childImage.sprite = null;
-        childImage.enabled = false;
+        if (selectedSlot == true)
+        {
+            GameState.instance.player.AddCurrency(inventoryItem.sellAmount * currentStackSize);
+            currentStackSize = 0;
+        }
+        else if (viewingSlot == true)
+        {
+            GameState.instance.player.AddCurrency(inventoryItem.sellAmount * amountFromStackToSell);
+            currentStackSize -= amountFromStackToSell;
+        }
+        stackNumberText.text = currentStackSize.ToString();
+        if (currentStackSize <= 0)
+        {
+            // if there are no items in the stack, reset the slot 
+            RenewObject();
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
