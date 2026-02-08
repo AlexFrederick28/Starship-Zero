@@ -129,6 +129,7 @@ public class Inventory : MonoBehaviour
                 {
                     Debug.Log("Added specimen to NEW slot: " + inventorySlots[x]);
                     inventorySlots[x].inventoryItem = type;
+                    inventorySlots[x].currentStackSize = 1;
                     return;
                 }
             }

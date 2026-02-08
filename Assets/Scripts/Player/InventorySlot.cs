@@ -21,6 +21,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     private void OnEnable()
     {
         GameState.instance.playerInventory.OnClearingMultiSelectedSlotsFromList += DeselectSlot;
+        RefreshSlot();
 
         if (inventoryItem == null)
         {
@@ -85,6 +86,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         {
             // if there is essentially no object
             childImage.enabled = false;
+            stackNumberText.text = string.Empty;
         }
         else
         {
@@ -102,11 +104,13 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         }
         else if (inventoryItem.name != string.Empty && viewingSlot == false)
         {
+            if (selectedSlot == true) { DeselectSlot(); } // deselect the slot if it was multi selected
             UIManager.instance.infoName.text = inventoryItem.name;
             UIManager.instance.infoImage.sprite = inventoryItem.sprite;
             UIManager.instance.infoText.text = inventoryItem.description;
             UIManager.instance.stackAmountSlider.minValue = 0;
             UIManager.instance.stackAmountSlider.maxValue = currentStackSize;
+            UIManager.instance.stackAmountSlider.value = currentStackSize;
             slotImage.color = Color.white;
             GameState.instance.playerInventory.selectedSlot = this;
             viewingSlot = true;
@@ -116,6 +120,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     public void MultiSelectSlot()
     {
         // selecting and deselct parameters are handled by the OnClickEvent
+        if (viewingSlot == true) { SelectSlot(); } // deslect the viewed slot 
         GameState.instance.playerInventory.multiSelectedSlots.Add(this);
         slotImage.color = highlightedColour;
         selectedSlot = true;
@@ -136,7 +141,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
             GameState.instance.player.AddCurrency(inventoryItem.sellAmount * currentStackSize);
             currentStackSize = 0;
         }
-        else if (viewingSlot == true)
+        else if (viewingSlot == true && amountFromStackToSell > 0)
         {
             GameState.instance.player.AddCurrency(inventoryItem.sellAmount * amountFromStackToSell);
             currentStackSize -= amountFromStackToSell;
@@ -146,6 +151,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         {
             // if there are no items in the stack, reset the slot 
             RenewObject();
+            RefreshSlot();
         }
     }
 
