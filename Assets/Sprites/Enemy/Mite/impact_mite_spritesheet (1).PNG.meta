@@ -1,0 +1,325 @@
+fileFormatVersion: 2
+guid: fa54193fed593f443840fb3a55478e30
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8352451871147550344
+    second: impact_mite_spritesheet (1)_0
+  - first:
+      213: -88787468355340404
+    second: impact_mite_spritesheet (1)_1
+  - first:
+      213: 8780478611105067662
+    second: impact_mite_spritesheet (1)_2
+  - first:
+      213: -2961890273892405986
+    second: impact_mite_spritesheet (1)_3
+  - first:
+      213: 2198516599755036826
+    second: impact_mite_spritesheet (1)_4
+  - first:
+      213: -5754264463797894249
+    second: impact_mite_spritesheet (1)_5
+  - first:
+      213: -5663055556484542731
+    second: impact_mite_spritesheet (1)_6
+  - first:
+      213: 2317992844078036045
+    second: impact_mite_spritesheet (1)_7
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 1920
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: impact_mite_spritesheet (1)_0
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 114
+        width: 1317
+        height: 957
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 886eb4f39bed9e370800000000000000
+      internalID: 8352451871147550344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: impact_mite_spritesheet (1)_1
+      rect:
+        serializedVersion: 2
+        x: 2168
+        y: 0
+        width: 1371
+        height: 991
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c877c28944094cef0800000000000000
+      internalID: -88787468355340404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: impact_mite_spritesheet (1)_2
+      rect:
+        serializedVersion: 2
+        x: 4048
+        y: 19
+        width: 1462
+        height: 991
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8235dc96c68ad970800000000000000
+      internalID: 8780478611105067662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: impact_mite_spritesheet (1)_3
+      rect:
+        serializedVersion: 2
+        x: 5925
+        y: 21
+        width: 1548
+        height: 988
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1d65f81d7045e6d0800000000000000
+      internalID: -2961890273892405986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: impact_mite_spritesheet (1)_4
+      rect:
+        serializedVersion: 2
+        x: 7814
+        y: 7
+        width: 1619
+        height: 1018
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a98d2310333b28e10800000000000000
+      internalID: 2198516599755036826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: impact_mite_spritesheet (1)_5
+      rect:
+        serializedVersion: 2
+        x: 9798
+        y: 43
+        width: 1654
+        height: 921
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7934ca325feb420b0800000000000000
+      internalID: -5754264463797894249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: impact_mite_spritesheet (1)_6
+      rect:
+        serializedVersion: 2
+        x: 11765
+        y: 4
+        width: 1463
+        height: 955
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fecf6cb9f8c861b0800000000000000
+      internalID: -5663055556484542731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: impact_mite_spritesheet (1)_7
+      rect:
+        serializedVersion: 2
+        x: 13439
+        y: 0
+        width: 1921
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d443b2fd53a2b2020800000000000000
+      internalID: 2317992844078036045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      impact_mite_spritesheet (1)_0: 8352451871147550344
+      impact_mite_spritesheet (1)_1: -88787468355340404
+      impact_mite_spritesheet (1)_2: 8780478611105067662
+      impact_mite_spritesheet (1)_3: -2961890273892405986
+      impact_mite_spritesheet (1)_4: 2198516599755036826
+      impact_mite_spritesheet (1)_5: -5754264463797894249
+      impact_mite_spritesheet (1)_6: -5663055556484542731
+      impact_mite_spritesheet (1)_7: 2317992844078036045
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
