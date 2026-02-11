@@ -89,4 +89,16 @@ public class ItemManager : MonoBehaviour
             //Debug.Log("Item: Name [" + item.itemName + "], Description [" + item.itemDescription + "]");
         }
     }
+
+    public void ResetItemCount()
+    {
+
+        for (int i = 0; i < itemCountGO.Count; i++)
+        {
+            itemCountGO[i] = 0;
+        }
+
+        Debug.Log("Reset Item Count");
+
+    }
 }
