@@ -173,9 +173,9 @@ public class Inventory : MonoBehaviour
             if (inventoryUI.activeSelf == true)
             {
                 inventoryUI.SetActive(false);
-                UIManager.instance.infoName.text = string.Empty;
-                UIManager.instance.infoImage.sprite = null;
-                UIManager.instance.infoText.text = string.Empty;
+                UIManager.instance.infoInventoryName.text = string.Empty;
+                UIManager.instance.infoInventoryImage.sprite = null;
+                UIManager.instance.infoInventoryText.text = string.Empty;
                 GameState.instance.ChangeToPreviousState();
             }
             else

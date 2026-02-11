@@ -105,9 +105,9 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         else if (inventoryItem.name != string.Empty && viewingSlot == false)
         {
             if (selectedSlot == true) { DeselectSlot(); } // deselect the slot if it was multi selected
-            UIManager.instance.infoName.text = inventoryItem.name;
-            UIManager.instance.infoImage.sprite = inventoryItem.sprite;
-            UIManager.instance.infoText.text = inventoryItem.description;
+            UIManager.instance.infoInventoryName.text = inventoryItem.name;
+            UIManager.instance.infoInventoryImage.sprite = inventoryItem.sprite;
+            UIManager.instance.infoInventoryText.text = inventoryItem.description;
             UIManager.instance.stackAmountSlider.minValue = 0;
             UIManager.instance.stackAmountSlider.maxValue = currentStackSize;
             UIManager.instance.stackAmountSlider.value = currentStackSize;

@@ -24,9 +24,9 @@ public class UIManager : MonoBehaviour
     public GameObject inventoryParent;
     public GameObject inventorySlotContentParent;
     public GameObject slot;
-    public TextMeshProUGUI infoName;
-    public Image infoImage;
-    public TextMeshProUGUI infoText;
+    public TextMeshProUGUI infoInventoryName;
+    public Image infoInventoryImage;
+    public TextMeshProUGUI infoInventoryText;
     public TextMeshProUGUI selectedStackAmount;
     public Slider stackAmountSlider;
 
@@ -37,9 +37,25 @@ public class UIManager : MonoBehaviour
     public Button retryInfestedRoomButton;
 
     [Space]
+    [Header("Level Up Menu")]
+    public GameObject levelUpMenuParent;
+    public GameObject[] levelUpCards;
+    public TextMeshProUGUI[] levelUpItemName;
+    public TextMeshProUGUI[] levelUpItemStatDescription;
+    public TextMeshProUGUI[] levelUpItemLevel;
+    public Image[] levelUpItemImage;
+
+    [Space]
     [Header("Infested Room")]
     public TextMeshProUGUI currentTime;
     public TextMeshProUGUI currentDifficulty;
+
+    [Space]
+    [Header("Weapon Room")]
+    public GameObject weaponCraftingUIParent;
+    public GameObject weaponCraftingName;
+    public GameObject weaponCraftingDescription;
+    public Slider weaponListSlider;
 
     [Header("Dialogue")]
     [Space]
