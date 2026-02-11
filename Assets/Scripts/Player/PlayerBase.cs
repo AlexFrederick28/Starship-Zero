@@ -123,7 +123,6 @@ public class PlayerBase : MonoBehaviour
     {
         if (GetComponent<PlayerMovement>().enabled == false)
         {
-            // TODO: pause weapon as well
             GetComponent<PlayerMovement>().enabled = true;
             return true;
         }
@@ -174,12 +173,7 @@ public class PlayerBase : MonoBehaviour
 
     private void PausePlayerOnPlayerLevelUp()
     {
-        if (PausePlayer() == false) { return; }
-        else
-        {
-            // if the player isnt already paused, pause them
-            PausePlayer();
-        }
+        PausePlayer();
     }
 
     public void OnInteract(InputAction.CallbackContext context)
