@@ -15,6 +15,7 @@ public class GameState : MonoBehaviour
     // respawn and retry is invoked by the respawn chekpoint once the player has clicked one of the buttons
     public Action OnPlayerRespawn;
     public Action OnPlayerRetry;
+    public Action OnPlayerLevelUp;
 
     [Space]
     [Header("Audio")]
