@@ -73,6 +73,12 @@ public class WeaponBase : MonoBehaviour
 
     public void ItemScaling()
     {
+
+        if (itemManager == null)
+        {
+            itemManager = FindFirstObjectByType<ItemManager>();
+        }
+
         // (regions in order of the item manager list, 0 = first in list)
         #region Damage 
         if (itemManager.itemCountGO[0] > 0f) // if at least 1 itemas
