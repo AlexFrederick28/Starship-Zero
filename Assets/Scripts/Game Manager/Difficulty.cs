@@ -57,6 +57,7 @@ public class Difficulty : MonoBehaviour
     [SerializeField] protected float maxDifficulty;
     [SerializeField] protected float scalingSegments;
     public bool timerReachedMaxLength = false;
+    public bool timerPaused = false;
 
     public virtual void Update()
     {
@@ -67,9 +68,22 @@ public class Difficulty : MonoBehaviour
 
     private void StartTimer()
     {
+        if (timerPaused == true) { return; }
         if (CurrentTime < timerLength)
         {
             CurrentTime += Time.deltaTime;
+        }
+    }
+
+    public virtual void PauseSpawning()
+    {
+        if (timerPaused == false)
+        {
+            timerPaused = true;
+        }
+        else if (timerPaused == true)
+        {
+            timerPaused = false;
         }
     }
 

@@ -67,6 +67,8 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] protected float maxPitch;
     [SerializeField] protected AudioClip enemyHurtClip;
 
+    private bool enemyPaused = false;
+
     protected virtual void Awake()
     {
         enemyName = enemyType.enemyName;
@@ -89,6 +91,10 @@ public class EnemyBase : MonoBehaviour
         if (EnemyBrain.instance != null)
         {
             EnemyBrain.instance.MoveToPlayer += MoveToPlayer;
+        }
+        if (GameState.instance != null)
+        {
+            GameState.instance.OnPlayerLevelUp += PauseEnemy;
         }
 
         if (scaledStats == false)
@@ -113,10 +119,13 @@ public class EnemyBase : MonoBehaviour
         {
             EnemyBrain.instance.MoveToPlayer -= MoveToPlayer;
         }
+
+        GameState.instance.OnPlayerLevelUp -= PauseEnemy;
     }
 
     protected virtual void Update()
     {
+        if (enemyPaused == true) { return; }
         AttackCooldown();
     }
 
@@ -136,7 +145,7 @@ public class EnemyBase : MonoBehaviour
     protected virtual void Attack()
     {
         // enemy attack player - mostly used for animations
-
+        if (enemyPaused == true) { return; }
         Debug.Log("Enemy used Attack!");
         cooldownTimer = 0f;
         readyToAttack = false;
@@ -145,7 +154,7 @@ public class EnemyBase : MonoBehaviour
     public void TakeDamage(float damage)
     {
         // enemy take damage from player
-
+        if (enemyPaused == true) { return; }
         Health -= damage;
         SoundManager.instance.PlaySoundClip(enemyHurtClip, transform, volume, false, true, minPitch, maxPitch);
         Debug.Log(name + " took " + damage + " damage!");
@@ -168,13 +177,14 @@ public class EnemyBase : MonoBehaviour
     protected void MoveToPlayer(Transform playerTransform)
     {
         // locate player and move directly to them at a constant speed
-
+        if (enemyPaused == true) { return; }
         Vector3 targetPosition = (playerTransform.position - transform.position).normalized;
         transform.position += targetPosition * speed * Time.deltaTime;
     }
 
     protected void AttackCooldown()
     {
+        if (enemyPaused == true) { return; }
         if (readyToAttack == false)
         {
             cooldownTimer += Time.deltaTime;
@@ -189,6 +199,18 @@ public class EnemyBase : MonoBehaviour
     protected void AddEnemyBackToSpawnPool()
     {
         Spawning.instance.AddToPool(gameObject);
+    }
+
+    protected void PauseEnemy()
+    {
+        if (enemyPaused == false)
+        {
+            enemyPaused = true;
+        }
+        else
+        {
+            enemyPaused = false;
+        }
     }
 
     public void OnCollisionStay2D(Collision2D collision)

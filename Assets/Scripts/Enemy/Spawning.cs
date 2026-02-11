@@ -176,6 +176,7 @@ public class Spawning : Difficulty
             GameState.instance.OnPlayerRespawn += ResetInfestedRoom;
             GameState.instance.OnPlayerRetry += ResetInfestedRoom;
             GameState.instance.OnPlayerRespawn += DisableInstanceOnPlayerRespawn;
+            GameState.instance.OnPlayerLevelUp += PauseSpawning;
         }
 
         if (instance == null)
@@ -194,6 +195,7 @@ public class Spawning : Difficulty
         GameState.instance.OnPlayerRespawn -= ResetInfestedRoom;
         GameState.instance.OnPlayerRetry -= ResetInfestedRoom;
         GameState.instance.OnPlayerRespawn -= DisableInstanceOnPlayerRespawn;
+        GameState.instance.OnPlayerLevelUp -= PauseSpawning;
 
         if (instance == this)
         {

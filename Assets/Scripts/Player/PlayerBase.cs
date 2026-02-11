@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -30,6 +31,7 @@ public class PlayerBase : MonoBehaviour
                 LevelUp();
                 currentExperience -= experienceNeeded;
                 CalculateExperienceNeeded();
+                GameState.instance.OnPlayerLevelUp?.Invoke(); // pauses the game when the player levels up. Needs to be invoked a second time to unpause
             }
             if (currentExperience < 0)
             {
@@ -139,6 +141,7 @@ public class PlayerBase : MonoBehaviour
         {
             GameState.instance.OnPlayerRespawn += ResetPlayerStatsOnRespawn;
             GameState.instance.OnPlayerRetry += ResetPlayerStatsOnRespawn;
+            GameState.instance.OnPlayerLevelUp += PausePlayerOnPlayerLevelUp;
         }
     }
 
@@ -146,12 +149,13 @@ public class PlayerBase : MonoBehaviour
     {
         GameState.instance.OnPlayerRespawn -= ResetPlayerStatsOnRespawn;
         GameState.instance.OnPlayerRetry -= ResetPlayerStatsOnRespawn;
+        GameState.instance.OnPlayerLevelUp -= PausePlayerOnPlayerLevelUp;
     }
 
     private void Start()
     {
         CalculateExperienceNeeded();
-        CurrentExperience += 1000;
+        //CurrentExperience += 1000;
     }
 
     private void Update()
@@ -166,6 +170,16 @@ public class PlayerBase : MonoBehaviour
 
         // temp function for player UI
         SetPlayerUI();
+    }
+
+    private void PausePlayerOnPlayerLevelUp()
+    {
+        if (PausePlayer() == false) { return; }
+        else
+        {
+            // if the player isnt already paused, pause them
+            PausePlayer();
+        }
     }
 
     public void OnInteract(InputAction.CallbackContext context)
