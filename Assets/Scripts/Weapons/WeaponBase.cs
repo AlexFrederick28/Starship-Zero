@@ -44,6 +44,19 @@ public class WeaponBase : MonoBehaviour
 
     [SerializeField] public ItemManager itemManager;
 
+    protected void OnEnable()
+    {
+        if (GameState.instance != null)
+        {
+            GameState.instance.OnPlayerLevelUp += PauseWeapon;
+        }
+    }
+
+    protected void OnDisable()
+    {
+        GameState.instance.OnPlayerLevelUp -= PauseWeapon;
+    }
+
     protected virtual void Start()
     {
         if (itemManager == null)
@@ -63,12 +76,25 @@ public class WeaponBase : MonoBehaviour
 
     protected virtual void Update()
     {
+        if (GameState.instance.currentState != GameState.States.RoomClear) { return; }
         FireTimer();
     }
 
     private void FixedUpdate()
     {
         FindClosetTarget();
+    }
+
+    public void PauseWeapon()
+    {
+        if (canWeaponFire == true)
+        {
+            canWeaponFire = false;
+        }
+        else if (canWeaponFire == false)
+        {
+            canWeaponFire = true;
+        }
     }
 
     public void ItemScaling()
