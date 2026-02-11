@@ -1,8 +1,11 @@
+using NUnit.Framework;
 using UnityEngine;
 
-public class LevelUp : MonoBehaviour
+public class LevelUpManager : MonoBehaviour
 {
     [SerializeField] public ItemManager itemManager;
+
+    //[SerializeField] public List<> itemList;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,13 +22,14 @@ public class LevelUp : MonoBehaviour
         
     }
 
-    public void OnLevelUp() // when the player levels up
+    private void OnEnable()
     {
-        if (itemManager == null)
-        {
-            itemManager = FindFirstObjectByType<ItemManager>();
-        }
+        GameState.instance.OnPlayerLevelUp += LevelUpCards; 
+    }
 
+    private void OnDisable()
+    {
+        GameState.instance.OnPlayerLevelUp -= LevelUpCards;
     }
 
     public void LevelUpCards()
@@ -41,8 +45,11 @@ public class LevelUp : MonoBehaviour
         }
     }
 
+    public void CardSelected()
+    {
+        GameState.instance.OnPlayerLevelUp?.Invoke();
+    }
 
-
-    // panel & cards reference in UI Manager
+    // invoke on player level up in function card is selected
 
 }

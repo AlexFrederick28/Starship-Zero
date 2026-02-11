@@ -281,7 +281,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 27176680}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 58738813}
+        m_TargetAssemblyTypeName: LevelUpManager, Assembly-CSharp
+        m_MethodName: CardSelected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &27176680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -514,7 +526,7 @@ GameObject:
   - component: {fileID: 58738814}
   - component: {fileID: 58738813}
   m_Layer: 0
-  m_Name: LevelUp
+  m_Name: LevelUp Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5843,7 +5855,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1384500803}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 58738813}
+        m_TargetAssemblyTypeName: LevelUpManager, Assembly-CSharp
+        m_MethodName: CardSelected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1384500803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6140,7 +6164,7 @@ GameObject:
   - component: {fileID: 1420322906}
   - component: {fileID: 1420322905}
   m_Layer: 5
-  m_Name: Card Level Up
+  m_Name: Card Level Up - Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7392,7 +7416,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1827671754}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 58738813}
+        m_TargetAssemblyTypeName: LevelUpManager, Assembly-CSharp
+        m_MethodName: CardSelected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1827671754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7987,6 +8023,10 @@ PrefabInstance:
       propertyPath: currentDifficulty
       value: 
       objectReference: {fileID: 781748675}
+    - target: {fileID: 5562658886180886453, guid: 5a6d9e2c934a7064980f349c321cee3c, type: 3}
+      propertyPath: levelUpMenuParent
+      value: 
+      objectReference: {fileID: 1420322903}
     - target: {fileID: 5562658886180886453, guid: 5a6d9e2c934a7064980f349c321cee3c, type: 3}
       propertyPath: playerLevelSlider
       value: 
