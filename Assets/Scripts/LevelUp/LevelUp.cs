@@ -28,15 +28,20 @@ public class LevelUp : MonoBehaviour
 
     }
 
-    public void ShowLevelUpCards()
+    public void LevelUpCards()
     {
+        if (UIManager.instance.levelUpMenuParent.activeSelf == false)
+        {
+            UIManager.instance.levelUpMenuParent.SetActive(true);
+        }
 
+        else
+        {
+            UIManager.instance.levelUpMenuParent.SetActive(false);
+        }
     }
 
-    public void HideLevelUpCards()
-    {
 
-    }
 
     // panel & cards reference in UI Manager
 
