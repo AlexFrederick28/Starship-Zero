@@ -108,19 +108,12 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         {
             slotImage.color = originalColour;
             viewingSlot = false;
+            GameState.instance.playerInventory.HideSelectedItem(this);
         }
         else if (inventoryItem != null && viewingSlot == false)
         {
             if (selectedSlot == true) { DeselectSlot(); } // deselect the slot if it was multi selected
-            UIManager.instance.infoInventoryName.text = inventoryItem.itemName;
-            UIManager.instance.infoInventoryImage.sprite = inventoryItem.sprite;
-            UIManager.instance.infoInventoryText.text = inventoryItem.description;
-            UIManager.instance.stackAmountSlider.minValue = 0;
-            UIManager.instance.stackAmountSlider.maxValue = currentStackSize;
-            UIManager.instance.stackAmountSlider.value = currentStackSize;
-            slotImage.color = Color.white;
-            GameState.instance.playerInventory.selectedSlot = this;
-            viewingSlot = true;
+            GameState.instance.playerInventory.ShowSelectedItem(this);
         }
     }
 
@@ -152,6 +145,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         {
             GameState.instance.player.AddCurrency(inventoryItem.sellAmount * amountFromStackToSell);
             currentStackSize -= amountFromStackToSell;
+            SelectSlot(); // turns the viewed slot off
         }
         stackNumberText.text = currentStackSize.ToString();
         if (currentStackSize <= 0)

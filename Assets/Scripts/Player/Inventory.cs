@@ -37,6 +37,12 @@ public class Inventory : MonoBehaviour
     public List<InventorySlot> multiSelectedSlots;
     public Action OnClearingMultiSelectedSlotsFromList;
 
+    private void OnEnable()
+    {
+        // hiding the image because it is a blank white cube, and nothing is selected so you shouldnt see it anyway
+        UIManager.instance.infoInventoryImage.enabled = false;
+    }
+
     private void Start()
     {
         if (UIManager.instance != null)
@@ -75,107 +81,48 @@ public class Inventory : MonoBehaviour
     public void SortStacksInInventory()
     {
         // can possible move this function to work off of a button, as selling an amount from a stack but not seeing the stack count go down is a little jarring
-        int maxIterations = maxInventorySlots;
-        int currentIteration = 0;
-        int desiredPosition = 0;
+        //int desiredPosition = 0;
 
-        // loop through the max amount of slots, and for each slot, search for a fillable stack to combine
-        for (int i = 0; i < inventorySlots.Count; i++)
+        for (int desiredPosition = 0; desiredPosition < inventorySlots.Count; desiredPosition++)
         {
-            // scan through the inventory
-            if (inventorySlots[i].inventoryItem != null && inventorySlots[desiredPosition].inventoryItem != null)
+            // loop through the max amount of slots, and for each slot, search for a fillable stack to combine
+            for (int i = desiredPosition + 1; i < inventorySlots.Count; i++)
             {
-                // if the current inventory slot (i) is not empty, then it is occupied 
-                if (i != desiredPosition)
+                // nested for loop allows us to look ahead of the chosen stack (desiredPosition) rather than whats behind it - also helps avoid merging backwards
+                if (inventorySlots[i].inventoryItem != null && inventorySlots[desiredPosition].inventoryItem != null)
                 {
-                    if (inventorySlots[desiredPosition].inventoryItem.itemName == inventorySlots[i].inventoryItem.itemName)
+                    // if the current inventory slot (i) is not empty, then it is occupied 
+                    if (i != desiredPosition)
                     {
-                        // if there is a stack that is not full, add to it and remove it from the secondary stack
-                        int spaceLeft = inventorySlots[desiredPosition].inventoryItem.maxStackSize - inventorySlots[desiredPosition].currentStackSize;
-                        int amountToMove = 0;
-                        if (spaceLeft > 0 && inventorySlots[i].currentStackSize > 0)
+                        if (inventorySlots[desiredPosition].inventoryItem.itemName == inventorySlots[i].inventoryItem.itemName)
                         {
-                            // if there is enough space left in the desired position, then add to that stack without exceeding the max stack amount
-                            amountToMove = Math.Min(inventorySlots[i].currentStackSize, Math.Max(0, inventorySlots[desiredPosition].inventoryItem.maxStackSize - inventorySlots[desiredPosition].currentStackSize));
-                            inventorySlots[desiredPosition].currentStackSize += amountToMove;
-                            inventorySlots[i].currentStackSize -= amountToMove;
+                            // if there is a stack that is not full, add to it and remove it from the secondary stack
+                            int spaceLeft = inventorySlots[desiredPosition].inventoryItem.maxStackSize - inventorySlots[desiredPosition].currentStackSize;
+                            int amountToMove = 0;
+                            // move onto the next desired position if the stack is already full
+                            if (spaceLeft <= 0) { break; }
+                            if (spaceLeft > 0 && inventorySlots[i].currentStackSize > 0)
+                            {
+                                // if there is enough space left in the desired position, then add to that stack without exceeding the max stack amount
+                                amountToMove = Math.Min(inventorySlots[i].currentStackSize, Math.Max(0, inventorySlots[desiredPosition].inventoryItem.maxStackSize - inventorySlots[desiredPosition].currentStackSize));
+                                inventorySlots[desiredPosition].currentStackSize += amountToMove;
+                                inventorySlots[i].currentStackSize -= amountToMove;
 
-                            inventorySlots[i].RefreshSlot();
-                            inventorySlots[desiredPosition].RefreshSlot();
-                            Debug.Log("Filled stacks");
+                                inventorySlots[i].RefreshSlot();
+                                inventorySlots[desiredPosition].RefreshSlot();
+                                Debug.Log("Filled stacks");
+                            }
+                            if (inventorySlots[i].currentStackSize <= 0)
+                            {
+                                inventorySlots[i].RenewObject();
+                                inventorySlots[i].RefreshSlot();
+                            }
+                            Debug.Log("Found item with same name in inventory at position: " + i + " Space Left: " + spaceLeft + " Amount to move: " + amountToMove);
                         }
-                        if (inventorySlots[i].currentStackSize <= 0)
-                        {
-                            inventorySlots[i].RenewObject();
-                            inventorySlots[i].RefreshSlot();
-                        }
-                        Debug.Log("Found item with same name in inventory at position: " + i + " Space Left: " + spaceLeft + " Amount to move: " + amountToMove);
                     }
-                }
-
-                // if the current occupied slot (i) is equal to the desired position keep looking for a fillable slot
-            }
-
-            if (i == inventorySlots.Count - 1)
-            {
-                desiredPosition++;
-                currentIteration++;
-                Debug.Log("Current iteration: " + currentIteration);
-                if (currentIteration < maxIterations)
-                {
-                    Debug.Log("RESET ITERATION");
-                    i = 0;
                 }
             }
         }
-
-        //for (int x = 0; x < maxIterations; x++)
-        //{
-        //    // loop through the max amount of slots, and for each slot, search for a fillable stack to combine
-        //    for (int i = 0; i < inventorySlots.Count; i++)
-        //    {
-        //        // scan through the inventory
-        //        if (inventorySlots[i].inventoryItem != null && inventorySlots[desiredPosition].inventoryItem != null)
-        //        {
-        //            // if the current inventory slot (i) is not empty, then it is occupied 
-        //            if (i != desiredPosition)
-        //            {
-        //                if (inventorySlots[desiredPosition].inventoryItem.itemName == inventorySlots[i].inventoryItem.itemName)
-        //                {
-        //                    // if there is a stack that is not full, add to it and remove it from the secondary stack
-        //                    int spaceLeft = inventorySlots[desiredPosition].inventoryItem.maxStackSize - inventorySlots[desiredPosition].currentStackSize;
-        //                    int amountToMove = 0;
-        //                    if (spaceLeft > 0 && inventorySlots[i].currentStackSize > 0)
-        //                    {
-        //                        // if there is enough space left in the desired position, then add to that stack without exceeding the max stack amount
-        //                        amountToMove = Math.Min(inventorySlots[i].currentStackSize, Math.Max(0, inventorySlots[desiredPosition].inventoryItem.maxStackSize - inventorySlots[desiredPosition].currentStackSize));
-        //                        inventorySlots[desiredPosition].currentStackSize += amountToMove;
-        //                        inventorySlots[i].currentStackSize -= amountToMove;
-
-        //                        inventorySlots[i].RefreshSlot();
-        //                        inventorySlots[desiredPosition].RefreshSlot();
-        //                        Debug.Log("Filled stacks");
-        //                    }
-        //                    if (inventorySlots[i].currentStackSize <= 0) 
-        //                    {
-        //                        inventorySlots[i].RenewObject();
-        //                        inventorySlots[i].RefreshSlot();
-        //                    }
-        //                    Debug.Log("Found item with same name in inventory at position: " + i + " Space Left: " + spaceLeft + " Amount to move: " + amountToMove);
-        //                }
-        //            }
-        //            else
-        //            {
-        //                continue;
-        //            }
-
-        //            // if the current occupied slot (i) is equal to the desired position keep looking for an empty slot
-        //            //desiredPosition++;
-        //        }
-        //    }
-
-        //    desiredPosition++;
-        //}
     }
 
     public void RemoveGapsFromInventory()
@@ -208,7 +155,6 @@ public class Inventory : MonoBehaviour
     public void AddItemToInventory(InventoryItemPackage type)
     {
         // WEAPONS SHOULD NOT STACK 
-        InventoryList.Add(type);
         int desiredStack = 0;
         for (int i = 0; i < inventorySlots.Count; i++)
         {
@@ -239,6 +185,7 @@ public class Inventory : MonoBehaviour
         {
             if (inventorySlots[x].inventoryItem == null)
             {
+                InventoryList.Add(type);
                 Debug.Log("Added specimen to NEW slot: " + inventorySlots[x]);
                 inventorySlots[x].inventoryItem = type;
                 inventorySlots[x].currentStackSize = 1;
@@ -292,11 +239,11 @@ public class Inventory : MonoBehaviour
             else
             {
                 GameState.instance.ChangeStateToOpenUI();
+                SortStacksInInventory();
                 RemoveGapsFromInventory();
                 inventoryUI.SetActive(true);
             }
 
-            SortStacksInInventory();
             Debug.Log("Inventory key pressed");
         }
     }
@@ -321,10 +268,10 @@ public class Inventory : MonoBehaviour
         {
             totalEarned += selectedSlot.inventoryItem.sellAmount * selectedSlot.amountFromStackToSell;
             selectedSlot.SellItem();
-            if (selectedSlot.currentStackSize <= 0)
-            {
-                selectedSlot.SelectSlot(); // deselect the sold item
-            }
+            //if (selectedSlot.currentStackSize <= 0 && selectedSlot.viewingSlot == true)
+            //{
+            //    selectedSlot.SelectSlot(); // deselect the sold item
+            //}
         }
         else
         {
@@ -334,9 +281,37 @@ public class Inventory : MonoBehaviour
         OnClearingMultiSelectedSlotsFromList?.Invoke();
 
         StartCoroutine(UIManager.instance.NewNotification("Currency + " + totalEarned));
-        SortStacksInInventory();
         RemoveGapsFromInventory();
         multiSelectedSlots.Clear();
+    }
+
+    public void ShowSelectedItem(InventorySlot slot)
+    {
+        UIManager.instance.infoInventoryName.text = slot.inventoryItem.itemName;
+        UIManager.instance.infoInventoryImage.sprite = slot.inventoryItem.sprite;
+        UIManager.instance.infoInventoryImage.enabled = true;
+        UIManager.instance.infoInventoryText.text = slot.inventoryItem.description;
+        UIManager.instance.stackAmountSlider.minValue = 0;
+        UIManager.instance.stackAmountSlider.maxValue = slot.currentStackSize;
+        UIManager.instance.stackAmountSlider.value = slot.currentStackSize;
+        slot.slotImage.color = Color.white;
+        selectedSlot = slot;
+        slot.viewingSlot = true;
+    }
+
+    public void HideSelectedItem(InventorySlot slot)
+    {
+        if (selectedSlot == slot)
+        {
+            selectedSlot = null;
+            UIManager.instance.infoInventoryName.text = string.Empty;
+            UIManager.instance.infoInventoryImage.sprite = null;
+            UIManager.instance.infoInventoryImage.enabled = false;
+            UIManager.instance.infoInventoryText.text = string.Empty;
+            UIManager.instance.stackAmountSlider.minValue = 0;
+            UIManager.instance.stackAmountSlider.maxValue = 0;
+            UIManager.instance.stackAmountSlider.value = 0;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
