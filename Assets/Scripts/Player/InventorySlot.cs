@@ -9,7 +9,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     // must be changed to a generic type if there will be weapons etc in the inventory not just specimens
     public int currentStackSize;
     public int amountFromStackToSell;
-    public InventoryItem inventoryItem;
+    public InventoryItemPackage inventoryItem;
     public Image childImage;
     public Image slotImage;
     public TextMeshProUGUI stackNumberText;
@@ -23,12 +23,12 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         GameState.instance.playerInventory.OnClearingMultiSelectedSlotsFromList += DeselectSlot;
         RefreshSlot();
 
-        if (inventoryItem == null)
-        {
-            inventoryItem = new InventoryItem();
-            inventoryItem.name = string.Empty;
-        }
-        if (inventoryItem.name != string.Empty)
+        //if (inventoryItem == null)
+        //{
+        //    inventoryItem = new InventoryItemPackage();
+        //    inventoryItem.itemName = string.Empty;
+        //}
+        if (inventoryItem != null)
         {
             childImage.enabled = true;
             childImage.sprite = inventoryItem.sprite;
@@ -43,6 +43,12 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     {
         GameState.instance.playerInventory.OnClearingMultiSelectedSlotsFromList -= DeselectSlot;
 
+        if (viewingSlot == true)
+        {
+            // deselects a viewed object
+            SelectSlot();
+        }
+        // deselects multi selected objects
         DeselectSlot();
     }
 
@@ -68,8 +74,9 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
     public void RenewObject()
     {
-        inventoryItem = new InventoryItem();
-        inventoryItem.name = string.Empty;
+        //inventoryItem = new InventoryItemPackage();
+        //inventoryItem.itemName = string.Empty;
+        inventoryItem = null;
         currentStackSize = 0;
         childImage.sprite = null;
         childImage.enabled = false;
@@ -78,11 +85,11 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     public void RefreshSlot()
     {
         stackNumberText.text = currentStackSize.ToString();
+        //if (inventoryItem == null)
+        //{
+        //    RenewObject();
+        //}
         if (inventoryItem == null)
-        {
-            RenewObject();
-        }
-        if (inventoryItem.name == string.Empty)
         {
             // if there is essentially no object
             childImage.enabled = false;
@@ -102,10 +109,10 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
             slotImage.color = originalColour;
             viewingSlot = false;
         }
-        else if (inventoryItem.name != string.Empty && viewingSlot == false)
+        else if (inventoryItem != null && viewingSlot == false)
         {
             if (selectedSlot == true) { DeselectSlot(); } // deselect the slot if it was multi selected
-            UIManager.instance.infoInventoryName.text = inventoryItem.name;
+            UIManager.instance.infoInventoryName.text = inventoryItem.itemName;
             UIManager.instance.infoInventoryImage.sprite = inventoryItem.sprite;
             UIManager.instance.infoInventoryText.text = inventoryItem.description;
             UIManager.instance.stackAmountSlider.minValue = 0;
@@ -150,6 +157,10 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         if (currentStackSize <= 0)
         {
             // if there are no items in the stack, reset the slot 
+            if (viewingSlot == true)
+            {
+                SelectSlot();
+            }
             RenewObject();
             RefreshSlot();
         }
@@ -165,7 +176,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
                 GameState.instance.playerInventory.SelectItem(this);
             }
         }
-        else if (eventData.button == PointerEventData.InputButton.Right && selectedSlot == false && inventoryItem.name != string.Empty)
+        else if (eventData.button == PointerEventData.InputButton.Right && selectedSlot == false && inventoryItem != null)
         {
             MultiSelectSlot();
         }

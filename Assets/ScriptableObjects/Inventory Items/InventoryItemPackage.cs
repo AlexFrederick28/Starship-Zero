@@ -1,10 +1,8 @@
-using System;
 using UnityEngine;
 
-[Serializable]
-public class InventoryItem
+[CreateAssetMenu(fileName = "InventoryItem", menuName = "Scriptable Objects/InventoryItem")]
+public class InventoryItemPackage : ScriptableObject
 {
-    public ScriptableObject inventoryItemPackage;
     public bool isSpecimen;
     public bool isWeapon;
 
@@ -12,7 +10,7 @@ public class InventoryItem
     [Header("General Item Info")]
     [Tooltip("How many times this item can stack")]
     public int maxStackSize;
-    public string name;
+    public string itemName;
     public string description;
     public int sellAmount;
     public Rarity rarity;

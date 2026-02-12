@@ -56,7 +56,8 @@ public class EnemyBase : MonoBehaviour
 
     [Space]
     [Header("Drops")]
-    [SerializeField] protected InventoryItem[] specimens = new InventoryItem[0];
+    //[SerializeField] protected InventoryItem[] specimens = new InventoryItem[0];
+    [SerializeField] protected InventoryItemPackage[] specimens = new InventoryItemPackage[0];
     private int totalSpecimenWeight;
     [Tooltip("Out of 100")]
     [SerializeField] protected int dropFrequencyPercentChance;

@@ -53,9 +53,16 @@ public class UIManager : MonoBehaviour
     [Space]
     [Header("Weapon Room")]
     public GameObject weaponCraftingUIParent;
-    public GameObject weaponCraftingName;
-    public GameObject weaponCraftingDescription;
-    public Slider weaponListSlider;
+    public TextMeshProUGUI weaponCraftingSelectedName;
+    public TextMeshProUGUI weaponCraftingSelectedDescription;
+    public Image weaponCraftingSelectedImage;
+    public Scrollbar weaponListScrollbar;
+    public GameObject weaponCraftingRecipeParent;
+    public GameObject weaponCraftingRecipePrefab;
+    // the next few variables need to be on a new craftingRecipe class attached to the recipe prefab
+    public TextMeshProUGUI weaponCraftingRecipeDescription;
+    public TextMeshProUGUI weaponCraftingRecipeAmount;
+    public Image weaponCraftingRecipeImage;
 
     [Header("Dialogue")]
     [Space]

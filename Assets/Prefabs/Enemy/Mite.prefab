@@ -290,62 +290,14 @@ MonoBehaviour:
   cooldownTimer: 0
   readyToAttack: 0
   specimens:
-  - isSpecimen: 0
-    isWeapon: 0
-    maxStackSize: 2
-    name: Unique
-    description: test
-    sellAmount: 80
-    rarity: 3
-    sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    dropChance: 1
-    baseDamage: 0
-    baseFireRate: 0
-    baseCritChance: 0
-    baseCritDamage: 0
-    projectileSpeed: 0
-  - isSpecimen: 0
-    isWeapon: 0
-    maxStackSize: 2
-    name: Ultra Rare
-    description: test
-    sellAmount: 50
-    rarity: 2
-    sprite: {fileID: -7059618875203899034, guid: 8b3b68d838b2d6647b36a02721a36157, type: 3}
-    dropChance: 5
-    baseDamage: 0
-    baseFireRate: 0
-    baseCritChance: 0
-    baseCritDamage: 0
-    projectileSpeed: 0
-  - isSpecimen: 0
-    isWeapon: 0
-    maxStackSize: 2
-    name: Rare
-    description: test
-    sellAmount: 25
-    rarity: 1
-    sprite: {fileID: -6910595954689261531, guid: d9e05939a191326419faaac918a260a9, type: 3}
-    dropChance: 35
-    baseDamage: 0
-    baseFireRate: 0
-    baseCritChance: 0
-    baseCritDamage: 0
-    projectileSpeed: 0
-  - isSpecimen: 0
-    isWeapon: 0
-    maxStackSize: 2
-    name: Common
-    description: test
-    sellAmount: 10
-    rarity: 0
-    sprite: {fileID: 6363875592875451746, guid: b5af269fbc3a98d44af25a9faf410703, type: 3}
-    dropChance: 100
-    baseDamage: 0
-    baseFireRate: 0
-    baseCritChance: 0
-    baseCritDamage: 0
-    projectileSpeed: 0
+  - {fileID: 11400000, guid: 2414a70ec7a14874c8ed409553d40660, type: 2}
+  - {fileID: 11400000, guid: 0cd57eff20219574ca8b83290c90b6ac, type: 2}
+  - {fileID: 11400000, guid: 91bf478454817b34b9918453c73c0430, type: 2}
+  - {fileID: 11400000, guid: 523488d13c1459640a8052758ce959f1, type: 2}
+  - {fileID: 11400000, guid: 109c4ad3f39f5c247add7a5d137eb310, type: 2}
+  - {fileID: 11400000, guid: 77cebbdbfa96671448ef30fc0593ac58, type: 2}
+  - {fileID: 11400000, guid: 903b12cb14098994dbf4c83f57acdae7, type: 2}
+  - {fileID: 11400000, guid: e9addd1566cc81740b86a77e02fdc37e, type: 2}
   dropFrequencyPercentChance: 30
   volume: 0.2
   minPitch: 1

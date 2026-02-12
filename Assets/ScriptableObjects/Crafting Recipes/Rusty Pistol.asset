@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df599df421858994284221178bf8deaa, type: 3}
+  m_Name: Rusty Pistol
+  m_EditorClassIdentifier: Assembly-CSharp::CraftingRecipe
+  ingredients:
+  - inventoryItemPackage: {fileID: 0}
+    isSpecimen: 0
+    isWeapon: 0
+    maxStackSize: 0
+    name: 
+    description: 
+    sellAmount: 0
+    rarity: 0
+    sprite: {fileID: 0}
+    dropChance: 0
+    baseDamage: 0
+    baseFireRate: 0
+    baseCritChance: 0
+    baseCritDamage: 0
+    projectileSpeed: 0
