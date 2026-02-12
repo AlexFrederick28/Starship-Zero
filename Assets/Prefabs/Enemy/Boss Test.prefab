@@ -137,6 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 383fd5b9392a430429bb4f47e72ea5e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiteEnemy
+  view: {fileID: 2388746164370177002}
   enemyType: {fileID: 11400000, guid: 2f65c7155c952ec48bc0b344c98db473, type: 2}
   enemyName: 
   currentHealth: 0
@@ -152,30 +153,62 @@ MonoBehaviour:
   cooldownTimer: 0
   readyToAttack: 0
   specimens:
-  - name: Unique
+  - isSpecimen: 0
+    isWeapon: 0
+    maxStackSize: 0
+    name: Unique
     description: test
     sellAmount: 80
-    dropChance: 1
     rarity: 3
     sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  - name: Ultra Rare
+    dropChance: 1
+    baseDamage: 0
+    baseFireRate: 0
+    baseCritChance: 0
+    baseCritDamage: 0
+    projectileSpeed: 0
+  - isSpecimen: 0
+    isWeapon: 0
+    maxStackSize: 0
+    name: Ultra Rare
     description: test
     sellAmount: 50
-    dropChance: 5
     rarity: 2
     sprite: {fileID: -7059618875203899034, guid: 8b3b68d838b2d6647b36a02721a36157, type: 3}
-  - name: Rare
+    dropChance: 5
+    baseDamage: 0
+    baseFireRate: 0
+    baseCritChance: 0
+    baseCritDamage: 0
+    projectileSpeed: 0
+  - isSpecimen: 0
+    isWeapon: 0
+    maxStackSize: 0
+    name: Rare
     description: test
     sellAmount: 25
-    dropChance: 35
     rarity: 1
     sprite: {fileID: -6910595954689261531, guid: d9e05939a191326419faaac918a260a9, type: 3}
-  - name: Common
+    dropChance: 35
+    baseDamage: 0
+    baseFireRate: 0
+    baseCritChance: 0
+    baseCritDamage: 0
+    projectileSpeed: 0
+  - isSpecimen: 0
+    isWeapon: 0
+    maxStackSize: 0
+    name: Common
     description: test
     sellAmount: 10
-    dropChance: 100
     rarity: 0
     sprite: {fileID: 6363875592875451746, guid: b5af269fbc3a98d44af25a9faf410703, type: 3}
+    dropChance: 100
+    baseDamage: 0
+    baseFireRate: 0
+    baseCritChance: 0
+    baseCritDamage: 0
+    projectileSpeed: 0
   dropFrequencyPercentChance: 30
   volume: 0.2
   minPitch: 1

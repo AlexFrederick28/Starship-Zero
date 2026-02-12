@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyBase : MonoBehaviour 
 {
     [Header("Base Settings")]
+    [SerializeField] private GameObject view;
     [SerializeField] private EnemyScriptableObject enemyType;
     [SerializeField] private string enemyName;
     [SerializeField] private float currentHealth;
@@ -180,6 +181,16 @@ public class EnemyBase : MonoBehaviour
         if (enemyPaused == true) { return; }
         Vector3 targetPosition = (playerTransform.position - transform.position).normalized;
         transform.position += targetPosition * speed * Time.deltaTime;
+        if (transform.position.x > playerTransform.position.x)
+        {
+            Quaternion newRotation = new Quaternion(0, 0, 0,0);
+            view.transform.rotation = newRotation;
+        }
+        else
+        {
+            Quaternion newRotation = new Quaternion(0, 180, 0, 0);
+            view.transform.rotation = newRotation;
+        }
     }
 
     protected void AttackCooldown()

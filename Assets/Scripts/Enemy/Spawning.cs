@@ -346,6 +346,7 @@ public class Spawning : Difficulty
 
     private void SpawnNewEnemy()
     {
+        if (timerPaused == true) { return; }
         if (player != null)
         {
             if (enemiesInactiveInPool != null && enemiesInactiveInPool.Count != 0)

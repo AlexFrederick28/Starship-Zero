@@ -1,31 +1,31 @@
 fileFormatVersion: 2
-guid: fa54193fed593f443840fb3a55478e30
+guid: c63f708d208d3cb459773339ee57f946
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8352451871147550344
-    second: impact_mite_spritesheet (1)_0
+      213: 4673975511319338259
+    second: Mite-spritesheet_1.4_0
   - first:
-      213: -88787468355340404
-    second: impact_mite_spritesheet (1)_1
+      213: 6860573004809091393
+    second: Mite-spritesheet_1.4_1
   - first:
-      213: 8780478611105067662
-    second: impact_mite_spritesheet (1)_2
+      213: -5101814232735349042
+    second: Mite-spritesheet_1.4_2
   - first:
-      213: -2961890273892405986
-    second: impact_mite_spritesheet (1)_3
+      213: -9028658358386757412
+    second: Mite-spritesheet_1.4_3
   - first:
-      213: 2198516599755036826
-    second: impact_mite_spritesheet (1)_4
+      213: 2773886032309455356
+    second: Mite-spritesheet_1.4_4
   - first:
-      213: -5754264463797894249
-    second: impact_mite_spritesheet (1)_5
+      213: -5422293351171901984
+    second: Mite-spritesheet_1.4_5
   - first:
-      213: -5663055556484542731
-    second: impact_mite_spritesheet (1)_6
+      213: 4392442654103513336
+    second: Mite-spritesheet_1.4_6
   - first:
-      213: 2317992844078036045
-    second: impact_mite_spritesheet (1)_7
+      213: 2676564623811802278
+    second: Mite-spritesheet_1.4_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -94,11 +94,11 @@ TextureImporter:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 4096
-    resizeAlgorithm: 0
+    resizeAlgorithm: 1
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 2
     compressionQuality: 50
-    crunchedCompression: 0
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
@@ -121,177 +121,177 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: impact_mite_spritesheet (1)_0
+      name: Mite-spritesheet_1.4_0
       rect:
         serializedVersion: 2
-        x: 274
-        y: 114
-        width: 1317
-        height: 957
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 886eb4f39bed9e370800000000000000
-      internalID: 8352451871147550344
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: impact_mite_spritesheet (1)_1
-      rect:
-        serializedVersion: 2
-        x: 2168
+        x: 0
         y: 0
-        width: 1371
-        height: 991
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c877c28944094cef0800000000000000
-      internalID: -88787468355340404
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: impact_mite_spritesheet (1)_2
-      rect:
-        serializedVersion: 2
-        x: 4048
-        y: 19
-        width: 1462
-        height: 991
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e8235dc96c68ad970800000000000000
-      internalID: 8780478611105067662
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: impact_mite_spritesheet (1)_3
-      rect:
-        serializedVersion: 2
-        x: 5925
-        y: 21
-        width: 1548
-        height: 988
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e1d65f81d7045e6d0800000000000000
-      internalID: -2961890273892405986
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: impact_mite_spritesheet (1)_4
-      rect:
-        serializedVersion: 2
-        x: 7814
-        y: 7
-        width: 1619
-        height: 1018
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a98d2310333b28e10800000000000000
-      internalID: 2198516599755036826
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: impact_mite_spritesheet (1)_5
-      rect:
-        serializedVersion: 2
-        x: 9798
-        y: 43
-        width: 1654
-        height: 921
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7934ca325feb420b0800000000000000
-      internalID: -5754264463797894249
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: impact_mite_spritesheet (1)_6
-      rect:
-        serializedVersion: 2
-        x: 11765
-        y: 4
-        width: 1463
-        height: 955
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5fecf6cb9f8c861b0800000000000000
-      internalID: -5663055556484542731
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: impact_mite_spritesheet (1)_7
-      rect:
-        serializedVersion: 2
-        x: 13439
-        y: 0
-        width: 1921
+        width: 1920
         height: 1080
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d443b2fd53a2b2020800000000000000
-      internalID: 2317992844078036045
+      spriteID: 31d5019b6fb4dd040800000000000000
+      internalID: 4673975511319338259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mite-spritesheet_1.4_1
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 0
+        width: 1920
+        height: 1080
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 149b74b8cc6a53f50800000000000000
+      internalID: 6860573004809091393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mite-spritesheet_1.4_2
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 0
+        width: 1920
+        height: 1080
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec607c36cf6b239b0800000000000000
+      internalID: -5101814232735349042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mite-spritesheet_1.4_3
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 0
+        width: 1920
+        height: 1080
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd0fef51f03c3b280800000000000000
+      internalID: -9028658358386757412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mite-spritesheet_1.4_4
+      rect:
+        serializedVersion: 2
+        x: 7680
+        y: 0
+        width: 1920
+        height: 1080
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf9093356a2de7620800000000000000
+      internalID: 2773886032309455356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mite-spritesheet_1.4_5
+      rect:
+        serializedVersion: 2
+        x: 9600
+        y: 0
+        width: 1920
+        height: 1080
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e5bf67fce420c4b0800000000000000
+      internalID: -5422293351171901984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mite-spritesheet_1.4_6
+      rect:
+        serializedVersion: 2
+        x: 11520
+        y: 0
+        width: 1920
+        height: 1080
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f82d1e525715fc30800000000000000
+      internalID: 4392442654103513336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mite-spritesheet_1.4_7
+      rect:
+        serializedVersion: 2
+        x: 13440
+        y: 0
+        width: 1920
+        height: 1080
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a4fda42851152520800000000000000
+      internalID: 2676564623811802278
       vertices: []
       indices: 
       edges: []
@@ -300,7 +300,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 33288a6f689f36346aad751566d10413
     internalID: 0
     vertices: []
     indices: 
@@ -308,16 +308,20 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceOnImport
+        value: False
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":1920.0,"y":1080.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      impact_mite_spritesheet (1)_0: 8352451871147550344
-      impact_mite_spritesheet (1)_1: -88787468355340404
-      impact_mite_spritesheet (1)_2: 8780478611105067662
-      impact_mite_spritesheet (1)_3: -2961890273892405986
-      impact_mite_spritesheet (1)_4: 2198516599755036826
-      impact_mite_spritesheet (1)_5: -5754264463797894249
-      impact_mite_spritesheet (1)_6: -5663055556484542731
-      impact_mite_spritesheet (1)_7: 2317992844078036045
+      Mite-spritesheet_1.4_0: 4673975511319338259
+      Mite-spritesheet_1.4_1: 6860573004809091393
+      Mite-spritesheet_1.4_2: -5101814232735349042
+      Mite-spritesheet_1.4_3: -9028658358386757412
+      Mite-spritesheet_1.4_4: 2773886032309455356
+      Mite-spritesheet_1.4_5: -5422293351171901984
+      Mite-spritesheet_1.4_6: 4392442654103513336
+      Mite-spritesheet_1.4_7: 2676564623811802278
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
