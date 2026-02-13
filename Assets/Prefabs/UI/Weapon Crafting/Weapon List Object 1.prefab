@@ -222,6 +222,7 @@ GameObject:
   - component: {fileID: 3816624237133124489}
   - component: {fileID: 7224315414153404264}
   - component: {fileID: 6628024480018830024}
+  - component: {fileID: 7603156636757424467}
   m_Layer: 5
   m_Name: Weapon List Object 1
   m_TagString: Untagged
@@ -288,3 +289,16 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7603156636757424467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8215740256558174486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60489146df27fb74783df870cbe65d36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RecipeCrafting
+  recipe: {fileID: 11400000, guid: 73fccb53606c1fe49b01c92c15f04e9c, type: 2}

@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df599df421858994284221178bf8deaa, type: 3}
-  m_Name: Rusty Pistol
+  m_Name: Pulse Revolver
   m_EditorClassIdentifier: Assembly-CSharp::CraftingRecipe
-  unlockCost: 0
-  purchaseCost: 0
-  ingredients: []
+  unlockCost: 100
+  purchaseCost: 250
+  ingredients:
+  - amount: 1
+    ingredient: {fileID: 11400000, guid: 0cd57eff20219574ca8b83290c90b6ac, type: 2}

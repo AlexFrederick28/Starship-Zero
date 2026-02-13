@@ -9,6 +9,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     // must be changed to a generic type if there will be weapons etc in the inventory not just specimens
     public int currentStackSize;
     public int amountFromStackToSell;
+    public int slotPosition;
     public InventoryItemPackage inventoryItem;
     public Image childImage;
     public Image slotImage;

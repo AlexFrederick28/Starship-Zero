@@ -6,20 +6,29 @@ using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class Inventory : MonoBehaviour
 {
+    [Serializable]
+    public class ItemStack
+    {
+        public int amount;
+        public int slotPosition;
+        public InventoryItemPackage inventoryItem;
+    }
+
     // need to create seperate list for other objects that are not specimens
     public int maxInventorySlots;
     public InventorySlot selectedSlot;
     public List<InventorySlot> inventorySlots;
-    public List<InventoryItemPackage> inventoryList;
-    public List<InventoryItemPackage> InventoryList
+    public List<ItemStack> inventoryItemList;
+    public List<ItemStack> InventoryItemList
     {
-        get { return inventoryList; }
+        get { return inventoryItemList; }
         set
         {
-            if (inventoryList.Count >= maxInventorySlots)
+            if (inventoryItemList.Count >= maxInventorySlots)
             {
                 Debug.Log("Inventory full!");
                 return;
@@ -63,6 +72,7 @@ public class Inventory : MonoBehaviour
         for (int i = 0; i < maxInventorySlots; i++)
         {
             GameObject newSlot = Instantiate(UIManager.instance.slot, UIManager.instance.inventorySlotContentParent.transform);
+            newSlot.GetComponent<InventorySlot>().slotPosition = inventorySlots.Count;
             inventorySlots.Add(newSlot.GetComponent<InventorySlot>());
         }
     }
@@ -158,20 +168,21 @@ public class Inventory : MonoBehaviour
         int desiredStack = 0;
         for (int i = 0; i < inventorySlots.Count; i++)
         {
-            //if (i > InventoryList.Count) { continue; }
-            Debug.Log("List count: " + inventoryList.Count + " Iteration: " + i);
+            if (InventoryItemList == null) { continue; }
+            Debug.Log("List count: " + InventoryItemList.Count + " Iteration: " + i);
             if (inventorySlots[i].inventoryItem != null)
             {
                 // TODO: there is a bug becuase the inventory list is not the same length as the inventory slots.
-                if (inventorySlots[desiredStack].inventoryItem.itemName == type.itemName && InventoryList[desiredStack].maxStackSize > 1 && inventorySlots[desiredStack].currentStackSize < InventoryList[desiredStack].maxStackSize)
+                if (inventorySlots[desiredStack].inventoryItem.itemName == type.itemName && InventoryItemList[desiredStack].inventoryItem.maxStackSize > 1 && inventorySlots[desiredStack].currentStackSize < InventoryItemList[desiredStack].inventoryItem.maxStackSize)
                 {
                     inventorySlots[desiredStack].currentStackSize++;
                     inventorySlots[desiredStack].stackNumberText.text = inventorySlots[desiredStack].currentStackSize.ToString();
+                    inventoryItemList[desiredStack].amount++;
                     Debug.Log("FOUND SAME TYPE AND ADDED TO DESIRED STACK");
                     desiredStack = 0;
                     return;
                 }
-                else if (i < InventoryList.Count)
+                else if (i < InventoryItemList.Count)
                 {
                     desiredStack++;
                     continue;
@@ -185,7 +196,11 @@ public class Inventory : MonoBehaviour
         {
             if (inventorySlots[x].inventoryItem == null)
             {
-                InventoryList.Add(type);
+                ItemStack newStack = new ItemStack();
+                newStack.inventoryItem = type;
+                newStack.amount = 1;
+                newStack.slotPosition = inventoryItemList.Count;
+                InventoryItemList.Add(newStack);
                 Debug.Log("Added specimen to NEW slot: " + inventorySlots[x]);
                 inventorySlots[x].inventoryItem = type;
                 inventorySlots[x].currentStackSize = 1;
@@ -196,9 +211,12 @@ public class Inventory : MonoBehaviour
 
     public void RemoveNullItemsFromList()
     {
-        for (int i = 0; i < inventoryList.Count; i++)
+        for (int i = 0; i < InventoryItemList.Count; i++)
         {
-            InventoryList.RemoveAt(i);
+            if (InventoryItemList[i] == null)
+            {
+                InventoryItemList.RemoveAt(i);
+            }
         }
     }
 
@@ -258,6 +276,7 @@ public class Inventory : MonoBehaviour
                 if (multiSelectedSlots[i] != null)
                 {
                     totalEarned += multiSelectedSlots[i].inventoryItem.sellAmount * multiSelectedSlots[i].currentStackSize;
+                    inventoryItemList.RemoveAt(multiSelectedSlots[i].slotPosition);
                     multiSelectedSlots[i].SellItem();
                     multiSelectedSlots[i].RefreshSlot();
                 }
@@ -267,11 +286,9 @@ public class Inventory : MonoBehaviour
         else if (selectedSlot.inventoryItem != null && selectedSlot.viewingSlot == true)
         {
             totalEarned += selectedSlot.inventoryItem.sellAmount * selectedSlot.amountFromStackToSell;
+            if (selectedSlot.amountFromStackToSell == selectedSlot.currentStackSize) { inventoryItemList.RemoveAt(selectedSlot.slotPosition); }
+            else { inventoryItemList[selectedSlot.slotPosition].amount -= selectedSlot.amountFromStackToSell; }
             selectedSlot.SellItem();
-            //if (selectedSlot.currentStackSize <= 0 && selectedSlot.viewingSlot == true)
-            //{
-            //    selectedSlot.SelectSlot(); // deselect the sold item
-            //}
         }
         else
         {

@@ -10,8 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df599df421858994284221178bf8deaa, type: 3}
-  m_Name: Rusty Pistol
+  m_Name: Hypercharged Sniper Rifle
   m_EditorClassIdentifier: Assembly-CSharp::CraftingRecipe
-  unlockCost: 0
-  purchaseCost: 0
-  ingredients: []
+  unlockCost: 300
+  purchaseCost: 600
+  ingredients:
+  - amount: 20
+    ingredient: {fileID: 11400000, guid: 2414a70ec7a14874c8ed409553d40660, type: 2}
+  - amount: 1
+    ingredient: {fileID: 11400000, guid: 903b12cb14098994dbf4c83f57acdae7, type: 2}
+  - amount: 1
+    ingredient: {fileID: 11400000, guid: 91bf478454817b34b9918453c73c0430, type: 2}
