@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -59,10 +60,7 @@ public class UIManager : MonoBehaviour
     public Scrollbar weaponListScrollbar;
     public GameObject weaponCraftingRecipeParent;
     public GameObject weaponCraftingRecipePrefab;
-    // the next few variables need to be on a new craftingRecipe class attached to the recipe prefab
-    public TextMeshProUGUI weaponCraftingRecipeDescription;
-    public TextMeshProUGUI weaponCraftingRecipeAmount;
-    public Image weaponCraftingRecipeImage;
+    public List<GameObject> weaponCraftingRecipePrefabList;
 
     [Header("Dialogue")]
     [Space]

@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CraftingRecipe
   unlockCost: 100
   purchaseCost: 250
+  weaponCraftingRecipeDescription: Gangsta's only.
+  weapon: {fileID: 11400000, guid: b7b77be51fb6cd948a8e0c6a56078354, type: 2}
   ingredients:
   - amount: 1
     ingredient: {fileID: 11400000, guid: 0cd57eff20219574ca8b83290c90b6ac, type: 2}
+    weaponCraftingRecipeSprite: {fileID: 0}

@@ -1,8 +1,9 @@
 using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class WeaponCrafting : MonoBehaviour
+public class WeaponCrafting : MonoBehaviour, IPointerClickHandler
 {
     public bool weaponUnlocked = false;
     public bool canCraft = false;
@@ -57,10 +58,36 @@ public class WeaponCrafting : MonoBehaviour
     public void ShowCraftingSummary()
     {
         // when this weapon is clicked in the crafting menu, show all thd details related to it
+        UIManager.instance.weaponCraftingSelectedDescription.text = recipe.weaponCraftingRecipeDescription;
+        //UIManager.instance.weaponCraftingSelectedImage.sprite = recipe.weapon.sprite;
+        UIManager.instance.weaponCraftingSelectedName.text = recipe.weapon.weaponName;
+
+        if (UIManager.instance.weaponCraftingRecipePrefabList.Count > 0)
+        {
+            for (int x = 0; x < UIManager.instance.weaponCraftingRecipePrefabList.Count; x++)
+            {
+                Destroy(UIManager.instance.weaponCraftingRecipePrefabList[x].gameObject);
+            }
+            UIManager.instance.weaponCraftingRecipePrefabList.Clear();
+        }
+        for (int i = 0; i < recipe.ingredients.Length; i++)
+        {
+            GameObject newRecipe = Instantiate(UIManager.instance.weaponCraftingRecipePrefab, UIManager.instance.weaponCraftingRecipeParent.transform);
+            RecipePanelDisplay display = newRecipe.GetComponent<RecipePanelDisplay>();
+            display.recipeName.text = recipe.ingredients[i].ingredient.itemName;
+            display.recipeAmount.text = recipe.ingredients[i].amount.ToString();
+            display.recipeImage.sprite = recipe.ingredients[i].ingredient.sprite;
+            UIManager.instance.weaponCraftingRecipePrefabList.Add(newRecipe);
+        }
     }
 
     public void CraftWeapon()
     {
         // take the necessary items out of the players inventory and add this weapon to their inventory
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        ShowCraftingSummary();
     }
 }
