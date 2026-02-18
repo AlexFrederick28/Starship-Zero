@@ -14,10 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CraftingRecipe
   unlockCost: 650
   purchaseCost: 1200
+  weaponCraftingRecipeDescription: Bigger boom boom.
+  weapon: {fileID: 11400000, guid: 97f2754ccac24a14788e516acba81e78, type: 2}
   ingredients:
   - amount: 10
     ingredient: {fileID: 11400000, guid: 2414a70ec7a14874c8ed409553d40660, type: 2}
+    weaponCraftingRecipeSprite: {fileID: 0}
   - amount: 2
     ingredient: {fileID: 11400000, guid: 903b12cb14098994dbf4c83f57acdae7, type: 2}
+    weaponCraftingRecipeSprite: {fileID: 0}
   - amount: 2
     ingredient: {fileID: 11400000, guid: 523488d13c1459640a8052758ce959f1, type: 2}
+    weaponCraftingRecipeSprite: {fileID: 0}

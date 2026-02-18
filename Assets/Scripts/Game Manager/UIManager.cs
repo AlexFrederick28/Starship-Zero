@@ -60,6 +60,7 @@ public class UIManager : MonoBehaviour
     public Scrollbar weaponListScrollbar;
     public GameObject weaponCraftingRecipeParent;
     public GameObject weaponCraftingRecipePrefab;
+    public GameObject weaponUnlockButton;
     public List<GameObject> weaponCraftingRecipePrefabList;
 
     [Header("Dialogue")]

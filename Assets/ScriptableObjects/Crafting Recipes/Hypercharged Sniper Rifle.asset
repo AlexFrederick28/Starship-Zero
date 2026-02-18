@@ -14,10 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CraftingRecipe
   unlockCost: 300
   purchaseCost: 600
+  weaponCraftingRecipeDescription: Bish bosh.
+  weapon: {fileID: 11400000, guid: 5ee2841ad0fd8ac4983f43bb12628877, type: 2}
   ingredients:
   - amount: 20
     ingredient: {fileID: 11400000, guid: 2414a70ec7a14874c8ed409553d40660, type: 2}
+    weaponCraftingRecipeSprite: {fileID: 0}
   - amount: 1
     ingredient: {fileID: 11400000, guid: 903b12cb14098994dbf4c83f57acdae7, type: 2}
+    weaponCraftingRecipeSprite: {fileID: 0}
   - amount: 1
     ingredient: {fileID: 11400000, guid: 91bf478454817b34b9918453c73c0430, type: 2}
+    weaponCraftingRecipeSprite: {fileID: 0}

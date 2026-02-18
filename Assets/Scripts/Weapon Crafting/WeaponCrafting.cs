@@ -70,6 +70,7 @@ public class WeaponCrafting : MonoBehaviour, IPointerClickHandler
             }
             UIManager.instance.weaponCraftingRecipePrefabList.Clear();
         }
+        if (weaponUnlocked == false) { return; } // if the weapon is not unlocked, dont show the recipe
         for (int i = 0; i < recipe.ingredients.Length; i++)
         {
             GameObject newRecipe = Instantiate(UIManager.instance.weaponCraftingRecipePrefab, UIManager.instance.weaponCraftingRecipeParent.transform);
@@ -78,6 +79,15 @@ public class WeaponCrafting : MonoBehaviour, IPointerClickHandler
             display.recipeAmount.text = recipe.ingredients[i].amount.ToString();
             display.recipeImage.sprite = recipe.ingredients[i].ingredient.sprite;
             UIManager.instance.weaponCraftingRecipePrefabList.Add(newRecipe);
+        }
+    }
+
+    public void UnlockWeapon()
+    {
+        // use currency to unlock a weapon, to then be able to craft it
+        if (GameState.instance.player.currency >= recipe.unlockCost)
+        {
+            GameState.instance.player.currency -= recipe.unlockCost;
         }
     }
 
