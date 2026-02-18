@@ -14,7 +14,6 @@ public class Inventory : MonoBehaviour
     public class ItemStack
     {
         public int amount;
-        public int slotPosition;
         public InventoryItemPackage inventoryItem;
     }
 
@@ -91,7 +90,6 @@ public class Inventory : MonoBehaviour
     public void SortStacksInInventory()
     {
         // can possible move this function to work off of a button, as selling an amount from a stack but not seeing the stack count go down is a little jarring
-        //int desiredPosition = 0;
 
         for (int desiredPosition = 0; desiredPosition < inventorySlots.Count; desiredPosition++)
         {
@@ -172,7 +170,6 @@ public class Inventory : MonoBehaviour
             Debug.Log("List count: " + InventoryItemList.Count + " Iteration: " + i);
             if (inventorySlots[i].inventoryItem != null)
             {
-                // TODO: there is a bug becuase the inventory list is not the same length as the inventory slots.
                 if (inventorySlots[desiredStack].inventoryItem.itemName == type.itemName && InventoryItemList[desiredStack].inventoryItem.maxStackSize > 1 && inventorySlots[desiredStack].currentStackSize < InventoryItemList[desiredStack].inventoryItem.maxStackSize)
                 {
                     inventorySlots[desiredStack].currentStackSize++;
@@ -199,7 +196,6 @@ public class Inventory : MonoBehaviour
                 ItemStack newStack = new ItemStack();
                 newStack.inventoryItem = type;
                 newStack.amount = 1;
-                newStack.slotPosition = inventoryItemList.Count;
                 InventoryItemList.Add(newStack);
                 Debug.Log("Added specimen to NEW slot: " + inventorySlots[x]);
                 inventorySlots[x].inventoryItem = type;
@@ -271,11 +267,15 @@ public class Inventory : MonoBehaviour
         int totalEarned = 0;
         if (multiSelectedSlots.Count != 0)
         {
+            // sorting the slots to count down rather than up, as to remove any chance of changing slot positions and selling the wrong item
+            // using the lambda expression rather than a custom function to set a rule to decide the sorting order (switching positions based on the numbers value)
+            multiSelectedSlots.Sort((a, b) => b.slotPosition.CompareTo(a.slotPosition));
             for (int i = 0; i < multiSelectedSlots.Count; i++)
             {
                 if (multiSelectedSlots[i] != null)
                 {
                     totalEarned += multiSelectedSlots[i].inventoryItem.sellAmount * multiSelectedSlots[i].currentStackSize;
+                    Debug.Log("Removing item at position: " + multiSelectedSlots[i].slotPosition);
                     inventoryItemList.RemoveAt(multiSelectedSlots[i].slotPosition);
                     multiSelectedSlots[i].SellItem();
                     multiSelectedSlots[i].RefreshSlot();

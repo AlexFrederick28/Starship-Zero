@@ -1,6 +1,8 @@
+using TMPro;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class WeaponCrafting : MonoBehaviour, IPointerClickHandler
@@ -12,7 +14,7 @@ public class WeaponCrafting : MonoBehaviour, IPointerClickHandler
 
     private void OnEnable()
     {
-        
+        CheckCraftingPossibility();
     }
 
     private void OnDisable()
@@ -24,6 +26,7 @@ public class WeaponCrafting : MonoBehaviour, IPointerClickHandler
 
     public void CheckCraftingPossibility()
     {
+        if (weaponUnlocked == false) { return; }
         // function should play on click when the item is selected, or possible when the weapon crafting menu is enabled (Would allow for reactive UI such as green text to visually tell the player they can craft it)
         int amountOfIngredients = 0;
         int inventoryContains = 0;
@@ -85,19 +88,64 @@ public class WeaponCrafting : MonoBehaviour, IPointerClickHandler
     public void UnlockWeapon()
     {
         // use currency to unlock a weapon, to then be able to craft it
+        if (weaponUnlocked == true) { return; }
         if (GameState.instance.player.currency >= recipe.unlockCost)
         {
+            weaponUnlocked = true;
             GameState.instance.player.currency -= recipe.unlockCost;
+            UIManager.instance.NewNotification("Currency -" + recipe.unlockCost);
+            UIManager.instance.weaponUnlockButton.SetActive(false);
+            UIManager.instance.weaponCraftButton.SetActive(true);
+            UIManager.instance.weaponCraftButton.GetComponentInChildren<TextMeshProUGUI>().text = "Craft: $" + recipe.purchaseCost.ToString();
+            UIManager.instance.weaponCraftButton.GetComponent<Button>().onClick.AddListener(CraftWeapon);
+            weaponLockedImage.enabled = false;
         }
+
+        ShowCraftingSummary();
+        CheckCraftingPossibility();
     }
 
     public void CraftWeapon()
     {
         // take the necessary items out of the players inventory and add this weapon to their inventory
+        Inventory inventory = GameState.instance.playerInventory;
+        if (recipe.isFree == true)
+        {
+            for (int i = 0; i < inventory.inventoryItemList.Count; i++)
+            {
+                if (inventory.inventoryItemList[i].inventoryItem == recipe.item)
+                {
+                    Debug.Log("Player inventory already contains this free item!");
+                    return;
+                }
+            }
+        }
+
+        GameState.instance.playerInventory.AddItemToInventory(recipe.item);
+        Debug.Log("Crafted weapon: " + recipe.weapon.weaponName);
+        CheckCraftingPossibility();
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        UIManager.instance.weaponUnlockButton.GetComponent<Button>().onClick.RemoveAllListeners();
+
+        if (weaponUnlocked == true)
+        {
+            UIManager.instance.weaponUnlockButton.SetActive(false);
+            UIManager.instance.weaponCraftButton.SetActive(true);
+            UIManager.instance.weaponCraftButton.GetComponentInChildren<TextMeshProUGUI>().text = "Craft: $" + recipe.purchaseCost.ToString();
+            UIManager.instance.weaponCraftButton.GetComponent<Button>().onClick.AddListener(CraftWeapon);
+        }
+        else
+        {
+            UIManager.instance.weaponUnlockButton.SetActive(true);
+            UIManager.instance.weaponCraftButton.SetActive(false);
+            UIManager.instance.weaponUnlockButton.GetComponentInChildren<TextMeshProUGUI>().text = "Unlock: $" + recipe.unlockCost.ToString();
+            UIManager.instance.weaponUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockWeapon);
+        }
+
         ShowCraftingSummary();
+        CheckCraftingPossibility();
     }
 }

@@ -21,6 +21,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
     private void OnEnable()
     {
+        if (transform.parent != UIManager.instance.inventorySlotContentParent.transform) { return; }
         GameState.instance.playerInventory.OnClearingMultiSelectedSlotsFromList += DeselectSlot;
         RefreshSlot();
 
@@ -42,6 +43,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
     private void OnDisable()
     {
+        if (transform.parent != UIManager.instance.inventorySlotContentParent.transform) { return; }
         GameState.instance.playerInventory.OnClearingMultiSelectedSlotsFromList -= DeselectSlot;
 
         if (viewingSlot == true)
