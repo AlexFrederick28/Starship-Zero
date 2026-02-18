@@ -545,6 +545,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelUp
   itemManager: {fileID: 0}
+  CardPos1: {fileID: 0}
+  CardPos2: {fileID: 0}
+  CardPos3: {fileID: 0}
+  cardList:
+  - itemLevelCount: 0
+    LevelCardSO: {fileID: 11400000, guid: 1ee7427d3b2f94e4d8877c5073cd4dae, type: 2}
+  - itemLevelCount: 0
+    LevelCardSO: {fileID: 11400000, guid: 5417b2f46c12af444892176d7c0e965b, type: 2}
+  - itemLevelCount: 0
+    LevelCardSO: {fileID: 11400000, guid: 36ecab9cb88284e4ea0c1c0714766fe0, type: 2}
+  - itemLevelCount: 0
+    LevelCardSO: {fileID: 11400000, guid: be503a5414c3edb4d843712612097db1, type: 2}
 --- !u!4 &58738814
 Transform:
   m_ObjectHideFlags: 0
