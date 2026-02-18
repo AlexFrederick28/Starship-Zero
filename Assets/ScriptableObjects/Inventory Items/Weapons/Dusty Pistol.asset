@@ -9,13 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df599df421858994284221178bf8deaa, type: 3}
+  m_Script: {fileID: 11500000, guid: 52680b0d246218742baf5f62bc6d9032, type: 3}
   m_Name: Dusty Pistol
-  m_EditorClassIdentifier: Assembly-CSharp::CraftingRecipe
-  isFree: 1
-  unlockCost: 0
-  purchaseCost: 0
-  weaponCraftingRecipeDescription: Noob.
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryItemPackage
+  isSpecimen: 0
+  isWeapon: 1
+  maxStackSize: 1
+  itemName: Dusty Pistol
+  description: na
+  sellAmount: 0
+  rarity: 0
+  sprite: {fileID: 6199476883190837557, guid: fcbbbbdb02c93484e83cb4726f532044, type: 3}
+  dropChance: 0
   weapon: {fileID: 11400000, guid: 05999a0be426d764f8c18b11c29079bb, type: 2}
-  item: {fileID: 11400000, guid: f434efdb5dacd884f8e5ebd731934226, type: 2}
-  ingredients: []

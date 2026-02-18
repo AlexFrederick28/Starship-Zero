@@ -20,9 +20,5 @@ public class InventoryItemPackage : ScriptableObject
     public int dropChance;
 
     [Header("Weapon")]
-    public float baseDamage;
-    public float baseFireRate;
-    public float baseCritChance;
-    public float baseCritDamage;
-    public float projectileSpeed;
+    public WeaponScriptableObject weapon;
 }

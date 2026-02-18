@@ -61,6 +61,7 @@ public class UIManager : MonoBehaviour
     public GameObject weaponCraftingRecipeParent;
     public GameObject weaponCraftingRecipePrefab;
     public GameObject weaponUnlockButton;
+    public GameObject weaponCraftButton;
     public List<GameObject> weaponCraftingRecipePrefabList;
 
     [Header("Dialogue")]

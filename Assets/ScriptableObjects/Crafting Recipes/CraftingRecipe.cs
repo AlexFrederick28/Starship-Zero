@@ -14,9 +14,11 @@ public class CraftingRecipe : ScriptableObject
 
     }
 
+    public bool isFree = false;
     public int unlockCost;
     public int purchaseCost;
     public string weaponCraftingRecipeDescription;
     public WeaponScriptableObject weapon;
+    public InventoryItemPackage item;
     public Ingredient[] ingredients;
 }

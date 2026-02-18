@@ -7,6 +7,13 @@ public class UpgradeDoor : Door
         base.OnInteract();
 
         // open upgrade UI
-
+        if (UIManager.instance.weaponCraftingUIParent.activeSelf == true)
+        {
+            UIManager.instance.weaponCraftingUIParent.SetActive(false);
+        }
+        else
+        {
+            UIManager.instance.weaponCraftingUIParent.SetActive(true);
+        }
     }
 }
