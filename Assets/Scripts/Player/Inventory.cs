@@ -164,28 +164,31 @@ public class Inventory : MonoBehaviour
     {
         // WEAPONS SHOULD NOT STACK 
         int desiredStack = 0;
-        for (int i = 0; i < inventorySlots.Count; i++)
+        if (type.isWeapon == false)
         {
-            if (InventoryItemList == null) { continue; }
-            Debug.Log("List count: " + InventoryItemList.Count + " Iteration: " + i);
-            if (inventorySlots[i].inventoryItem != null)
+            for (int i = 0; i < inventorySlots.Count; i++)
             {
-                if (inventorySlots[desiredStack].inventoryItem.itemName == type.itemName && InventoryItemList[desiredStack].inventoryItem.maxStackSize > 1 && inventorySlots[desiredStack].currentStackSize < InventoryItemList[desiredStack].inventoryItem.maxStackSize)
+                if (InventoryItemList == null) { continue; }
+                Debug.Log("List count: " + InventoryItemList.Count + " Iteration: " + i);
+                if (inventorySlots[i].inventoryItem != null)
                 {
-                    inventorySlots[desiredStack].currentStackSize++;
-                    inventorySlots[desiredStack].stackNumberText.text = inventorySlots[desiredStack].currentStackSize.ToString();
-                    inventoryItemList[desiredStack].amount++;
-                    Debug.Log("FOUND SAME TYPE AND ADDED TO DESIRED STACK");
-                    desiredStack = 0;
-                    return;
+                    if (inventorySlots[desiredStack].inventoryItem.itemName == type.itemName && InventoryItemList[desiredStack].inventoryItem.maxStackSize > 1 && inventorySlots[desiredStack].currentStackSize < InventoryItemList[desiredStack].inventoryItem.maxStackSize)
+                    {
+                        inventorySlots[desiredStack].currentStackSize++;
+                        inventorySlots[desiredStack].stackNumberText.text = inventorySlots[desiredStack].currentStackSize.ToString();
+                        inventoryItemList[desiredStack].amount++;
+                        Debug.Log("FOUND SAME TYPE AND ADDED TO DESIRED STACK");
+                        desiredStack = 0;
+                        return;
+                    }
+                    else if (i < InventoryItemList.Count)
+                    {
+                        desiredStack++;
+                        continue;
+                    }
                 }
-                else if (i < InventoryItemList.Count)
-                {
-                    desiredStack++;
-                    continue;
-                }
-            }
 
+            }
         }
 
         // if there are no spots available for stacking, make a new stack
