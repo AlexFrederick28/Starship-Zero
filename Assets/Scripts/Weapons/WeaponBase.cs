@@ -121,6 +121,7 @@ public class WeaponBase : MonoBehaviour
         }
         else // if no items (0 or less damage
         {
+            //Debug.Log("else = base damage");
             damage = baseDamage;
         }
 

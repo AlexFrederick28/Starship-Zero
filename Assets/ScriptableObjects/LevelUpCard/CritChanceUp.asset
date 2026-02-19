@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe3f34ff6daac44993f96679f0b82db, type: 3}
   m_Name: CritChanceUp
   m_EditorClassIdentifier: Assembly-CSharp::LevelCardScriptableObject
+  cardName: Crit Chance
   cardText: this is crit chance
   cardSprite: {fileID: 0}
   cardItemCount: 1

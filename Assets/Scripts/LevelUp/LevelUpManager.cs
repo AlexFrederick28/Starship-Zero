@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class LevelUpManager : MonoBehaviour
 {
     [SerializeField] public ItemManager itemManager;
@@ -30,7 +30,7 @@ public class LevelUpManager : MonoBehaviour
             itemManager = FindFirstObjectByType<ItemManager>();
         }
 
-        cardListToChooseFrom = new List<ItemCardInfo>(cardList);
+        // cardListToChooseFrom = new List<ItemCardInfo>(cardList);
 
         if (CardGO1 == null)
         {
@@ -73,20 +73,39 @@ public class LevelUpManager : MonoBehaviour
         }
     }
 
+
+    // NOTE - for item level text try "Level: itemLevelCount"
     public void RandomiseCards()
     {
-        #region Card 1
-        ItemCardInfo pickedCard = cardListToChooseFrom[Random.Range(0, cardListToChooseFrom.Count)];
-        
-        #endregion
+        // setup list of cards to pick from
+        cardListToChooseFrom = new List<ItemCardInfo>(cardList);
 
-        #region Card 2
+        // Card 1
+        int randomCardIndex1 = Random.Range(0, cardListToChooseFrom.Count); // seperate int so it can be removed later
+        ItemCardInfo pickedCard1 = cardListToChooseFrom[randomCardIndex1]; // chosen 'card'
 
-        #endregion
 
-        #region Card 3
+        // BUG FIX ---------------------------------------------------
+        Debug.Log(pickedCard1.LevelCardSO.cardName + " aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"); // test
+        Debug.Log(cardListToChooseFrom[randomCardIndex1].LevelCardSO.name + "bbbbbbbbbbbbbbbbbb");
 
-        #endregion
+
+
+        //set text
+        UIManager.instance.levelUpItemName[0].text = pickedCard1.LevelCardSO.cardName;
+        UIManager.instance.levelUpItemStatDescription[0].text = pickedCard1.LevelCardSO.cardText; 
+
+        cardListToChooseFrom.RemoveAt(randomCardIndex1); // remove from temp pool of cards
+
+        // debug after remove (BUG FIX)
+        Debug.Log(cardListToChooseFrom[0].LevelCardSO.cardName);
+        Debug.Log(cardListToChooseFrom[1].LevelCardSO.cardName);
+        Debug.Log(cardListToChooseFrom[2].LevelCardSO.cardName);
+
+
+        // Card 2
+
+        // Card 3
 
     }
 
