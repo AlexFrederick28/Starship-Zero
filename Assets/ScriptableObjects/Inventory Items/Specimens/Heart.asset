@@ -18,12 +18,8 @@ MonoBehaviour:
   itemName: Heart
   description: Generally useless after the beast has been slain, although perfect
     specimens could be of use.
-  sellAmount: 100
+  sellAmount: 1000
   rarity: 2
   sprite: {fileID: -7059618875203899034, guid: 8b3b68d838b2d6647b36a02721a36157, type: 3}
   dropChance: 5
-  baseDamage: 0
-  baseFireRate: 0
-  baseCritChance: 0
-  baseCritDamage: 0
-  projectileSpeed: 0
+  weapon: {fileID: 0}

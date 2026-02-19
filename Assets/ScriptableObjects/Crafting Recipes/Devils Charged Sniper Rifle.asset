@@ -12,23 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df599df421858994284221178bf8deaa, type: 3}
   m_Name: Devils Charged Sniper Rifle
   m_EditorClassIdentifier: Assembly-CSharp::CraftingRecipe
+  isFree: 0
   unlockCost: 800
   purchaseCost: 1500
   weaponCraftingRecipeDescription: The Devil's power.
   weapon: {fileID: 11400000, guid: dc64a8829b1b7d74696f040b9b68325b, type: 2}
+  item: {fileID: 11400000, guid: 21414279f7b4e61469bf4c858944467f, type: 2}
   ingredients:
   - amount: 20
     ingredient: {fileID: 11400000, guid: 2414a70ec7a14874c8ed409553d40660, type: 2}
-    weaponCraftingRecipeSprite: {fileID: 0}
   - amount: 10
     ingredient: {fileID: 11400000, guid: 0cd57eff20219574ca8b83290c90b6ac, type: 2}
-    weaponCraftingRecipeSprite: {fileID: 0}
   - amount: 5
     ingredient: {fileID: 11400000, guid: 903b12cb14098994dbf4c83f57acdae7, type: 2}
-    weaponCraftingRecipeSprite: {fileID: 0}
   - amount: 1
     ingredient: {fileID: 11400000, guid: 109c4ad3f39f5c247add7a5d137eb310, type: 2}
-    weaponCraftingRecipeSprite: {fileID: 0}
   - amount: 1
     ingredient: {fileID: 11400000, guid: 523488d13c1459640a8052758ce959f1, type: 2}
-    weaponCraftingRecipeSprite: {fileID: 0}

@@ -77,8 +77,6 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
     public void RenewObject()
     {
-        //inventoryItem = new InventoryItemPackage();
-        //inventoryItem.itemName = string.Empty;
         inventoryItem = null;
         currentStackSize = 0;
         childImage.sprite = null;
@@ -88,10 +86,6 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     public void RefreshSlot()
     {
         stackNumberText.text = currentStackSize.ToString();
-        //if (inventoryItem == null)
-        //{
-        //    RenewObject();
-        //}
         if (inventoryItem == null)
         {
             // if there is essentially no object

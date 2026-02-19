@@ -53,7 +53,7 @@ public class Difficulty : MonoBehaviour
             currentDifficulty = value;
         }
     }
-    [Tooltip("max difficulty / timer length = The lower the number, the higher the max difficulty can go - effecting how many scaling segments there will be in a single run")]
+    [Tooltip("(max difficulty / timer length) / 60 = (tracked in minutes) The lower the number, the higher the max difficulty can go - effecting how many scaling segments there will be in a single run")]
     [SerializeField] protected float maxDifficulty;
     [SerializeField] protected float scalingSegments;
     public bool timerReachedMaxLength = false;
@@ -61,7 +61,7 @@ public class Difficulty : MonoBehaviour
 
     public virtual void Update()
     {
-        // this is here for testing, realistically you would have this timer start when the player enters a room
+        // timer starts when entering a room
         StartTimer();
         DifficultyScaling();
     }

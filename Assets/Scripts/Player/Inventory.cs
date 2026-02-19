@@ -200,7 +200,7 @@ public class Inventory : MonoBehaviour
                 newStack.inventoryItem = type;
                 newStack.amount = 1;
                 InventoryItemList.Add(newStack);
-                Debug.Log("Added specimen to NEW slot: " + inventorySlots[x]);
+                Debug.Log("Added item to NEW slot");
                 inventorySlots[x].inventoryItem = type;
                 inventorySlots[x].currentStackSize = 1;
                 return;
@@ -279,7 +279,7 @@ public class Inventory : MonoBehaviour
                 {
                     totalEarned += multiSelectedSlots[i].inventoryItem.sellAmount * multiSelectedSlots[i].currentStackSize;
                     Debug.Log("Removing item at position: " + multiSelectedSlots[i].slotPosition);
-                    inventoryItemList.RemoveAt(multiSelectedSlots[i].slotPosition);
+                    InventoryItemList.RemoveAt(multiSelectedSlots[i].slotPosition);
                     multiSelectedSlots[i].SellItem();
                     multiSelectedSlots[i].RefreshSlot();
                 }
@@ -303,6 +303,54 @@ public class Inventory : MonoBehaviour
         StartCoroutine(UIManager.instance.NewNotification("Currency + " + totalEarned));
         RemoveGapsFromInventory();
         multiSelectedSlots.Clear();
+    }
+
+    /// <summary>
+    /// Removes the amount of an item from an inventory. WARNING: you currently need to search if there are enough of the item before using this function
+    /// </summary>
+    /// <param name="package"></param>
+    /// <param name="amount"></param>
+    /// <param name="itemName"></param>
+    public void RemoveItem(InventoryItemPackage package, int amount, string itemName)
+    {
+        List<int> slotsToRemove = new List<int>();
+        int trackedAmount = amount;
+        for (int i = 0; i < InventoryItemList.Count; i++)
+        {
+            if (trackedAmount == 0) { return; }
+            if (InventoryItemList[i].inventoryItem.itemName == itemName)
+            {
+                int currentItemAmount = InventoryItemList[i].amount;
+                int amountToTake = (int)MathF.Min(amount, currentItemAmount);
+                trackedAmount -= amountToTake;
+                Debug.Log("Removed Amount: " + amountToTake + " From Slot Numb: " + i + " Which had an amount of: " + InventoryItemList[i].amount);
+                InventoryItemList[i].amount -= amountToTake;
+                RefreshItemAndSlot(i);
+
+                if (inventoryItemList[i].amount <= 0)
+                {
+                    // adding the item positions to a list to remove the items later
+                    slotsToRemove.Add(inventorySlots[i].slotPosition);
+                }
+            }
+        }
+        for (int i = 0; i < slotsToRemove.Count; i++)
+        {
+            // removing the slots that are empty (0 in a stack)
+            Debug.Log("Removed item at position: " + slotsToRemove[i]);
+            InventoryItemList.RemoveAt(slotsToRemove[i]);
+            inventorySlots[i].RenewObject();
+            RefreshItemAndSlot(i);
+        }
+
+        RemoveGapsFromInventory();
+    }
+
+    public void RefreshItemAndSlot(int position)
+    {
+        inventorySlots[position].inventoryItem = InventoryItemList[position].inventoryItem;
+        inventorySlots[position].currentStackSize = InventoryItemList[position].amount;
+        inventorySlots[position].RefreshSlot();
     }
 
     public void ShowSelectedItem(InventorySlot slot)

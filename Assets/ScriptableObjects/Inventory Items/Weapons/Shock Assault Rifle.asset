@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 52680b0d246218742baf5f62bc6d9032, type: 3}
-  m_Name: Claw
+  m_Name: Shock Assault Rifle
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItemPackage
-  isSpecimen: 1
-  isWeapon: 0
-  maxStackSize: 20
-  itemName: Claw
-  description: A razor sharp claw from the Mites prickly legs.
-  sellAmount: 1000
+  isSpecimen: 0
+  isWeapon: 1
+  maxStackSize: 1
+  itemName: Shock Assault Rifle
+  description: na
+  sellAmount: 100
   rarity: 0
-  sprite: {fileID: 6363875592875451746, guid: b5af269fbc3a98d44af25a9faf410703, type: 3}
-  dropChance: 100
-  weapon: {fileID: 0}
+  sprite: {fileID: 9192928721345626105, guid: fcbbbbdb02c93484e83cb4726f532044, type: 3}
+  dropChance: 0
+  weapon: {fileID: 11400000, guid: cee4685c4493b55468270d05a4e71b88, type: 2}

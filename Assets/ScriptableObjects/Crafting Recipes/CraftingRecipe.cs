@@ -10,8 +10,6 @@ public class CraftingRecipe : ScriptableObject
     {
         public int amount;
         public InventoryItemPackage ingredient;
-        public Sprite weaponCraftingRecipeSprite;
-
     }
 
     public bool isFree = false;

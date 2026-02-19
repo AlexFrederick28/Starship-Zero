@@ -17,12 +17,8 @@ MonoBehaviour:
   maxStackSize: 15
   itemName: Eye
   description: Holds a small amount of plasma, can be useful for upgrading and crafting.
-  sellAmount: 25
+  sellAmount: 1000
   rarity: 1
   sprite: {fileID: -6910595954689261531, guid: d9e05939a191326419faaac918a260a9, type: 3}
   dropChance: 25
-  baseDamage: 0
-  baseFireRate: 0
-  baseCritChance: 0
-  baseCritDamage: 0
-  projectileSpeed: 0
+  weapon: {fileID: 0}

@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df599df421858994284221178bf8deaa, type: 3}
   m_Name: 44 Magnum Blaster
   m_EditorClassIdentifier: Assembly-CSharp::CraftingRecipe
+  isFree: 0
   unlockCost: 500
   purchaseCost: 1000
   weaponCraftingRecipeDescription: A gun is as good, and as bad, as the man who carries
     it.
   weapon: {fileID: 11400000, guid: 8e3a47442af018c4cbc860564ebb3855, type: 2}
+  item: {fileID: 11400000, guid: 21ec9059dc97b7c45a7b7dac5a4d397f, type: 2}
   ingredients:
   - amount: 2
     ingredient: {fileID: 11400000, guid: 0cd57eff20219574ca8b83290c90b6ac, type: 2}
-    weaponCraftingRecipeSprite: {fileID: 0}
   - amount: 1
     ingredient: {fileID: 11400000, guid: 523488d13c1459640a8052758ce959f1, type: 2}
-    weaponCraftingRecipeSprite: {fileID: 0}
