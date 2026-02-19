@@ -253,7 +253,7 @@ public class Inventory : MonoBehaviour
                 UIManager.instance.infoInventoryText.text = string.Empty;
                 GameState.instance.ChangeToPreviousState();
             }
-            else
+            else if (inventoryUI.activeSelf == false && GameState.instance.currentState != GameState.States.OpenUI)
             {
                 GameState.instance.ChangeStateToOpenUI();
                 SortStacksInInventory();
