@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: TestWeapon
   m_EditorClassIdentifier: Assembly-CSharp::WeaponScriptableObject
   weaponName: TestWeapon
-  weaponDescription: 
+  weaponDescription: test
+  weaponSprite: {fileID: 0}
   damage: 50
   fireRate: 20
   critChance: 5

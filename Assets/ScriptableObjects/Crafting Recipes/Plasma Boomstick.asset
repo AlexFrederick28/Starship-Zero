@@ -15,7 +15,21 @@ MonoBehaviour:
   isFree: 0
   unlockCost: 300
   purchaseCost: 500
-  weaponCraftingRecipeDescription: Boom boom.
+  weaponDescription:
+  - amount: 10
+    description: Damage
+  - amount: 1
+    description: Fire Rate
+  - amount: 0%
+    description: Crit Chance
+  - amount: 50%
+    description: Crit Damage
+  - amount: 15
+    description: Projectile Speed
+  - amount: 
+    description: 
+  - amount: 
+    description: A shotgun that has a small spread and medium fire rate.
   weapon: {fileID: 11400000, guid: 40888e2930952174883b7a1d5ab23991, type: 2}
   item: {fileID: 11400000, guid: 176ca8e224858fe4191f6c3f3b75a95d, type: 2}
   ingredients:

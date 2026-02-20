@@ -15,8 +15,22 @@ MonoBehaviour:
   isFree: 0
   unlockCost: 500
   purchaseCost: 1000
-  weaponCraftingRecipeDescription: A gun is as good, and as bad, as the man who carries
-    it.
+  weaponDescription:
+  - amount: 20
+    description: Damage
+  - amount: 0.75
+    description: Fire Rate
+  - amount: 5%
+    description: Crit Chance
+  - amount: 50%
+    description: Crit Damage
+  - amount: 20
+    description: Projectile Speed
+  - amount: 
+    description: 
+  - amount: 
+    description: A high damaging pistol with that has a lower fire rate than the
+      other pistols.
   weapon: {fileID: 11400000, guid: 8e3a47442af018c4cbc860564ebb3855, type: 2}
   item: {fileID: 11400000, guid: 21ec9059dc97b7c45a7b7dac5a4d397f, type: 2}
   ingredients:

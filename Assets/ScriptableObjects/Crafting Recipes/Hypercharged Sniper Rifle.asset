@@ -15,7 +15,21 @@ MonoBehaviour:
   isFree: 0
   unlockCost: 300
   purchaseCost: 600
-  weaponCraftingRecipeDescription: Bish bosh.
+  weaponDescription:
+  - amount: 30
+    description: Damage
+  - amount: 0.75
+    description: Fire Rate
+  - amount: 10%
+    description: Crit Chance
+  - amount: 50%
+    description: Crit Damage
+  - amount: 20
+    description: Projectile Speed
+  - amount: 
+    description: 
+  - amount: 
+    description: A strong sniper that has a faster fire but deals less damage.
   weapon: {fileID: 11400000, guid: 5ee2841ad0fd8ac4983f43bb12628877, type: 2}
   item: {fileID: 11400000, guid: 43f9ff5b04f2d75458f85e48ceb4c54c, type: 2}
   ingredients:

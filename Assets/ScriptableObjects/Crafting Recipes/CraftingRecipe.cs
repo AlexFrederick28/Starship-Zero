@@ -12,10 +12,17 @@ public class CraftingRecipe : ScriptableObject
         public InventoryItemPackage ingredient;
     }
 
+    [Serializable]
+    public class CraftingDescription
+    {
+        public string amount;
+        public string description;
+    }
+
     public bool isFree = false;
     public int unlockCost;
     public int purchaseCost;
-    public string weaponCraftingRecipeDescription;
+    public CraftingDescription[] weaponDescription;
     public WeaponScriptableObject weapon;
     public InventoryItemPackage item;
     public Ingredient[] ingredients;

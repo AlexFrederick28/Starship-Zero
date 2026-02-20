@@ -15,7 +15,21 @@ MonoBehaviour:
   isFree: 1
   unlockCost: 0
   purchaseCost: 0
-  weaponCraftingRecipeDescription: Noob.
+  weaponDescription:
+  - amount: 5
+    description: Damage
+  - amount: 2
+    description: Fire Rate
+  - amount: 0%
+    description: Crit Chance
+  - amount: 50%
+    description: Crit Damage
+  - amount: 10
+    description: Projectile Speed
+  - amount: 
+    description: 
+  - amount: 
+    description: Early game simple pistol that shoots basic projectiles and is consistent.
   weapon: {fileID: 11400000, guid: 05999a0be426d764f8c18b11c29079bb, type: 2}
   item: {fileID: 11400000, guid: f434efdb5dacd884f8e5ebd731934226, type: 2}
   ingredients: []

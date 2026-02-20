@@ -358,7 +358,14 @@ public class Inventory : MonoBehaviour
         UIManager.instance.infoInventoryName.text = slot.inventoryItem.itemName;
         UIManager.instance.infoInventoryImage.sprite = slot.inventoryItem.sprite;
         UIManager.instance.infoInventoryImage.enabled = true;
-        UIManager.instance.infoInventoryText.text = slot.inventoryItem.description;
+        if (slot.inventoryItem.isWeapon == true)
+        {
+
+        }
+        else
+        {
+            UIManager.instance.infoInventoryText.text = slot.inventoryItem.description;
+        }
         UIManager.instance.stackAmountSlider.minValue = 0;
         UIManager.instance.stackAmountSlider.maxValue = slot.currentStackSize;
         UIManager.instance.stackAmountSlider.value = slot.currentStackSize;

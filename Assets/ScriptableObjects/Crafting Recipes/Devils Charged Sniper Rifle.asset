@@ -15,7 +15,22 @@ MonoBehaviour:
   isFree: 0
   unlockCost: 800
   purchaseCost: 1500
-  weaponCraftingRecipeDescription: The Devil's power.
+  weaponDescription:
+  - amount: 50
+    description: Damage
+  - amount: 0.5
+    description: Fire Rate
+  - amount: 10%
+    description: Crit Chance
+  - amount: 100%
+    description: Crit Damage
+  - amount: 25
+    description: Projectile Speed
+  - amount: 
+    description: 
+  - amount: 
+    description: An extremely strong sniper rifle that exceeds in single target with
+      high damage and very low fire rate.
   weapon: {fileID: 11400000, guid: dc64a8829b1b7d74696f040b9b68325b, type: 2}
   item: {fileID: 11400000, guid: 21414279f7b4e61469bf4c858944467f, type: 2}
   ingredients:

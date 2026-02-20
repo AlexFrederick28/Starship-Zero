@@ -21,4 +21,5 @@ public class InventoryItemPackage : ScriptableObject
 
     [Header("Weapon")]
     public WeaponScriptableObject weapon;
+    public CraftingRecipe.CraftingDescription[] weaponDescription;
 }

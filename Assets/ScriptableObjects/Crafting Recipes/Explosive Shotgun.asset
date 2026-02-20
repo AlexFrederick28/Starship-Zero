@@ -15,7 +15,22 @@ MonoBehaviour:
   isFree: 0
   unlockCost: 650
   purchaseCost: 1200
-  weaponCraftingRecipeDescription: Bigger boom boom.
+  weaponDescription:
+  - amount: 10
+    description: Damage
+  - amount: 0.75
+    description: Fire Rate
+  - amount: 0%
+    description: Crit Chance
+  - amount: 50%
+    description: Crit Damage
+  - amount: 20
+    description: Projectile Speed
+  - amount: 
+    description: 
+  - amount: 
+    description: Shotgun with a WIDE spread and fast projectiles in an arc that shoots
+      slowly.
   weapon: {fileID: 11400000, guid: 97f2754ccac24a14788e516acba81e78, type: 2}
   item: {fileID: 11400000, guid: a2ed245284632714aa0539fba3a12ec3, type: 2}
   ingredients:

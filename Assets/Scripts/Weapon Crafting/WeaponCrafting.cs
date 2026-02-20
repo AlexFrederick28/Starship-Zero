@@ -63,7 +63,22 @@ public class WeaponCrafting : MonoBehaviour, IPointerClickHandler
     public void ShowCraftingSummary()
     {
         // when this weapon is clicked in the crafting menu, show all thd details related to it
-        UIManager.instance.weaponCraftingSelectedDescription.text = recipe.weaponCraftingRecipeDescription;
+
+        UIManager.instance.weaponCraftingSelectedDescription.text = string.Empty;
+        UIManager.instance.weaponCraftingSelectedDescriptionAmount.text = string.Empty;
+        for (int i = 0; i < recipe.weaponDescription.Length; i++)
+        {
+            if (i == 0)
+            {
+                UIManager.instance.weaponCraftingSelectedDescription.text += recipe.weaponDescription[i].description;
+                UIManager.instance.weaponCraftingSelectedDescriptionAmount.text += recipe.weaponDescription[i].amount;
+            }
+            else
+            {
+                UIManager.instance.weaponCraftingSelectedDescription.text += "\n" + recipe.weaponDescription[i].description;
+                UIManager.instance.weaponCraftingSelectedDescriptionAmount.text += "\n" + recipe.weaponDescription[i].amount;
+            }
+        }
         //UIManager.instance.weaponCraftingSelectedImage.sprite = recipe.weapon.sprite;
         UIManager.instance.weaponCraftingSelectedName.text = recipe.weapon.weaponName;
 

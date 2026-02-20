@@ -15,7 +15,22 @@ MonoBehaviour:
   isFree: 0
   unlockCost: 450
   purchaseCost: 800
-  weaponCraftingRecipeDescription: Shocking.
+  weaponDescription:
+  - amount: 7.5
+    description: Damage
+  - amount: 2.5
+    description: Fire Rate
+  - amount: 5%
+    description: Crit Chance
+  - amount: 50%
+    description: Crit Damage
+  - amount: 15
+    description: Projectile Speed
+  - amount: 
+    description: 
+  - amount: 
+    description: A very consistent low damaging assault rifle that constantly fires
+      bullets.
   weapon: {fileID: 11400000, guid: cee4685c4493b55468270d05a4e71b88, type: 2}
   item: {fileID: 11400000, guid: 2c94c08e396236d46b423fc16bd6fafa, type: 2}
   ingredients:

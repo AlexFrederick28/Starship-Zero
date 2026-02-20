@@ -56,6 +56,7 @@ public class UIManager : MonoBehaviour
     public GameObject weaponCraftingUIParent;
     public TextMeshProUGUI weaponCraftingSelectedName;
     public TextMeshProUGUI weaponCraftingSelectedDescription;
+    public TextMeshProUGUI weaponCraftingSelectedDescriptionAmount;
     public Image weaponCraftingSelectedImage;
     public Scrollbar weaponListScrollbar;
     public GameObject weaponCraftingRecipeParent;

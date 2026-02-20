@@ -15,10 +15,23 @@ MonoBehaviour:
   isFree: 0
   unlockCost: 100
   purchaseCost: 250
-  weaponCraftingRecipeDescription: Gangsta's only.
+  weaponDescription:
+  - amount: 10
+    description: Damage
+  - amount: 1
+    description: Fire Rate
+  - amount: 0%
+    description: Crit Chance
+  - amount: 50%
+    description: Crit Damage
+  - amount: 15
+    description: Projectile Speed
+  - amount: 
+    description: 
+  - amount: 
+    description: Pistol that does mediocre single target damage.
   weapon: {fileID: 11400000, guid: b7b77be51fb6cd948a8e0c6a56078354, type: 2}
   item: {fileID: 11400000, guid: c007b520972bb1948a1d7e5abcb055a5, type: 2}
   ingredients:
   - amount: 1
     ingredient: {fileID: 11400000, guid: 0cd57eff20219574ca8b83290c90b6ac, type: 2}
-    weaponCraftingRecipeSprite: {fileID: 0}
