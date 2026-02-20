@@ -34,7 +34,7 @@ public class WeaponBase : MonoBehaviour
     [SerializeField] private Transform closestTarget;
     [SerializeField] private bool canWeaponFire;
 
-    public InventoryItem.Rarity rarity;
+    public InventoryItemPackage.Rarity rarity;
 
     // bullets from weapon
     [SerializeField] protected GameObject newBullet; // newest bullet
