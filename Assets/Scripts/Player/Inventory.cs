@@ -360,7 +360,19 @@ public class Inventory : MonoBehaviour
         UIManager.instance.infoInventoryImage.enabled = true;
         if (slot.inventoryItem.isWeapon == true)
         {
-
+            for (int i = 0; i < slot.inventoryItem.weaponDescription.Length; i++)
+            {
+                if (i == 0)
+                {
+                    UIManager.instance.infoInventoryText.text += slot.inventoryItem.weaponDescription[i].description;
+                    UIManager.instance.weaponStatInventoryText.text += slot.inventoryItem.weaponDescription[i].amount;
+                }
+                else
+                {
+                    UIManager.instance.infoInventoryText.text += "\n" + slot.inventoryItem.weaponDescription[i].description;
+                    UIManager.instance.weaponStatInventoryText.text += "\n" + slot.inventoryItem.weaponDescription[i].amount;
+                }
+            }
         }
         else
         {

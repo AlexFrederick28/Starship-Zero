@@ -28,6 +28,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI infoInventoryName;
     public Image infoInventoryImage;
     public TextMeshProUGUI infoInventoryText;
+    public TextMeshProUGUI weaponStatInventoryText;
     public TextMeshProUGUI selectedStackAmount;
     public Slider stackAmountSlider;
 

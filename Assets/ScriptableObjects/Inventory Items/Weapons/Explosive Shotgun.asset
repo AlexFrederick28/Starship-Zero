@@ -22,3 +22,19 @@ MonoBehaviour:
   sprite: {fileID: 9192928721345626105, guid: fcbbbbdb02c93484e83cb4726f532044, type: 3}
   dropChance: 0
   weapon: {fileID: 11400000, guid: 97f2754ccac24a14788e516acba81e78, type: 2}
+  weaponDescription:
+  - amount: 10
+    description: Damage
+  - amount: 0.75
+    description: Fire Rate
+  - amount: 0%
+    description: Crit Chance
+  - amount: 50%
+    description: Crit Damage
+  - amount: 20
+    description: Projectile Speed
+  - amount: 
+    description: 
+  - amount: 
+    description: Shotgun with a WIDE spread and fast projectiles in an arc that shoots
+      slowly.

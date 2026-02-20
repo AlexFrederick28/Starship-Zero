@@ -22,3 +22,19 @@ MonoBehaviour:
   sprite: {fileID: 9192928721345626105, guid: fcbbbbdb02c93484e83cb4726f532044, type: 3}
   dropChance: 0
   weapon: {fileID: 11400000, guid: cee4685c4493b55468270d05a4e71b88, type: 2}
+  weaponDescription:
+  - amount: 7.5
+    description: Damage
+  - amount: 2.5
+    description: Fire Rate
+  - amount: 5%
+    description: Crit Chance
+  - amount: 50%
+    description: Crit Damage
+  - amount: 15
+    description: Projectile Speed
+  - amount: 
+    description: 
+  - amount: 
+    description: A very consistent low damaging assault rifle that constantly fires
+      bullets.

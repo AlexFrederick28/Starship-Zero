@@ -22,3 +22,18 @@ MonoBehaviour:
   sprite: {fileID: 6199476883190837557, guid: fcbbbbdb02c93484e83cb4726f532044, type: 3}
   dropChance: 0
   weapon: {fileID: 11400000, guid: 05999a0be426d764f8c18b11c29079bb, type: 2}
+  weaponDescription:
+  - amount: 5
+    description: Damage
+  - amount: 2
+    description: Fire Rate
+  - amount: 0%
+    description: Crit Chance
+  - amount: 50%
+    description: Crit Damage
+  - amount: 10
+    description: Projectile Speed
+  - amount: 
+    description: 
+  - amount: 
+    description: Early game simple pistol that shoots basic projectiles and is consistent.

@@ -1173,7 +1173,7 @@ RectTransform:
   m_Father: {fileID: 1547206030}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2430,7 +2430,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 150, y: 0}
-  m_SizeDelta: {x: 300, y: 0}
+  m_SizeDelta: {x: 315, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &301030085
 MonoBehaviour:
@@ -2479,11 +2479,11 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
+  m_fontSize: 30
   m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 10
+  m_fontSizeMin: 30
   m_fontSizeMax: 30
   m_fontStyle: 0
   m_HorizontalAlignment: 1
@@ -3911,7 +3911,7 @@ RectTransform:
   m_Father: {fileID: 1601357146}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5586,7 +5586,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 980, y: 0}
+  m_SizeDelta: {x: 980, y: 2}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &838078653
 MonoBehaviour:
@@ -7982,11 +7982,11 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
+  m_fontSize: 30
   m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 10
+  m_fontSizeMin: 30
   m_fontSizeMax: 30
   m_fontStyle: 0
   m_HorizontalAlignment: 1
@@ -8020,7 +8020,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 50, w: 0}
+  m_margin: {x: 0, y: 0, z: 60, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -9459,7 +9459,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1467697100
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9510,6 +9510,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelUp
   itemManager: {fileID: 1148713797}
+  CardGO1: {fileID: 0}
+  CardGO2: {fileID: 0}
+  CardGO3: {fileID: 0}
+  cardList: []
+  cardListToChooseFrom: []
 --- !u!4 &1507676255
 Transform:
   m_ObjectHideFlags: 0
@@ -9600,7 +9605,7 @@ RectTransform:
   m_Father: {fileID: 491359529}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -11309,7 +11314,7 @@ RectTransform:
   m_Father: {fileID: 824050655}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -11539,7 +11544,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -0.0000028928916}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 20}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1747188660
 MonoBehaviour:
@@ -12849,6 +12854,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 4020860564896548261, guid: 5a6d9e2c934a7064980f349c321cee3c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4688768272980312557, guid: 5a6d9e2c934a7064980f349c321cee3c, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -13009,6 +13018,10 @@ PrefabInstance:
       propertyPath: retryInfestedRoomButton
       value: 
       objectReference: {fileID: 72147320}
+    - target: {fileID: 5562658886180886453, guid: 5a6d9e2c934a7064980f349c321cee3c, type: 3}
+      propertyPath: weaponStatInventoryText
+      value: 
+      objectReference: {fileID: 301030085}
     - target: {fileID: 5562658886180886453, guid: 5a6d9e2c934a7064980f349c321cee3c, type: 3}
       propertyPath: inventorySlotContentParent
       value: 

@@ -22,3 +22,19 @@ MonoBehaviour:
   sprite: {fileID: 9192928721345626105, guid: fcbbbbdb02c93484e83cb4726f532044, type: 3}
   dropChance: 0
   weapon: {fileID: 11400000, guid: 8e3a47442af018c4cbc860564ebb3855, type: 2}
+  weaponDescription:
+  - amount: 20
+    description: Damage
+  - amount: 0.75
+    description: Fire Rate
+  - amount: 5%
+    description: Crit Chance
+  - amount: 50%
+    description: Crit Damage
+  - amount: 20
+    description: Projectile Speed
+  - amount: 
+    description: 
+  - amount: 
+    description: A high damaging pistol with that has a lower fire rate than the
+      other pistols.
