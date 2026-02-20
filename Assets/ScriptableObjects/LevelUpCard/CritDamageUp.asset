@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fe3f34ff6daac44993f96679f0b82db, type: 3}
+  m_Name: CritDamageUp
+  m_EditorClassIdentifier: Assembly-CSharp::LevelCardScriptableObject
+  cardName: Crit Chance
+  cardText: this is crit damage
+  cardSprite: {fileID: 0}
+  cardItemCount: 1
+  cardEffectType: 3

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LevelCard : MonoBehaviour
+public class LevelUpCard : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -12,10 +12,5 @@ public class LevelCard : MonoBehaviour
     void Update()
     {
         
-    }
-
-    public void CardSelect()
-    {
-
     }
 }
