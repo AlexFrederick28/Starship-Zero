@@ -15,9 +15,10 @@ MonoBehaviour:
   weaponName: 'Shock Assault Rifle  '
   weaponDescription: A very consistent low damaging assault rifle that constantly
     fires bullets
+  weaponSprite: {fileID: 0}
   damage: 7.5
   fireRate: 2.5
   critChance: 5
   critDamage: 50
   projectileSpeed: 15
-  projectileToFire: {fileID: 0}
+  projectileToFire: {fileID: 396421345929245815, guid: ebedc5602757a7c45be0cb715bf235b3, type: 3}

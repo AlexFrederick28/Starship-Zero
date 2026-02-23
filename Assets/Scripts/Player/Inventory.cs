@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using TMPro;
 using Unity.Collections;
 using Unity.VisualScripting;
@@ -404,6 +405,14 @@ public class Inventory : MonoBehaviour
         {
             UIManager.instance.weaponLoadoutButton.onClick.AddListener(EquipAndUnequipWeapon);
             UIManager.instance.weaponLoadoutButton.gameObject.SetActive(true);
+            if (selectedSlot.weaponEquipped == true)
+            {
+                UIManager.instance.weaponLoadoutButton.GetComponentInChildren<TextMeshProUGUI>().text = "Unequip";
+            }
+            else
+            {
+                UIManager.instance.weaponLoadoutButton.GetComponentInChildren<TextMeshProUGUI>().text = "Equip";
+            }
         }
         else
         {
@@ -430,27 +439,25 @@ public class Inventory : MonoBehaviour
                         UIManager.instance.weaponLoadoutButton.GetComponentInChildren<TextMeshProUGUI>().text = "Equip";
                         Debug.Log("Removed weapon");
 
-                        // remove the weapon from the loadout slot and reset the loadout slot
+                        // turn off weapon
+                        playerWeapons[i].GetComponent<WeaponBase>().RemoveWeapon();
+                        playerWeapons[i].gameObject.SetActive(false);
+
+                        // reset loadout slot
+                        weaponLoadoutSlotList[i].inventoryItem = null;
+                        weaponLoadoutSlotList[i].RefreshSlot();
+                        weaponLoadoutSlotList[i].weaponEquipped = false;
+
+                        // remove the weapon from the loadout slot
                         for (int x = 0; x < weaponLoadoutList.Count; x++)
                         {
                             if (weaponLoadoutList[x].equipID != weaponLoadoutSlotList[i].equipID) { continue; }
                             if (weaponLoadoutSlotList[i].equipID == weaponLoadoutList[x].equipID)
                             {
-                                //weaponLoadoutList.Remove(weaponLoadoutList[x]);
                                 weaponLoadoutList.RemoveAt(x);
                                 Debug.Log("removed weapon from list with correct equipID");
                             }
-                            for (int y = 0; y < weaponLoadoutSlotList.Count; y++)
-                            {
-                            }
                         }
-                        weaponLoadoutSlotList[i].inventoryItem = null;
-                        weaponLoadoutSlotList[i].weaponEquipped = false;
-                        weaponLoadoutSlotList[i].RefreshSlot();
-
-                        // turn off weapon
-                        playerWeapons[i].GetComponent<WeaponBase>().RemoveWeapon();
-                        playerWeapons[i].gameObject.SetActive(false);
                         break;
                     }
                 }
@@ -461,7 +468,7 @@ public class Inventory : MonoBehaviour
                 EquippedWeapon equippedWeapon = new EquippedWeapon();
                 equippedWeapon.equippedSlotItem = selectedSlot;
                 weaponLoadoutList.Add(equippedWeapon);
-                equippedWeapon.equipID = weaponLoadoutList.Count;
+                equippedWeapon.equipID = weaponLoadoutList.Count - 1;
                 for (int i = 0; i < weaponLoadoutSlotList.Count; i++)
                 {
                     if (weaponLoadoutSlotList[i].inventoryItem == null)

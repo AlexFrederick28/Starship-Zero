@@ -15,9 +15,10 @@ MonoBehaviour:
   weaponName: Devil's Charged Sniper Rifle
   weaponDescription: An extremely strong sniper rifle that exceeds in single target
     with high damage and very low fire rate
+  weaponSprite: {fileID: 0}
   damage: 50
   fireRate: 0.5
   critChance: 10
   critDamage: 100
   projectileSpeed: 25
-  projectileToFire: {fileID: 0}
+  projectileToFire: {fileID: 396421345929245815, guid: ebedc5602757a7c45be0cb715bf235b3, type: 3}

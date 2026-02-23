@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponScriptableObject
   weaponName: Hypercharged Sniper Rifle
   weaponDescription: A strong sniper that has a faster fire but deals less damage
+  weaponSprite: {fileID: 0}
   damage: 30
   fireRate: 0.75
   critChance: 10
   critDamage: 50
   projectileSpeed: 20
-  projectileToFire: {fileID: 0}
+  projectileToFire: {fileID: 396421345929245815, guid: ebedc5602757a7c45be0cb715bf235b3, type: 3}
