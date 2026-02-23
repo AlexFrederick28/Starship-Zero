@@ -42,6 +42,10 @@ public class Inventory : MonoBehaviour
     public LayerMask layerMask;
     public GameObject inventoryUI;
 
+    public GameObject[] playerWeapons;
+    public List<InventorySlot> weaponLoadoutSlotList;
+    public List<WeaponScriptableObject> weaponLoadoutList;
+
     public List<InventorySlot> multiSelectedSlots;
     public Action OnClearingMultiSelectedSlotsFromList;
 
@@ -384,6 +388,39 @@ public class Inventory : MonoBehaviour
         slot.slotImage.color = Color.white;
         selectedSlot = slot;
         slot.viewingSlot = true;
+
+        if (slot.inventoryItem.isWeapon == true)
+        {
+            UIManager.instance.weaponLoadoutButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            UIManager.instance.weaponLoadoutButton.gameObject.SetActive(false);
+        }
+    }
+
+    public void EquipAndUnequipWeapon()
+    {
+        if (selectedSlot != null && selectedSlot.inventoryItem.isWeapon == true)
+        {
+            if (selectedSlot.weaponEquipped == true)
+            {
+                // remove weapon from loadout
+
+            }
+            else
+            {
+                // add weapon to loadout
+                weaponLoadoutList.Add(selectedSlot.inventoryItem.weapon);
+                for (int i = 0; i < weaponLoadoutSlotList.Count; i++)
+                {
+                    if (weaponLoadoutSlotList[i].inventoryItem == null)
+                    {
+                        weaponLoadoutSlotList[i].inventoryItem = selectedSlot.inventoryItem;
+                    }
+                }
+            }
+        }
     }
 
     public void HideSelectedItem(InventorySlot slot)

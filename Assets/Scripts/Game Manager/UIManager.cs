@@ -31,6 +31,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI weaponStatInventoryText;
     public TextMeshProUGUI selectedStackAmount;
     public Slider stackAmountSlider;
+    public Button weaponLoadoutButton;
 
     [Space]
     [Header("Death Menu")]

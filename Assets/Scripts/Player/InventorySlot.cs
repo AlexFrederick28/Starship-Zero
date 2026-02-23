@@ -18,6 +18,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     public Color highlightedColour;
     public bool selectedSlot = false;
     public bool viewingSlot = false;
+    public bool weaponEquipped = false;
 
     private void OnEnable()
     {
@@ -25,11 +26,6 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         GameState.instance.playerInventory.OnClearingMultiSelectedSlotsFromList += DeselectSlot;
         RefreshSlot();
 
-        //if (inventoryItem == null)
-        //{
-        //    inventoryItem = new InventoryItemPackage();
-        //    inventoryItem.itemName = string.Empty;
-        //}
         if (inventoryItem != null)
         {
             childImage.enabled = true;
