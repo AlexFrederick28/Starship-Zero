@@ -95,6 +95,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1151668007154742437}
   - {fileID: 3304868010315321894}
   - {fileID: 3420481106335605635}
   - {fileID: 8142883366373027167}
@@ -365,6 +366,7 @@ MonoBehaviour:
   maxDifficulty: 0.5
   scalingSegments: 0
   timerReachedMaxLength: 0
+  timerPaused: 0
   questLevel: {x: 0, y: 0}
   questID: 4
   questObjects: []
@@ -603,6 +605,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EmptyDoor
   playerEntryPoint: {fileID: 1000187462187205667}
   playerExitPoint: {fileID: 4068341901873724054}
+--- !u!1 &6800867899483785518
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1151668007154742437}
+  m_Layer: 0
+  m_Name: Room Segments
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1151668007154742437
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6800867899483785518}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2799821837631452422}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6833520512639123060
 GameObject:
   m_ObjectHideFlags: 0
