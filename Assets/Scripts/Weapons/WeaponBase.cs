@@ -64,14 +64,7 @@ public class WeaponBase : MonoBehaviour
             itemManager = FindFirstObjectByType<ItemManager>();
         }
 
-        weaponName = weaponType.weaponName;
-        weaponDescription = weaponType.weaponDescription;
-        baseDamage = weaponType.damage;
-        baseFireRate = weaponType.fireRate;
-        baseCritChance = weaponType.critChance;
-        baseCritDamage = weaponType.critDamage;
-        projectileSpeed = weaponType.projectileSpeed;
-        projectileToFire = weaponType.projectileToFire;    
+        AssignWeaponStats();
     }
 
     protected virtual void Update()
@@ -301,11 +294,47 @@ public class WeaponBase : MonoBehaviour
         }
     }
 
+    public void ChangeWeaponType(WeaponScriptableObject type)
+    {
+        weaponType = type;
+        AssignWeaponStats();
+    }
+
+    public void RemoveWeapon()
+    {
+        weaponType = null;
+        AssignWeaponStats();
+    }
+
+    public void AssignWeaponStats()
+    {
+        if (weaponType == null)
+        {
+            weaponName = string.Empty;
+            weaponDescription = string.Empty;
+            baseDamage = 0;
+            baseFireRate = 0;
+            baseCritChance = 0;
+            baseCritDamage = 0;
+            projectileSpeed = 0;
+            projectileToFire = null;
+        }
+        else
+        {
+            weaponName = weaponType.weaponName;
+            weaponDescription = weaponType.weaponDescription;
+            baseDamage = weaponType.damage;
+            baseFireRate = weaponType.fireRate;
+            baseCritChance = weaponType.critChance;
+            baseCritDamage = weaponType.critDamage;
+            projectileSpeed = weaponType.projectileSpeed;
+            projectileToFire = weaponType.projectileToFire;
+        }
+    }
+
     //void OnDrawGizmos() // visual for attack range radius of the weapon
     //{
     //    Gizmos.color = Color.blue;
     //    Gizmos.DrawWireSphere(transform.position, detectionRadius);
     //}
-
-
 }

@@ -19,6 +19,8 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     public bool selectedSlot = false;
     public bool viewingSlot = false;
     public bool weaponEquipped = false;
+    public int equipID;
+    public bool isLoadoutSlot = false;
 
     private void OnEnable()
     {

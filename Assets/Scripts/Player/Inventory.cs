@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -15,6 +16,14 @@ public class Inventory : MonoBehaviour
     {
         public int amount;
         public InventoryItemPackage inventoryItem;
+    }
+
+    [Serializable]
+    public class EquippedWeapon
+    {
+        // when equipping an item we need to track the inventory slot its attached too
+        public int equipID; // id that tracks the correct item correlation (equals the loadout slot number)
+        public InventorySlot equippedSlotItem; // the slot/item that has been equipped
     }
 
     // need to create seperate list for other objects that are not specimens
@@ -44,7 +53,7 @@ public class Inventory : MonoBehaviour
 
     public GameObject[] playerWeapons;
     public List<InventorySlot> weaponLoadoutSlotList;
-    public List<WeaponScriptableObject> weaponLoadoutList;
+    public List<EquippedWeapon> weaponLoadoutList;
 
     public List<InventorySlot> multiSelectedSlots;
     public Action OnClearingMultiSelectedSlotsFromList;
@@ -389,8 +398,11 @@ public class Inventory : MonoBehaviour
         selectedSlot = slot;
         slot.viewingSlot = true;
 
+        // shows weapon equip/un-equip button
+        UIManager.instance.weaponLoadoutButton.onClick.RemoveAllListeners();
         if (slot.inventoryItem.isWeapon == true)
         {
+            UIManager.instance.weaponLoadoutButton.onClick.AddListener(EquipAndUnequipWeapon);
             UIManager.instance.weaponLoadoutButton.gameObject.SetActive(true);
         }
         else
@@ -406,19 +418,80 @@ public class Inventory : MonoBehaviour
             if (selectedSlot.weaponEquipped == true)
             {
                 // remove weapon from loadout
+                for (int i = 0; i < weaponLoadoutSlotList.Count; i++)
+                {
+                    //if (weaponLoadoutSlotList[i] == null) { continue; }
+                    if (selectedSlot.equipID != weaponLoadoutSlotList[i].equipID) { continue; }
+                    if (weaponLoadoutSlotList[i] != null) /*&& selectedSlot.isLoadoutSlot == false)*/
+                    {
+                        // if we have selected a weapon in the inventory rather than a loadout slot 
+                        // notify the inventory which weapon has been unequipped
+                        SearchInventoryForEquippedWeapon(weaponLoadoutSlotList[i]);
+                        UIManager.instance.weaponLoadoutButton.GetComponentInChildren<TextMeshProUGUI>().text = "Equip";
+                        Debug.Log("Removed weapon");
 
+                        // remove the weapon from the loadout slot and reset the loadout slot
+                        for (int x = 0; x < weaponLoadoutList.Count; x++)
+                        {
+                            if (weaponLoadoutList[x].equipID != weaponLoadoutSlotList[i].equipID) { continue; }
+                            if (weaponLoadoutSlotList[i].equipID == weaponLoadoutList[x].equipID)
+                            {
+                                //weaponLoadoutList.Remove(weaponLoadoutList[x]);
+                                weaponLoadoutList.RemoveAt(x);
+                                Debug.Log("removed weapon from list with correct equipID");
+                            }
+                            for (int y = 0; y < weaponLoadoutSlotList.Count; y++)
+                            {
+                            }
+                        }
+                        weaponLoadoutSlotList[i].inventoryItem = null;
+                        weaponLoadoutSlotList[i].weaponEquipped = false;
+                        weaponLoadoutSlotList[i].RefreshSlot();
+
+                        // turn off weapon
+                        playerWeapons[i].GetComponent<WeaponBase>().RemoveWeapon();
+                        playerWeapons[i].gameObject.SetActive(false);
+                        break;
+                    }
+                }
             }
             else
             {
                 // add weapon to loadout
-                weaponLoadoutList.Add(selectedSlot.inventoryItem.weapon);
+                EquippedWeapon equippedWeapon = new EquippedWeapon();
+                equippedWeapon.equippedSlotItem = selectedSlot;
+                weaponLoadoutList.Add(equippedWeapon);
+                equippedWeapon.equipID = weaponLoadoutList.Count;
                 for (int i = 0; i < weaponLoadoutSlotList.Count; i++)
                 {
                     if (weaponLoadoutSlotList[i].inventoryItem == null)
                     {
                         weaponLoadoutSlotList[i].inventoryItem = selectedSlot.inventoryItem;
+                        weaponLoadoutSlotList[i].weaponEquipped = true;
+                        weaponLoadoutSlotList[i].RefreshSlot();
+                        playerWeapons[i].GetComponent<WeaponBase>().ChangeWeaponType(weaponLoadoutSlotList[i].inventoryItem.weapon);
+                        playerWeapons[i].gameObject.SetActive(true);
+                        selectedSlot.weaponEquipped = true;
+                        selectedSlot.equipID = equippedWeapon.equipID;
+                        UIManager.instance.weaponLoadoutButton.GetComponentInChildren<TextMeshProUGUI>().text = "Unequip";
+                        Debug.Log("Equipped Weapon");
+                        break;
                     }
                 }
+            }
+        }
+    }
+
+    public void SearchInventoryForEquippedWeapon(InventorySlot weapon)
+    {
+        for (int i = 0; i < inventorySlots.Count; i++)
+        {
+            if (inventorySlots[i].equipID == weapon.equipID && inventorySlots[i].weaponEquipped == true)
+            {
+                // if the weapon is identical, and the weapon is equipped. Unequip it
+                inventorySlots[i].weaponEquipped = false;
+                Debug.Log("Found weapon that is equipped with the same ID and will unequip");
+                break;
             }
         }
     }
