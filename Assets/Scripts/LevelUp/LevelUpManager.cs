@@ -14,7 +14,7 @@ public class LevelUpManager : MonoBehaviour
     [System.Serializable]
     public class ItemCardInfo
     {
-        public int itemLevelCount; // the amount of the item obtained 
+        //public int itemLevelCount; // the amount of the item obtained 
         public LevelCardScriptableObject LevelCardSO;
 
     }
@@ -84,28 +84,41 @@ public class LevelUpManager : MonoBehaviour
         int randomCardIndex1 = Random.Range(0, cardListToChooseFrom.Count); // seperate int so it can be removed later
         ItemCardInfo pickedCard1 = cardListToChooseFrom[randomCardIndex1]; // chosen 'card'
 
+        //Debug.Log("Card 1 choice:" + pickedCard1.LevelCardSO.cardName);
 
-        // BUG FIX ---------------------------------------------------
-        Debug.Log(pickedCard1.LevelCardSO.cardName + " aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"); // test
-        Debug.Log(cardListToChooseFrom[randomCardIndex1].LevelCardSO.name + "bbbbbbbbbbbbbbbbbb");
-
-
-
-        //set text
         UIManager.instance.levelUpItemName[0].text = pickedCard1.LevelCardSO.cardName;
-        UIManager.instance.levelUpItemStatDescription[0].text = pickedCard1.LevelCardSO.cardText; 
+        UIManager.instance.levelUpItemStatDescription[0].text = pickedCard1.LevelCardSO.cardText;
+        UIManager.instance.levelUpItemLevel[0].text = pickedCard1.LevelCardSO.cardItemCount.ToString();
+        UIManager.instance.levelUpItemImage[0].sprite = pickedCard1.LevelCardSO.cardSprite;
 
         cardListToChooseFrom.RemoveAt(randomCardIndex1); // remove from temp pool of cards
 
-        // debug after remove (BUG FIX)
-        Debug.Log(cardListToChooseFrom[0].LevelCardSO.cardName);
-        Debug.Log(cardListToChooseFrom[1].LevelCardSO.cardName);
-        Debug.Log(cardListToChooseFrom[2].LevelCardSO.cardName);
-
 
         // Card 2
+        int randomCardIndex2 = Random.Range(0, cardListToChooseFrom.Count);
+        ItemCardInfo pickedCard2 = cardListToChooseFrom[randomCardIndex2];
+
+        //Debug.Log("Card 2 choice:" + pickedCard2.LevelCardSO.cardName);
+
+        UIManager.instance.levelUpItemName[1].text = pickedCard2.LevelCardSO.cardName;
+        UIManager.instance.levelUpItemStatDescription[1].text = pickedCard2.LevelCardSO.cardText;
+        UIManager.instance.levelUpItemLevel[1].text = pickedCard2.LevelCardSO.cardItemCount.ToString();
+        UIManager.instance.levelUpItemImage[1].sprite = pickedCard2.LevelCardSO.cardSprite;
+
+        cardListToChooseFrom.RemoveAt(randomCardIndex2);
 
         // Card 3
+        int randomCardIndex3 = Random.Range(0, cardListToChooseFrom.Count);
+        ItemCardInfo pickedCard3 = cardListToChooseFrom[randomCardIndex3];
+
+        //Debug.Log("Card 3 choice:" + pickedCard3.LevelCardSO.cardName);
+
+        UIManager.instance.levelUpItemName[2].text = pickedCard3.LevelCardSO.cardName;
+        UIManager.instance.levelUpItemStatDescription[2].text = pickedCard3.LevelCardSO.cardText;
+        UIManager.instance.levelUpItemLevel[2].text = pickedCard3.LevelCardSO.cardItemCount.ToString();
+        UIManager.instance.levelUpItemImage[2].sprite = pickedCard3.LevelCardSO.cardSprite;
+
+        cardListToChooseFrom.RemoveAt(randomCardIndex3);
 
     }
 

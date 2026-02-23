@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe3f34ff6daac44993f96679f0b82db, type: 3}
   m_Name: CritDamageUp
   m_EditorClassIdentifier: Assembly-CSharp::LevelCardScriptableObject
-  cardName: Crit Chance
+  cardName: Crit damage
   cardText: this is crit damage
-  cardSprite: {fileID: 0}
-  cardItemCount: 1
+  cardSprite: {fileID: 6199476883190837557, guid: fcbbbbdb02c93484e83cb4726f532044, type: 3}
+  cardItemCount: 0
   cardEffectType: 3
