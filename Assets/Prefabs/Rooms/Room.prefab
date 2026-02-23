@@ -383,6 +383,8 @@ MonoBehaviour:
   spawnAmountMulitplier: 500
   easyEnemiesToSpawn:
   - {fileID: 7749859244026942653, guid: 89b3369a00723ea408d0414c75daca8f, type: 3}
+  - {fileID: 1593490131583575721, guid: e8d864de738d43c4fbccc2b056e668a7, type: 3}
+  - {fileID: 3121111781613522731, guid: a48a53263f5717f4a944d37628fc9bab, type: 3}
   mediumEnemiesToSpawn:
   - {fileID: 7749859244026942653, guid: 2525cc24bc7c69b43b5711a6887f8003, type: 3}
   hardEnemiesToSpawn:
