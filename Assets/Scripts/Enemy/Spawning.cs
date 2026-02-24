@@ -139,6 +139,7 @@ public class Spawning : Difficulty
     private int bossIndexNumb;
 
     public Action OnInfestedRoomReset;
+    public Action OnCompletingInfestedRoom;
 
     public bool playerClearedRoom = false;
     private bool PlayerWinCondition()
@@ -157,6 +158,7 @@ public class Spawning : Difficulty
                 }
             }
             GetComponentInParent<Room>().currentState = GetComponentInParent<Room>().clearedState;
+            OnCompletingInfestedRoom?.Invoke();
             return true;
         }
         else
@@ -172,11 +174,13 @@ public class Spawning : Difficulty
     {
         if (GameState.instance != null)
         {
-            Debug.Log(this.name + "Subscribed");
+            //Debug.Log(this.name + "Subscribed");
             GameState.instance.OnPlayerRespawn += ResetInfestedRoom;
             GameState.instance.OnPlayerRetry += ResetInfestedRoom;
             GameState.instance.OnPlayerRespawn += DisableInstanceOnPlayerRespawn;
             GameState.instance.OnPlayerLevelUp += PauseSpawning;
+
+            OnCompletingInfestedRoom += GameState.instance.playerInventory.DestroyLoadout;
         }
 
         if (instance == null)
@@ -196,6 +200,8 @@ public class Spawning : Difficulty
         GameState.instance.OnPlayerRetry -= ResetInfestedRoom;
         GameState.instance.OnPlayerRespawn -= DisableInstanceOnPlayerRespawn;
         GameState.instance.OnPlayerLevelUp -= PauseSpawning;
+
+        OnCompletingInfestedRoom -= GameState.instance.playerInventory.DestroyLoadout;
 
         if (instance == this)
         {

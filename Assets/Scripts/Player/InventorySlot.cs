@@ -85,6 +85,8 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         currentStackSize = 0;
         childImage.sprite = null;
         childImage.enabled = false;
+        weaponEquipped = false;
+        equipID = 0;
     }
 
     public void RefreshSlot()

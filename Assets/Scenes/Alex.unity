@@ -913,7 +913,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -60}
+  m_AnchoredPosition: {x: 0, y: -147}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &67999272
@@ -1227,11 +1227,11 @@ MonoBehaviour:
       - m_Target: {fileID: 1518945970}
         m_TargetAssemblyTypeName: LevelUpManager, Assembly-CSharp
         m_MethodName: CardSelected
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2285,11 +2285,11 @@ MonoBehaviour:
       - m_Target: {fileID: 1518945970}
         m_TargetAssemblyTypeName: LevelUpManager, Assembly-CSharp
         m_MethodName: CardSelected
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2781,7 +2781,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -80}
+  m_AnchoredPosition: {x: 0, y: -167}
   m_SizeDelta: {x: 600, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &290581652
@@ -3873,7 +3873,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -10}
+  m_AnchoredPosition: {x: 10, y: -97}
   m_SizeDelta: {x: 600, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &421139651
@@ -4526,11 +4526,11 @@ MonoBehaviour:
       - m_Target: {fileID: 1518945970}
         m_TargetAssemblyTypeName: LevelUpManager, Assembly-CSharp
         m_MethodName: CardSelected
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -6537,7 +6537,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -10}
+  m_AnchoredPosition: {x: 0, y: -97}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &768115137
@@ -6673,7 +6673,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -60}
+  m_AnchoredPosition: {x: 0, y: -147}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &781748675
@@ -10616,11 +10616,11 @@ RectTransform:
   - {fileID: 232379509}
   m_Father: {fileID: 539400638}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -10, y: 10}
-  m_SizeDelta: {x: 250, y: 50}
-  m_Pivot: {x: 1, y: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -36}
+  m_SizeDelta: {x: 1850, y: 50}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1359334029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11427,11 +11427,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 539400638}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -35, y: 50}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 1, y: 0}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1424360840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11828,6 +11828,12 @@ MonoBehaviour:
   CardGO1: {fileID: 0}
   CardGO2: {fileID: 0}
   CardGO3: {fileID: 0}
+  pickedCard1:
+    LevelCardSO: {fileID: 0}
+  pickedCard2:
+    LevelCardSO: {fileID: 0}
+  pickedCard3:
+    LevelCardSO: {fileID: 0}
   cardList: []
   cardListToChooseFrom: []
 --- !u!4 &1507676255
@@ -12151,7 +12157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -10}
+  m_AnchoredPosition: {x: 0, y: -97}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1581831381
@@ -60503,7 +60509,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 20, y: 0}
+  m_SizeDelta: {x: 40, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1792305378
 MonoBehaviour:
@@ -60518,7 +60524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -62173,15 +62179,15 @@ PrefabInstance:
     - target: {fileID: 4020860564896548261, guid: 5a6d9e2c934a7064980f349c321cee3c, type: 3}
       propertyPath: CardGO1
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 715763482}
     - target: {fileID: 4020860564896548261, guid: 5a6d9e2c934a7064980f349c321cee3c, type: 3}
       propertyPath: CardGO2
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1530293470}
     - target: {fileID: 4020860564896548261, guid: 5a6d9e2c934a7064980f349c321cee3c, type: 3}
       propertyPath: CardGO3
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1441839680}
     - target: {fileID: 4020860564896548261, guid: 5a6d9e2c934a7064980f349c321cee3c, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -63004,6 +63010,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 428295092610920416, guid: 48285cebc3c31e44cab4185c16fdd8dd, type: 3}
+      propertyPath: weaponType
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1425397096900734612, guid: 48285cebc3c31e44cab4185c16fdd8dd, type: 3}
+      propertyPath: weaponType
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4318514336278049100, guid: 48285cebc3c31e44cab4185c16fdd8dd, type: 3}
       propertyPath: m_Layer
       value: 30
@@ -63013,17 +63027,9 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4897798138333844846, guid: 48285cebc3c31e44cab4185c16fdd8dd, type: 3}
-      propertyPath: damage
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 4897798138333844846, guid: 48285cebc3c31e44cab4185c16fdd8dd, type: 3}
-      propertyPath: fireRate
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4897798138333844846, guid: 48285cebc3c31e44cab4185c16fdd8dd, type: 3}
       propertyPath: weaponType
       value: 
-      objectReference: {fileID: 11400000, guid: cce55908474f4c64095414ad8aac65ce, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 7311839100965269547, guid: 48285cebc3c31e44cab4185c16fdd8dd, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -63072,6 +63078,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7780437159749607076, guid: 48285cebc3c31e44cab4185c16fdd8dd, type: 3}
+      propertyPath: weaponType
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8215110890558832416, guid: 48285cebc3c31e44cab4185c16fdd8dd, type: 3}
       propertyPath: collectionSpeed
       value: 5
@@ -63102,7 +63112,7 @@ PrefabInstance:
       objectReference: {fileID: 719045309}
     - target: {fileID: 8878544019969407335, guid: 48285cebc3c31e44cab4185c16fdd8dd, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

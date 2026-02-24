@@ -27,7 +27,6 @@ public class Inventory : MonoBehaviour
         public InventorySlot equippedSlotItem; // the slot/item that has been equipped
     }
 
-    // need to create seperate list for other objects that are not specimens
     public int maxInventorySlots;
     public InventorySlot selectedSlot;
     public List<InventorySlot> inventorySlots;
@@ -103,8 +102,6 @@ public class Inventory : MonoBehaviour
 
     public void SortStacksInInventory()
     {
-        // can possible move this function to work off of a button, as selling an amount from a stack but not seeing the stack count go down is a little jarring
-
         for (int desiredPosition = 0; desiredPosition < inventorySlots.Count; desiredPosition++)
         {
             // loop through the max amount of slots, and for each slot, search for a fillable stack to combine
@@ -461,13 +458,10 @@ public class Inventory : MonoBehaviour
                         Debug.Log("Removed weapon");
 
                         // turn off weapon
-                        playerWeapons[i].GetComponent<WeaponBase>().RemoveWeapon();
-                        playerWeapons[i].gameObject.SetActive(false);
+                        TurnOffWeapon(playerWeapons[i].GetComponent<WeaponBase>());
 
                         // reset loadout slot
-                        weaponLoadoutSlotList[i].inventoryItem = null;
-                        weaponLoadoutSlotList[i].RefreshSlot();
-                        weaponLoadoutSlotList[i].weaponEquipped = false;
+                        ResetLoadoutSlot(weaponLoadoutSlotList[i]);
                         if (weaponLoadoutSlotList[i].viewingSlot == true) { weaponLoadoutSlotList[i].SelectSlot(); } // deselects the empty weapon slot
 
                         // remove the weapon from the loadout slot
@@ -530,13 +524,10 @@ public class Inventory : MonoBehaviour
                     Debug.Log("Removed weapon");
 
                     // turn off weapon
-                    playerWeapons[i].GetComponent<WeaponBase>().RemoveWeapon();
-                    playerWeapons[i].gameObject.SetActive(false);
+                    TurnOffWeapon(playerWeapons[i].GetComponent<WeaponBase>());
 
                     // reset loadout slot
-                    weaponLoadoutSlotList[i].inventoryItem = null;
-                    weaponLoadoutSlotList[i].RefreshSlot();
-                    weaponLoadoutSlotList[i].weaponEquipped = false;
+                    ResetLoadoutSlot(weaponLoadoutSlotList[i]);
                     if (weaponLoadoutSlotList[i].viewingSlot == true) { weaponLoadoutSlotList[i].SelectSlot(); } // deselects the empty weapon slot
 
                     // remove the weapon from the loadout slot
@@ -551,6 +542,47 @@ public class Inventory : MonoBehaviour
                     }
                     break;
                 }
+            }
+        }
+    }
+
+    public void TurnOffWeapon(WeaponBase weapon)
+    {
+        weapon.GetComponent<WeaponBase>().RemoveWeapon();
+        weapon.gameObject.SetActive(false);
+    }
+
+    public void ResetLoadoutSlot(InventorySlot slot)
+    {
+        slot.inventoryItem = null;
+        slot.RefreshSlot();
+        slot.weaponEquipped = false;
+    }
+
+    public void DestroyLoadout()
+    {
+        for (int i = 0; i < weaponLoadoutList.Count; i++)
+        {
+            SearchForAndRemoveEquippedWeapon(weaponLoadoutList[i].equippedSlotItem);
+
+            TurnOffWeapon(playerWeapons[i].GetComponent<WeaponBase>());
+            ResetLoadoutSlot(weaponLoadoutSlotList[i]);
+        }
+
+        weaponLoadoutList.Clear();
+    }
+
+    public void SearchForAndRemoveEquippedWeapon(InventorySlot weapon)
+    {
+        for (int i = 0; i < inventorySlots.Count; i++)
+        {
+            if (inventorySlots[i].equipID == weapon.equipID && inventorySlots[i].weaponEquipped == true)
+            {
+                // if the weapon is identical, and the weapon is equipped. Unequip it
+                inventorySlots[i].RenewObject();
+                inventorySlots[i].RefreshSlot();
+                Debug.Log("Removed player weapons after successful infested clear!");
+                break;
             }
         }
     }
