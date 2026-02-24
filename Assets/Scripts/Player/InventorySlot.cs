@@ -62,10 +62,16 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
             slotImage.color = originalColour;
             viewingSlot = false;
         }
-        if (viewingSlot == true)
+
+        // setting the stack slider amount (can change this to occur on click and after pressing sell rather than update)
+        if (viewingSlot == true && inventoryItem.isWeapon == false)
         {
             UIManager.instance.selectedStackAmount.text = UIManager.instance.stackAmountSlider.value.ToString();
             amountFromStackToSell = (int)UIManager.instance.stackAmountSlider.value;
+        }
+        else if (viewingSlot == true && inventoryItem.isWeapon == true)
+        {
+            amountFromStackToSell = currentStackSize;
         }
         else
         {
@@ -131,6 +137,10 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
     public void SellItem()
     {
+        if (inventoryItem.isWeapon == true && weaponEquipped == true)
+        {
+            GameState.instance.playerInventory.EquipAndUnequipWeapon();
+        }
         if (selectedSlot == true)
         {
             GameState.instance.player.AddCurrency(inventoryItem.sellAmount * currentStackSize);

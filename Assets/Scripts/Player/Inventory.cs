@@ -162,6 +162,8 @@ public class Inventory : MonoBehaviour
                     // if the occupied position is not equal to the desired position, move slots
                     inventorySlots[desiredPosition].inventoryItem = inventorySlots[i].inventoryItem;
                     inventorySlots[desiredPosition].currentStackSize = inventorySlots[i].currentStackSize;
+                    inventorySlots[desiredPosition].weaponEquipped = inventorySlots[i].weaponEquipped;
+                    inventorySlots[desiredPosition].equipID = inventorySlots[i].equipID;
 
                     inventorySlots[i].RenewObject();
                     inventorySlots[desiredPosition].RefreshSlot();
@@ -291,6 +293,7 @@ public class Inventory : MonoBehaviour
             {
                 if (multiSelectedSlots[i] != null)
                 {
+                    UnequipMultipleWeapons(multiSelectedSlots[i]);
                     totalEarned += multiSelectedSlots[i].inventoryItem.sellAmount * multiSelectedSlots[i].currentStackSize;
                     Debug.Log("Removing item at position: " + multiSelectedSlots[i].slotPosition);
                     InventoryItemList.RemoveAt(multiSelectedSlots[i].slotPosition);
@@ -369,9 +372,14 @@ public class Inventory : MonoBehaviour
 
     public void ShowSelectedItem(InventorySlot slot)
     {
+        // setting item values
         UIManager.instance.infoInventoryName.text = slot.inventoryItem.itemName;
         UIManager.instance.infoInventoryImage.sprite = slot.inventoryItem.sprite;
         UIManager.instance.infoInventoryImage.enabled = true;
+        UIManager.instance.infoInventoryText.text = string.Empty;
+        UIManager.instance.weaponStatInventoryText.text = string.Empty;
+
+        // setting the description of a weapon
         if (slot.inventoryItem.isWeapon == true)
         {
             for (int i = 0; i < slot.inventoryItem.weaponDescription.Length; i++)
@@ -390,14 +398,27 @@ public class Inventory : MonoBehaviour
         }
         else
         {
+            // set the description of an item if it is not a weapon
             UIManager.instance.infoInventoryText.text = slot.inventoryItem.description;
         }
-        UIManager.instance.stackAmountSlider.minValue = 0;
-        UIManager.instance.stackAmountSlider.maxValue = slot.currentStackSize;
-        UIManager.instance.stackAmountSlider.value = slot.currentStackSize;
+        
+        // displaying and setting the selected slot
         slot.slotImage.color = Color.white;
         selectedSlot = slot;
         slot.viewingSlot = true;
+
+        if (selectedSlot.inventoryItem.isWeapon)
+        {
+            // toggling the slider bar off if it is a weapon, as there can only be one in a stack
+            UIManager.instance.stackAmountSlider.gameObject.SetActive(false);
+        }
+        else
+        {
+            UIManager.instance.stackAmountSlider.gameObject.SetActive(true);
+            UIManager.instance.stackAmountSlider.minValue = 0;
+            UIManager.instance.stackAmountSlider.maxValue = slot.currentStackSize;
+            UIManager.instance.stackAmountSlider.value = slot.currentStackSize;
+        }
 
         // shows weapon equip/un-equip button
         UIManager.instance.weaponLoadoutButton.onClick.RemoveAllListeners();
@@ -429,7 +450,7 @@ public class Inventory : MonoBehaviour
                 // remove weapon from loadout
                 for (int i = 0; i < weaponLoadoutSlotList.Count; i++)
                 {
-                    //if (weaponLoadoutSlotList[i] == null) { continue; }
+                    if (weaponLoadoutSlotList[i].inventoryItem == null) { continue; }
                     if (selectedSlot.equipID != weaponLoadoutSlotList[i].equipID) { continue; }
                     if (weaponLoadoutSlotList[i] != null) /*&& selectedSlot.isLoadoutSlot == false)*/
                     {
@@ -447,6 +468,7 @@ public class Inventory : MonoBehaviour
                         weaponLoadoutSlotList[i].inventoryItem = null;
                         weaponLoadoutSlotList[i].RefreshSlot();
                         weaponLoadoutSlotList[i].weaponEquipped = false;
+                        if (weaponLoadoutSlotList[i].viewingSlot == true) { weaponLoadoutSlotList[i].SelectSlot(); } // deselects the empty weapon slot
 
                         // remove the weapon from the loadout slot
                         for (int x = 0; x < weaponLoadoutList.Count; x++)
@@ -464,15 +486,17 @@ public class Inventory : MonoBehaviour
             }
             else
             {
+                // if the weapon loadout is full, do not add a weapon
+                if (weaponLoadoutList.Count >= 4) { Debug.Log("Weapon loadout is full!"); return; }
                 // add weapon to loadout
                 EquippedWeapon equippedWeapon = new EquippedWeapon();
                 equippedWeapon.equippedSlotItem = selectedSlot;
                 weaponLoadoutList.Add(equippedWeapon);
-                equippedWeapon.equipID = weaponLoadoutList.Count - 1;
                 for (int i = 0; i < weaponLoadoutSlotList.Count; i++)
                 {
                     if (weaponLoadoutSlotList[i].inventoryItem == null)
                     {
+                        equippedWeapon.equipID = i;
                         weaponLoadoutSlotList[i].inventoryItem = selectedSlot.inventoryItem;
                         weaponLoadoutSlotList[i].weaponEquipped = true;
                         weaponLoadoutSlotList[i].RefreshSlot();
@@ -484,6 +508,48 @@ public class Inventory : MonoBehaviour
                         Debug.Log("Equipped Weapon");
                         break;
                     }
+                }
+            }
+        }
+    }
+
+    public void UnequipMultipleWeapons(InventorySlot slot)
+    {
+        if (slot.weaponEquipped == true)
+        {
+            for (int i = 0; i < weaponLoadoutSlotList.Count; i++)
+            {
+                if (weaponLoadoutSlotList[i].inventoryItem == null) { continue; }
+                if (slot.equipID != weaponLoadoutSlotList[i].equipID) { continue; }
+                if (weaponLoadoutSlotList[i] != null) /*&& selectedSlot.isLoadoutSlot == false)*/
+                {
+                    // if we have selected a weapon in the inventory rather than a loadout slot 
+                    // notify the inventory which weapon has been unequipped
+                    SearchInventoryForEquippedWeapon(weaponLoadoutSlotList[i]);
+                    UIManager.instance.weaponLoadoutButton.GetComponentInChildren<TextMeshProUGUI>().text = "Equip";
+                    Debug.Log("Removed weapon");
+
+                    // turn off weapon
+                    playerWeapons[i].GetComponent<WeaponBase>().RemoveWeapon();
+                    playerWeapons[i].gameObject.SetActive(false);
+
+                    // reset loadout slot
+                    weaponLoadoutSlotList[i].inventoryItem = null;
+                    weaponLoadoutSlotList[i].RefreshSlot();
+                    weaponLoadoutSlotList[i].weaponEquipped = false;
+                    if (weaponLoadoutSlotList[i].viewingSlot == true) { weaponLoadoutSlotList[i].SelectSlot(); } // deselects the empty weapon slot
+
+                    // remove the weapon from the loadout slot
+                    for (int x = 0; x < weaponLoadoutList.Count; x++)
+                    {
+                        if (weaponLoadoutList[x].equipID != weaponLoadoutSlotList[i].equipID) { continue; }
+                        if (weaponLoadoutSlotList[i].equipID == weaponLoadoutList[x].equipID)
+                        {
+                            weaponLoadoutList.RemoveAt(x);
+                            Debug.Log("removed weapon from list with correct equipID");
+                        }
+                    }
+                    break;
                 }
             }
         }
