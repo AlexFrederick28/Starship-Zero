@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelCardScriptableObject
   cardName: Attack Damage
   cardText: this is attack damage
-  cardSprite: {fileID: 0}
-  cardItemCount: 1
+  cardSprite: {fileID: 6199476883190837557, guid: fcbbbbdb02c93484e83cb4726f532044, type: 3}
+  cardItemCount: 0
   cardEffectType: 0
