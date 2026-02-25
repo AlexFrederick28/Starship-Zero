@@ -151,7 +151,8 @@ public class WeaponCrafting : MonoBehaviour, IPointerClickHandler
                 // for each ingredient take the required amount for the recipe
                 for (int i = 0; i < recipe.ingredients.Length; i++)
                 {
-                    GameState.instance.playerInventory.RemoveItem(recipe.ingredients[x].ingredient, recipe.ingredients[x].amount, recipe.ingredients[i].ingredient.itemName);
+                    InventoryItemPackage item = recipe.ingredients[x].ingredient;
+                    GameState.instance.playerInventory.RemoveItem(item, recipe.ingredients[x].amount, recipe.ingredients[i].ingredient.itemName);
                 }
             }
             GameState.instance.player.currency -= recipe.purchaseCost;

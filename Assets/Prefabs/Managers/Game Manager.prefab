@@ -72,8 +72,9 @@ MonoBehaviour:
   musicObject: {fileID: 0}
   mainMusic:
   - {fileID: 8300000, guid: 5e7873d3065a41743b9db724dff4189c, type: 3}
-  - {fileID: 8300000, guid: 2e3104d03f1c1234d92ce36ede3c2112, type: 3}
+  - {fileID: 8300000, guid: 46467b935f18e4540962ef57b6bdf1a3, type: 3}
   - {fileID: 8300000, guid: 86e06b6ff7c340e4a8e2a54a7753b286, type: 3}
+  - {fileID: 8300000, guid: 5d77fdf6be35c8645bb47afecfdbc7d0, type: 3}
   battleMusic:
   - {fileID: 8300000, guid: a6388af41684ed14186ddd5c21007b21, type: 3}
   - {fileID: 8300000, guid: c49bb4488db105d48ab2ee9ffd06886c, type: 3}
@@ -124,8 +125,10 @@ MonoBehaviour:
   infoInventoryName: {fileID: 0}
   infoInventoryImage: {fileID: 0}
   infoInventoryText: {fileID: 0}
+  weaponStatInventoryText: {fileID: 0}
   selectedStackAmount: {fileID: 0}
   stackAmountSlider: {fileID: 0}
+  weaponLoadoutButton: {fileID: 0}
   deathMenuParent: {fileID: 0}
   respawnButton: {fileID: 0}
   retryInfestedRoomButton: {fileID: 0}
@@ -140,6 +143,7 @@ MonoBehaviour:
   weaponCraftingUIParent: {fileID: 0}
   weaponCraftingSelectedName: {fileID: 0}
   weaponCraftingSelectedDescription: {fileID: 0}
+  weaponCraftingSelectedDescriptionAmount: {fileID: 0}
   weaponCraftingSelectedImage: {fileID: 0}
   weaponListScrollbar: {fileID: 0}
   weaponCraftingRecipeParent: {fileID: 0}
@@ -179,6 +183,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelUp
   itemManager: {fileID: 0}
+  CardGO1: {fileID: 0}
+  CardGO2: {fileID: 0}
+  CardGO3: {fileID: 0}
+  pickedCard1:
+    LevelCardSO: {fileID: 0}
+  pickedCard2:
+    LevelCardSO: {fileID: 0}
+  pickedCard3:
+    LevelCardSO: {fileID: 0}
+  cardList: []
+  cardListToChooseFrom: []
 --- !u!114 &7702793944015776919
 MonoBehaviour:
   m_ObjectHideFlags: 0

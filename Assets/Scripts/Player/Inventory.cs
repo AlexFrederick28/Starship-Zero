@@ -176,27 +176,27 @@ public class Inventory : MonoBehaviour
     public void AddItemToInventory(InventoryItemPackage type)
     {
         // WEAPONS SHOULD NOT STACK 
-        int desiredStack = 0;
+        //int desiredStack = 0;
         if (type.isWeapon == false)
         {
             for (int i = 0; i < inventorySlots.Count; i++)
             {
-                if (InventoryItemList == null) { continue; }
+                if (InventoryItemList == null) { return; }
                 Debug.Log("List count: " + InventoryItemList.Count + " Iteration: " + i);
                 if (inventorySlots[i].inventoryItem != null)
                 {
-                    if (inventorySlots[desiredStack].inventoryItem.itemName == type.itemName && InventoryItemList[desiredStack].inventoryItem.maxStackSize > 1 && inventorySlots[desiredStack].currentStackSize < InventoryItemList[desiredStack].inventoryItem.maxStackSize)
+                    if (inventorySlots[i].inventoryItem.itemName == type.itemName && InventoryItemList[i].inventoryItem.maxStackSize > 1 && inventorySlots[i].currentStackSize < InventoryItemList[i].inventoryItem.maxStackSize)
                     {
-                        inventorySlots[desiredStack].currentStackSize++;
-                        inventorySlots[desiredStack].stackNumberText.text = inventorySlots[desiredStack].currentStackSize.ToString();
-                        inventoryItemList[desiredStack].amount++;
+                        inventorySlots[i].currentStackSize++;
+                        inventorySlots[i].stackNumberText.text = inventorySlots[i].currentStackSize.ToString();
+                        inventoryItemList[i].amount++;
                         Debug.Log("FOUND SAME TYPE AND ADDED TO DESIRED STACK");
-                        desiredStack = 0;
+                        //desiredStack = 0;
                         return;
                     }
                     else if (i < InventoryItemList.Count)
                     {
-                        desiredStack++;
+                        //desiredStack++;
                         continue;
                     }
                 }
@@ -331,32 +331,42 @@ public class Inventory : MonoBehaviour
         int trackedAmount = amount;
         for (int i = 0; i < InventoryItemList.Count; i++)
         {
-            if (trackedAmount == 0) { return; }
+            if (trackedAmount == 0) { break; }
             if (InventoryItemList[i].inventoryItem.itemName == itemName)
             {
                 int currentItemAmount = InventoryItemList[i].amount;
-                int amountToTake = (int)MathF.Min(amount, currentItemAmount);
+                int amountToTake = (int)MathF.Min(trackedAmount, currentItemAmount);
                 trackedAmount -= amountToTake;
                 Debug.Log("Removed Amount: " + amountToTake + " From Slot Numb: " + i + " Which had an amount of: " + InventoryItemList[i].amount);
                 InventoryItemList[i].amount -= amountToTake;
                 RefreshItemAndSlot(i);
 
-                if (inventoryItemList[i].amount <= 0)
+                if (InventoryItemList[i].amount <= 0)
                 {
                     // adding the item positions to a list to remove the items later
-                    slotsToRemove.Add(inventorySlots[i].slotPosition);
+                    slotsToRemove.Add(i);
                 }
             }
         }
+        Debug.Log("Iems to remove from slots: " + slotsToRemove.ToArray());
+
+        slotsToRemove.Sort();
+        slotsToRemove.Reverse(); // highest to lowest
         for (int i = 0; i < slotsToRemove.Count; i++)
         {
             // removing the slots that are empty (0 in a stack)
             Debug.Log("Removed item at position: " + slotsToRemove[i]);
+            // reset the slot to be empty
+            inventorySlots[slotsToRemove[i]].RenewObject(); // set the object to null essentially (empty slot)
+
+            // ensure the players item list matches
             InventoryItemList.RemoveAt(slotsToRemove[i]);
-            inventorySlots[i].RenewObject();
-            RefreshItemAndSlot(i);
+
+            // refresh the UI to match
+            inventorySlots[slotsToRemove[i]].RefreshSlot();
         }
 
+        RemoveNullItemsFromList();
         RemoveGapsFromInventory();
     }
 
@@ -579,6 +589,7 @@ public class Inventory : MonoBehaviour
             if (inventorySlots[i].equipID == weapon.equipID && inventorySlots[i].weaponEquipped == true)
             {
                 // if the weapon is identical, and the weapon is equipped. Unequip it
+                inventoryItemList.RemoveAt(i);
                 inventorySlots[i].RenewObject();
                 inventorySlots[i].RefreshSlot();
                 Debug.Log("Removed player weapons after successful infested clear!");

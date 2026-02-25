@@ -181,6 +181,7 @@ public class Spawning : Difficulty
             GameState.instance.OnPlayerLevelUp += PauseSpawning;
 
             OnCompletingInfestedRoom += GameState.instance.playerInventory.DestroyLoadout;
+            OnCompletingInfestedRoom += GameState.instance.playerInventory.RemoveGapsFromInventory;
         }
 
         if (instance == null)
@@ -202,6 +203,7 @@ public class Spawning : Difficulty
         GameState.instance.OnPlayerLevelUp -= PauseSpawning;
 
         OnCompletingInfestedRoom -= GameState.instance.playerInventory.DestroyLoadout;
+        OnCompletingInfestedRoom -= GameState.instance.playerInventory.RemoveGapsFromInventory;
 
         if (instance == this)
         {
@@ -258,22 +260,22 @@ public class Spawning : Difficulty
         {
             for (int i = 0; i < easyEnemyPoolCount; i++)
             {
-                GameObject newEnemy = Instantiate(easyEnemiesToSpawn[Random.Range(easyEnemiesToSpawn.Count - 1, 0)], transform.position, Quaternion.identity);
+                GameObject newEnemy = Instantiate(easyEnemiesToSpawn[Random.Range(0, easyEnemiesToSpawn.Count)], transform.position, Quaternion.identity);
                 AddNewEnemyToPool(newEnemy);
             }
             for (int i = 0; i < mediumEnemyPoolCount; i++)
             {
-                GameObject newEnemy = Instantiate(mediumEnemiesToSpawn[Random.Range(mediumEnemiesToSpawn.Count - 1, 0)], transform.position, Quaternion.identity);
+                GameObject newEnemy = Instantiate(mediumEnemiesToSpawn[Random.Range(0, mediumEnemiesToSpawn.Count)], transform.position, Quaternion.identity);
                 AddNewEnemyToPool(newEnemy);
             }
             for (int i = 0; i < hardEnemyPoolCount; i++)
             {
-                GameObject newEnemy = Instantiate(hardEnemiesToSpawn[Random.Range(hardEnemiesToSpawn.Count - 1, 0)], transform.position, Quaternion.identity);
+                GameObject newEnemy = Instantiate(hardEnemiesToSpawn[Random.Range(0, hardEnemiesToSpawn.Count)], transform.position, Quaternion.identity);
                 AddNewEnemyToPool(newEnemy);
             }
             for (int i = 0; i < bossEnemyPoolCount; i++)
             {
-                GameObject newEnemy = Instantiate(bossEnemiesToSpawn[Random.Range(bossEnemiesToSpawn.Count - 1, 0)], transform.position, Quaternion.identity);
+                GameObject newEnemy = Instantiate(bossEnemiesToSpawn[Random.Range(0, bossEnemiesToSpawn.Count)], transform.position, Quaternion.identity);
                 AddNewEnemyToPool(newEnemy);
             }
 
@@ -284,10 +286,10 @@ public class Spawning : Difficulty
     private void SpawnChance()
     {
         // As difficulty increases, easier enemies lose weight and harder ones gain
-        float easyScaled = easySpawnWeight / currentDifficulty;
-        float mediumScaled = mediumSpawnWeight * Mathf.Lerp(0f, 1f, currentDifficulty / scalingSegments);
-        float hardScaled = hardSpawnWeight * Mathf.Lerp(0f, 1f, currentDifficulty / scalingSegments);
-        float bossScaled = bossSpawnWeight * Mathf.Lerp(0f, 1f, currentDifficulty / scalingSegments);
+        float easyScaled = easySpawnWeight / CurrentDifficulty;
+        float mediumScaled = mediumSpawnWeight * Mathf.Lerp(0f, 1f, CurrentDifficulty / scalingSegments);
+        float hardScaled = hardSpawnWeight * Mathf.Lerp(0f, 1f, CurrentDifficulty / scalingSegments);
+        float bossScaled = bossSpawnWeight * Mathf.Lerp(0f, 1f, CurrentDifficulty / scalingSegments);
 
         // Normalize so total = 100%
         collectiveSpawnChance = easyScaled + mediumScaled + hardScaled + bossScaled;
@@ -374,6 +376,7 @@ public class Spawning : Difficulty
                                 {
                                     RemoveFromPool(enemiesInactiveInPool[enemyToSpawn].gameObject);
                                     hardEnemiesSpawned++;
+                                    return;
                                 }
                             }
                         }
@@ -392,6 +395,7 @@ public class Spawning : Difficulty
                                 {
                                     RemoveFromPool(enemiesInactiveInPool[enemyToSpawn].gameObject);
                                     bossEnemiesSpawned++;
+                                    return;
                                 }
                             }
                         }
@@ -400,6 +404,7 @@ public class Spawning : Difficulty
                     {
                         if (randomNumb <= CurrentMediumSpawnChance)
                         {
+                            Debug.Log("Spawned medium enemy");
                             int enemyToSpawn = SearchForEnemyTypeInPool(EnemyBase.DifficultyType.Medium);
 
                             if (enemiesInactiveInPool[enemyToSpawn].GetComponent<EnemyBase>().currentDifficultyType == EnemyBase.DifficultyType.Medium)
@@ -410,6 +415,7 @@ public class Spawning : Difficulty
                                 {
                                     RemoveFromPool(enemiesInactiveInPool[enemyToSpawn].gameObject);
                                     mediumEnemiesSpawned++;
+                                    return;
                                 }
                             }
                         }
@@ -428,6 +434,7 @@ public class Spawning : Difficulty
                                 {
                                     RemoveFromPool(enemiesInactiveInPool[enemyToSpawn].gameObject);
                                     easyEnemiesSpawned++;
+                                    return;
                                 }
                             }
                         }

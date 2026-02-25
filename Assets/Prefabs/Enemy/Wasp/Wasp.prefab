@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6806558868633045701}
-  - component: {fileID: 935756904940901034}
   - component: {fileID: 834134475085249847}
+  - component: {fileID: 1225049875414999530}
   - component: {fileID: 6124948713607127599}
   m_Layer: 31
   m_Name: Wasp
@@ -36,47 +36,6 @@ Transform:
   - {fileID: 2611128602495445815}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &935756904940901034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1593490131583575721}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 383fd5b9392a430429bb4f47e72ea5e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MiteEnemy
-  view: {fileID: 5047862745490613471}
-  enemyType: {fileID: 11400000, guid: 2f65c7155c952ec48bc0b344c98db473, type: 2}
-  enemyName: 
-  currentHealth: 0
-  maxHealth: 100
-  damage: 0
-  speed: 0
-  level: 0
-  healthScale: 0
-  damageScale: 0
-  speedScale: 0
-  currentDifficultyType: 0
-  attackCooldown: 1
-  cooldownTimer: 0
-  readyToAttack: 0
-  specimens:
-  - {fileID: 11400000, guid: 2414a70ec7a14874c8ed409553d40660, type: 2}
-  - {fileID: 11400000, guid: 0cd57eff20219574ca8b83290c90b6ac, type: 2}
-  - {fileID: 11400000, guid: 91bf478454817b34b9918453c73c0430, type: 2}
-  - {fileID: 11400000, guid: 523488d13c1459640a8052758ce959f1, type: 2}
-  - {fileID: 11400000, guid: 109c4ad3f39f5c247add7a5d137eb310, type: 2}
-  - {fileID: 11400000, guid: 77cebbdbfa96671448ef30fc0593ac58, type: 2}
-  - {fileID: 11400000, guid: 903b12cb14098994dbf4c83f57acdae7, type: 2}
-  - {fileID: 11400000, guid: e9addd1566cc81740b86a77e02fdc37e, type: 2}
-  dropFrequencyPercentChance: 30
-  volume: 0.2
-  minPitch: 1
-  maxPitch: 1.8
-  enemyHurtClip: {fileID: 8300000, guid: d09780df048227840bba6e2113afedf7, type: 3}
 --- !u!50 &834134475085249847
 Rigidbody2D:
   serializedVersion: 5
@@ -104,6 +63,47 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1225049875414999530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593490131583575721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8095cb18f8538644a9934c0251c0c232, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyBase
+  view: {fileID: 5047862745490613471}
+  enemyType: {fileID: 11400000, guid: 49b0f5a9d9f4dcf4692b79a681fe02e0, type: 2}
+  enemyName: 
+  currentHealth: 0
+  maxHealth: 1000
+  damage: 0
+  speed: 0
+  level: 0
+  healthScale: 0
+  damageScale: 0
+  speedScale: 0
+  currentDifficultyType: 1
+  attackCooldown: 1
+  cooldownTimer: 0
+  readyToAttack: 0
+  specimens:
+  - {fileID: 11400000, guid: 2414a70ec7a14874c8ed409553d40660, type: 2}
+  - {fileID: 11400000, guid: 0cd57eff20219574ca8b83290c90b6ac, type: 2}
+  - {fileID: 11400000, guid: 91bf478454817b34b9918453c73c0430, type: 2}
+  - {fileID: 11400000, guid: 523488d13c1459640a8052758ce959f1, type: 2}
+  - {fileID: 11400000, guid: 109c4ad3f39f5c247add7a5d137eb310, type: 2}
+  - {fileID: 11400000, guid: 77cebbdbfa96671448ef30fc0593ac58, type: 2}
+  - {fileID: 11400000, guid: 903b12cb14098994dbf4c83f57acdae7, type: 2}
+  - {fileID: 11400000, guid: e9addd1566cc81740b86a77e02fdc37e, type: 2}
+  dropFrequencyPercentChance: 30
+  volume: 0.2
+  minPitch: 1
+  maxPitch: 1.8
+  enemyHurtClip: {fileID: 8300000, guid: d09780df048227840bba6e2113afedf7, type: 3}
 --- !u!70 &6124948713607127599
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

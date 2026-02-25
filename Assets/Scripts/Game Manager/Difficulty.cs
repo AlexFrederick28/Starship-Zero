@@ -41,20 +41,16 @@ public class Difficulty : MonoBehaviour
         get { return currentDifficulty; }
         private set
         {
-            if (value < 0)
+            if (value < 1)
             {
-                value = 0;
-            }
-            if (value > maxDifficulty)
-            {
-                value = maxDifficulty;
+                value = 1;
             }
 
             currentDifficulty = value;
         }
     }
     [Tooltip("(max difficulty / timer length) / 60 = (tracked in minutes) The lower the number, the higher the max difficulty can go - effecting how many scaling segments there will be in a single run")]
-    [SerializeField] protected float maxDifficulty;
+    [SerializeField] protected float difficultyMultiplier;
     [SerializeField] protected float scalingSegments;
     public bool timerReachedMaxLength = false;
     public bool timerPaused = false;
@@ -89,12 +85,11 @@ public class Difficulty : MonoBehaviour
 
     private void DifficultyScaling()
     {
-        if (scalingSegments != (timerLength / maxDifficulty) / 60)
+        if (scalingSegments != (timerLength / difficultyMultiplier) / 60)
         {
-            scalingSegments = (timerLength / maxDifficulty) / 60;
+            scalingSegments = (timerLength / difficultyMultiplier) / 60;
         }
 
-        // scaling the difficulty based off of the current time and the amount of segments (How many times there will be a difficulty increase)
-        currentDifficulty = ((timerLength / 60) + CurrentTime) / maxDifficulty / 60;
+        CurrentDifficulty = ((timerLength / 60) + CurrentTime) / difficultyMultiplier / 60;
     }
 }

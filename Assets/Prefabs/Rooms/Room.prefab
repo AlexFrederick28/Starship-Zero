@@ -363,7 +363,7 @@ MonoBehaviour:
   currentTime: 599
   timerLength: 600
   currentDifficulty: 0
-  maxDifficulty: 0.5
+  difficultyMultiplier: 0.1
   scalingSegments: 0
   timerReachedMaxLength: 0
   timerPaused: 0
@@ -383,17 +383,17 @@ MonoBehaviour:
   spawnAmountMulitplier: 500
   easyEnemiesToSpawn:
   - {fileID: 7749859244026942653, guid: 89b3369a00723ea408d0414c75daca8f, type: 3}
-  - {fileID: 1593490131583575721, guid: e8d864de738d43c4fbccc2b056e668a7, type: 3}
-  - {fileID: 3121111781613522731, guid: a48a53263f5717f4a944d37628fc9bab, type: 3}
   mediumEnemiesToSpawn:
   - {fileID: 7749859244026942653, guid: 2525cc24bc7c69b43b5711a6887f8003, type: 3}
+  - {fileID: 3121111781613522731, guid: a48a53263f5717f4a944d37628fc9bab, type: 3}
+  - {fileID: 1593490131583575721, guid: e8d864de738d43c4fbccc2b056e668a7, type: 3}
   hardEnemiesToSpawn:
   - {fileID: 7749859244026942653, guid: 04e3122e70df8d94c9bbb3bc2a1cbbeb, type: 3}
   bossEnemiesToSpawn:
   - {fileID: 7749859244026942653, guid: 3c2b2c6f7b3c4754ab1bc0a115517268, type: 3}
   spawnMinDistance: 8
   spawnMaxDistance: 20
-  splitSpawnDistance: 30
+  splitSpawnDistance: 100
   roomSpawnBounds:
   - {fileID: 586720670845254841}
   - {fileID: 6974421945496092804}

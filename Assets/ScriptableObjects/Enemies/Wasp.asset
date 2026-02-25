@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02af89e5c7dfa724ea7f21d430bea6e6, type: 3}
+  m_Name: Wasp
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyScriptableObject
+  enemyName: Wasp
+  health: 15
+  damage: 3
+  speed: 0.6
+  level: 1
+  healthScaling: 5
+  damageScaling: 1
+  speedScaling: 0
