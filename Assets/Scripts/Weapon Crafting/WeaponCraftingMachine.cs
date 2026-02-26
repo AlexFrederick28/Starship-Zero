@@ -4,7 +4,12 @@ public class WeaponCraftingMachine : MonoBehaviour, IInteractable
 {
     public void OnEndInteraction()
     {
-        return;
+        // close upgrade UI when walking away
+        if (UIManager.instance.weaponCraftingUIParent.activeSelf == true)
+        {
+            UIManager.instance.weaponCraftingUIParent.SetActive(false);
+            GameState.instance.ChangeToPreviousState();
+        }
     }
 
     public void OnInteract()

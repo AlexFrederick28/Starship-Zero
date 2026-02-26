@@ -186,7 +186,7 @@ MonoBehaviour:
     - {fileID: 0}
     completedTopic: 0
     completedPrerequisite: 0
-    isQuest: 1
+    isQuest: 0
     questInfo: {fileID: 11400000, guid: 6cd8a4ee977706641926611fbcb161e8, type: 2}
     quest:
       description: 
@@ -338,7 +338,7 @@ MonoBehaviour:
         complete: 0
   textIndex: 0
   dialogueIndex: 0
-  textSpeed: 0.01
+  textSpeed: 0.015
   useVoiceLines: 1
   volume: 0.25
   minPitch: 1

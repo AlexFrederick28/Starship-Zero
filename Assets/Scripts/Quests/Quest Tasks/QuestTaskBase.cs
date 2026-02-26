@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class QuestTaskBase : MonoBehaviour
 {
-    public bool turnObjectOffBeforeActive = false;
+    public bool disableUpdate = false;
     public QuestScriptableObjects[] questInfos;
-    private Quest[] quests;
+    [SerializeField] private Quest[] quests;
 
     public virtual void OnEnable()
     {
@@ -24,7 +24,7 @@ public class QuestTaskBase : MonoBehaviour
             quests = new Quest[questInfos.Length];
             for (int i = 0; i < quests.Length; i++)
             {
-                quests[i] = questInfos[i].quest;
+                quests[i] = new Quest(questInfos[i].quest);
             }
             QuestManager.instance.AddQuestToQuestManagerOnStart(quests);
         }
@@ -33,20 +33,24 @@ public class QuestTaskBase : MonoBehaviour
     public virtual void Update()
     {
         // just set to false in the function instead. 
-        if (turnObjectOffBeforeActive == true) { return; }
+        if (disableUpdate == true) { return; }
+        OnQuestUpdate();
+    }
+
+    public virtual void OnQuestUpdate()
+    {
+
     }
 
     public virtual void ActivateQuestObject(int id)
     {
-        // TODO: cannot activate object as it is inactive :)
-        if (turnObjectOffBeforeActive == true)
+        Debug.Log("ID = " + id);
+        Debug.Log("Quests 0 ID =  " + quests[0].prerequisite.id);
+        if (id != quests[0].prerequisite.id) { return; }
+        if (disableUpdate == true)
         {
-            //if (QuestManager.instance != null)
-            //{
-            //    QuestManager.instance.ActiveQuestObject(quests[0], quests[0].prerequisite.id);
-            //}
-
-            turnObjectOffBeforeActive = false;
+            disableUpdate = false;
+            Debug.Log("Enabled update");
         }
     }
 
@@ -56,12 +60,12 @@ public class QuestTaskBase : MonoBehaviour
     public virtual void RegisterQuestInteraction()
     {
         Debug.Log("Completing active quest");
-        foreach (QuestScriptableObjects q in questInfos)
+        foreach (Quest q in quests)
         {
             for (int i = 0; i < QuestManager.instance.activeQuests.Count; i++)
             {
                 Debug.Log("Looping through active quests");
-                if (QuestManager.instance.activeQuests[i].prerequisite.id == q.quest.prerequisite.id)
+                if (QuestManager.instance.activeQuests[i].prerequisite.id == q.prerequisite.id)
                 {
                     Debug.Log("Registered quest as complete");
                     QuestManager.instance.CompleteQuestArray(quests, this);

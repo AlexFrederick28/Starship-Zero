@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,6 +12,7 @@ public class QuestManager : MonoBehaviour
     public Sprite completeQuestSprite;
 
     public static Action<int> OnActivateNewQuest;
+    public static Action OnQuestCompletion;
 
     public static QuestManager instance;
 
@@ -63,6 +65,7 @@ public class QuestManager : MonoBehaviour
                     Debug.Log("Complete ACTIVE quest");
                     instance.activeQuests[i].prerequisite.complete = true;
                     instance.questUIList[i].image.sprite = completeQuestSprite;
+                    OnQuestCompletion?.Invoke();
                 }
                 else
                 {
@@ -80,14 +83,6 @@ public class QuestManager : MonoBehaviour
         {
             Debug.Log("Added quest to QuestManager " + q.prerequisite.name);
             instance.questList.Add(q);
-        }
-    }
-
-    public void ActiveQuestObject(Quest quest,int id)
-    {
-        if (quest.prerequisite.id == id)
-        {
-            gameObject.SetActive(true);
         }
     }
 }

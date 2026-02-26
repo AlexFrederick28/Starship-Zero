@@ -16,7 +16,7 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
     [SerializeField] protected string nameNPC;
     [SerializeField] protected NPCScriptableObject.NPCType type;
     [SerializeField] private Dialogue[] newDialogue = new Dialogue[0];
-    public Dialogue currentDialogue { get; private set; }
+    public Dialogue currentDialogue { get; set; }
     [SerializeField] private int textIndex = 0;
     [SerializeField] private int dialogueIndex;
     [SerializeField] private float textSpeed;
@@ -36,6 +36,16 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
     /// If isQuest - the player must complete the quest and finish reading all the dialogue
     /// If not a quest - the player must read all the dialogue (exhaust all text)
     /// </summary>
+
+    private void OnEnable()
+    {
+        QuestManager.OnQuestCompletion += CompletePrerequisite;
+    }
+
+    private void OnDisable()
+    {
+        QuestManager.OnQuestCompletion -= CompletePrerequisite;
+    }
 
     protected virtual void Start()
     {
@@ -91,12 +101,11 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
             SetDialogueActive();
             if (currentDialogue.isQuest == true)
             {
-                CompleteQuest();
+                // check to see if an active quest is complete, if so, notify the NPC its complete.
+                CompleteQuestOnCurrentDialogue();
             }
-            else
-            {
-                CompleteTopic();
-            }
+
+            GoNextDialogue();
             ClearText();
             StartCoroutine(WriteLine_C());
 
@@ -116,11 +125,17 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
                 ClearText();
                 StartCoroutine(WriteLine_C());
                 ActivateQuest();
+                if (textIndex == currentDialogue.dialogueText.Length - 1)
+                {
+                    Debug.Log("Completed topic and quest on correct line");
+                    CompleteTopic();
+                    CompleteQuestOnCurrentDialogue();
+                }
             }
-            else
+            else if (textIndex == currentDialogue.dialogueText.Length - 1)
             {
-                CompleteQuest();
-                CompleteTopic();
+                CompleteQuestOnCurrentDialogue();
+                GoNextDialogue();
                 textIndex = 0;
                 StopAllCoroutines();
                 ClearText();
@@ -131,26 +146,13 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
 
     public void CompleteTopic()
     {
-        if (currentDialogue.isQuest == false && textIndex == currentDialogue.dialogueText.Length - 1)
-        {
-            if (dialogueIndex !< newDialogue.Length - 1)
-            {
-                // if the current topic is not a quest, and the dialogue length has been reached - set to true and continue
-                currentDialogue.completedTopic = true;
-                GoNextDialogue();
-            }
-        }
-        else if (currentDialogue.isQuest == true && currentDialogue.quest.prerequisite.complete == true)
-        {
-            currentDialogue.completedPrerequisite = true;
-            currentDialogue.completedTopic = true;
-            GoNextDialogue();
-        }
+        currentDialogue.completedTopic = true;
     }
 
     public void GoNextDialogue()
     {
         // if possible, go to the next dialogue prompt
+        if (currentDialogue.isQuest == true && currentDialogue.completedPrerequisite == false) { return; }
         if (dialogueIndex < newDialogue.Length - 1)
         {
             StopAllCoroutines();
@@ -173,11 +175,12 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
 
         if (currentDialogue.isQuest == true && currentDialogue.completedPrerequisite == false)
         {
-            Quest newQuest = new Quest();
-            newQuest = currentDialogue.questInfo.quest;
+            Quest newQuest = new Quest(currentDialogue.questInfo.quest);
             currentDialogue.quest = newQuest;
 
-            if (!QuestManager.instance.activeQuests.Contains(newQuest))
+            // using LINQ method - Any() (returns a true or false if an element satisfies a condition)
+            // using lambda expression - q => (means for each element) essentially going through a foreach loop checking if the id matches
+            if (!QuestManager.instance.activeQuests.Any(q => q.prerequisite.id == newQuest.prerequisite.id))
             {
                 for (int i = 0; i < QuestManager.instance.questList.Count; i++)
                 {
@@ -200,19 +203,22 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
         }
     }
 
-    public void CompleteQuest()
+    public void CompletePrerequisite()
     {
-        if (currentDialogue.isQuest == true && currentDialogue.completedPrerequisite == false)
-        {
-            QuestManager.instance.CheckQuestCompletion(currentDialogue);
-        }
+        currentDialogue.completedPrerequisite = true;
+    }
+
+    public void CompleteQuestOnCurrentDialogue()
+    {
+        if (currentDialogue.completedTopic == false) { return; }
+
+        QuestManager.instance.CheckQuestCompletion(currentDialogue);
         if (currentDialogue.completedPrerequisite == true)
         {
             if (currentDialogue.quest.prerequisite.currencyReward > 0)
             {
                 GameState.instance.player.AddCurrencyFromNPC(this);
             }
-            CompleteTopic();
         }
     }
 
