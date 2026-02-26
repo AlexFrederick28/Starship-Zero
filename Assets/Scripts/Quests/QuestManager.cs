@@ -10,6 +10,8 @@ public class QuestManager : MonoBehaviour
     public List<QuestUIParent> questUIList = new List<QuestUIParent>();
     public Sprite completeQuestSprite;
 
+    public static Action<int> OnActivateNewQuest;
+
     public static QuestManager instance;
 
     private void OnEnable()
@@ -48,7 +50,7 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    public void CompleteQuestArray(Quest[] quest)
+    public void CompleteQuestArray(Quest[] quest, QuestTaskBase taskBase)
     {
         foreach (Quest q in quest)
         {
@@ -68,6 +70,8 @@ public class QuestManager : MonoBehaviour
                 }
             }
         }
+
+        taskBase.gameObject.SetActive(false);
     }
 
     public void AddQuestToQuestManagerOnStart(Quest[] quest)
@@ -76,6 +80,14 @@ public class QuestManager : MonoBehaviour
         {
             Debug.Log("Added quest to QuestManager " + q.prerequisite.name);
             instance.questList.Add(q);
+        }
+    }
+
+    public void ActiveQuestObject(Quest quest,int id)
+    {
+        if (quest.prerequisite.id == id)
+        {
+            gameObject.SetActive(true);
         }
     }
 }

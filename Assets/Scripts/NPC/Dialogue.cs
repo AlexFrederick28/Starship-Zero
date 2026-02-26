@@ -12,5 +12,6 @@ public class Dialogue
     public bool completedTopic = false;
     public bool completedPrerequisite = false;
     public bool isQuest = false;
+    public QuestScriptableObjects questInfo;
     public Quest quest;
 }

@@ -236,16 +236,6 @@ public class PlayerBase : MonoBehaviour
         currency += amount;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        //if (collision.gameObject.GetComponent<ExperiencePoint>())
-        //{
-        //    ExperiencePoint point = collision.gameObject.GetComponent<ExperiencePoint>();
-        //    AddExperience((int)point.currentExperienceAmount);
-        //    Spawning.instance.experience.AddToPool(point);
-        //}
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<ExperiencePoint>())

@@ -50,17 +50,18 @@ MonoBehaviour:
   nameNPC: 
   type: 0
   newDialogue:
-  - topic: Initial Intro pt.1
+  - topic: Initial Intro pt.1 "Game Start"
     dialogueText:
-    - Welcome aboard
+    - Welcome aboard.
     - 'WARNING: the ship has been infested with alien parasites, all power systems
-      are failing'
+      are failing.'
     dialogueClip:
     - {fileID: 8300000, guid: 8277b26a8f016f143b6e53ed131d2e70, type: 3}
     - {fileID: 8300000, guid: 6a1209bf8174f6b438647659a43635b0, type: 3}
     completedTopic: 0
     completedPrerequisite: 0
     isQuest: 0
+    questInfo: {fileID: 0}
     quest:
       description: 
       prerequisite:
@@ -69,22 +70,32 @@ MonoBehaviour:
         level: 0
         currencyReward: 0
         complete: 0
-  - topic: Initial Intro pt.2
+  - topic: 'Initial Intro pt.2 "Short introduction" '
     dialogueText:
-    - I am the super computer and manager of this colony vessel
+    - I am the super computer and manager of this colony vessel.
     - We must regain control by extinguishing the immediate threat and restoring
-      power to the ships main systems
+      power to the ships main systems.
     - Please allow me to be your guide, I can direct you to this ships main pieces
-      of infrastructure that will give you access to new weapons and cybernetic upgrades
-    - These will prove to be necessary as the foe before us is no weak threat
+      of infrastructure.
+    - Scanning............. It seems you're an engineer - bummer.
+    - Your current odds of survival seem to be 0.0001% according to your genetic
+      pool.
+    - Provided that you have absolutely zero combat capabilities, you will need to
+      undergo cybernetic recomposition.
+    - Aquiring immense firepower and cybernetic upgrades is imperative to allow for
+      a fighting chance.
     dialogueClip:
     - {fileID: 8300000, guid: 9c47570c8316e6645ab1f21d31d6aca8, type: 3}
     - {fileID: 8300000, guid: 4ec42d02fe04fee41a948a1fd32803b4, type: 3}
     - {fileID: 0}
-    - {fileID: 8300000, guid: a29b157abc513984a98d32f763bfc347, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     completedTopic: 0
     completedPrerequisite: 0
     isQuest: 0
+    questInfo: {fileID: 0}
     quest:
       description: 
       prerequisite:
@@ -93,29 +104,82 @@ MonoBehaviour:
         level: 0
         currencyReward: 0
         complete: 0
-  - topic: Tutorial pt.1 (Movement)
+  - topic: Tutorial pt.1  "Move around"
     dialogueText:
-    - First, let's make sure you're up to the task
-    - Use WASD to move
+    - First, let's make sure you're up to the task.
+    - Use WASD to move.
     dialogueClip:
     - {fileID: 8300000, guid: 1e44bd18108db5f4aa489fea210e7454, type: 3}
     - {fileID: 8300000, guid: 2d04a67487f537341a05511c09590d00, type: 3}
     completedTopic: 0
     completedPrerequisite: 0
     isQuest: 1
+    questInfo: {fileID: 11400000, guid: 0256515efc6dad345a6446a9a63bc547, type: 2}
     quest:
-      description: Movement Tutorial
+      description: 
       prerequisite:
-        name: MoveTutorial
-        id: 3
+        name: 
+        id: 0
         level: 0
         currencyReward: 0
         complete: 0
-  - topic: "Tutorial/First Quest pt.2 \u201CTurn on the power grid\u201D"
+  - topic: "Tutorial/FirstQuest pt.2 \u201CPickup starter weapon\u201D "
     dialogueText:
-    - We may be able to restore some systems by turning on the local powergrid
-    - Ill send you the location, refer to your tracking device
-    - (No tracking device yet, it is the door directly above)
+    - Great, you know how to move.
+    - Now, its important you have a weapon. Grab the Dusty Pistol close by - it was
+      dropped by a deceased security bot.
+    - Weapons will be temporarily be upgradeable throughout an infested clear, make
+      sure to choose the correct ones as the released energy from your weapon with
+      alert more enemies.
+    - Weapons must be overcharged using its internal battery to pierce the hard shell
+      of the enemy, these batteries hold a large amount of energy.
+    - The heat from an overcharged weapon could cause a catastrophic explosion, therefore
+      they must be disposed of after each successful infested room clear.
+    dialogueClip:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    completedTopic: 0
+    completedPrerequisite: 0
+    isQuest: 1
+    questInfo: {fileID: 11400000, guid: 704b6a4577e8ff94e88fb47ec5987a6d, type: 2}
+    quest:
+      description: 
+      prerequisite:
+        name: 
+        id: 0
+        level: 0
+        currencyReward: 0
+        complete: 0
+  - topic: "Tutorial/FirstQuest pt.3 \u201COpen inventory\u201D"
+    dialogueText:
+    - Now that you have a weapon, you will need to equip it.
+    - Open your inventory by pressing I, from there make sure to equip the Dusty
+      Pistol into your loadout.
+    dialogueClip:
+    - {fileID: 0}
+    - {fileID: 0}
+    completedTopic: 0
+    completedPrerequisite: 0
+    isQuest: 1
+    questInfo: {fileID: 11400000, guid: 161d1b53ced894347881a92057d2ab80, type: 2}
+    quest:
+      description: 
+      prerequisite:
+        name: 
+        id: 0
+        level: 0
+        currencyReward: 0
+        complete: 0
+  - topic: "Tutorial/FirstQuest pt.4 \u201COpen location device\u201D"
+    dialogueText:
+    - I will soon send you the location of the weapons research and manufacturing
+      room.
+    - Open your location device by pressing M, there you will see the location for
+      active quests there.
+    - (No location device yet)
     dialogueClip:
     - {fileID: 0}
     - {fileID: 0}
@@ -123,23 +187,147 @@ MonoBehaviour:
     completedTopic: 0
     completedPrerequisite: 0
     isQuest: 1
+    questInfo: {fileID: 11400000, guid: 6cd8a4ee977706641926611fbcb161e8, type: 2}
     quest:
-      description: Attempt to turn on the power grid
+      description: 
       prerequisite:
-        name: PowerGridSwitch
-        id: 4
+        name: 
+        id: 0
         level: 0
-        currencyReward: 50
+        currencyReward: 0
         complete: 0
-  - topic: Temp Prototype End
+  - topic: "Tutorial/FirstQuest pt.5 \u201CGain access to the Weapons Manufacturer
+      room\u201D"
     dialogueText:
-    - Good work!
-    - This is the end of the current prototype
-    - Feel free to fight the parasites and see how challenging it can get
-    dialogueClip: []
+    - Processing positional data...
+    - The location has been sent.
+    - Make your way to the location, be careful as you will encounter enemies in
+      mass.
+    - Ensure to bring back plenty of specimens after disposing of the enemy!
+    dialogueClip:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    completedTopic: 0
+    completedPrerequisite: 0
+    isQuest: 1
+    questInfo: {fileID: 11400000, guid: f8cf432609f6d1b4dbca306e15917ece, type: 2}
+    quest:
+      description: 
+      prerequisite:
+        name: 
+        id: 0
+        level: 0
+        currencyReward: 0
+        complete: 0
+  - topic: Tutorial pt.6 (Recieve currency reward)
+    dialogueText:
+    - Perfect, you made it back alive!
+    - Heres a currency reward for your efforts, you can use currency to research
+      and buy new weapons and upgrades.
+    - You would have aquired some useful specimen parts, we should take a look and
+      see what you got!
+    dialogueClip:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     completedTopic: 0
     completedPrerequisite: 0
     isQuest: 0
+    questInfo: {fileID: 0}
+    quest:
+      description: 
+      prerequisite:
+        name: 
+        id: 0
+        level: 0
+        currencyReward: 0
+        complete: 0
+  - topic: "Tutorial/FirstQuest pt.7 \u201CCraft a weapon\u201D"
+    dialogueText:
+    - You may be able to use what you've earned to unlock a new weapon type.
+    - Either way, you've disposed of your previous weapon and will need a new one.
+    - The Dusty Pistol is easy to make although very unstable, therefore you can
+      only hold one at a time at zero cost.
+    - Go to the weapons room and interact with the crafting unit.
+    dialogueClip:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    completedTopic: 0
+    completedPrerequisite: 0
+    isQuest: 1
+    questInfo: {fileID: 11400000, guid: 7b97ee7ee0819044c9fb6e0de4f6a66f, type: 2}
+    quest:
+      description: 
+      prerequisite:
+        name: 
+        id: 0
+        level: 0
+        currencyReward: 0
+        complete: 0
+  - topic: Tutorial pt.8 "Random infested clears"
+    dialogueText:
+    - If you happen to run low on specimens at any point, feel free to clear rooms
+      that are accessible.
+    - Rooms with low power sources house fewer enemies, as they''re attracted to
+      energy as a food source.
+    - Rooms that are accessible and infested can randomly be found, and can be entered
+      as long as they're not a quest room.
+    dialogueClip:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    completedTopic: 0
+    completedPrerequisite: 0
+    isQuest: 0
+    questInfo: {fileID: 0}
+    quest:
+      description: 
+      prerequisite:
+        name: 
+        id: 0
+        level: 0
+        currencyReward: 0
+        complete: 0
+  - topic: 'Quest pt.1 "Turn on the local powergrid" '
+    dialogueText:
+    - Lets see if we can turn on the local powergrid.
+    - Make your way to the local generator and attempt to turn on the power.
+    - My sensors have scanned a larger mass than what you have previously encountered,
+      stay on your toes.
+    - Don't worry, if you fail i'll make sure to send a security bot to retrieve
+      you.
+    dialogueClip:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    completedTopic: 0
+    completedPrerequisite: 0
+    isQuest: 1
+    questInfo: {fileID: 11400000, guid: 2092648cb4bd6c04f9d064dc30a07293, type: 2}
+    quest:
+      description: 
+      prerequisite:
+        name: 
+        id: 0
+        level: 0
+        currencyReward: 0
+        complete: 0
+  - topic: Playable prototype end "End of prototype"
+    dialogueText:
+    - This is the end of the current prototype, thank you for playing :)
+    - Please feel free to give us constructive feedback, anything is valuable.
+    dialogueClip:
+    - {fileID: 0}
+    - {fileID: 0}
+    completedTopic: 0
+    completedPrerequisite: 0
+    isQuest: 0
+    questInfo: {fileID: 0}
     quest:
       description: 
       prerequisite:

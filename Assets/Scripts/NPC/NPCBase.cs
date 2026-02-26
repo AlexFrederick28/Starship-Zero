@@ -170,9 +170,14 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
     public void ActivateQuest()
     {
         // to active a quest it must already be in the QuestManagers quest list
+
         if (currentDialogue.isQuest == true && currentDialogue.completedPrerequisite == false)
         {
-            if (!QuestManager.instance.activeQuests.Contains(currentDialogue.quest))
+            Quest newQuest = new Quest();
+            newQuest = currentDialogue.questInfo.quest;
+            currentDialogue.quest = newQuest;
+
+            if (!QuestManager.instance.activeQuests.Contains(newQuest))
             {
                 for (int i = 0; i < QuestManager.instance.questList.Count; i++)
                 {
@@ -186,6 +191,9 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
                         newQuestInstance.GetComponent<QuestUIParent>().questID = currentDialogue.quest.prerequisite.id;
                         QuestManager.instance.activeQuests.Add(currentDialogue.quest);
                         QuestManager.instance.questUIList.Add(newQuestInstance.GetComponent<QuestUIParent>());
+
+                        // quest objects get notified when a quest is activated
+                        QuestManager.OnActivateNewQuest?.Invoke(currentDialogue.quest.prerequisite.id); 
                     }
                 }
             }
