@@ -306,9 +306,10 @@ public class WeaponBase : MonoBehaviour
         AssignWeaponStats();
     }
 
-    public void AssignWeaponStats()
+    // gives the weapon its base stats
+    public void AssignWeaponStats() 
     {
-        if (weaponType == null)
+        if (weaponType == null) // no scriptable can be found
         {
             weaponName = string.Empty;
             weaponDescription = string.Empty;
@@ -319,7 +320,7 @@ public class WeaponBase : MonoBehaviour
             projectileSpeed = 0;
             projectileToFire = null;
         }
-        else
+        else // found, set its base stats
         {
             weaponName = weaponType.weaponName;
             weaponDescription = weaponType.weaponDescription;
@@ -332,7 +333,8 @@ public class WeaponBase : MonoBehaviour
         }
     }
 
-    //void OnDrawGizmos() // visual for attack range radius of the weapon
+    // visual for attack range radius of the weapon
+    //void OnDrawGizmos() 
     //{
     //    Gizmos.color = Color.blue;
     //    Gizmos.DrawWireSphere(transform.position, detectionRadius);

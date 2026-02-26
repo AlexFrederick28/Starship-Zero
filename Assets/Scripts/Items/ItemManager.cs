@@ -4,6 +4,8 @@ using UnityEngine;
 public class ItemManager : MonoBehaviour
 {
 
+    // Item Manager - stores all the info of items and gives their effects to the weapon
+
     [SerializeField] public List<GameObject> itemListGO;
 
     [SerializeField] public List<string> itemNamesGO;
@@ -14,7 +16,7 @@ public class ItemManager : MonoBehaviour
 
     public WeaponBase[] allWeapons;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // initialise
     void Start()
     {
         foreach (GameObject item in itemListGO)
@@ -27,6 +29,7 @@ public class ItemManager : MonoBehaviour
         ItemScaleAllWeapons();
     }
 
+    // finds all weapons and runs a function to calculate the items on them
     public void ItemScaleAllWeapons()
     {
         allWeapons = FindObjectsByType<WeaponBase>(FindObjectsSortMode.None);
@@ -37,7 +40,8 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-    public void ItemStats() // stats that affect a weapon
+    // finds the 2 stat items that affect a weapons stats
+    public void ItemStats() 
     {
         // reset
         itemScalingGO.Clear();
@@ -63,7 +67,8 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-    public void ItemInfo() // other info about the weapon      
+    // the information side of the items such as name and what they do
+    public void ItemInfo()   
     {
         // reset
         itemNamesGO.Clear();
@@ -90,6 +95,7 @@ public class ItemManager : MonoBehaviour
         }
     }
 
+    // reset all items to 0
     public void ResetItemCount()
     {
 

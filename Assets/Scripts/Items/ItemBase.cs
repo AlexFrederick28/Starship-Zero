@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class ItemBase : MonoBehaviour
 {
+
+    // base item class - used to set up the items
+
     [SerializeField] public ItemScriptableObject itemType;
     public string itemBaseName;
     public int itemBaseScaling; 
@@ -9,10 +12,10 @@ public class ItemBase : MonoBehaviour
     public string itemBaseDescription;
     public Sprite itemBaseSprite;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
-        if (itemType != null)
+        if (itemType != null) // if scriptable is not empty add the scriptable values
         {
             itemBaseName = itemType.itemName;
             itemBaseScaling = itemType.itemScaling;
@@ -26,7 +29,7 @@ public class ItemBase : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         
