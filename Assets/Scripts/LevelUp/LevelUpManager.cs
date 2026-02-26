@@ -5,6 +5,9 @@ using TMPro;
 using JetBrains.Annotations;
 public class LevelUpManager : MonoBehaviour
 {
+
+    // level up manager - used to handle all the level up stuff with the cards
+
     [SerializeField] public ItemManager itemManager;
 
     // reference to the physical card
@@ -38,6 +41,7 @@ public class LevelUpManager : MonoBehaviour
 
         // cardListToChooseFrom = new List<ItemCardInfo>(cardList);
 
+        // check for cards
         if (CardGO1 == null)
         {
             CardGO1 = UIManager.instance.levelUpCards[0];
@@ -80,7 +84,7 @@ public class LevelUpManager : MonoBehaviour
     }
 
 
-
+    // the randomisation of the card
     public void RandomiseCards()
     {
         // setup list of cards to pick from
@@ -100,13 +104,13 @@ public class LevelUpManager : MonoBehaviour
 
         //Debug.Log("Card 1 choice:" + pickedCard1.LevelCardSO.cardName);
 
-        UIManager.instance.levelUpItemName[0].text = pickedCard1.LevelCardSO.cardName;
-        UIManager.instance.levelUpItemStatDescription[0].text = pickedCard1.LevelCardSO.cardText;
+        UIManager.instance.levelUpItemName[0].text = pickedCard1.LevelCardSO.cardName; // name
+        UIManager.instance.levelUpItemStatDescription[0].text = pickedCard1.LevelCardSO.cardText; // description
 
         int itemLevel1 = CheckCardItemEffectType(pickedCard1);
-        UIManager.instance.levelUpItemLevel[0].text = "Level: " + itemLevel1.ToString();
+        UIManager.instance.levelUpItemLevel[0].text = "Level: " + itemLevel1.ToString(); // item level
 
-        UIManager.instance.levelUpItemImage[0].sprite = pickedCard1.LevelCardSO.cardSprite;
+        UIManager.instance.levelUpItemImage[0].sprite = pickedCard1.LevelCardSO.cardSprite; // sprite icon
 
         cardListToChooseFrom.RemoveAt(randomCardIndex1); // remove from temp pool of cards
         #endregion
@@ -153,17 +157,19 @@ public class LevelUpManager : MonoBehaviour
 
         if (cardNumSelected == 1)
         {
-            Debug.Log(pickedCard1.LevelCardSO.cardEffectType);
+            //Debug.Log(pickedCard1.LevelCardSO.cardEffectType);
             itemLevelSelect = EffectTypeCardCount(pickedCard1);
         }
 
         else if (cardNumSelected == 2)
         {
+            //Debug.Log(pickedCard2.LevelCardSO.cardEffectType);
             itemLevelSelect = EffectTypeCardCount(pickedCard2);
         }
 
         else if (cardNumSelected == 3)
         {
+            //Debug.Log(pickedCard3.LevelCardSO.cardEffectType);
             itemLevelSelect = EffectTypeCardCount(pickedCard3);
         }
 
@@ -174,13 +180,13 @@ public class LevelUpManager : MonoBehaviour
 
         if (itemLevelSelect != -1)
         {
-
+            // add +1 to the selected item from the card
             itemManager.itemCountGO[itemLevelSelect]++;
-            Debug.Log(itemManager.itemNamesGO[itemLevelSelect] + " level increased to: " + itemManager.itemCountGO[itemLevelSelect]);
+            Debug.Log(itemManager.itemNamesGO[itemLevelSelect] + " level increased to: " + itemManager.itemCountGO[itemLevelSelect]); // debug level after
 
         }
 
-        itemManager.ItemScaleAllWeapons();
+        itemManager.ItemScaleAllWeapons(); // scale weapons with items as a new item has been acquired
 
         GameState.instance.OnPlayerLevelUp?.Invoke(); // after card is done
     }
@@ -214,6 +220,7 @@ public class LevelUpManager : MonoBehaviour
         return itemCountValue;
     }
 
+    // item manager level for reference
     public int CheckItemManagerItemLevel(int listValue)
     {
         int itemlevel = -1;
@@ -223,6 +230,7 @@ public class LevelUpManager : MonoBehaviour
         return itemlevel;
     }
 
+    // check the item count of the card the player selected
     public int EffectTypeCardCount(ItemCardInfo cardToCheck)
     {
         int itemManagerListValue = -1;
