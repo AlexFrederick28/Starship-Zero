@@ -1,11 +1,35 @@
+using System.Data;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class ClearInfestedWeaponRoom : QuestTaskBase
 {
-    private void FixedUpdate()
+    private bool subscribedToCompletionEvent = false;
+
+    public override void OnEnable()
     {
-        CompletedInfestedRoom();
+        if (Spawning.instance != null)
+        {
+            Spawning.instance.OnCompletingInfestedRoom += CompletedInfestedRoom;
+        }
+    }
+
+    public override void OnDisable()
+    {
+        if (Spawning.instance != null)
+        {
+            Spawning.instance.OnCompletingInfestedRoom -= CompletedInfestedRoom;
+        }
+    }
+
+    public override void Update()
+    {
+        base.Update();
+        if (Spawning.instance != null && subscribedToCompletionEvent == false)
+        {
+            Spawning.instance.OnCompletingInfestedRoom += CompletedInfestedRoom;
+            subscribedToCompletionEvent = true;
+        }
     }
 
     public void CompletedInfestedRoom()

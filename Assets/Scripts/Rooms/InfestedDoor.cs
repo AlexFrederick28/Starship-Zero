@@ -7,46 +7,70 @@ public class InfestedDoor : Door
 
     public override void OnInteract()
     {
-        for (int i = 0; i < QuestManager.instance.activeQuests.Count; i++)
+        if (GetComponent<Spawning>().isQuestActivated == true)
         {
-            if (GetComponent<Spawning>().questID == QuestManager.instance.activeQuests[i].prerequisite.id)
+            for (int i = 0; i < QuestManager.instance.activeQuests.Count; i++)
             {
-                if (GameState.instance.currentState != GameState.States.RoomClear && GetComponentInParent<Room>().playerInsideRoom == false)
+                if (GetComponent<Spawning>().questID == QuestManager.instance.activeQuests[i].prerequisite.id)
                 {
-                    // if the quest is active, enables and sends quest level to spawner as well as activates respawn checkpoint
-                    GameState.instance.ChangeStateToRoomClear();
-                    GetComponent<Spawning>().enabled = true;
-                    GetComponent<Spawning>().questLevel = new Vector2(QuestManager.instance.activeQuests[i].prerequisite.level, GameState.instance.player.CurrentExperience);
-                    GetComponent<RespawnCheckpoint>().respawnActive = true;
-                    questEnabled = true;
+                    if (GameState.instance.currentState != GameState.States.RoomClear && GetComponentInParent<Room>().playerInsideRoom == false)
+                    {
+                        // if the quest is active, enables and sends quest level to spawner as well as activates respawn checkpoint
+                        GameState.instance.ChangeStateToRoomClear();
+                        GetComponent<Spawning>().enabled = true;
+                        GetComponent<Spawning>().questLevel = new Vector2(QuestManager.instance.activeQuests[i].prerequisite.level, GameState.instance.player.CurrentExperience);
+                        GetComponent<RespawnCheckpoint>().respawnActive = true;
+                        questEnabled = true;
+                        break;
+                    }
+                    else if (GameState.instance.currentState != GameState.States.RoomClear && GetComponentInParent<Room>().playerInsideRoom == true)
+                    {
+                        // leaving the infested room and disabling spawning and respawn
+                        GameState.instance.ChangeStateToMain();
+                        GetComponent<Spawning>().enabled = false;
+                        GetComponent<RespawnCheckpoint>().respawnActive = false;
+                        break;
+                    }
+                }
+                else if (i == QuestManager.instance.activeQuests.Count)
+                {
+                    // if no active quests match the assigned quest ID
+                    questEnabled = false;
                     break;
                 }
-                else if (GameState.instance.currentState != GameState.States.RoomClear && GetComponentInParent<Room>().playerInsideRoom == true)
+                else
                 {
-                    // leaving the infested room and disabling spawning and respawn
-                    GameState.instance.ChangeStateToMain();
-                    GetComponent<Spawning>().enabled = false;
-                    GetComponent<RespawnCheckpoint>().respawnActive = false;
-                    break;
+                    // if the quest ID doesnt match, keep cycling through active quests
+                    continue;
                 }
             }
-            else if (i == QuestManager.instance.activeQuests.Count)
+
+            if (questEnabled == true)
             {
-                // if no active quests match the assigned quest ID
-                questEnabled = false;
-                break;
-            }
-            else
-            {
-                // if the quest ID doesnt match, keep cycling through active quests
-                continue;
+                // if the matching quest is enabled, enter room
+                base.OnInteract();
             }
         }
-
-        if (questEnabled == true)
+        else
         {
-            // if the matching quest is enabled, enter room
-            base.OnInteract();
+            if (GameState.instance.currentState != GameState.States.RoomClear && GetComponentInParent<Room>().playerInsideRoom == false)
+            {
+                // if the quest is active, enables and sends quest level to spawner as well as activates respawn checkpoint
+                base.OnInteract();
+                GameState.instance.ChangeStateToRoomClear();
+                GetComponent<Spawning>().enabled = true;
+                GetComponent<RespawnCheckpoint>().respawnActive = true;
+                return;
+            }
+            else if (GameState.instance.currentState != GameState.States.RoomClear && GetComponentInParent<Room>().playerInsideRoom == true)
+            {
+                // leaving the infested room and disabling spawning and respawn
+                base.OnInteract();
+                GameState.instance.ChangeStateToMain();
+                GetComponent<Spawning>().enabled = false;
+                GetComponent<RespawnCheckpoint>().respawnActive = false;
+                return;
+            }
         }
     }
 }

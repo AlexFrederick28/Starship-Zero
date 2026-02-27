@@ -18,6 +18,7 @@ public class Spawning : Difficulty
     [Tooltip("If this room is attached to a quest, enter its ID here to obtain its level and dynamically changing the scaling of enemies")]
     public Vector2 questLevel;
     public int questID;
+    public bool isQuestActivated = false;
     [Tooltip("Objects that will activate once the player has cleared the room")]
     public GameObject[] questObjects;
 
@@ -209,13 +210,16 @@ public class Spawning : Difficulty
         {
             instance = null;
         }
+
+        //QuestManager.instance.EnableQuestObject();
+        //ActivateQuestObjects();
     }
 
     private void Start()
     {
         // pools get spawned when this script is turned on, by default it is off until the player interacts with the infested door
         SpawnPools();
-        DisabledQuestObjects();
+        DisableQuestObjects();
     }
 
     override public void Update()
@@ -530,7 +534,7 @@ public class Spawning : Difficulty
         OnInfestedRoomReset?.Invoke();
     }
 
-    public void DisabledQuestObjects()
+    public void DisableQuestObjects()
     {
         foreach (GameObject go in questObjects)
         {
@@ -538,6 +542,10 @@ public class Spawning : Difficulty
             {
                 go.GetComponent<QuestTaskBase>().enabled = false;
                 continue;
+            }
+            else if (go.GetComponent<IInteractable>() != null)
+            {
+                go.GetComponent<IInteractable>().DisableInteractionComponent();
             }
         }
     }

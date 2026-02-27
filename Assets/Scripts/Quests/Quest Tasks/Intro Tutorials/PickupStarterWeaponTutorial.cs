@@ -44,4 +44,14 @@ public class PickupStarterWeaponTutorial : QuestTaskBase, IInteractable
     {
         return;
     }
+
+    public void DisableInteractionComponent()
+    {
+        return;
+    }
+
+    public void EnableInteractionComponent()
+    {
+        return;
+    }
 }

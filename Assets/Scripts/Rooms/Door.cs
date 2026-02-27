@@ -5,6 +5,16 @@ public class Door : MonoBehaviour, IInteractable
     [SerializeField] private Transform playerEntryPoint;
     [SerializeField] private Transform playerExitPoint;
 
+    public void DisableInteractionComponent()
+    {
+        return;
+    }
+
+    public void EnableInteractionComponent()
+    {
+        return;
+    }
+
     public virtual void OnEndInteraction()
     {
         // interaction ends when the player has left the distance of the door

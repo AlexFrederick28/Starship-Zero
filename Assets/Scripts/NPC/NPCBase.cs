@@ -20,6 +20,7 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
     [SerializeField] private int textIndex = 0;
     [SerializeField] private int dialogueIndex;
     [SerializeField] private float textSpeed;
+    private bool givenCurrentQuestReward = false;
 
     [Space]
     [Header("Audio")]
@@ -30,6 +31,8 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
     [SerializeField] protected AudioClip typingClip;
 
     private bool startedDialogue = false;
+
+    public static Action OnHandedInQuest;
 
     /// <summary>
     /// To finish a dialogue:
@@ -115,7 +118,7 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
 
     public void NextLine()
     {
-        if (currentDialogue.completedTopic == false && currentDialogue.completedPrerequisite == false || currentDialogue.completedTopic == true && dialogueIndex < newDialogue.Length - 1)
+        if (currentDialogue.completedTopic == false || currentDialogue.completedTopic == true && currentDialogue.isQuest == true && currentDialogue.completedPrerequisite == false || currentDialogue.completedTopic == true && dialogueIndex < newDialogue.Length - 1) //&& currentDialogue.completedPrerequisite == false || currentDialogue.completedTopic == true && dialogueIndex < newDialogue.Length - 1)
         {
             // repeats the same topic if not completed, as well as adds any quest that hasnt already been made active
             if (textIndex < currentDialogue.dialogueText.Length - 1)
@@ -152,6 +155,7 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
     public void GoNextDialogue()
     {
         // if possible, go to the next dialogue prompt
+        if (currentDialogue.completedTopic == false) { return; }
         if (currentDialogue.isQuest == true && currentDialogue.completedPrerequisite == false) { return; }
         if (dialogueIndex < newDialogue.Length - 1)
         {
@@ -160,6 +164,7 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
             dialogueIndex++;
             currentDialogue = newDialogue[dialogueIndex];
             textIndex = 0;
+            givenCurrentQuestReward = false;
         }
 
         if (currentDialogue.dialogueText.Length == 1 && currentDialogue.isQuest == true)
@@ -213,11 +218,13 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
         if (currentDialogue.completedTopic == false) { return; }
 
         QuestManager.instance.CheckQuestCompletion(currentDialogue);
-        if (currentDialogue.completedPrerequisite == true)
+        if (currentDialogue.completedPrerequisite == true && givenCurrentQuestReward == false)
         {
+            // give the player the currency reward if we are on the last piece of text (prevents the reward from being given twice)
             if (currentDialogue.quest.prerequisite.currencyReward > 0)
             {
                 GameState.instance.player.AddCurrencyFromNPC(this);
+                givenCurrentQuestReward = true;
             }
         }
     }
@@ -259,5 +266,15 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
     public void SetDialogueInActive()
     {
         UIManager.instance.dialogueParent.SetActive(false);
+    }
+
+    public void DisableInteractionComponent()
+    {
+        return;
+    }
+
+    public void EnableInteractionComponent()
+    {
+        return;
     }
 }

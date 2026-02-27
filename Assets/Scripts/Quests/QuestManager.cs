@@ -37,12 +37,21 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+    public void EnableQuestObject(int questID, IInteractable interactable)
+    {
+        if (activeQuests.Any(q => q.prerequisite.id == questID))
+        {
+            interactable.EnableInteractionComponent();
+        }
+    }
+
     public void CheckQuestCompletion(Dialogue currentDialogue)
     {
         for (int i = 0; i < instance.activeQuests.Count; i++)
         {
             if (instance.activeQuests[i].prerequisite.id == currentDialogue.quest.prerequisite.id && instance.activeQuests[i].prerequisite.complete == true)
             {
+                NPCBase.OnHandedInQuest?.Invoke();
                 currentDialogue.completedPrerequisite = true;
                 instance.activeQuests.RemoveAt(i);
                 Destroy(instance.questUIList[i].gameObject);
@@ -74,7 +83,7 @@ public class QuestManager : MonoBehaviour
             }
         }
 
-        taskBase.gameObject.SetActive(false);
+        taskBase.enabled = false;
     }
 
     public void AddQuestToQuestManagerOnStart(Quest[] quest)

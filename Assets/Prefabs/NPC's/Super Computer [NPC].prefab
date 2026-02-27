@@ -272,8 +272,8 @@ MonoBehaviour:
     dialogueText:
     - If you happen to run low on specimens at any point, feel free to clear rooms
       that are accessible.
-    - Rooms with low power sources house fewer enemies, as they''re attracted to
-      energy as a food source.
+    - Rooms with low power sources house fewer enemies, as they're attracted to energy
+      as a food source.
     - Rooms that are accessible and infested can randomly be found, and can be entered
       as long as they're not a quest room.
     dialogueClip:

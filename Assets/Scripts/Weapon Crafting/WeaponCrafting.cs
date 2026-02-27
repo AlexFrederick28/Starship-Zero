@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using TMPro;
 using Unity.VisualScripting;
@@ -13,6 +14,9 @@ public class WeaponCrafting : MonoBehaviour, IPointerClickHandler
     public bool canCraft = false;
     public CraftingRecipe recipe;
     public Image weaponLockedImage;
+    public bool craftedFirstWeaponTutorial = false;
+
+    public static Action OnFirstWeaponCraft;
 
     private void OnEnable()
     {
@@ -160,6 +164,11 @@ public class WeaponCrafting : MonoBehaviour, IPointerClickHandler
 
         GameState.instance.playerInventory.AddItemToInventory(recipe.item);
         Debug.Log("Crafted weapon: " + recipe.weapon.weaponName);
+        if (craftedFirstWeaponTutorial == false)
+        {
+            OnFirstWeaponCraft?.Invoke();
+            craftedFirstWeaponTutorial = true;
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
