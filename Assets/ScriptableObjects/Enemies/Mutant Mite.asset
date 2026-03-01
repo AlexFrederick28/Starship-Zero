@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02af89e5c7dfa724ea7f21d430bea6e6, type: 3}
-  m_Name: Wasp
+  m_Name: Mutant Mite
   m_EditorClassIdentifier: Assembly-CSharp::EnemyScriptableObject
-  enemyName: Wasp
-  health: 15
-  damage: 5
-  speed: 0.6
+  enemyName: Mutant Mite
+  health: 35
+  damage: 8
+  speed: 1
   level: 1
   healthScaling: 5
   damageScaling: 1
