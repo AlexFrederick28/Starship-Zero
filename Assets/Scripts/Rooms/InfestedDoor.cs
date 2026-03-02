@@ -5,19 +5,9 @@ using UnityEngine.SceneManagement;
 public class InfestedDoor : Door
 {
     public Spawning spawning;
-    public GameObject roomInformationPanel;
-    public TextMeshPro difficultyText;
-    public TextMeshPro roomTimeText;
     public string difficultyName;
     private float roomDifficulty;
     private bool questEnabled = false;
-
-    private void OnEnable()
-    {
-        roomTimeText.text = spawning.timerLength.ToString();
-        roomDifficulty = (spawning.timerLength / spawning.difficultyMultiplier) / 60;
-        difficultyText.text = difficultyName + " : " + (int)roomDifficulty;
-    }
 
     public override void OnInteract()
     {

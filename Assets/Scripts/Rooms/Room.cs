@@ -1,7 +1,26 @@
+using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Room : MonoBehaviour
 {
+    [Serializable]
+    public class RoomInformation
+    {
+        public RoomStates showOnState;
+        public bool isName = false;
+        public string title;
+        public string extraText;
+        //public TextMeshProUGUI text;
+        public GameObject childObject;
+    }
+
+    [SerializeField] private List<RoomInformation> roomInfoList;
+    [SerializeField] private Spawning spawning;
+    [SerializeField] private GameObject roomInformationPanel;
+
     public enum RoomStates { empty, infested, weapons, upgrade }
     [Header("Room States")]
     public RoomStates currentState;
@@ -35,6 +54,15 @@ public class Room : MonoBehaviour
     [SerializeField] private GameObject upgradeRoom;
     public bool playerInsideRoom = false;
 
+    public Action OnRoomStateChange;
+
+    private void Start()
+    {
+        SpawnRoomInformationOnStart();
+        UpdateRoomInformation();
+        HideRoomInformation();
+    }
+
     private void OnEnable()
     {
         if (GameState.instance != null)
@@ -42,11 +70,15 @@ public class Room : MonoBehaviour
             Debug.Log(this.name + "Subscribed");
             GameState.instance.OnPlayerRespawn += PlayerOutsideRoomOnRespawn;
         }
+
+        OnRoomStateChange += UpdateRoomInformation;
     }
 
     private void OnDisable()
     {
         GameState.instance.OnPlayerRespawn -= PlayerOutsideRoomOnRespawn;
+
+        OnRoomStateChange -= UpdateRoomInformation;
     }
 
     private void Update()
@@ -64,6 +96,7 @@ public class Room : MonoBehaviour
         emptyRoom.SetActive(false);
         weaponsRoom.SetActive(false);
         upgradeRoom.SetActive(false);
+        OnRoomStateChange?.Invoke();
     }
 
     private void ChangeToEmptyRoom()
@@ -72,6 +105,7 @@ public class Room : MonoBehaviour
         emptyRoom.SetActive(true);
         weaponsRoom.SetActive(false);
         upgradeRoom.SetActive(false);
+        OnRoomStateChange?.Invoke();
     }
 
     private void ChangeToWeaponsRoom()
@@ -80,6 +114,7 @@ public class Room : MonoBehaviour
         emptyRoom.SetActive(false);
         weaponsRoom.SetActive(true);
         upgradeRoom.SetActive(false);
+        OnRoomStateChange?.Invoke();
     }
 
     private void ChangeToUpgradeRoom()
@@ -88,10 +123,75 @@ public class Room : MonoBehaviour
         emptyRoom.SetActive(false);
         weaponsRoom.SetActive(false);
         upgradeRoom.SetActive(true);
+        OnRoomStateChange?.Invoke();
     }
 
     private void PlayerOutsideRoomOnRespawn()
     {
         playerInsideRoom = false;
+    }
+
+    // spawn all room information on start
+    private void SpawnRoomInformationOnStart()
+    {
+        for (int i = 0; i < roomInfoList.Count; i++)
+        {
+            GameObject newInfo = new GameObject();
+            newInfo.transform.SetParent(roomInformationPanel.transform);
+            roomInfoList[i].childObject = newInfo;
+            newInfo.name = roomInfoList[i].title;
+            TextMeshProUGUI textComponent = newInfo.AddComponent<TextMeshProUGUI>();
+            textComponent.color = Color.black;
+            textComponent.enableAutoSizing = true;
+            textComponent.fontSizeMin = 0.2f;
+            textComponent.fontSizeMax = 0.3f;
+
+            if (roomInfoList[i].showOnState == RoomStates.infested && roomInfoList[i].isName == false)
+            {
+                float roomDifficulty = (spawning.timerLength / spawning.difficultyMultiplier) / 60;
+                textComponent.text = roomInfoList[i].title + " " + spawning.timerLength.ToString() + "\n" + roomInfoList[i].extraText + " " + (int)roomDifficulty;
+            }
+            else
+            {
+                textComponent.text = roomInfoList[i].title + " " + roomInfoList[i].extraText;
+            }
+        }
+    }
+
+    // update the room information when the states change
+    private void UpdateRoomInformation()
+    {
+        for (int i = 0; i < roomInfoList.Count; i++)
+        {
+            if (roomInfoList[i].showOnState != currentState)
+            {
+                roomInfoList[i].childObject.SetActive(false);
+            }
+            else
+            {
+                roomInfoList[i].childObject.SetActive(true);
+            }
+        }
+    }
+
+    // hide the room information when already inside the room
+    private void HideRoomInformation()
+    {
+        roomInformationPanel.SetActive(false);
+    }
+
+    private void ShowRoomInformation()
+    {
+        roomInformationPanel.SetActive(true);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        ShowRoomInformation();
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        HideRoomInformation();
     }
 }
