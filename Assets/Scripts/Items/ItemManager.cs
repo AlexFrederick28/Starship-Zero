@@ -14,7 +14,28 @@ public class ItemManager : MonoBehaviour
     [SerializeField] public List<string> itemDescriptionGO;
     [SerializeField] public List<Sprite> itemSpritesGO;
 
+    [SerializeField] public List<int> itemCountInitial; // used to reset the item count on death to its initial on restart
+
     public WeaponBase[] allWeapons;
+
+    protected void OnEnable()
+    {
+        if (Spawning.instance != null)
+        {
+            Spawning.instance.OnCompletingInfestedRoom += RecordInitialItemCount;
+        }
+        if (GameState.instance != null)
+        {
+            GameState.instance.OnPlayerRespawn += ResetInitialItemCount;
+            GameState.instance.OnPlayerRetry += ResetInitialItemCount;
+        }
+
+    }
+
+    protected void OnDisable()
+    {
+        Spawning.instance.OnCompletingInfestedRoom -= RecordInitialItemCount;
+    }
 
     // initialise
     void Start()
@@ -27,6 +48,37 @@ public class ItemManager : MonoBehaviour
         ItemStats(); 
         ItemInfo(); 
         ItemScaleAllWeapons();
+    }
+
+    // grabs the amount of items at the start/end of a room
+    public void RecordInitialItemCount()
+    {
+        Debug.Log("Record Initial Item Count");
+        itemCountInitial = new List<int>(itemCountGO);
+    }
+
+    public void ClearInitialItemCount()
+    {
+        itemCountInitial.Clear();
+    }
+
+    // rewind the amount of items a player at the start of a room
+    public void ResetInitialItemCount()
+    {
+        Debug.Log("Reset Initial Item Count");
+        if (itemCountInitial.Count > 0)
+        {
+            itemCountGO = new List<int>(itemCountInitial);
+        }
+        else
+        {
+            Debug.Log("Nothing to Reset back to");
+        }
+
+        foreach (WeaponBase weapon in allWeapons)
+        {
+            weapon.ItemScaling();
+        }
     }
 
     // finds all weapons and runs a function to calculate the items on them
