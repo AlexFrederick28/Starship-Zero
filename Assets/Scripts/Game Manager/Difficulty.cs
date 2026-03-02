@@ -26,15 +26,9 @@ public class Difficulty : MonoBehaviour
             currentTime = value;
         }
     }
-    [SerializeField] protected float timerLength;
-    public float TimerLength
-    {
-        get { return timerLength; }
-        set
-        {
-            timerLength = value;
-        }
-    }
+
+    public float timerLength;
+
     [SerializeField] protected float currentDifficulty;
     public float CurrentDifficulty
     {
@@ -50,7 +44,7 @@ public class Difficulty : MonoBehaviour
         }
     }
     [Tooltip("(max difficulty / timer length) / 60 = (tracked in minutes) The lower the number, the higher the max difficulty can go - effecting how many scaling segments there will be in a single run")]
-    [SerializeField] protected float difficultyMultiplier;
+    public float difficultyMultiplier;
     [SerializeField] protected float scalingSegments;
     public bool timerReachedMaxLength = false;
     public bool timerPaused = false;

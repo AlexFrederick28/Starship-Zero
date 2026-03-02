@@ -1,24 +1,38 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class InfestedDoor : Door
 {
+    public Spawning spawning;
+    public GameObject roomInformationPanel;
+    public TextMeshPro difficultyText;
+    public TextMeshPro roomTimeText;
+    public string difficultyName;
+    private float roomDifficulty;
     private bool questEnabled = false;
+
+    private void OnEnable()
+    {
+        roomTimeText.text = spawning.timerLength.ToString();
+        roomDifficulty = (spawning.timerLength / spawning.difficultyMultiplier) / 60;
+        difficultyText.text = difficultyName + " : " + (int)roomDifficulty;
+    }
 
     public override void OnInteract()
     {
-        if (GetComponent<Spawning>().entryQuestActivated == true)
+        if (spawning.entryQuestActivated == true)
         {
             for (int i = 0; i < QuestManager.instance.activeQuests.Count; i++)
             {
-                if (GetComponent<Spawning>().questID == QuestManager.instance.activeQuests[i].prerequisite.id)
+                if (spawning.questID == QuestManager.instance.activeQuests[i].prerequisite.id)
                 {
                     if (GameState.instance.currentState != GameState.States.RoomClear && GetComponentInParent<Room>().playerInsideRoom == false)
                     {
                         // if the quest is active, enables and sends quest level to spawner as well as activates respawn checkpoint
                         GameState.instance.ChangeStateToRoomClear();
-                        GetComponent<Spawning>().enabled = true;
-                        GetComponent<Spawning>().questLevel = new Vector2(QuestManager.instance.activeQuests[i].prerequisite.level, GameState.instance.player.CurrentExperience);
+                        spawning.enabled = true;
+                        spawning.questLevel = new Vector2(QuestManager.instance.activeQuests[i].prerequisite.level, GameState.instance.player.CurrentExperience);
                         GetComponent<RespawnCheckpoint>().enabled = true;
                         questEnabled = true;
                         break;
@@ -27,7 +41,7 @@ public class InfestedDoor : Door
                     {
                         // leaving the infested room and disabling spawning and respawn
                         GameState.instance.ChangeStateToMain();
-                        GetComponent<Spawning>().enabled = false;
+                        spawning.enabled = false;
                         GetComponent<RespawnCheckpoint>().enabled = false;
                         break;
                     }
@@ -58,7 +72,7 @@ public class InfestedDoor : Door
                 // if the quest is active, enables and sends quest level to spawner as well as activates respawn checkpoint
                 base.OnInteract();
                 GameState.instance.ChangeStateToRoomClear();
-                GetComponent<Spawning>().enabled = true;
+                spawning.enabled = true;
                 GetComponent<RespawnCheckpoint>().enabled = true;
                 return;
             }
@@ -67,7 +81,7 @@ public class InfestedDoor : Door
                 // leaving the infested room and disabling spawning and respawn
                 base.OnInteract();
                 GameState.instance.ChangeStateToMain();
-                GetComponent<Spawning>().enabled = false;
+                spawning.enabled = false;
                 GetComponent<RespawnCheckpoint>().enabled = false;
                 return;
             }
