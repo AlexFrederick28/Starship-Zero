@@ -7,7 +7,7 @@ public class InfestedDoor : Door
 
     public override void OnInteract()
     {
-        if (GetComponent<Spawning>().isQuestActivated == true)
+        if (GetComponent<Spawning>().entryQuestActivated == true)
         {
             for (int i = 0; i < QuestManager.instance.activeQuests.Count; i++)
             {
@@ -19,7 +19,7 @@ public class InfestedDoor : Door
                         GameState.instance.ChangeStateToRoomClear();
                         GetComponent<Spawning>().enabled = true;
                         GetComponent<Spawning>().questLevel = new Vector2(QuestManager.instance.activeQuests[i].prerequisite.level, GameState.instance.player.CurrentExperience);
-                        GetComponent<RespawnCheckpoint>().respawnActive = true;
+                        GetComponent<RespawnCheckpoint>().enabled = true;
                         questEnabled = true;
                         break;
                     }
@@ -28,7 +28,7 @@ public class InfestedDoor : Door
                         // leaving the infested room and disabling spawning and respawn
                         GameState.instance.ChangeStateToMain();
                         GetComponent<Spawning>().enabled = false;
-                        GetComponent<RespawnCheckpoint>().respawnActive = false;
+                        GetComponent<RespawnCheckpoint>().enabled = false;
                         break;
                     }
                 }
@@ -59,7 +59,7 @@ public class InfestedDoor : Door
                 base.OnInteract();
                 GameState.instance.ChangeStateToRoomClear();
                 GetComponent<Spawning>().enabled = true;
-                GetComponent<RespawnCheckpoint>().respawnActive = true;
+                GetComponent<RespawnCheckpoint>().enabled = true;
                 return;
             }
             else if (GameState.instance.currentState != GameState.States.RoomClear && GetComponentInParent<Room>().playerInsideRoom == true)
@@ -68,7 +68,7 @@ public class InfestedDoor : Door
                 base.OnInteract();
                 GameState.instance.ChangeStateToMain();
                 GetComponent<Spawning>().enabled = false;
-                GetComponent<RespawnCheckpoint>().respawnActive = false;
+                GetComponent<RespawnCheckpoint>().enabled = false;
                 return;
             }
         }

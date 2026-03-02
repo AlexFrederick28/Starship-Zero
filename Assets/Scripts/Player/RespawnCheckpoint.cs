@@ -5,7 +5,7 @@ public class RespawnCheckpoint : MonoBehaviour
 {
     public Transform respawnPoint;
     public Transform retryPoint;
-    public bool respawnActive = false;
+    //public bool respawnActive = false;
 
     private void OnEnable()
     {

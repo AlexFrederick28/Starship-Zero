@@ -18,7 +18,7 @@ public class Spawning : Difficulty
     [Tooltip("If this room is attached to a quest, enter its ID here to obtain its level and dynamically changing the scaling of enemies")]
     public Vector2 questLevel;
     public int questID;
-    public bool isQuestActivated = false;
+    public bool entryQuestActivated = false;
     [Tooltip("Objects that will activate once the player has cleared the room")]
     public GameObject[] questObjects;
 
@@ -140,7 +140,6 @@ public class Spawning : Difficulty
     private int bossIndexNumb;
 
     public Action OnInfestedRoomReset;
-    public Action OnCompletingInfestedRoom;
 
     public bool playerClearedRoom = false;
     private bool PlayerWinCondition()
@@ -159,7 +158,7 @@ public class Spawning : Difficulty
                 }
             }
             GetComponentInParent<Room>().currentState = GetComponentInParent<Room>().clearedState;
-            OnCompletingInfestedRoom?.Invoke();
+            GameState.instance.OnCompletedInfestedClear?.Invoke();
             return true;
         }
         else
@@ -181,8 +180,10 @@ public class Spawning : Difficulty
             GameState.instance.OnPlayerRespawn += DisableInstanceOnPlayerRespawn;
             GameState.instance.OnPlayerLevelUp += PauseSpawning;
 
-            OnCompletingInfestedRoom += GameState.instance.playerInventory.DestroyLoadout;
-            OnCompletingInfestedRoom += GameState.instance.playerInventory.RemoveGapsFromInventory;
+            GameState.instance.OnCompletedInfestedClear += GameState.instance.playerInventory.DestroyLoadout;
+            GameState.instance.OnCompletedInfestedClear += GameState.instance.playerInventory.RemoveGapsFromInventory;
+
+            GameState.instance.OnEnteringInfestedRoom?.Invoke();
         }
 
         if (instance == null)
@@ -194,6 +195,12 @@ public class Spawning : Difficulty
             // turns off duplicate instances if there are more than one enabled
             gameObject.SetActive(false);
         }
+
+        if (entryQuestActivated == false)
+        {
+            questLevel.x = GameState.instance.player.Level;
+            questLevel.y = GameState.instance.player.CurrentExperience;
+        }
     }
 
     private void OnDisable()
@@ -203,16 +210,18 @@ public class Spawning : Difficulty
         GameState.instance.OnPlayerRespawn -= DisableInstanceOnPlayerRespawn;
         GameState.instance.OnPlayerLevelUp -= PauseSpawning;
 
-        OnCompletingInfestedRoom -= GameState.instance.playerInventory.DestroyLoadout;
-        OnCompletingInfestedRoom -= GameState.instance.playerInventory.RemoveGapsFromInventory;
+        GameState.instance.OnCompletedInfestedClear -= GameState.instance.playerInventory.DestroyLoadout;
+        GameState.instance.OnCompletedInfestedClear -= GameState.instance.playerInventory.RemoveGapsFromInventory;
 
         if (instance == this)
         {
             instance = null;
         }
-
-        //QuestManager.instance.EnableQuestObject();
-        //ActivateQuestObjects();
+        if (entryQuestActivated == false)
+        {
+            questLevel.x = 0;
+            questLevel.y = 0;
+        }
     }
 
     private void Start()

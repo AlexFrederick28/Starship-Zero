@@ -20,21 +20,22 @@ public class ItemManager : MonoBehaviour
 
     protected void OnEnable()
     {
-        if (Spawning.instance != null)
-        {
-            Spawning.instance.OnCompletingInfestedRoom += RecordInitialItemCount;
-        }
         if (GameState.instance != null)
         {
+            GameState.instance.OnEnteringInfestedRoom += RecordInitialItemCount;
             GameState.instance.OnPlayerRespawn += ResetInitialItemCount;
             GameState.instance.OnPlayerRetry += ResetInitialItemCount;
+            GameState.instance.OnEnteringInfestedRoom += ItemScaleAllWeapons;
         }
 
     }
 
     protected void OnDisable()
     {
-        Spawning.instance.OnCompletingInfestedRoom -= RecordInitialItemCount;
+        GameState.instance.OnEnteringInfestedRoom -= RecordInitialItemCount;
+        GameState.instance.OnPlayerRespawn -= ResetInitialItemCount;
+        GameState.instance.OnPlayerRetry -= ResetInitialItemCount;
+        GameState.instance.OnEnteringInfestedRoom -= ItemScaleAllWeapons;
     }
 
     // initialise
@@ -73,6 +74,7 @@ public class ItemManager : MonoBehaviour
         else
         {
             Debug.Log("Nothing to Reset back to");
+            ResetItemCount();
         }
 
         foreach (WeaponBase weapon in allWeapons)
