@@ -27,7 +27,6 @@ public class WeaponCrafting : MonoBehaviour, IPointerClickHandler
     {
         // resetting crafting on disabling the menu as the crafting possibilty needs to be rechecked
         canCraft = false;
-        //weaponLockedImage.enabled = true;
     }
 
     public void CheckCraftingPossibility()
@@ -42,9 +41,10 @@ public class WeaponCrafting : MonoBehaviour, IPointerClickHandler
             amountOfIngredients++;
             int amountOfCurrentItem = 0;
             // for each ingredient check if the player has the required amount
-            for (int i = 0; i < GameState.instance.playerInventory.InventoryItemList.Count; i++)
+            for (int i = 0; i < GameState.instance.playerInventory.inventorySlots.Count; i++)
             {
-                if (GameState.instance.playerInventory.InventoryItemList[i].inventoryItem.itemName == recipe.ingredients[x].ingredient.itemName)
+                if (GameState.instance.playerInventory.inventorySlots[i].inventoryItem == null) { continue; }
+                if (GameState.instance.playerInventory.inventorySlots[i].inventoryItem.itemName == recipe.ingredients[x].ingredient.itemName)
                 {
                     // getting the amount of the item from the inventory slot itself, as it will have the same list position as the current item
                     amountOfCurrentItem += GameState.instance.playerInventory.inventorySlots[i].currentStackSize;
@@ -83,7 +83,7 @@ public class WeaponCrafting : MonoBehaviour, IPointerClickHandler
                 UIManager.instance.weaponCraftingSelectedDescriptionAmount.text += "\n" + recipe.weaponDescription[i].amount;
             }
         }
-        //UIManager.instance.weaponCraftingSelectedImage.sprite = recipe.weapon.sprite;
+        UIManager.instance.weaponCraftingSelectedImage.sprite = recipe.weapon.weaponSprite;
         UIManager.instance.weaponCraftingSelectedName.text = recipe.weapon.weaponName;
 
         if (UIManager.instance.weaponCraftingRecipePrefabList.Count > 0)
@@ -133,9 +133,9 @@ public class WeaponCrafting : MonoBehaviour, IPointerClickHandler
         Inventory inventory = GameState.instance.playerInventory;
         if (recipe.isFree == true)
         {
-            for (int i = 0; i < inventory.inventoryItemList.Count; i++)
+            for (int i = 0; i < inventory.inventorySlots.Count; i++)
             {
-                if (inventory.inventoryItemList[i].inventoryItem == recipe.item)
+                if (inventory.inventorySlots[i].inventoryItem == recipe.item)
                 {
                     Debug.Log("Player inventory already contains this free item!");
                     return;

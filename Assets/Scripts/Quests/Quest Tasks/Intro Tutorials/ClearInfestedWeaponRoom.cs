@@ -10,7 +10,7 @@ public class ClearInfestedWeaponRoom : QuestTaskBase
     {
         if (Spawning.instance != null)
         {
-            Spawning.instance.OnCompletingInfestedRoom += CompletedInfestedRoom;
+            GameState.instance.OnCompletedInfestedClear += CompletedInfestedRoom;
         }
     }
 
@@ -18,7 +18,7 @@ public class ClearInfestedWeaponRoom : QuestTaskBase
     {
         if (Spawning.instance != null)
         {
-            Spawning.instance.OnCompletingInfestedRoom -= CompletedInfestedRoom;
+            GameState.instance.OnCompletedInfestedClear -= CompletedInfestedRoom;
         }
     }
 
@@ -27,7 +27,7 @@ public class ClearInfestedWeaponRoom : QuestTaskBase
         base.Update();
         if (Spawning.instance != null && subscribedToCompletionEvent == false)
         {
-            Spawning.instance.OnCompletingInfestedRoom += CompletedInfestedRoom;
+            GameState.instance.OnCompletedInfestedClear += CompletedInfestedRoom;
             subscribedToCompletionEvent = true;
         }
     }

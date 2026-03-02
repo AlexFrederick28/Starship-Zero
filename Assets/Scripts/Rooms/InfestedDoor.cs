@@ -7,7 +7,7 @@ public class InfestedDoor : Door
 
     public override void OnInteract()
     {
-        if (GetComponent<Spawning>().isQuestActivated == true)
+        if (GetComponent<Spawning>().entryQuestActivated == true)
         {
             for (int i = 0; i < QuestManager.instance.activeQuests.Count; i++)
             {

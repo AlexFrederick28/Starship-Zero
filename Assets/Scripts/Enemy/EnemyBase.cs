@@ -136,7 +136,15 @@ public class EnemyBase : MonoBehaviour
         // scales enemy stats with levels to adjust game difficulty
         if (Spawning.instance != null)
         {
-            level = (int)Spawning.instance.questLevel.x;
+            if (Spawning.instance.entryQuestActivated == true)
+            {
+                level = (int)Spawning.instance.questLevel.x;
+            }
+            else
+            {
+                level = GameState.instance.player.Level;
+            }
+
             maxHealth += (healthScale * level);
             Health += (healthScale * level);
             damage += (damageScale * level);
