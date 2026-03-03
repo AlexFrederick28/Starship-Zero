@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using TMPro;
 using UnityEngine;
 
@@ -187,11 +188,14 @@ public class Room : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.GetComponent<PlayerBase>() == null) { return; }
         ShowRoomInformation();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (collision.gameObject.GetComponent<PlayerBase>() == null) { return; }
+
         HideRoomInformation();
     }
 }
