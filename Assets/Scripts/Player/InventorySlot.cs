@@ -65,6 +65,10 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         }
 
         // setting the stack slider amount (can change this to occur on click and after pressing sell rather than update)
+        if (inventoryItem == null)
+        {
+            return;
+        }
         if (viewingSlot == true && inventoryItem.isWeapon == false)
         {
             UIManager.instance.selectedStackAmount.text = UIManager.instance.stackAmountSlider.value.ToString();

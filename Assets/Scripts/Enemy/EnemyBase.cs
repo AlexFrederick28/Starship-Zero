@@ -24,13 +24,13 @@ public class EnemyBase : MonoBehaviour
             {
                 value = maxHealth;
             }
-            if (value < 0)
+            if (value <= 0)
             {
                 value = 0;
-                Death();
             }
 
             currentHealth = value;
+            Death();
         }
     }
 

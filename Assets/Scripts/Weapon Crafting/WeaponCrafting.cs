@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Net;
 using TMPro;
 using Unity.VisualScripting;
@@ -57,11 +58,17 @@ public class WeaponCrafting : MonoBehaviour, IPointerClickHandler
             }
         }
 
-        if (amountOfIngredients == inventoryContains)
+        if (inventoryContains == recipe.ingredients.Length)
         {
             // once we have checked to see if we have all the ingredients in the players inventory, SHOW the player they can craft it (like a red or green text/background)
             canCraft = true;
         }
+        else
+        {
+            canCraft = false;
+        }
+
+        // reset the buttons listener so that it updates correctly when a weapon can no longer be crafted
     }
 
     public void ShowCraftingSummary()
@@ -152,12 +159,8 @@ public class WeaponCrafting : MonoBehaviour, IPointerClickHandler
             }
             for (int x = 0; x < recipe.ingredients.Length; x++)
             {
-                // for each ingredient take the required amount for the recipe
-                for (int i = 0; i < recipe.ingredients.Length; i++)
-                {
-                    InventoryItemPackage item = recipe.ingredients[x].ingredient;
-                    GameState.instance.playerInventory.RemoveItem(item, recipe.ingredients[x].amount, recipe.ingredients[i].ingredient.itemName);
-                }
+                InventoryItemPackage item = recipe.ingredients[x].ingredient;
+                GameState.instance.playerInventory.RemoveItem(item, recipe.ingredients[x].amount, recipe.ingredients[x].ingredient.itemName);
             }
             GameState.instance.player.currency -= recipe.purchaseCost;
         }
@@ -169,6 +172,9 @@ public class WeaponCrafting : MonoBehaviour, IPointerClickHandler
             OnFirstWeaponCraft?.Invoke();
             craftedFirstWeaponTutorial = true;
         }
+        // shouldnt have to turn the object off an on just to update the crafting possibility
+        gameObject.SetActive(false);
+        gameObject.SetActive(true);
     }
 
     public void OnPointerClick(PointerEventData eventData)
