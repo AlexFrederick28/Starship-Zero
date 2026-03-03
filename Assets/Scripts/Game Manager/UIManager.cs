@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public GameObject playerUIParent;
     public Slider playerHealthSlider;
     public Slider playerLevelSlider;
+    public TextMeshProUGUI playerCurrency;
     public TextMeshProUGUI playerLevel;
     public GameObject notificationPrefab;
     public float notificationTime;
@@ -123,12 +124,18 @@ public class UIManager : MonoBehaviour
     {
         if (Spawning.instance != null)
         {
-            // this is a temporary function to get the infested room and player health bar working for prototype testing
-            int newTime = (int)Spawning.instance.CurrentTime;
-            int newDifficulty = (int)Spawning.instance.CurrentDifficulty;
+            // this is a temporary function to get the infested room time working for prototype testing
+            float difficulty = Spawning.instance.CurrentDifficulty;
+            currentTime.enabled = true;
+            currentDifficulty.enabled = true;
 
-            currentTime.text = newTime.ToString();
-            currentDifficulty.text = newDifficulty.ToString();
+            currentTime.text = "|Time|" + "\n" + Spawning.instance.currentMinuteTime.x.ToString() + ":" + Spawning.instance.currentMinuteTime.y;
+            currentDifficulty.text = "|Difficulty|" + "\n" + (int)difficulty;
+        }
+        else
+        {
+            currentTime.enabled = false;
+            currentDifficulty.enabled = false;
         }
     }
 

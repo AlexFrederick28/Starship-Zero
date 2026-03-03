@@ -141,6 +141,7 @@ public class PlayerBase : MonoBehaviour
             GameState.instance.OnPlayerRespawn += ResetPlayerStatsOnRespawn;
             GameState.instance.OnPlayerRetry += ResetPlayerStatsOnRespawn;
             GameState.instance.OnPlayerLevelUp += PausePlayerOnPlayerLevelUp;
+            GameState.instance.OnCompletedInfestedClear += ResetPlayerHealth;
         }
     }
 
@@ -149,6 +150,7 @@ public class PlayerBase : MonoBehaviour
         GameState.instance.OnPlayerRespawn -= ResetPlayerStatsOnRespawn;
         GameState.instance.OnPlayerRetry -= ResetPlayerStatsOnRespawn;
         GameState.instance.OnPlayerLevelUp -= PausePlayerOnPlayerLevelUp;
+        GameState.instance.OnCompletedInfestedClear -= ResetPlayerHealth;
     }
 
     private void Start()
@@ -276,6 +278,7 @@ public class PlayerBase : MonoBehaviour
         UIManager.instance.playerHealthSlider.maxValue = maxHealth;
         UIManager.instance.playerHealthSlider.minValue = 0f;
         UIManager.instance.playerHealthSlider.value = currentHealth;
+        UIManager.instance.playerCurrency.text = "Currency: $" + currency.ToString();
     }
 
     public void ResetPlayerStatsOnRespawn()
@@ -283,6 +286,11 @@ public class PlayerBase : MonoBehaviour
         Level = (int)Spawning.instance.questLevel.x;
         CalculateExperienceNeeded();
         CurrentExperience = (int)Spawning.instance.questLevel.y;
+        Health = maxHealth;
+    }
+
+    public void ResetPlayerHealth()
+    {
         Health = maxHealth;
     }
 }

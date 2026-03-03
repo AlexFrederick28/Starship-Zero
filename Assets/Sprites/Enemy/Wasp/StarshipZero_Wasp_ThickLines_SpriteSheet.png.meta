@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: ebe9d639acf527a49ab6aa52e0db04de
+guid: f14e780266a83e04984795ac1798e2f3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1278538891314193961
-    second: StarshipZero_Wasp_Grey_SpriteSheet_0
+      213: 8391194786852480621
+    second: StarshipZero_Wasp_ThickLines_SpriteSheet_0
   - first:
-      213: -8835480704824359254
-    second: StarshipZero_Wasp_Grey_SpriteSheet_1
+      213: 8539634564510979654
+    second: StarshipZero_Wasp_ThickLines_SpriteSheet_1
   - first:
-      213: 8217948532835149504
-    second: StarshipZero_Wasp_Grey_SpriteSheet_2
+      213: 3349262325287081003
+    second: StarshipZero_Wasp_ThickLines_SpriteSheet_2
   - first:
-      213: -7798076810388767619
-    second: StarshipZero_Wasp_Grey_SpriteSheet_3
+      213: 2726473148482508646
+    second: StarshipZero_Wasp_ThickLines_SpriteSheet_3
   - first:
-      213: -2598695556112907334
-    second: StarshipZero_Wasp_Grey_SpriteSheet_4
+      213: 6670755142920684779
+    second: StarshipZero_Wasp_ThickLines_SpriteSheet_4
   - first:
-      213: -5972796209689467868
-    second: StarshipZero_Wasp_Grey_SpriteSheet_5
+      213: 7044139787669999062
+    second: StarshipZero_Wasp_ThickLines_SpriteSheet_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -90,7 +90,7 @@ TextureImporter:
     maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 3
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 1
     allowsAlphaSplitting: 0
@@ -115,7 +115,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: StarshipZero_Wasp_Grey_SpriteSheet_0
+      name: StarshipZero_Wasp_ThickLines_SpriteSheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -130,14 +130,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 926ed4009584eb110800000000000000
-      internalID: 1278538891314193961
+      spriteID: d66a37f3333837470800000000000000
+      internalID: 8391194786852480621
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StarshipZero_Wasp_Grey_SpriteSheet_1
+      name: StarshipZero_Wasp_ThickLines_SpriteSheet_1
       rect:
         serializedVersion: 2
         x: 1041
@@ -152,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: aa640218c11126580800000000000000
-      internalID: -8835480704824359254
+      spriteID: 64613593460e28670800000000000000
+      internalID: 8539634564510979654
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StarshipZero_Wasp_Grey_SpriteSheet_2
+      name: StarshipZero_Wasp_ThickLines_SpriteSheet_2
       rect:
         serializedVersion: 2
         x: 2082
@@ -174,14 +174,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0c6e41a66a40c0270800000000000000
-      internalID: 8217948532835149504
+      spriteID: b24d556f658fa7e20800000000000000
+      internalID: 3349262325287081003
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StarshipZero_Wasp_Grey_SpriteSheet_3
+      name: StarshipZero_Wasp_ThickLines_SpriteSheet_3
       rect:
         serializedVersion: 2
         x: 3123
@@ -196,14 +196,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d7cf099f47aa7c390800000000000000
-      internalID: -7798076810388767619
+      spriteID: 667d0f012e066d520800000000000000
+      internalID: 2726473148482508646
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StarshipZero_Wasp_Grey_SpriteSheet_4
+      name: StarshipZero_Wasp_ThickLines_SpriteSheet_4
       rect:
         serializedVersion: 2
         x: 4164
@@ -218,14 +218,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ab3018209249febd0800000000000000
-      internalID: -2598695556112907334
+      spriteID: be4c5659578439c50800000000000000
+      internalID: 6670755142920684779
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StarshipZero_Wasp_Grey_SpriteSheet_5
+      name: StarshipZero_Wasp_ThickLines_SpriteSheet_5
       rect:
         serializedVersion: 2
         x: 5205
@@ -240,8 +240,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 424e8a51e7d5c1da0800000000000000
-      internalID: -5972796209689467868
+      spriteID: 6dd0440c0dfc1c160800000000000000
+      internalID: 7044139787669999062
       vertices: []
       indices: 
       edges: []
@@ -250,7 +250,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: e506f4aadf88ed84eb41846b0de0f8b7
+    spriteID: 6ab40da8c38c2454d906f147a63a004e
     internalID: 0
     vertices: []
     indices: 
@@ -259,17 +259,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries:
-      - key: SpriteEditor.SliceOnImport
-        value: False
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":6.0,"y":1.0},"gridSpriteSize":{"x":1041.0,"y":1080.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      StarshipZero_Wasp_Grey_SpriteSheet_0: 1278538891314193961
-      StarshipZero_Wasp_Grey_SpriteSheet_1: -8835480704824359254
-      StarshipZero_Wasp_Grey_SpriteSheet_2: 8217948532835149504
-      StarshipZero_Wasp_Grey_SpriteSheet_3: -7798076810388767619
-      StarshipZero_Wasp_Grey_SpriteSheet_4: -2598695556112907334
-      StarshipZero_Wasp_Grey_SpriteSheet_5: -5972796209689467868
+      StarshipZero_Wasp_ThickLines_SpriteSheet_0: 8391194786852480621
+      StarshipZero_Wasp_ThickLines_SpriteSheet_1: 8539634564510979654
+      StarshipZero_Wasp_ThickLines_SpriteSheet_2: 3349262325287081003
+      StarshipZero_Wasp_ThickLines_SpriteSheet_3: 2726473148482508646
+      StarshipZero_Wasp_ThickLines_SpriteSheet_4: 6670755142920684779
+      StarshipZero_Wasp_ThickLines_SpriteSheet_5: 7044139787669999062
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

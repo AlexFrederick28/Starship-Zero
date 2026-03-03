@@ -512,6 +512,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Spawning
   currentTime: 599
   timerLength: 0
+  minuteTimerLength: {x: 0, y: 0}
+  currentMinuteTime: {x: 0, y: 0}
   currentDifficulty: 0
   difficultyMultiplier: 0.1
   scalingSegments: 0
@@ -617,7 +619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RespawnCheckpoint
   respawnPoint: {fileID: 5741862051603556236}
-  retryPoint: {fileID: 0}
+  retryPoint: {fileID: 1697629377559099862}
 --- !u!1 &6381008139255125533
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: "TutorialFirstQuest pt.3 \u201COpen inventory\u201D"
   m_EditorClassIdentifier: Assembly-CSharp::QuestScriptableObjects
   quest:
-    description: Open inventory
+    description: Equip weapon from inventory
     prerequisite:
-      name: Open inventory
+      name: Equip weapon from inventory
       id: 5
       level: 0
       currencyReward: 0

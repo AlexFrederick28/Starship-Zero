@@ -11,6 +11,11 @@ public class InfestedDoor : Door
 
     public override void OnInteract()
     {
+        if (GameState.instance.playerInventory.weaponLoadoutList.Count <= 0)
+        {
+            StartCoroutine(UIManager.instance.NewNotification("No Weapon Equipped!"));
+            return;
+        }
         if (spawning.entryQuestActivated == true)
         {
             for (int i = 0; i < QuestManager.instance.activeQuests.Count; i++)

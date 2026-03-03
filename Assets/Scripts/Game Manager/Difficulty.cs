@@ -28,6 +28,8 @@ public class Difficulty : MonoBehaviour
     }
 
     public float timerLength;
+    public Vector2 minuteTimerLength;
+    public Vector2 currentMinuteTime;
 
     [SerializeField] protected float currentDifficulty;
     public float CurrentDifficulty
@@ -49,6 +51,11 @@ public class Difficulty : MonoBehaviour
     public bool timerReachedMaxLength = false;
     public bool timerPaused = false;
 
+    private void Start()
+    {
+        TranslateTimerToMinutesAndSeconds();
+    }
+
     public virtual void Update()
     {
         // timer starts when entering a room
@@ -62,6 +69,7 @@ public class Difficulty : MonoBehaviour
         if (CurrentTime < timerLength)
         {
             CurrentTime += Time.deltaTime;
+            TranslateCurrentTimeToMinutesAndSeconds();
         }
     }
 
@@ -85,5 +93,28 @@ public class Difficulty : MonoBehaviour
         }
 
         CurrentDifficulty = ((timerLength / 60) + CurrentTime) / difficultyMultiplier / 60;
+    }
+
+    private void TranslateTimerToMinutesAndSeconds()
+    {
+        // for the timer length outside of a room to display
+        if (timerLength >= 60)
+        {
+            float minutes = Mathf.FloorToInt(timerLength / 60);
+            float seconds = Mathf.FloorToInt(timerLength % 60);
+
+            minuteTimerLength.x = minutes;
+            minuteTimerLength.y = seconds;
+        }
+    }
+
+    private void TranslateCurrentTimeToMinutesAndSeconds()
+    {
+        // display the current time when inside a room
+        float minutes = Mathf.FloorToInt(currentTime / 60);
+        float seconds = Mathf.FloorToInt(currentTime % 60);
+
+        currentMinuteTime.x = minutes;
+        currentMinuteTime.y = seconds;
     }
 }
