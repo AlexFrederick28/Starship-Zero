@@ -22,20 +22,31 @@ public class ItemManager : MonoBehaviour
     {
         if (GameState.instance != null)
         {
-            GameState.instance.OnEnteringInfestedRoom += RecordInitialItemCount;
-            GameState.instance.OnPlayerRespawn += ResetInitialItemCount;
-            GameState.instance.OnPlayerRetry += ResetInitialItemCount;
+            GameState.instance.OnEnteringInfestedRoom += ResetItemCount;
+            GameState.instance.OnPlayerRespawn += ResetItemCount;
+            GameState.instance.OnPlayerRetry += ResetItemCount;
+            GameState.instance.OnCompletedInfestedClear += ResetItemCount;
+
+            GameState.instance.OnPlayerRespawn += ItemScaleAllWeapons;
+            GameState.instance.OnPlayerRetry += ItemScaleAllWeapons;
             GameState.instance.OnEnteringInfestedRoom += ItemScaleAllWeapons;
+            GameState.instance.OnCompletedInfestedClear += ItemScaleAllWeapons;
+
         }
 
     }
 
     protected void OnDisable()
     {
-        GameState.instance.OnEnteringInfestedRoom -= RecordInitialItemCount;
-        GameState.instance.OnPlayerRespawn -= ResetInitialItemCount;
-        GameState.instance.OnPlayerRetry -= ResetInitialItemCount;
+        GameState.instance.OnEnteringInfestedRoom -= ResetItemCount;
+        GameState.instance.OnPlayerRespawn -= ResetItemCount;
+        GameState.instance.OnPlayerRetry -= ResetItemCount;
+        GameState.instance.OnCompletedInfestedClear -= ResetItemCount;
+
+        GameState.instance.OnPlayerRespawn -= ItemScaleAllWeapons;
+        GameState.instance.OnPlayerRetry -= ItemScaleAllWeapons;
         GameState.instance.OnEnteringInfestedRoom -= ItemScaleAllWeapons;
+        GameState.instance.OnCompletedInfestedClear -= ItemScaleAllWeapons;
     }
 
     // initialise
