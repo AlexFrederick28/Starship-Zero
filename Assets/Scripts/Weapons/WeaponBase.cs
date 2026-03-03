@@ -49,12 +49,19 @@ public class WeaponBase : MonoBehaviour
         if (GameState.instance != null)
         {
             GameState.instance.OnPlayerLevelUp += PauseWeapon;
+
+            GameState.instance.OnEnteringInfestedRoom += RandomiseWeaponFireTime;
+            GameState.instance.OnPlayerRetry += RandomiseWeaponFireTime;
+
         }
     }
 
     protected void OnDisable()
     {
         GameState.instance.OnPlayerLevelUp -= PauseWeapon;
+
+        GameState.instance.OnEnteringInfestedRoom -= RandomiseWeaponFireTime;
+        GameState.instance.OnPlayerRetry -= RandomiseWeaponFireTime;
     }
 
     protected virtual void Start()
@@ -270,6 +277,16 @@ public class WeaponBase : MonoBehaviour
             }
         }   
     }
+
+    // offset weapon firerate to not be the same
+    public void RandomiseWeaponFireTime()
+    {
+        float randomTime = Random.Range(0f, 0.9f);
+        //Debug.Log(randomTime + "ccccccccccc");
+
+        fireTime = randomTime;
+    }
+
 
     protected void FindClosetTarget() // closet enemy for weapon to fire at
     {
