@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBase
   view: {fileID: 489965776112638487}
+  animator: {fileID: 974976415234636650}
   enemyType: {fileID: 11400000, guid: 9f3463a6bc0caef4f9c497d1d961636f, type: 2}
   enemyName: Mutant Mite
   currentHealth: 0

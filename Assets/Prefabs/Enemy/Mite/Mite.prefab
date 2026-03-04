@@ -275,6 +275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBase
   view: {fileID: 2388746164370177002}
+  animator: {fileID: 7249313996777340770}
   enemyType: {fileID: 11400000, guid: 2f65c7155c952ec48bc0b344c98db473, type: 2}
   enemyName: 
   currentHealth: 0

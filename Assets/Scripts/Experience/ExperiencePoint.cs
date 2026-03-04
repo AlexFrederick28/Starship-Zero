@@ -63,23 +63,6 @@ public class ExperiencePoint : MonoBehaviour, ICollectable
 
             // set the experience a second time once scaled to overwrite the default
             SetExperience(currentExperienceType);
-
-            //for (int i = 0; i < QuestManager.instance.activeQuests.Count; i++)
-            //{
-            //    if (QuestManager.instance.activeQuests[i].prerequisite.id == Spawning.instance.questID)
-            //    {
-            //        // checking the spawn ID matches an active quest and sets the experience amount
-            //        float previousExperience = currentExperience;
-            //        easyDefaultExperience += easyScaleExperience * GameState.instance.player.ExperienceNeeded;
-            //        mediumDefaultExperience += mediumScaleExperience * GameState.instance.player.ExperienceNeeded;
-            //        hardDefaultExperience += hardScaleExperience * GameState.instance.player.ExperienceNeeded;
-            //        bossDefaultExperience += bossScaleExperience * GameState.instance.player.ExperienceNeeded;
-
-            //        // set the experience a second time once scaled to overwrite the default
-            //        SetExperience(currentExperienceType);
-            //        break;
-            //    }
-            //}
         }
     }
 
@@ -90,6 +73,7 @@ public class ExperiencePoint : MonoBehaviour, ICollectable
 
     IEnumerator ICollectable.Collect()
     {
+        if (GameState.instance.player.playerDead == true) { yield break; }
         while (gameObject.activeSelf == true)
         {
             // once the object has been collected and turn off, the coroutine will stop

@@ -52,8 +52,9 @@ public class WeaponBase : MonoBehaviour
 
             GameState.instance.OnEnteringInfestedRoom += RandomiseWeaponFireTime;
             GameState.instance.OnPlayerRetry += RandomiseWeaponFireTime;
-
         }
+
+        PlayerBase.OnPlayerDeath += PauseWeapon;
     }
 
     protected void OnDisable()
@@ -62,6 +63,8 @@ public class WeaponBase : MonoBehaviour
 
         GameState.instance.OnEnteringInfestedRoom -= RandomiseWeaponFireTime;
         GameState.instance.OnPlayerRetry -= RandomiseWeaponFireTime;
+
+        PlayerBase.OnPlayerDeath -= PauseWeapon;
     }
 
     protected virtual void Start()

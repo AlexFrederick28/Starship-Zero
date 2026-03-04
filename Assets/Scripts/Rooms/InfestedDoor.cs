@@ -16,6 +16,12 @@ public class InfestedDoor : Door
             StartCoroutine(UIManager.instance.NewNotification("No Weapon Equipped!"));
             return;
         }
+        // if the player has some sort of UI open, make sure they close it before trying to enter an infested room
+        if (GameState.instance.currentState == GameState.States.OpenUI) 
+        {
+            UIManager.instance.CloseAllInteractiveUI();
+            GameState.instance.ChangeStateToMain();
+        }
         if (spawning.entryQuestActivated == true)
         {
             for (int i = 0; i < QuestManager.instance.activeQuests.Count; i++)

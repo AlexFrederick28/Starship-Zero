@@ -89,6 +89,10 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] protected float maxPitch;
     [SerializeField] protected AudioClip playerHurtClip;
 
+    public static Action OnPlayerDeath;
+    public static Action OnPressingRetryOrRespawn;
+
+    public bool playerDead = false;
     public bool PlayerDead()
     {
         if (currentHealth <= 0)
@@ -98,8 +102,10 @@ public class PlayerBase : MonoBehaviour
             {
                 UIManager.instance.respawnButton.onClick.AddListener(Spawning.instance.checkpoint.Respawn);
                 UIManager.instance.retryInfestedRoomButton.onClick.AddListener(Spawning.instance.checkpoint.RetryInfestedRoom);
-                PausePlayer();
+                PauseAndUnpausePlayer(); // pause player
             }
+            OnPlayerDeath?.Invoke();
+            playerDead = true;
             return true;
         }
         else
@@ -108,18 +114,20 @@ public class PlayerBase : MonoBehaviour
             if (UIManager.instance.deathMenuParent.activeSelf == true)
             {
                 UIManager.instance.deathMenuParent.SetActive(false);
-                PausePlayer();
+                PauseAndUnpausePlayer(); // unpause player
                 if (Spawning.instance != null)
                 {
                     UIManager.instance.respawnButton.onClick.RemoveAllListeners();
                     UIManager.instance.retryInfestedRoomButton.onClick.RemoveAllListeners();
                 }
+                OnPressingRetryOrRespawn?.Invoke();
+                playerDead = false;
             }
             return false;
         }
     }
 
-    public bool PausePlayer()
+    public bool PauseAndUnpausePlayer()
     {
         if (GetComponent<PlayerMovement>().enabled == false)
         {
@@ -175,7 +183,7 @@ public class PlayerBase : MonoBehaviour
 
     private void PausePlayerOnPlayerLevelUp()
     {
-        PausePlayer();
+        PauseAndUnpausePlayer();
     }
 
     public void OnInteract(InputAction.CallbackContext context)
@@ -240,6 +248,7 @@ public class PlayerBase : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (playerDead == true) { return; }
         if (collision.gameObject.GetComponent<ExperiencePoint>())
         {
             ExperiencePoint point = collision.gameObject.GetComponent<ExperiencePoint>();
@@ -286,7 +295,7 @@ public class PlayerBase : MonoBehaviour
         Level = (int)Spawning.instance.questLevel.x;
         CalculateExperienceNeeded();
         CurrentExperience = (int)Spawning.instance.questLevel.y;
-        Health = maxHealth;
+        ResetPlayerHealth();
     }
 
     public void ResetPlayerHealth()

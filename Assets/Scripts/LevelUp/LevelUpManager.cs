@@ -71,6 +71,7 @@ public class LevelUpManager : MonoBehaviour
 
     public void LevelUpCards() // when the player levels up
     {
+        if (GameState.instance.player.playerDead == true) { return; }
         if (UIManager.instance.levelUpMenuParent.activeSelf == false)
         {
             UIManager.instance.levelUpMenuParent.SetActive(true);

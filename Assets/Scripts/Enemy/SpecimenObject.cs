@@ -6,6 +6,16 @@ public class SpecimenObject : MonoBehaviour, ICollectable
     public InventoryItemPackage specimenType;
     public SpriteRenderer spriteRenderer;
 
+    private void OnEnable()
+    {
+        PlayerBase.OnPressingRetryOrRespawn += AddSpecimenBackToSpawnPool;
+    }
+
+    private void OnDisable()
+    {
+        PlayerBase.OnPressingRetryOrRespawn -= AddSpecimenBackToSpawnPool;
+    }
+
     public void AddSpecimenBackToSpawnPool()
     {
         Spawning.instance.specimenPool.AddToPool(this);

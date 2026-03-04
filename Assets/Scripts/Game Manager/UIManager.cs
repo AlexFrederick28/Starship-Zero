@@ -163,4 +163,13 @@ public class UIManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         Destroy(newNotification);
     }
+
+    /// <summary>
+    /// Closes all of the UI the player may have open, such as their inventory, or a crafting bench. You must notify the GameState manually after using this function 
+    /// </summary>
+    public void CloseAllInteractiveUI()
+    {
+        inventoryParent.SetActive(false);
+        weaponCraftingUIParent.SetActive(false);
+    }
 }

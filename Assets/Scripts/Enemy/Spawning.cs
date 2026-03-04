@@ -184,6 +184,8 @@ public class Spawning : Difficulty
             GameState.instance.OnCompletedInfestedClear += GameState.instance.playerInventory.RemoveGapsFromInventory;
 
             GameState.instance.OnEnteringInfestedRoom?.Invoke();
+
+            PlayerBase.OnPlayerDeath += PauseSpawning;
         }
 
         if (instance == null)
@@ -212,6 +214,8 @@ public class Spawning : Difficulty
 
         GameState.instance.OnCompletedInfestedClear -= GameState.instance.playerInventory.DestroyLoadout;
         GameState.instance.OnCompletedInfestedClear -= GameState.instance.playerInventory.RemoveGapsFromInventory;
+
+        PlayerBase.OnPlayerDeath -= PauseSpawning;
 
         if (instance == this)
         {
@@ -368,6 +372,7 @@ public class Spawning : Difficulty
     private void SpawnNewEnemy()
     {
         if (timerPaused == true) { return; }
+        if (GameState.instance.player.playerDead == true) { return; }
         if (player != null)
         {
             if (enemiesInactiveInPool != null && enemiesInactiveInPool.Count != 0)

@@ -7,10 +7,12 @@ public class EnemyBase : MonoBehaviour
 {
     [Header("Base Settings")]
     [SerializeField] private GameObject view;
+    [SerializeField] private Animator animator;
     [SerializeField] private EnemyScriptableObject enemyType;
     [SerializeField] private string enemyName;
     [SerializeField] private float currentHealth;
     [SerializeField] protected float maxHealth;
+    private float animationSpeed;
 
     public float Health
     {
@@ -83,6 +85,8 @@ public class EnemyBase : MonoBehaviour
         damageScale = enemyType.damageScaling;
         speedScale = enemyType.speedScaling;
 
+        animationSpeed = animator.speed;
+
         CalculateTotalSpecimenWeight();
     }
 
@@ -98,6 +102,8 @@ public class EnemyBase : MonoBehaviour
         {
             GameState.instance.OnPlayerLevelUp += PauseEnemy;
         }
+
+        PlayerBase.OnPlayerDeath += PauseEnemy;
 
         if (scaledStats == false)
         {
@@ -123,6 +129,8 @@ public class EnemyBase : MonoBehaviour
         }
 
         GameState.instance.OnPlayerLevelUp -= PauseEnemy;
+
+        PlayerBase.OnPlayerDeath -= PauseEnemy;
     }
 
     protected virtual void Update()
@@ -225,10 +233,12 @@ public class EnemyBase : MonoBehaviour
     {
         if (enemyPaused == false)
         {
+            animator.speed = 0.0f;
             enemyPaused = true;
         }
         else
         {
+            animator.speed = animationSpeed;
             enemyPaused = false;
         }
     }
