@@ -543,7 +543,7 @@ MonoBehaviour:
   - {fileID: 768523613923623579, guid: 514cc64417095ff489016a37c47d1f16, type: 3}
   bossEnemiesToSpawn:
   - {fileID: 7749859244026942653, guid: 3c2b2c6f7b3c4754ab1bc0a115517268, type: 3}
-  spawnMinDistance: 8
+  spawnMinDistance: 10
   spawnMaxDistance: 20
   splitSpawnDistance: 100
   roomSpawnBounds:

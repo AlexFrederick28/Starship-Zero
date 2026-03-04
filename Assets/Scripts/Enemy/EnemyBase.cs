@@ -243,20 +243,35 @@ public class EnemyBase : MonoBehaviour
         }
     }
 
-    public void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (readyToAttack == true)
         {
-            if (collision.gameObject.GetComponent<PlayerBase>())
+            if (collision.gameObject.GetComponentInParent<PlayerBase>())
             {
-                if (collision.gameObject.GetComponent<PlayerBase>().Health != 0)
+                if (collision.gameObject.GetComponentInParent<PlayerBase>().Health != 0)
                 {
                     Attack();
-                    collision.gameObject.GetComponent<PlayerBase>().TakeDamage(damage);
+                    collision.gameObject.GetComponentInParent<PlayerBase>().TakeDamage(damage);
                 }
             }
         }
     }
+
+    //public void OnCollisionStay2D(Collision2D collision)
+    //{
+    //    if (readyToAttack == true)
+    //    {
+    //        if (collision.gameObject.GetComponent<PlayerBase>())
+    //        {
+    //            if (collision.gameObject.GetComponent<PlayerBase>().Health != 0)
+    //            {
+    //                Attack();
+    //                collision.gameObject.GetComponent<PlayerBase>().TakeDamage(damage);
+    //            }
+    //        }
+    //    }
+    //}
 
     public void CalculateTotalSpecimenWeight()
     {

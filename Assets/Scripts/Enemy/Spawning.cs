@@ -176,8 +176,10 @@ public class Spawning : Difficulty
         {
             //Debug.Log(this.name + "Subscribed");
             GameState.instance.OnPlayerRespawn += ResetInfestedRoom;
-            GameState.instance.OnPlayerRetry += ResetInfestedRoom;
+            GameState.instance.OnPlayerRespawn += PauseSpawning;
             GameState.instance.OnPlayerRespawn += DisableInstanceOnPlayerRespawn;
+            GameState.instance.OnPlayerRetry += ResetInfestedRoom;
+            GameState.instance.OnPlayerRetry += PauseSpawning;
             GameState.instance.OnPlayerLevelUp += PauseSpawning;
 
             GameState.instance.OnCompletedInfestedClear += GameState.instance.playerInventory.DestroyLoadout;
@@ -208,8 +210,10 @@ public class Spawning : Difficulty
     private void OnDisable()
     {
         GameState.instance.OnPlayerRespawn -= ResetInfestedRoom;
-        GameState.instance.OnPlayerRetry -= ResetInfestedRoom;
+        GameState.instance.OnPlayerRespawn -= PauseSpawning;
         GameState.instance.OnPlayerRespawn -= DisableInstanceOnPlayerRespawn;
+        GameState.instance.OnPlayerRetry -= ResetInfestedRoom;
+        GameState.instance.OnPlayerRetry -= PauseSpawning;
         GameState.instance.OnPlayerLevelUp -= PauseSpawning;
 
         GameState.instance.OnCompletedInfestedClear -= GameState.instance.playerInventory.DestroyLoadout;

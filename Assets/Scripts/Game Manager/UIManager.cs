@@ -28,11 +28,16 @@ public class UIManager : MonoBehaviour
     public GameObject slot;
     public TextMeshProUGUI infoInventoryName;
     public Image infoInventoryImage;
+    public TextMeshProUGUI infoWeaponInventoryText;
     public TextMeshProUGUI infoInventoryText;
     public TextMeshProUGUI weaponStatInventoryText;
     public TextMeshProUGUI selectedStackAmount;
     public Slider stackAmountSlider;
     public Button weaponLoadoutButton;
+
+    [Space]
+    [Header("Permanent Upgrades")]
+
 
     [Space]
     [Header("Death Menu")]
@@ -165,11 +170,28 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Closes all of the UI the player may have open, such as their inventory, or a crafting bench. You must notify the GameState manually after using this function 
+    /// Closes all of the UI the player may have open, such as their inventory, or a crafting bench. Changes the state to main
     /// </summary>
     public void CloseAllInteractiveUI()
     {
+        if (GameState.instance.currentState == GameState.States.RoomClear) { return; }
         inventoryParent.SetActive(false);
         weaponCraftingUIParent.SetActive(false);
+        GameState.instance.ChangeStateToMain();
+    }
+
+    public void SwapToInventoryUI()
+    {
+        // tab 1
+    }
+
+    public void SwapToWeaponCraftingUI()
+    {
+        // tab 2
+    }
+
+    public void SwapToPermanentUpgradeUI()
+    {
+        // tab 3
     }
 }

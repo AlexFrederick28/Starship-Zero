@@ -346,16 +346,18 @@ public class Inventory : MonoBehaviour
         // setting the description of a weapon
         if (slot.inventoryItem.isWeapon == true)
         {
+            UIManager.instance.infoWeaponInventoryText.text = string.Empty;
+            UIManager.instance.weaponStatInventoryText.text = string.Empty;
             for (int i = 0; i < slot.inventoryItem.weaponDescription.Length; i++)
             {
                 if (i == 0)
                 {
-                    UIManager.instance.infoInventoryText.text += slot.inventoryItem.weaponDescription[i].description;
+                    UIManager.instance.infoWeaponInventoryText.text += slot.inventoryItem.weaponDescription[i].description;
                     UIManager.instance.weaponStatInventoryText.text += slot.inventoryItem.weaponDescription[i].amount;
                 }
                 else
                 {
-                    UIManager.instance.infoInventoryText.text += "\n" + slot.inventoryItem.weaponDescription[i].description;
+                    UIManager.instance.infoWeaponInventoryText.text += "\n" + slot.inventoryItem.weaponDescription[i].description;
                     UIManager.instance.weaponStatInventoryText.text += "\n" + slot.inventoryItem.weaponDescription[i].amount;
                 }
             }
@@ -371,24 +373,17 @@ public class Inventory : MonoBehaviour
         selectedSlot = slot;
         slot.viewingSlot = true;
 
+        // display for weapon/normal item
         if (selectedSlot.inventoryItem.isWeapon)
         {
+            // shows weapon equip/un-equip button
             // toggling the slider bar off if it is a weapon, as there can only be one in a stack
-            UIManager.instance.stackAmountSlider.gameObject.SetActive(false);
-        }
-        else
-        {
-            UIManager.instance.stackAmountSlider.gameObject.SetActive(true);
-            UIManager.instance.stackAmountSlider.minValue = 0;
-            UIManager.instance.stackAmountSlider.maxValue = slot.currentStackSize;
-            UIManager.instance.stackAmountSlider.value = slot.currentStackSize;
-        }
-
-        // shows weapon equip/un-equip button
-        UIManager.instance.weaponLoadoutButton.onClick.RemoveAllListeners();
-        if (slot.inventoryItem.isWeapon == true)
-        {
+            UIManager.instance.weaponLoadoutButton.onClick.RemoveAllListeners();
             UIManager.instance.weaponLoadoutButton.onClick.AddListener(EquipAndUnequipWeapon);
+
+            UIManager.instance.infoWeaponInventoryText.gameObject.SetActive(true);
+            UIManager.instance.infoInventoryText.gameObject.SetActive(false);
+            UIManager.instance.stackAmountSlider.gameObject.SetActive(false);
             UIManager.instance.weaponLoadoutButton.gameObject.SetActive(true);
             if (selectedSlot.weaponEquipped == true)
             {
@@ -401,7 +396,13 @@ public class Inventory : MonoBehaviour
         }
         else
         {
-            UIManager.instance.weaponLoadoutButton.gameObject.SetActive(false);
+            UIManager.instance.infoWeaponInventoryText.gameObject.SetActive(false);
+            UIManager.instance.infoInventoryText.gameObject.SetActive(true);
+            UIManager.instance.stackAmountSlider.gameObject.SetActive(true);
+            UIManager.instance.selectedStackAmount.gameObject.SetActive(true);
+            UIManager.instance.stackAmountSlider.minValue = 0;
+            UIManager.instance.stackAmountSlider.maxValue = slot.currentStackSize;
+            UIManager.instance.stackAmountSlider.value = slot.currentStackSize;
         }
     }
 
@@ -574,10 +575,13 @@ public class Inventory : MonoBehaviour
         if (selectedSlot == slot)
         {
             selectedSlot = null;
+            UIManager.instance.weaponLoadoutButton.gameObject.SetActive(false);
             UIManager.instance.infoInventoryName.text = string.Empty;
             UIManager.instance.infoInventoryImage.sprite = null;
             UIManager.instance.infoInventoryImage.enabled = false;
             UIManager.instance.infoInventoryText.text = string.Empty;
+            UIManager.instance.infoWeaponInventoryText.text = string.Empty;
+            UIManager.instance.weaponStatInventoryText.text = string.Empty;
             UIManager.instance.stackAmountSlider.minValue = 0;
             UIManager.instance.stackAmountSlider.maxValue = 0;
             UIManager.instance.stackAmountSlider.value = 0;

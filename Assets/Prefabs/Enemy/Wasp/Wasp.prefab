@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 834134475085249847}
   - component: {fileID: 1225049875414999530}
   - component: {fileID: 6124948713607127599}
-  m_Layer: 31
+  m_Layer: 26
   m_Name: Wasp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 1610612737
+    m_Bits: 1677721601
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 268435510
@@ -125,10 +125,10 @@ CapsuleCollider2D:
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 2147483649
+    m_Bits: 0
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 2147483649
+    m_Bits: 0
   m_ContactCaptureLayers:
     serializedVersion: 2
     m_Bits: 1610612737
@@ -153,7 +153,7 @@ GameObject:
   - component: {fileID: 2611128602495445815}
   - component: {fileID: 1652393625028084698}
   - component: {fileID: 588376133860607256}
-  m_Layer: 0
+  m_Layer: 26
   m_Name: Mite-spritesheet_1.4_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 5742912839370373007}
   - component: {fileID: 8968777687628005124}
   - component: {fileID: 1443543133215943893}
-  m_Layer: 31
+  m_Layer: 26
   m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}

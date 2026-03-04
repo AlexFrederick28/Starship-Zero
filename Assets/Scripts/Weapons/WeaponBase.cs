@@ -52,6 +52,8 @@ public class WeaponBase : MonoBehaviour
 
             GameState.instance.OnEnteringInfestedRoom += RandomiseWeaponFireTime;
             GameState.instance.OnPlayerRetry += RandomiseWeaponFireTime;
+            GameState.instance.OnPlayerRetry += PauseWeapon;
+            GameState.instance.OnPlayerRespawn += PauseWeapon;
         }
 
         PlayerBase.OnPlayerDeath += PauseWeapon;
@@ -63,6 +65,8 @@ public class WeaponBase : MonoBehaviour
 
         GameState.instance.OnEnteringInfestedRoom -= RandomiseWeaponFireTime;
         GameState.instance.OnPlayerRetry -= RandomiseWeaponFireTime;
+        GameState.instance.OnPlayerRetry -= PauseWeapon;
+        GameState.instance.OnPlayerRespawn -= PauseWeapon;
 
         PlayerBase.OnPlayerDeath -= PauseWeapon;
     }
@@ -250,7 +254,7 @@ public class WeaponBase : MonoBehaviour
             finalDamage += damage;
         }   
 
-        EnemyBase enemy = collision.gameObject.GetComponent<EnemyBase>();
+        EnemyBase enemy = collision.gameObject.GetComponentInParent<EnemyBase>();
         enemy.TakeDamage(finalDamage); // final damage
 
     }
@@ -300,7 +304,7 @@ public class WeaponBase : MonoBehaviour
 
         foreach (var hit in hits)
         {
-            if (hit.gameObject.GetComponent<EnemyBase>() == true)
+            if (hit.gameObject.GetComponentInParent<EnemyBase>() == true)
             {
                 float distanceToTarget = Vector2.Distance(transform.position, hit.transform.position);
 

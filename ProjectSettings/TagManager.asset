@@ -31,12 +31,12 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Enemy Flying
+  - Enemy Short
   - Experience
   - Bullet
   - Player
-  - Enemy
+  - Enemy Tall
   m_SortingLayers:
   - name: Default
     uniqueID: 0

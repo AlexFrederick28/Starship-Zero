@@ -36,7 +36,7 @@ public class BulletProjectile : MonoBehaviour
             return; // hit projectile dupe
         }
 
-        if (collision.GetComponent<EnemyBase>() == true)
+        if (collision.GetComponentInParent<EnemyBase>() == true)
         {
             //Debug.Log("BP enemy hit");
             baseWeapon.ProjectileDealDamage(collision);
