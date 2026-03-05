@@ -396,6 +396,7 @@ public class Inventory : MonoBehaviour
         }
         else
         {
+            UIManager.instance.weaponLoadoutButton.gameObject.SetActive(false);
             UIManager.instance.infoWeaponInventoryText.gameObject.SetActive(false);
             UIManager.instance.infoInventoryText.gameObject.SetActive(true);
             UIManager.instance.stackAmountSlider.gameObject.SetActive(true);

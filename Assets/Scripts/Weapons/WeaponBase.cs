@@ -1,7 +1,5 @@
-using UnityEngine;
-using System.Collections;
-using static UnityEngine.GraphicsBuffer;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class WeaponBase : MonoBehaviour
 {
@@ -9,8 +7,9 @@ public class WeaponBase : MonoBehaviour
     // base weapon class - has all the functionality for weapons 
 
     [Header("Base Settings")]
-    [SerializeField] private string weaponName;
-    [SerializeField] private string weaponDescription;
+    public string weaponName;
+    public string weaponDescription;
+    public int weaponLevel = 0;
 
     // TODO - add base and modified stats to weapon
     [SerializeField] private float baseDamage;
@@ -20,13 +19,19 @@ public class WeaponBase : MonoBehaviour
 
     [SerializeField] public float projectileSpeed;
     [SerializeField] private GameObject projectileToFire;
-    [SerializeField] private WeaponScriptableObject weaponType;
+    public WeaponScriptableObject weaponType;
 
     [Header("Modified Stats")]
-    [SerializeField] private float damage;
-    [SerializeField] private float fireRate;
-    [SerializeField] private float critChance;
-    [SerializeField] private float critDamage;
+    public float damage;
+    public float fireRate;
+    public float critChance;
+    public float critDamage;
+
+    // to track what a weapons stats are before entering an infested room
+    private float recordedDamage;
+    private float recordedFireRate;
+    private float recordedCritChance;
+    private float recordedCritDamage;
 
     [Header("Other")]
     [SerializeField] private float fireTime;
@@ -42,7 +47,7 @@ public class WeaponBase : MonoBehaviour
 
     [Header("References (item stuff for now)")]
 
-    [SerializeField] public ItemManager itemManager;
+    [SerializeField] public CardManager cardManager;
 
     protected void OnEnable()
     {
@@ -51,9 +56,17 @@ public class WeaponBase : MonoBehaviour
             GameState.instance.OnPlayerLevelUp += PauseWeapon;
 
             GameState.instance.OnEnteringInfestedRoom += RandomiseWeaponFireTime;
+            GameState.instance.OnEnteringInfestedRoom += ResetWeaponStats;
+            GameState.instance.OnEnteringInfestedRoom += RecordWeaponStats;
+
+            GameState.instance.OnCompletedInfestedClear += ResetToRecordedWeaponStats;
+
             GameState.instance.OnPlayerRetry += RandomiseWeaponFireTime;
             GameState.instance.OnPlayerRetry += PauseWeapon;
+            GameState.instance.OnPlayerRetry += ResetToRecordedWeaponStats;
+
             GameState.instance.OnPlayerRespawn += PauseWeapon;
+            GameState.instance.OnPlayerRespawn += ResetToRecordedWeaponStats;
         }
 
         PlayerBase.OnPlayerDeath += PauseWeapon;
@@ -64,18 +77,26 @@ public class WeaponBase : MonoBehaviour
         GameState.instance.OnPlayerLevelUp -= PauseWeapon;
 
         GameState.instance.OnEnteringInfestedRoom -= RandomiseWeaponFireTime;
+            GameState.instance.OnEnteringInfestedRoom -= ResetWeaponStats;
+        GameState.instance.OnEnteringInfestedRoom -= RecordWeaponStats;
+
+        GameState.instance.OnCompletedInfestedClear -= ResetToRecordedWeaponStats;
+
         GameState.instance.OnPlayerRetry -= RandomiseWeaponFireTime;
         GameState.instance.OnPlayerRetry -= PauseWeapon;
+        GameState.instance.OnPlayerRetry -= ResetToRecordedWeaponStats;
+
         GameState.instance.OnPlayerRespawn -= PauseWeapon;
+        GameState.instance.OnPlayerRespawn -= ResetToRecordedWeaponStats;
 
         PlayerBase.OnPlayerDeath -= PauseWeapon;
     }
 
     protected virtual void Start()
     {
-        if (itemManager == null)
+        if (cardManager == null)
         {
-            itemManager = FindFirstObjectByType<ItemManager>();
+            cardManager = FindFirstObjectByType<CardManager>();
         }
 
         AssignWeaponStats();
@@ -104,102 +125,135 @@ public class WeaponBase : MonoBehaviour
         }
     }
 
-    public void ItemScaling()
+    public void RecordWeaponStats()
     {
-
-        if (itemManager == null)
-        {
-            itemManager = FindFirstObjectByType<ItemManager>();
-        }
-
-        // (regions in order of the item manager list, 0 = first in list)
-        #region Damage 
-        if (itemManager.itemCountGO[0] > 0f) // if at least 1 itemas
-        {
-            // convert to float for decimal calculation
-            float amount = itemManager.itemCountGO[0];
-            float scale = itemManager.itemScalingGO[0];
-
-            //Debug.Log("ItemCount [" + amount + "], Item Scaling [" + scale + "]");
-            float itemModifier = amount * scale; // amount to modify by
-            //Debug.Log("Item: Damage Increase [" + itemModifier + "%]");
-
-            damage = baseDamage * (1f + itemModifier / 100f); // weapons damage
-        }
-        else // if no items (0 or less damage
-        {
-            //Debug.Log("else = base damage");
-            damage = baseDamage;
-        }
-
-        //Debug.Log(weaponName + " Damage = [" + damage + "]");
-        #endregion
-
-        #region Crit Chance
-        if (itemManager.itemCountGO[1] > 0f)
-        {
-            // convert
-            float amount = itemManager.itemCountGO[1];
-            float scale = itemManager.itemScalingGO[1];
-
-            //Debug.Log("ItemCount [" + amount + "], Item Scaling [" + scale + "]");
-            float itemModifier = amount * scale;
-
-            critChance = baseCritChance + itemModifier;
-
-        }
-        else
-        {
-            critChance = baseCritChance;
-        }
-
-        //Debug.Log(weaponName + " Crit Chance = [" + critChance + "]");
-        #endregion
-
-        #region Crit Damage
-        if (itemManager.itemCountGO[2] > 0f)
-        {
-            // convert
-            float amount = itemManager.itemCountGO[2];
-            float scale = itemManager.itemScalingGO[2];
-
-            //Debug.Log("ItemCount [" + amount + "], Item Scaling [" + scale + "]");
-            float itemModifier = amount * scale;
-
-            critDamage = baseCritDamage + itemModifier;
-
-        }
-        else
-        {
-            critDamage = baseCritDamage;
-        }
-
-        //Debug.Log(weaponName + " Crit Damage = [" + critDamage + "]");
-        #endregion
-
-        #region Fire Rate
-        if (itemManager.itemCountGO[3] > 0f) // if at least 1 itemas
-        {
-            // convert to float for decimal calculation
-            float amount = itemManager.itemCountGO[3];
-            float scale = itemManager.itemScalingGO[3];
-
-            //Debug.Log("ItemCount [" + amount + "], Item Scaling [" + scale + "]");
-            float itemModifier = amount * scale; // amount to modify by
-            //Debug.Log("Item: Attack Speed Increase [" + itemModifier + "%]");
-
-            fireRate = baseFireRate * (1f + itemModifier / 100f); // weapons damage
-        }
-        else // if no items (0 or less damage
-        {
-            fireRate = baseFireRate;
-        }
-
-        //Debug.Log(weaponName + " Attack Speed = [" + fireRate + "]");
-        #endregion
-
-
+        recordedDamage = damage;
+        recordedFireRate = fireRate;
+        recordedCritChance = critChance;
+        recordedCritDamage = critDamage;
     }
+
+    public void ResetWeaponStats()
+    {
+        damage = baseDamage;
+        fireRate = baseFireRate;
+        critChance = baseCritChance;
+        critDamage = baseCritDamage;
+    }
+
+    public void ResetToRecordedWeaponStats()
+    {
+        damage = recordedDamage;
+        fireRate = recordedFireRate;
+        critChance = recordedCritChance;
+        critDamage = recordedCritDamage;
+        weaponLevel = 0;
+    }
+
+    //public void ItemScaling()
+    //{
+    //    // this function is scaling weapon damage, crit chance, crit damage, and fire rate based off of a set in stone item positions 
+    //    if (cardManager == null)
+    //    {
+    //        cardManager = FindFirstObjectByType<CardManager>();
+    //    }
+
+    //    // (regions in order of the item manager list, 0 = first in list)
+    //    #region Damage 
+    //    if (cardManager.itemCountGO[0] > 0f) // if at least 1 itemas
+    //    {
+    //        // convert to float for decimal calculation
+    //        float amount = cardManager.itemCountGO[0];
+    //        float scale = cardManager.itemScalingGO[0];
+
+    //        //Debug.Log("ItemCount [" + amount + "], Item Scaling [" + scale + "]");
+    //        float itemModifier = amount * scale; // amount to modify by
+    //        //Debug.Log("Item: Damage Increase [" + itemModifier + "%]");
+
+    //        damage = baseDamage * (1f + itemModifier / 100f); // weapons damage
+    //    }
+    //    else // if no items (0 or less damage
+    //    {
+    //        //Debug.Log("else = base damage");
+    //        damage = baseDamage;
+    //    }
+
+    //    //Debug.Log(weaponName + " Damage = [" + damage + "]");
+    //    #endregion
+
+    //    #region Crit Chance
+    //    if (cardManager.itemCountGO[1] > 0f)
+    //    {
+    //        // convert
+    //        float amount = cardManager.itemCountGO[1];
+    //        float scale = cardManager.itemScalingGO[1];
+
+    //        //Debug.Log("ItemCount [" + amount + "], Item Scaling [" + scale + "]");
+    //        float itemModifier = amount * scale;
+
+    //        critChance = baseCritChance + itemModifier;
+
+    //    }
+    //    else
+    //    {
+    //        critChance = baseCritChance;
+    //    }
+
+    //    //Debug.Log(weaponName + " Crit Chance = [" + critChance + "]");
+    //    #endregion
+
+    //    #region Crit Damage
+    //    if (cardManager.itemCountGO[2] > 0f)
+    //    {
+    //        // convert
+    //        float amount = cardManager.itemCountGO[2];
+    //        float scale = cardManager.itemScalingGO[2];
+
+    //        //Debug.Log("ItemCount [" + amount + "], Item Scaling [" + scale + "]");
+    //        float itemModifier = amount * scale;
+
+    //        critDamage = baseCritDamage + itemModifier;
+
+    //    }
+    //    else
+    //    {
+    //        critDamage = baseCritDamage;
+    //    }
+
+    //    //Debug.Log(weaponName + " Crit Damage = [" + critDamage + "]");
+    //    #endregion
+
+    //    #region Fire Rate
+    //    if (cardManager.itemCountGO[3] > 0f) // if at least 1 itemas
+    //    {
+    //        // convert to float for decimal calculation
+    //        float amount = cardManager.itemCountGO[3];
+    //        float scale = cardManager.itemScalingGO[3];
+
+    //        //Debug.Log("ItemCount [" + amount + "], Item Scaling [" + scale + "]");
+    //        float itemModifier = amount * scale; // amount to modify by
+    //        //Debug.Log("Item: Attack Speed Increase [" + itemModifier + "%]");
+
+    //        fireRate = baseFireRate * (1f + itemModifier / 100f); // weapons damage
+    //    }
+    //    else // if no items (0 or less damage
+    //    {
+    //        fireRate = baseFireRate;
+    //    }
+
+    //    //Debug.Log(weaponName + " Attack Speed = [" + fireRate + "]");
+    //    #endregion
+
+
+    //}
+
+    //protected void ModifyWeaponStats(float mod)
+    //{
+    //    damage = baseDamage * (1f + mod / 100f);
+    //    critChance = baseCritChance + mod;
+    //    critDamage = baseCritDamage + mod;
+    //    fireRate = baseFireRate * (1f + mod / 100f);
+    //}
 
     protected virtual void FireProjectile() // weapon fires projectile
     {

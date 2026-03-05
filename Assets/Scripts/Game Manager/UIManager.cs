@@ -37,7 +37,9 @@ public class UIManager : MonoBehaviour
 
     [Space]
     [Header("Permanent Upgrades")]
-
+    public GameObject upgradeParent;
+    public GameObject upgradeCardParent;
+    public GameObject upgradePlayerParent;
 
     [Space]
     [Header("Death Menu")]
@@ -45,14 +47,25 @@ public class UIManager : MonoBehaviour
     public Button respawnButton;
     public Button retryInfestedRoomButton;
 
+    [Serializable]
+    public class LevelUpCardUI
+    {
+        public GameObject levelUpCard;
+        public TextMeshProUGUI levelUpItemName;
+        public TextMeshProUGUI levelUpItemStatDescription;
+        public TextMeshProUGUI levelUpItemLevel;
+        public Image levelUpItemImage;
+    }
+
     [Space]
     [Header("Level Up Menu")]
     public GameObject levelUpMenuParent;
-    public GameObject[] levelUpCards;
-    public TextMeshProUGUI[] levelUpItemName;
-    public TextMeshProUGUI[] levelUpItemStatDescription;
-    public TextMeshProUGUI[] levelUpItemLevel;
-    public Image[] levelUpItemImage;
+    public LevelUpCardUI[] levelUpCardUIList;
+    //public GameObject[] levelUpCards;
+    //public TextMeshProUGUI[] levelUpItemName;
+    //public TextMeshProUGUI[] levelUpItemStatDescription;
+    //public TextMeshProUGUI[] levelUpItemLevel;
+    //public Image[] levelUpItemImage;
 
     [Space]
     [Header("Infested Room")]

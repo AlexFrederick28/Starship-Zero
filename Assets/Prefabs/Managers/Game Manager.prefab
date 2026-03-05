@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5562658886180886453}
   - component: {fileID: 3386434121657024945}
   - component: {fileID: 4020860564896548261}
-  - component: {fileID: 7702793944015776919}
+  - component: {fileID: 824038302523504858}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -113,6 +113,7 @@ MonoBehaviour:
   playerUIParent: {fileID: 0}
   playerHealthSlider: {fileID: 0}
   playerLevelSlider: {fileID: 0}
+  playerCurrency: {fileID: 0}
   playerLevel: {fileID: 0}
   notificationPrefab: {fileID: 5283195962082511771, guid: cc160ab4bae2a4a4c9292e7f8b3ffc39, type: 3}
   notificationTime: 1
@@ -124,20 +125,20 @@ MonoBehaviour:
   slot: {fileID: 2477720363533150392, guid: a91f7fefa0e626a438287925bc7b264d, type: 3}
   infoInventoryName: {fileID: 0}
   infoInventoryImage: {fileID: 0}
+  infoWeaponInventoryText: {fileID: 0}
   infoInventoryText: {fileID: 0}
   weaponStatInventoryText: {fileID: 0}
   selectedStackAmount: {fileID: 0}
   stackAmountSlider: {fileID: 0}
   weaponLoadoutButton: {fileID: 0}
+  upgradeParent: {fileID: 0}
+  upgradeCardParent: {fileID: 0}
+  upgradePlayerParent: {fileID: 0}
   deathMenuParent: {fileID: 0}
   respawnButton: {fileID: 0}
   retryInfestedRoomButton: {fileID: 0}
   levelUpMenuParent: {fileID: 0}
-  levelUpCards: []
-  levelUpItemName: []
-  levelUpItemStatDescription: []
-  levelUpItemLevel: []
-  levelUpItemImage: []
+  levelUpCardUIList: []
   currentTime: {fileID: 0}
   currentDifficulty: {fileID: 0}
   weaponCraftingUIParent: {fileID: 0}
@@ -186,15 +187,9 @@ MonoBehaviour:
   CardGO1: {fileID: 0}
   CardGO2: {fileID: 0}
   CardGO3: {fileID: 0}
-  pickedCard1:
-    LevelCardSO: {fileID: 0}
-  pickedCard2:
-    LevelCardSO: {fileID: 0}
-  pickedCard3:
-    LevelCardSO: {fileID: 0}
-  cardList: []
-  cardListToChooseFrom: []
---- !u!114 &7702793944015776919
+  chosenCard: {fileID: 0}
+  chosenWeapon: {fileID: 0}
+--- !u!114 &824038302523504858
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -203,17 +198,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 3904750311189774911}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70b0b7e53e4a66e4d9eb37c7fbdd8051, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a8d1f85c582886478673678bcbe9b26, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ItemManager
-  itemListGO:
-  - {fileID: 7867792832202767291, guid: 1b488c2946c3dae42b82502e6a399dc9, type: 3}
-  - {fileID: 802681755905476605, guid: ac2695c99f753714fb2000754d1357ac, type: 3}
-  - {fileID: 7984519366614968339, guid: bc694757526e50645a5a2d66f65402cc, type: 3}
-  - {fileID: 7867792832202767291, guid: d1ab2779a175e734a851abc10d9bd1dc, type: 3}
-  itemNamesGO: []
-  itemScalingGO: 
-  itemCountGO: 
-  itemDescriptionGO: []
-  itemSpritesGO: []
+  m_EditorClassIdentifier: Assembly-CSharp::CardManager
+  allCardTypes:
+  - {fileID: 11400000, guid: 8117e9cc20a094640bd612a4dd16d150, type: 2}
+  - {fileID: 11400000, guid: 16fd775726af53c4db8e2fdb9300b07e, type: 2}
+  - {fileID: 11400000, guid: 404ad9057cd2c7647a1fc85def365ca9, type: 2}
+  - {fileID: 11400000, guid: 094f3b217e931004caaba877d67e76fe, type: 2}
+  allSelectedCardsList: []
+  playerActiveCardList: []
+  poolParentToSpawn: {fileID: 3664450109471185214, guid: 3f1f2524fbae2af4fb73a3578cd7d42a, type: 3}
+  poolParent: {fileID: 0}
+  physicalCardPool: []
+  physicalCardPrefabs:
+  - {fileID: 5678671435731360265, guid: b1465e7c4c38e4147bf2484a1e9241f0, type: 3}
+  - {fileID: 8584519967475021712, guid: 15a1959ada7bd6c4f8c268893250a1fd, type: 3}
+  - {fileID: 9113614014718786097, guid: d6f9031a24fa30d4bbeee5c517f5d03c, type: 3}
+  - {fileID: 970022975748340800, guid: c6bdc83d23ed015419c14f897fde00d7, type: 3}
   allWeapons: []

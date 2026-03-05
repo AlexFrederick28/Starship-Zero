@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0929ce0397b981b4084efe36c12b05ea, type: 3}
-  m_Name: Crit Chance Item
+  m_Name: Damage Item
   m_EditorClassIdentifier: Assembly-CSharp::ItemScriptableObject
-  itemName: Crit Chance
-  itemScaling: 5
-  itemCount: 0
-  itemDescription: The chance for a weapon to deal crit damage.
-  itemSprite: {fileID: 0}
+  defaultCard: 1
+  cardName: Damage
+  cardScalingMin: 3
+  cardScalingMax: 11
+  cardLevel: 0
+  cardDescription: Deal more damage.
+  cardSprite: {fileID: -6910595954689261531, guid: d9e05939a191326419faaac918a260a9, type: 3}

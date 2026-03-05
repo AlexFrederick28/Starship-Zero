@@ -100,10 +100,10 @@ public class EnemyBase : MonoBehaviour
         }
         if (GameState.instance != null)
         {
-            GameState.instance.OnPlayerLevelUp += PauseEnemy;
+            GameState.instance.OnPlayerLevelUp += PauseAndUnpauseEnemy;
         }
 
-        PlayerBase.OnPlayerDeath += PauseEnemy;
+        PlayerBase.OnPlayerDeath += PauseAndUnpauseEnemy;
 
         if (scaledStats == false)
         {
@@ -128,9 +128,9 @@ public class EnemyBase : MonoBehaviour
             EnemyBrain.instance.MoveToPlayer -= MoveToPlayer;
         }
 
-        GameState.instance.OnPlayerLevelUp -= PauseEnemy;
+        GameState.instance.OnPlayerLevelUp -= PauseAndUnpauseEnemy;
 
-        PlayerBase.OnPlayerDeath -= PauseEnemy;
+        PlayerBase.OnPlayerDeath -= PauseAndUnpauseEnemy;
     }
 
     protected virtual void Update()
@@ -226,10 +226,15 @@ public class EnemyBase : MonoBehaviour
 
     protected void AddEnemyBackToSpawnPool()
     {
+        if (enemyPaused == true)
+        {
+            // unpause the enemy for the next time they spawn 
+            PauseAndUnpauseEnemy();
+        }
         Spawning.instance.AddToPool(gameObject);
     }
 
-    protected void PauseEnemy()
+    protected void PauseAndUnpauseEnemy()
     {
         if (enemyPaused == false)
         {
@@ -243,7 +248,7 @@ public class EnemyBase : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (readyToAttack == true)
         {
@@ -257,22 +262,6 @@ public class EnemyBase : MonoBehaviour
             }
         }
     }
-
-    //public void OnCollisionStay2D(Collision2D collision)
-    //{
-    //    if (readyToAttack == true)
-    //    {
-    //        if (collision.gameObject.GetComponent<PlayerBase>())
-    //        {
-    //            if (collision.gameObject.GetComponent<PlayerBase>().Health != 0)
-    //            {
-    //                Attack();
-    //                collision.gameObject.GetComponent<PlayerBase>().TakeDamage(damage);
-    //            }
-    //        }
-    //    }
-    //}
-
     public void CalculateTotalSpecimenWeight()
     {
         for (int i = 0; i < specimens.Length; i++)

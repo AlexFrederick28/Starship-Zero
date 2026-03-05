@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0929ce0397b981b4084efe36c12b05ea, type: 3}
-  m_Name: Crit Damage Item
+  m_Name: Fire Rate Item
   m_EditorClassIdentifier: Assembly-CSharp::ItemScriptableObject
-  itemName: Crit Damage
-  itemScaling: 15
-  itemCount: 0
-  itemDescription: Multiplies the amount of damage a weapon deals
-  itemSprite: {fileID: 0}
+  defaultCard: 1
+  cardName: Fire Rate
+  cardScalingMin: 0.1
+  cardScalingMax: 0.3
+  cardLevel: 0
+  cardDescription: Attack quicker.
+  cardSprite: {fileID: -6910595954689261531, guid: d9e05939a191326419faaac918a260a9, type: 3}
