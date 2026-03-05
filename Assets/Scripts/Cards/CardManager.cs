@@ -173,12 +173,13 @@ public class CardManager : MonoBehaviour
         // this function will be removed - the card info should be populated when equipping a card from the upgrade menu, unless it is a default card
         for (int i = 0; i < allSelectedCardsList.Count; i++)
         {
-            CardScriptableObject newInstance = allSelectedCardsList[i].card;
+            CardScriptableObject newInstance = ScriptableObject.CreateInstance<CardScriptableObject>();
+            newInstance = allSelectedCardsList[i].card;
             allSelectedCardsList[i].defaultCard = newInstance.defaultCard;
             allSelectedCardsList[i].cardName = newInstance.cardName;
             allSelectedCardsList[i].cardDescription = newInstance.cardDescription;
             allSelectedCardsList[i].cardScalingMin = newInstance.cardScalingMin;
-            allSelectedCardsList[i].cardScalingMin = newInstance.cardScalingMax;
+            allSelectedCardsList[i].cardScalingMax = newInstance.cardScalingMax;
             allSelectedCardsList[i].cardLevel = newInstance.cardLevel;
         }
 

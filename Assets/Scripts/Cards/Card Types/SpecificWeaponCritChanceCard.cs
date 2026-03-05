@@ -9,6 +9,6 @@ public class SpecificWeaponCritChanceCard : CardBase
         LevelUpManager.instance.chosenWeapon.critChance += LevelUpManager.instance.chosenCard.statUpgradeAmount;
         LevelUpManager.instance.chosenWeapon.weaponLevel++;
 
-        Debug.Log("Applied stat from Crit Chance Card!");
+        Debug.Log("Applied: " + LevelUpManager.instance.chosenCard.statUpgradeAmount.ToString() + "from crit chance Card!");
     }
 }

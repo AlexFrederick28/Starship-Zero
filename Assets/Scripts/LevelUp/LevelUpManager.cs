@@ -22,7 +22,7 @@ public class LevelUpManager : MonoBehaviour
     // reference to the 3 cards that can be chosen by the player
     //public List<>
 
-    // item card info is just choosing a random card from the card list and populating it visually
+    //private List<CardBase> displayedCards;
     public CardBase chosenCard;
     public Weapon chosenWeapon;
 
@@ -115,16 +115,17 @@ public class LevelUpManager : MonoBehaviour
     public void RandomiseCards()
     {
         // NEW
+
         for (int i = 0; i < UIManager.instance.levelUpCardUIList.Length; i++)
         {
-            int randomCard = Random.Range(0, CardManager.instance.allSelectedCardsList.Count);
+            if (CardManager.instance.physicalCardPool.Count == 0) { break; }
+            int randomCard = Random.Range(0, CardManager.instance.physicalCardPool.Count);
             CardHoster cardHost = UIManager.instance.levelUpCardUIList[i].levelUpCard.GetComponent<CardHoster>();
-            CardScriptableObject cardSO = CardManager.instance.allSelectedCardsList[randomCard].card;
-
-            // getting the card behaviour using a lambda expression that is simply finding a result that matches
-            CardBase cardBase = CardManager.instance.physicalCardPool.FirstOrDefault(b => b.cardInfo.card == cardSO);
+            //CardScriptableObject cardSO = CardManager.instance.physicalCardPool[randomCard].cardInfo.card;
+            CardBase cardBase = CardManager.instance.physicalCardPool[randomCard];
+            // remove chosen card from the pool so it doesnt show up more than once - add it back when the card has been chosen by the player
             cardHost.Card = cardBase;
-            cardHost.Card.cardInfo = CardManager.instance.allSelectedCardsList[randomCard];
+            cardHost.Card.cardInfo = cardBase.cardInfo;
             cardHost.Card.SearchForExistingSelectedCardInfo();
 
             // randomise the cards stat
@@ -134,7 +135,7 @@ public class LevelUpManager : MonoBehaviour
             cardHost.chosenWeapon = null;
             chosenWeapon = null;
 
-            if (cardSO.defaultCard == true)
+            if (cardBase.cardInfo.card.defaultCard == true)
             {
                 // select a weapon for the card stats to go to 
                 int weaponPos = Random.Range(0, GameState.instance.playerInventory.weaponLoadoutList.Count);
@@ -154,6 +155,8 @@ public class LevelUpManager : MonoBehaviour
                 UIManager.instance.levelUpCardUIList[i].levelUpItemLevel.text = cardHost.Card.cardInfo.cardLevel.ToString(); // card level
                 UIManager.instance.levelUpCardUIList[i].levelUpItemImage.sprite = cardHost.Card.cardInfo.cardSprite; // card sprite icon
             }
+
+            CardManager.instance.physicalCardPool.RemoveAt(randomCard);
         }
 
         // OLD

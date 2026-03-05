@@ -12,16 +12,23 @@ public class CardBase : MonoBehaviour
     {
         // need to subscribe to OnPlayerLevelUp to get the correct item level (probably using a loop on the ActiveCardList - or even a lambda expression. If there are no cards of that type active, add it and set the level to 1)
         // i believe we do not need that anymore ^
+
+        LevelUpManager.instance.OnCardChosen += AddBackToPhysicalCardPool;
     }
 
     protected virtual void OnDisable()
     {
-        
+        LevelUpManager.instance.OnCardChosen -= AddBackToPhysicalCardPool;
     }
 
     public virtual void Start()
     {
         
+    }
+
+    public void AddBackToPhysicalCardPool()
+    {
+        CardManager.instance.physicalCardPool.Add(this);
     }
 
     public void SearchForExistingSelectedCardInfo()

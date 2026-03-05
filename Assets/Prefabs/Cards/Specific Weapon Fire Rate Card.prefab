@@ -46,11 +46,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpecificWeaponFireRateCard
   cardInfo:
     card: {fileID: 11400000, guid: 094f3b217e931004caaba877d67e76fe, type: 2}
-    defaultCard: 0
-    cardName: 
-    cardDescription: 
-    cardScalingMin: 0
-    cardScalingMax: 0
+    defaultCard: 1
+    cardName: Damage
+    cardDescription: Deal more damage.
+    cardScalingMin: 3
+    cardScalingMax: 11
     cardLevel: 0
-    cardSprite: {fileID: 0}
-  statUpgradeAmount: 0
+    cardSprite: {fileID: -6910595954689261531, guid: d9e05939a191326419faaac918a260a9, type: 3}
+  statUpgradeAmount: 5.694609

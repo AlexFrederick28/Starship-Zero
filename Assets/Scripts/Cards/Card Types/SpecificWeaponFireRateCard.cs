@@ -9,6 +9,6 @@ public class SpecificWeaponFireRateCard : CardBase
         LevelUpManager.instance.chosenWeapon.fireRate += LevelUpManager.instance.chosenCard.statUpgradeAmount;
         LevelUpManager.instance.chosenWeapon.weaponLevel++;
 
-        Debug.Log("Applied stat from Fire Rate!");
+        Debug.Log("Applied: " + LevelUpManager.instance.chosenCard.statUpgradeAmount.ToString() + "from Fire Rate Card!");
     }
 }

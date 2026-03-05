@@ -9,6 +9,6 @@ public class SpecificWeaponDamageCard : CardBase
         LevelUpManager.instance.chosenWeapon.damage += LevelUpManager.instance.chosenCard.statUpgradeAmount;
         LevelUpManager.instance.chosenWeapon.weaponLevel++;
 
-        Debug.Log("Applied stat from Damage Card!");
+        Debug.Log("Applied: " + LevelUpManager.instance.chosenCard.statUpgradeAmount.ToString() + "from Damage Card!");
     }
 }

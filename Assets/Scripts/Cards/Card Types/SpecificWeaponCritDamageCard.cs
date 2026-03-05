@@ -9,6 +9,6 @@ public class SpecificWeaponCritDamageCard : CardBase
         LevelUpManager.instance.chosenWeapon.critDamage += LevelUpManager.instance.chosenCard.statUpgradeAmount;
         LevelUpManager.instance.chosenWeapon.weaponLevel++;
 
-        Debug.Log("Applied stat from Crit Damage Card!");
+        Debug.Log("Applied: " + LevelUpManager.instance.chosenCard.statUpgradeAmount.ToString() + "from Crit Damage Card!");
     }
 }
