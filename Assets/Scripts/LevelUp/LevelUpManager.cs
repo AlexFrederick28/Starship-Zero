@@ -15,9 +15,9 @@ public class LevelUpManager : MonoBehaviour
     public CardManager itemManager;
 
     // reference to the physical card
-    public GameObject CardGO1;
-    public GameObject CardGO2;
-    public GameObject CardGO3;
+    //public GameObject CardGO1;
+    //public GameObject CardGO2;
+    //public GameObject CardGO3;
 
     // reference to the 3 cards that can be chosen by the player
     //public List<>
@@ -25,6 +25,8 @@ public class LevelUpManager : MonoBehaviour
     //private List<CardBase> displayedCards;
     public CardBase chosenCard;
     public Weapon chosenWeapon;
+    public List<CardBase> displayedCards;
+
 
     public Action OnCardChosen;
 
@@ -99,7 +101,7 @@ public class LevelUpManager : MonoBehaviour
     public void ShowOrHideLevelUpCards() // when the player levels up
     {
         if (GameState.instance.player.playerDead == true) { return; }
-        if (UIManager.instance.levelUpMenuParent.activeSelf == false)
+        if (UIManager.instance.levelUpMenuParent.activeInHierarchy == false)
         {
             UIManager.instance.levelUpMenuParent.SetActive(true);
             RandomiseCards();
@@ -116,13 +118,16 @@ public class LevelUpManager : MonoBehaviour
     {
         // NEW
 
+        displayedCards.Clear();
+
         for (int i = 0; i < UIManager.instance.levelUpCardUIList.Length; i++)
         {
             if (CardManager.instance.physicalCardPool.Count == 0) { break; }
             int randomCard = Random.Range(0, CardManager.instance.physicalCardPool.Count);
             CardHoster cardHost = UIManager.instance.levelUpCardUIList[i].levelUpCard.GetComponent<CardHoster>();
-            //CardScriptableObject cardSO = CardManager.instance.physicalCardPool[randomCard].cardInfo.card;
             CardBase cardBase = CardManager.instance.physicalCardPool[randomCard];
+            displayedCards.Add(cardBase);
+
             // remove chosen card from the pool so it doesnt show up more than once - add it back when the card has been chosen by the player
             cardHost.Card = cardBase;
             cardHost.Card.cardInfo = cardBase.cardInfo;
@@ -157,6 +162,7 @@ public class LevelUpManager : MonoBehaviour
             }
 
             CardManager.instance.physicalCardPool.RemoveAt(randomCard);
+            //CardManager.instance.RemovePhysicalCard(cardBase.cardInfo.card);
         }
 
         // OLD
@@ -227,8 +233,17 @@ public class LevelUpManager : MonoBehaviour
     public void ApplyChosenCard()
     {
         // NEW
+
+        foreach (CardBase card in displayedCards)
+        {
+            //CardManager.instance.playerActiveCardList.Add(card);
+            CardManager.instance.ReAddPhysicalCard(card);
+        }
+
+        //CardManager.instance.playerActiveCardList.Clear();
+        displayedCards.Clear();
+
         chosenCard.AddStatUpgrade();
-        ShowOrHideLevelUpCards();
         GameState.instance.OnPlayerLevelUp?.Invoke();
     }
 

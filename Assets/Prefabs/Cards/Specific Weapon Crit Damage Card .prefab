@@ -47,10 +47,11 @@ MonoBehaviour:
   cardInfo:
     card: {fileID: 11400000, guid: 16fd775726af53c4db8e2fdb9300b07e, type: 2}
     defaultCard: 1
-    cardName: Damage
-    cardDescription: Deal more damage.
+    cardName: Crit. Damage
+    cardDescription: + Crit. Damage - Adds more damage to critical hits.
     cardScalingMin: 3
     cardScalingMax: 11
     cardLevel: 0
-    cardSprite: {fileID: -6910595954689261531, guid: d9e05939a191326419faaac918a260a9, type: 3}
-  statUpgradeAmount: 7.7000175
+    cardSprite: {fileID: -7059618875203899034, guid: 8b3b68d838b2d6647b36a02721a36157, type: 3}
+  totalStatAmount: 0
+  statUpgradeAmount: 0

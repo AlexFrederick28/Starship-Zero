@@ -15,8 +15,8 @@ public class CardManager : MonoBehaviour
         public bool defaultCard = false;
         public string cardName;
         public string cardDescription;
-        public float cardScalingMin;
-        public float cardScalingMax;
+        public int cardScalingMin;
+        public int cardScalingMax;
         public int cardLevel = 0;
         public Sprite cardSprite;
     }
@@ -25,7 +25,7 @@ public class CardManager : MonoBehaviour
     [Header("Cards")]
     public List<CardScriptableObject> allCardTypes; // every type of card in the game
     public List<CardInfo> allSelectedCardsList; // all cards that are selected to be in a run using the card upgrades by the player - the info on the cards will be populated when they are made active
-    public List<CardInfo> playerActiveCardList; // the active selected cards from player level ups
+    //public List<CardBase> playerActiveCardList; // the active selected cards from player level ups
 
     [Header("Card Pool")]
     public GameObject poolParentToSpawn;
@@ -64,19 +64,19 @@ public class CardManager : MonoBehaviour
         {
             //GameState.instance.OnEnteringInfestedRoom += ResetItemCount;
             //GameState.instance.OnEnteringInfestedRoom += ItemScaleAllWeapons;
-            GameState.instance.OnEnteringInfestedRoom += ClearActiveCards;
+            //GameState.instance.OnEnteringInfestedRoom += ClearActiveCards;
 
             //GameState.instance.OnPlayerRespawn += ResetItemCount;
             //GameState.instance.OnPlayerRespawn += ItemScaleAllWeapons;
-            GameState.instance.OnPlayerRespawn += ClearActiveCards;
+            //GameState.instance.OnPlayerRespawn += ClearActiveCards;
 
             //GameState.instance.OnPlayerRetry += ResetItemCount;
             //GameState.instance.OnPlayerRetry += ItemScaleAllWeapons;
-            GameState.instance.OnPlayerRetry += ClearActiveCards;
+            //GameState.instance.OnPlayerRetry += ClearActiveCards;
 
             //GameState.instance.OnCompletedInfestedClear += ResetItemCount;
             //GameState.instance.OnCompletedInfestedClear += ItemScaleAllWeapons;
-            GameState.instance.OnCompletedInfestedClear += ClearActiveCards;
+            //GameState.instance.OnCompletedInfestedClear += ClearActiveCards;
         }
     }
 
@@ -84,19 +84,19 @@ public class CardManager : MonoBehaviour
     {
         //GameState.instance.OnEnteringInfestedRoom -= ResetItemCount;
         //GameState.instance.OnEnteringInfestedRoom -= ItemScaleAllWeapons;
-        GameState.instance.OnEnteringInfestedRoom -= ClearActiveCards;
+        //GameState.instance.OnEnteringInfestedRoom -= ClearActiveCards;
 
         //GameState.instance.OnPlayerRespawn -= ResetItemCount;
         //GameState.instance.OnPlayerRespawn -= ItemScaleAllWeapons;
-        GameState.instance.OnPlayerRespawn -= ClearActiveCards;
+        //GameState.instance.OnPlayerRespawn -= ClearActiveCards;
 
         //GameState.instance.OnPlayerRetry -= ResetItemCount;
         //GameState.instance.OnPlayerRetry -= ItemScaleAllWeapons;
-        GameState.instance.OnPlayerRetry -= ClearActiveCards;
+        //GameState.instance.OnPlayerRetry -= ClearActiveCards;
 
         //GameState.instance.OnCompletedInfestedClear -= ResetItemCount;
         //GameState.instance.OnCompletedInfestedClear -= ItemScaleAllWeapons;
-        GameState.instance.OnCompletedInfestedClear -= ClearActiveCards;
+        //GameState.instance.OnCompletedInfestedClear -= ClearActiveCards;
     }
 
     // initialise
@@ -128,10 +128,13 @@ public class CardManager : MonoBehaviour
             // look past the cards that are not default, as we only want the default ones to be added on start and made active permanently
             // all none default cards need to be unlocked and made active by the player
             if (physicalCardPrefabs[i].GetComponent<CardBase>().cardInfo.card.defaultCard == false) { continue; }
-            GameObject newPhysicalCard = physicalCardPrefabs[i];
 
-            InstantiateAsync(newPhysicalCard, poolParent.transform);
-            CardBase newBase = newPhysicalCard.GetComponent<CardBase>();
+            // reference the default card
+            GameObject physicalCardPrefab = physicalCardPrefabs[i];
+
+            // spawn an instance of it
+            GameObject newPhsyicalCard = Instantiate(physicalCardPrefab, poolParent.transform);
+            CardBase newBase = newPhsyicalCard.GetComponent<CardBase>();
             newBase.GetComponent<CardBase>().PopulateCardInfoOnSpawn();
             physicalCardPool.Add(newBase);
 
@@ -147,23 +150,26 @@ public class CardManager : MonoBehaviour
 
     public void AddPhysicalCard(CardScriptableObject so)
     {
-        GameObject physicalCard = physicalCardPrefabs.First(s => s.GetComponent<CardBase>().cardInfo.card == so);
+        GameObject physicalCardPrefab = physicalCardPrefabs.First(s => s.GetComponent<CardBase>().cardInfo.card == so);
 
-        InstantiateAsync(physicalCard, poolParent.transform);
-        CardBase newBase = physicalCard.GetComponent<CardBase>();
+        GameObject newPhsyicalCard = Instantiate(physicalCardPrefab, poolParent.transform);
+        CardBase newBase = newPhsyicalCard.GetComponent<CardBase>();
         newBase.GetComponent<CardBase>().PopulateCardInfoOnSpawn();
         physicalCardPool.Add(newBase);
     }
 
+    public void ReAddPhysicalCard(CardBase card)
+    {
+        //CardBase cardBase = playerActiveCardList.First(b => b == card);
+        physicalCardPool.Add(card);
+    }
+
     public void RemovePhysicalCard(CardScriptableObject so)
     {
-        GameObject physicalCard = physicalCardPrefabs.First(s => s.GetComponent<CardBase>().cardInfo.card == so);
+        CardBase physicalCard = physicalCardPool.First(s => s.GetComponent<CardBase>().cardInfo.card == so);
 
-        InstantiateAsync(physicalCard, poolParent.transform);
-        CardBase newBase = physicalCard.GetComponent<CardBase>();
-        newBase.GetComponent<CardBase>().PopulateCardInfoOnSpawn();
-        physicalCardPool.Remove(newBase);
-        Destroy(newBase.gameObject);
+        physicalCardPool.Remove(physicalCard);
+        Destroy(physicalCard.gameObject);
     }
 
     //public void EnableCardInPool(CardBase card) // this function is pretty much redundant now
@@ -228,11 +234,11 @@ public class CardManager : MonoBehaviour
     //    //itemCountInitial = new List<int>(allCardInfoList);
     //}
 
-    public void ClearActiveCards()
-    {
-        if (playerActiveCardList == null) { return; }
-        playerActiveCardList.Clear();
-    }
+    //public void ClearActiveCards()
+    //{
+    //    if (playerActiveCardList == null) { return; }
+    //    playerActiveCardList.Clear();
+    //}
 
     // rewind the amount of items a player at the start of a room
     //public void ResetCardLevels()

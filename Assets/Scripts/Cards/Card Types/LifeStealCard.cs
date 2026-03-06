@@ -11,4 +11,15 @@ public class LifeStealCard : CardBase
 
         Debug.Log("Applied: " + LevelUpManager.instance.chosenCard.statUpgradeAmount.ToString() + "from life steal Card!");
     }
+
+    public override void CustomOnHitEvent(float damageDealt, EnemyBase enemy)
+    {
+        if (totalStatAmount == 0) { return; }
+        base.CustomOnHitEvent(damageDealt, enemy);
+
+        float healthToAdd = ((float)totalStatAmount/100) * damageDealt;
+        Debug.Log("Health to add = " + healthToAdd + " From stat amount: " + totalStatAmount + " Damage Dealt: " + damageDealt);
+
+        GameState.instance.player.AddHealth((int)healthToAdd);
+    }
 }

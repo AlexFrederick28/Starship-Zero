@@ -1,3 +1,4 @@
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -6,21 +7,29 @@ public class CardBase : MonoBehaviour
 {
     // this obejcts cardInfo is populated when the card has been randomised, having it equal to whatever cardInfo was chosen from the CardManager
     public CardManager.CardInfo cardInfo;
-
-    public float statUpgradeAmount = 0;
+    public int totalStatAmount;
+    public int statUpgradeAmount = 0;
 
     protected virtual void OnEnable()
     {
-        // need to subscribe to OnPlayerLevelUp to get the correct item level (probably using a loop on the ActiveCardList - or even a lambda expression. If there are no cards of that type active, add it and set the level to 1)
-        // i believe we do not need that anymore ^
+        //LevelUpManager.instance.OnCardChosen += AddBackToPhysicalCardPool;
 
-        LevelUpManager.instance.OnCardChosen += AddBackToPhysicalCardPool;
         WeaponBase.OnDamagingEnemy += CustomOnHitEvent;
+
+        GameState.instance.OnPlayerRespawn += ResetTotalStatAmount;
+        GameState.instance.OnPlayerRetry += ResetTotalStatAmount;
+        GameState.instance.OnCompletedInfestedClear += ResetTotalStatAmount;
     }
 
     protected virtual void OnDisable()
     {
-        LevelUpManager.instance.OnCardChosen -= AddBackToPhysicalCardPool;
+        //LevelUpManager.instance.OnCardChosen -= AddBackToPhysicalCardPool;
+
+        WeaponBase.OnDamagingEnemy -= CustomOnHitEvent;
+
+        GameState.instance.OnPlayerRespawn -= ResetTotalStatAmount;
+        GameState.instance.OnPlayerRetry -= ResetTotalStatAmount;
+        GameState.instance.OnCompletedInfestedClear -= ResetTotalStatAmount;
     }
 
     public virtual void Start()
@@ -29,19 +38,33 @@ public class CardBase : MonoBehaviour
     }
 
     /// <summary>
-    /// Is used to apply any sort of affect that requires on hit such as life steal - must be overrided
+    /// Is used to apply any sort of affect that requires on hit such as life steal - must be overrided. The event is called each time a weapon deals damage.
     /// </summary>
     /// <param name="damageDealt"></param>
     /// <param name="enemy"></param>
     public virtual void CustomOnHitEvent(float damageDealt, EnemyBase enemy)
     {
-        Debug.Log("Applied on hit affect!");
+        //Debug.Log("Applied on hit affect!");
     }
 
-    public void AddBackToPhysicalCardPool()
-    {
-        CardManager.instance.physicalCardPool.Add(this);
-    }
+    //public void AddBackToPhysicalCardPool()
+    //{
+    //    if (CardManager.instance.physicalCardPool.Contains(this) == true) { Debug.Log("Card still in physical card pool - returning."); return; }
+    //    else
+    //    {
+    //        if (LevelUpManager.instance.chosenCard != this)
+    //        {
+    //            CardManager.instance.playerActiveCardList.Add(this);
+    //        }
+
+    //        CardManager.instance.ReAddPhysicalCard(this);
+    //        // problem: the physical card list is being taken from when randomisng the cards on the level up manager
+    //        // the cards that wernt chosen are not being added back - however we cannot just add a random instance back, we must add the previous instance
+    //        Debug.Log("Re adding card to physical card pool from the active list");
+    //        //CardManager.instance.physicalCardPool.Add(this);
+    //    }
+    //    //CardManager.instance.AddPhysicalCard(cardInfo.card);
+    //}
 
     public void SearchForExistingSelectedCardInfo()
     {
@@ -76,8 +99,10 @@ public class CardBase : MonoBehaviour
     /// </summary>
     public virtual void AddStatUpgrade()
     {
+        // adding to the total stat amount, so that items like life steal can utilise it
+        totalStatAmount += statUpgradeAmount;
+
         Debug.Log("Added new stat from chosen card!");
-        LevelUpManager.instance.ShowOrHideLevelUpCards();
     }
 
     public void PopulateCardInfoOnSpawn()
@@ -91,12 +116,9 @@ public class CardBase : MonoBehaviour
         cardInfo.cardSprite = cardInfo.card.cardSprite;
     }
 
-    //public void OnPointerClick(PointerEventData eventData)
-    //{
-    //    if (eventData.button == PointerEventData.InputButton.Left)
-    //    {
-    //        LevelUpManager.instance.chosenCard = this;
-    //        LevelUpManager.instance.OnCardChosen?.Invoke();
-    //    }
-    //}
+    public void ResetTotalStatAmount()
+    {
+        totalStatAmount = 0;
+        statUpgradeAmount = 0;
+    }
 }

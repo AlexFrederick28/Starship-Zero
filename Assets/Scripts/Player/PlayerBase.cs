@@ -241,6 +241,11 @@ public class PlayerBase : MonoBehaviour
         }
     }
 
+    public void AddHealth(int amount)
+    {
+        Health += amount;
+    }
+
     public void AddCurrency(int amount)
     {
         currency += amount;

@@ -53,4 +53,5 @@ MonoBehaviour:
     cardScalingMax: 11
     cardLevel: 0
     cardSprite: {fileID: -6910595954689261531, guid: d9e05939a191326419faaac918a260a9, type: 3}
+  totalStatAmount: 0
   statUpgradeAmount: 0

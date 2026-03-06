@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2650684029599363852
 Transform:
   m_ObjectHideFlags: 0
@@ -39,7 +39,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1619084867359471902}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad905059e8027cb43b8e2e2264315dda, type: 3}
   m_Name: 
@@ -54,4 +54,5 @@ MonoBehaviour:
     cardScalingMax: 6
     cardLevel: 0
     cardSprite: {fileID: -6910595954689261531, guid: d9e05939a191326419faaac918a260a9, type: 3}
+  totalStatAmount: 0
   statUpgradeAmount: 0
