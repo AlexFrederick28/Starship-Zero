@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5678671435731360265
+--- !u!1 &1619084867359471902
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,50 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4103296926461160737}
-  - component: {fileID: 3390851163875440591}
+  - component: {fileID: 2650684029599363852}
+  - component: {fileID: 7752253417533566477}
   m_Layer: 0
-  m_Name: Specific Weapon Damage Card
+  m_Name: Life Steal Card
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4103296926461160737
+  m_IsActive: 0
+--- !u!4 &2650684029599363852
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5678671435731360265}
+  m_GameObject: {fileID: 1619084867359471902}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalPosition: {x: 776.5867, y: 499.75378, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3390851163875440591
+--- !u!114 &7752253417533566477
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5678671435731360265}
-  m_Enabled: 1
+  m_GameObject: {fileID: 1619084867359471902}
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b19c69b76f0a084bb496a4506ed1c2e, type: 3}
+  m_Script: {fileID: 11500000, guid: ad905059e8027cb43b8e2e2264315dda, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpecificWeaponDamageCard
+  m_EditorClassIdentifier: Assembly-CSharp::LifeStealCard
   cardInfo:
-    card: {fileID: 11400000, guid: 404ad9057cd2c7647a1fc85def365ca9, type: 2}
-    defaultCard: 1
-    cardName: Damage
-    cardDescription: + Weapon Damage - Deal more damage.
-    cardScalingMin: 3
-    cardScalingMax: 11
+    card: {fileID: 11400000, guid: 914f0f1c60182e644b355c21cac546d3, type: 2}
+    defaultCard: 0
+    cardName: Life Steal
+    cardDescription: + Life Steal - Gain an amount of health back on damaging an
+      enemy
+    cardScalingMin: 1
+    cardScalingMax: 6
     cardLevel: 0
     cardSprite: {fileID: -6910595954689261531, guid: d9e05939a191326419faaac918a260a9, type: 3}
   statUpgradeAmount: 0

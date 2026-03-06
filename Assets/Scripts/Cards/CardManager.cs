@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CardManager : MonoBehaviour
@@ -124,6 +125,9 @@ public class CardManager : MonoBehaviour
 
         for (int i = 0; i < physicalCardPrefabs.Length; i++)
         {
+            // look past the cards that are not default, as we only want the default ones to be added on start and made active permanently
+            // all none default cards need to be unlocked and made active by the player
+            if (physicalCardPrefabs[i].GetComponent<CardBase>().cardInfo.card.defaultCard == false) { continue; }
             GameObject newPhysicalCard = physicalCardPrefabs[i];
 
             InstantiateAsync(newPhysicalCard, poolParent.transform);
@@ -133,32 +137,49 @@ public class CardManager : MonoBehaviour
 
             if (newBase.cardInfo.defaultCard == true)
             {
-                EnableCardInPool(newBase);
+                //EnableCardInPool(newBase);
                 allSelectedCardsList.Add(newBase.cardInfo);
-            }
-            else
-            {
-                DisableCardInPool(newBase);
             }
         }
 
         Debug.Log("Spawned card pool");
     }
 
-    public void EnableCardInPool(CardBase card)
+    public void AddPhysicalCard(CardScriptableObject so)
     {
-        // all cards are added to the pool
-        // cards are enabled when the player wants them active from the card upgrade menu, or the cards are default and are always enabled
-        card.gameObject.SetActive(true);
-        card.enabled = true;
+        GameObject physicalCard = physicalCardPrefabs.First(s => s.GetComponent<CardBase>().cardInfo.card == so);
+
+        InstantiateAsync(physicalCard, poolParent.transform);
+        CardBase newBase = physicalCard.GetComponent<CardBase>();
+        newBase.GetComponent<CardBase>().PopulateCardInfoOnSpawn();
+        physicalCardPool.Add(newBase);
     }
 
-    public void DisableCardInPool(CardBase card)
+    public void RemovePhysicalCard(CardScriptableObject so)
     {
-        // will only need to remove a card from the pool when the player doesnt have the card active/unlocked
-        card.gameObject.SetActive(false);
-        card.enabled = false;
+        GameObject physicalCard = physicalCardPrefabs.First(s => s.GetComponent<CardBase>().cardInfo.card == so);
+
+        InstantiateAsync(physicalCard, poolParent.transform);
+        CardBase newBase = physicalCard.GetComponent<CardBase>();
+        newBase.GetComponent<CardBase>().PopulateCardInfoOnSpawn();
+        physicalCardPool.Remove(newBase);
+        Destroy(newBase.gameObject);
     }
+
+    //public void EnableCardInPool(CardBase card) // this function is pretty much redundant now
+    //{
+    //    // all cards are added to the pool
+    //    // cards are enabled when the player wants them active from the card upgrade menu, or the cards are default and are always enabled
+    //    card.gameObject.SetActive(true);
+    //    card.enabled = true;
+    //}
+
+    //public void DisableCardInPool(CardBase card) // this function is pretty much redundant now
+    //{
+    //    // will only need to remove a card from the pool when the player doesnt have the card active/unlocked
+    //    card.gameObject.SetActive(false);
+    //    card.enabled = false;
+    //}
 
     //public void DestroyCardObjects()
     //{
@@ -167,6 +188,20 @@ public class CardManager : MonoBehaviour
     //        physicalCardPool[i].gameObject.SetActive(false);
     //    }
     //}
+
+    public void PopulateSelectedCardInfo(CardInfo info)
+    {
+        CardScriptableObject newInstance = ScriptableObject.CreateInstance<CardScriptableObject>();
+        newInstance = info.card;
+
+        info.defaultCard = newInstance.defaultCard;
+        info.cardName = newInstance.cardName;
+        info.cardDescription = newInstance.cardDescription;
+        info.cardScalingMin = newInstance.cardScalingMin;
+        info.cardScalingMax = newInstance.cardScalingMax;
+        info.cardLevel = newInstance.cardLevel;
+        info.cardSprite = newInstance.cardSprite;
+    }
 
     public void TempFunctionPopulateSelectedCardsInfo()
     {

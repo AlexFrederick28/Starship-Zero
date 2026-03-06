@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -14,6 +15,7 @@ public class CardBase : MonoBehaviour
         // i believe we do not need that anymore ^
 
         LevelUpManager.instance.OnCardChosen += AddBackToPhysicalCardPool;
+        WeaponBase.OnDamagingEnemy += CustomOnHitEvent;
     }
 
     protected virtual void OnDisable()
@@ -24,6 +26,16 @@ public class CardBase : MonoBehaviour
     public virtual void Start()
     {
         
+    }
+
+    /// <summary>
+    /// Is used to apply any sort of affect that requires on hit such as life steal - must be overrided
+    /// </summary>
+    /// <param name="damageDealt"></param>
+    /// <param name="enemy"></param>
+    public virtual void CustomOnHitEvent(float damageDealt, EnemyBase enemy)
+    {
+        Debug.Log("Applied on hit affect!");
     }
 
     public void AddBackToPhysicalCardPool()

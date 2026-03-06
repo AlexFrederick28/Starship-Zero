@@ -131,6 +131,11 @@ MonoBehaviour:
   selectedStackAmount: {fileID: 0}
   stackAmountSlider: {fileID: 0}
   weaponLoadoutButton: {fileID: 0}
+  cardUnlockParent: {fileID: 0}
+  cardDescriptionImage: {fileID: 0}
+  cardDescriptionText: {fileID: 0}
+  cardDescriptionNameText: {fileID: 0}
+  cardUnlockButton: {fileID: 0}
   upgradeParent: {fileID: 0}
   upgradeCardParent: {fileID: 0}
   upgradePlayerParent: {fileID: 0}
@@ -183,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38546e5308114004b83ac358845d041e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelUp
-  itemManager: {fileID: 0}
+  itemManager: {fileID: 824038302523504858}
   CardGO1: {fileID: 0}
   CardGO2: {fileID: 0}
   CardGO3: {fileID: 0}
@@ -206,6 +211,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 16fd775726af53c4db8e2fdb9300b07e, type: 2}
   - {fileID: 11400000, guid: 404ad9057cd2c7647a1fc85def365ca9, type: 2}
   - {fileID: 11400000, guid: 094f3b217e931004caaba877d67e76fe, type: 2}
+  - {fileID: 11400000, guid: 914f0f1c60182e644b355c21cac546d3, type: 2}
   allSelectedCardsList: []
   playerActiveCardList: []
   poolParentToSpawn: {fileID: 3664450109471185214, guid: 3f1f2524fbae2af4fb73a3578cd7d42a, type: 3}
@@ -216,4 +222,5 @@ MonoBehaviour:
   - {fileID: 8584519967475021712, guid: 15a1959ada7bd6c4f8c268893250a1fd, type: 3}
   - {fileID: 9113614014718786097, guid: d6f9031a24fa30d4bbeee5c517f5d03c, type: 3}
   - {fileID: 970022975748340800, guid: c6bdc83d23ed015419c14f897fde00d7, type: 3}
+  - {fileID: 1619084867359471902, guid: d2ceccb3a02c0d94685bf10e77bcab56, type: 3}
   allWeapons: []

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0929ce0397b981b4084efe36c12b05ea, type: 3}
-  m_Name: Damage Item
+  m_Name: Life Steal
   m_EditorClassIdentifier: Assembly-CSharp::ItemScriptableObject
-  defaultCard: 1
-  cardName: Damage
-  cardScalingMin: 3
-  cardScalingMax: 11
+  defaultCard: 0
+  cardName: Life Steal
+  cardScalingMin: 1
+  cardScalingMax: 6
   cardLevel: 0
-  cardDescription: + Weapon Damage - Deal more damage.
+  cardDescription: + Life Steal - Gain an amount of health back on damaging an enemy
   cardSprite: {fileID: -6910595954689261531, guid: d9e05939a191326419faaac918a260a9, type: 3}

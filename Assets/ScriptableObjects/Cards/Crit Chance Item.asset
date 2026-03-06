@@ -17,5 +17,5 @@ MonoBehaviour:
   cardScalingMin: 2
   cardScalingMax: 9
   cardLevel: 0
-  cardDescription: Adds a chance to deal a higher amount of damage.
+  cardDescription: + Crit. Chance - Adds a chance to deal a higher amount of damage.
   cardSprite: {fileID: -7059618875203899034, guid: 8b3b68d838b2d6647b36a02721a36157, type: 3}

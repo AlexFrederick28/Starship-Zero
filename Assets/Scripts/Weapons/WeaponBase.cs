@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class WeaponBase : MonoBehaviour
 {
@@ -48,6 +50,8 @@ public class WeaponBase : MonoBehaviour
     [Header("References (item stuff for now)")]
 
     [SerializeField] public CardManager cardManager;
+
+    public static Action<float, EnemyBase> OnDamagingEnemy;
 
     protected void OnEnable()
     {
@@ -294,7 +298,6 @@ public class WeaponBase : MonoBehaviour
 
     public void ProjectileDealDamage(Collider2D collision) // weapon projectile deals damage
     {
-
         float critRoll = Random.Range(0f, 100f);
         float finalDamage = 0f;
 
@@ -309,6 +312,8 @@ public class WeaponBase : MonoBehaviour
         }   
 
         EnemyBase enemy = collision.gameObject.GetComponentInParent<EnemyBase>();
+        // a damage event that is used by a CardBase (a physical card object) to add its affect from this hit
+        OnDamagingEnemy?.Invoke(finalDamage, enemy);
         enemy.TakeDamage(finalDamage); // final damage
 
     }

@@ -22,6 +22,10 @@ public class UIManager : MonoBehaviour
     public float notificationSpeed;
 
     [Space]
+    [Header("Tabs")]
+    public GameObject tabParent;
+
+    [Space]
     [Header("Inventory")]
     public GameObject inventoryParent;
     public GameObject inventorySlotContentParent;
@@ -34,6 +38,15 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI selectedStackAmount;
     public Slider stackAmountSlider;
     public Button weaponLoadoutButton;
+
+    [Space]
+    [Header("Card Unlock")]
+    public GameObject cardUnlockParent;
+    public Image cardDescriptionImage;
+    public TextMeshProUGUI cardDescriptionText;
+    public TextMeshProUGUI cardDescriptionNameText;
+    public Button cardUnlockButton; // use the button to apply the unlock cost visually
+    //public TextMeshProUGUI cardUnlockCostText;
 
     [Space]
     [Header("Permanent Upgrades")]
@@ -61,11 +74,6 @@ public class UIManager : MonoBehaviour
     [Header("Level Up Menu")]
     public GameObject levelUpMenuParent;
     public LevelUpCardUI[] levelUpCardUIList;
-    //public GameObject[] levelUpCards;
-    //public TextMeshProUGUI[] levelUpItemName;
-    //public TextMeshProUGUI[] levelUpItemStatDescription;
-    //public TextMeshProUGUI[] levelUpItemLevel;
-    //public Image[] levelUpItemImage;
 
     [Space]
     [Header("Infested Room")]
@@ -190,6 +198,9 @@ public class UIManager : MonoBehaviour
         if (GameState.instance.currentState == GameState.States.RoomClear) { return; }
         inventoryParent.SetActive(false);
         weaponCraftingUIParent.SetActive(false);
+        upgradeParent.SetActive(false);
+        cardUnlockParent.SetActive(false);
+        tabParent.SetActive(false);
         GameState.instance.ChangeStateToMain();
     }
 

@@ -17,5 +17,5 @@ MonoBehaviour:
   cardScalingMin: 0.1
   cardScalingMax: 0.3
   cardLevel: 0
-  cardDescription: Attack quicker.
+  cardDescription: + Fire Rate - Attack quicker
   cardSprite: {fileID: -6910595954689261531, guid: d9e05939a191326419faaac918a260a9, type: 3}
