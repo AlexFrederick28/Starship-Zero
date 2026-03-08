@@ -148,7 +148,7 @@ public class LevelUpManager : MonoBehaviour
 
                 // show a specific upgrade stat on a single weapon 
                 UIManager.instance.levelUpCardUIList[i].levelUpItemName.text = cardHost.chosenWeapon.weaponName; // name
-                UIManager.instance.levelUpCardUIList[i].levelUpItemStatDescription.text = "+ " + cardHost.Card.cardInfo.cardName + "\n" + "\n" + cardHost.Card.statUpgradeAmount.ToString("F1"); ; // description
+                UIManager.instance.levelUpCardUIList[i].levelUpItemStatDescription.text = "+ " + cardHost.Card.cardInfo.cardName + "\n" + "\n" + cardHost.Card.statUpgradeAmount.ToString() + "%"; ; // description
                 UIManager.instance.levelUpCardUIList[i].levelUpItemLevel.text = cardHost.chosenWeapon.weaponLevel.ToString(); // weapon level
                 UIManager.instance.levelUpCardUIList[i].levelUpItemImage.sprite = cardHost.chosenWeapon.weaponType.weaponSprite; // weapon sprite 
             }
@@ -156,7 +156,7 @@ public class LevelUpManager : MonoBehaviour
             {
                 // show a flat stat that upgrades all weapons
                 UIManager.instance.levelUpCardUIList[i].levelUpItemName.text = cardHost.Card.cardInfo.cardName; // name
-                UIManager.instance.levelUpCardUIList[i].levelUpItemStatDescription.text = "+ " + cardHost.Card.cardInfo.cardName + "\n" + "\n" + cardHost.Card.statUpgradeAmount.ToString("F1"); // description
+                UIManager.instance.levelUpCardUIList[i].levelUpItemStatDescription.text = "+ " + cardHost.Card.cardInfo.cardName + "\n" + "\n" + cardHost.Card.statUpgradeAmount.ToString() + "%"; // description
                 UIManager.instance.levelUpCardUIList[i].levelUpItemLevel.text = cardHost.Card.cardInfo.cardLevel.ToString(); // card level
                 UIManager.instance.levelUpCardUIList[i].levelUpItemImage.sprite = cardHost.Card.cardInfo.cardSprite; // card sprite icon
             }

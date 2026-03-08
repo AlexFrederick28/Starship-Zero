@@ -1,28 +1,31 @@
 using UnityEngine;
 
-public class PermanentUpgrades : MonoBehaviour, IInteractable
+public class PermanentUpgrades : QuestObjectBase, IInteractable
 {
-    public bool upgradesEnabled = false;
-
-    public void DisableInteractionComponent()
+    public override void OnEndInteraction()
     {
-        upgradesEnabled = false;
+        base.OnEndInteraction();
+        if (UIManager.instance.upgradeParent.activeSelf == true)
+        {
+            UIManager.instance.weaponCraftingUIParent.SetActive(false);
+            GameState.instance.ChangeToPreviousState();
+        }
     }
 
-    public void EnableInteractionComponent()
+    public override void OnInteract()
     {
-        upgradesEnabled = true;
-    }
+        if (behaviourEnabled == false) { return; }
 
-    public void OnEndInteraction()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnInteract()
-    {
-        if (upgradesEnabled == false) { return; }
-
-
+        base.OnInteract();
+        if (UIManager.instance.upgradeParent.activeSelf == true)
+        {
+            UIManager.instance.upgradeParent.SetActive(false);
+            GameState.instance.ChangeToPreviousState();
+        }
+        else if (UIManager.instance.upgradeParent.activeSelf == false && GameState.instance.currentState != GameState.States.OpenUI)
+        {
+            UIManager.instance.upgradeParent.SetActive(true);
+            GameState.instance.ChangeStateToOpenUI();
+        }
     }
 }

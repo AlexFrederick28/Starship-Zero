@@ -1,18 +1,20 @@
 using System;
+using System.Diagnostics.Contracts;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class CardUnlockUpgradeMenu : MonoBehaviour, IInteractable
+public class CardUnlockUpgradeMenu : QuestObjectBase, IInteractable
 {
     public CardSlot selectedCardSlot;
-    public bool unlocksEnabled = false; // blocks the menu popping up (needed if the player is in an infested clear and shouldnt be able to open it)
 
     public static Action<CardSlot> OnViewingCard;
 
     public static CardUnlockUpgradeMenu instance;
 
-    private void OnEnable()
+    public override void OnEnable()
     {
+        base.OnEnable();
+
         if (instance == null)
         {
             instance = this;
@@ -23,30 +25,35 @@ public class CardUnlockUpgradeMenu : MonoBehaviour, IInteractable
         }
     }
 
-    private void OnDisable()
+    public override void OnDisable()
     {
-        
+        base.OnDisable();
     }
 
-    public void DisableInteractionComponent()
+    public override void OnEndInteraction()
     {
-        unlocksEnabled = false;
+        base.OnEndInteraction();
+        if (UIManager.instance.cardUnlockParent.activeSelf == true)
+        {
+            UIManager.instance.cardUnlockParent.SetActive(false);
+            GameState.instance.ChangeToPreviousState();
+        }
     }
 
-    public void EnableInteractionComponent()
+    public override void OnInteract()
     {
-        unlocksEnabled = true;
-    }
+        if (behaviourEnabled == false) { return; }
 
-    public void OnEndInteraction()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnInteract()
-    {
-        if (unlocksEnabled == false) { return; }
-
-
+        base.OnInteract();
+        if (UIManager.instance.cardUnlockParent.activeSelf == true)
+        {
+            UIManager.instance.cardUnlockParent.SetActive(false);
+            GameState.instance.ChangeToPreviousState();
+        }
+        else if (UIManager.instance.cardUnlockParent.activeSelf == false && GameState.instance.currentState != GameState.States.OpenUI)
+        {
+            UIManager.instance.cardUnlockParent.SetActive(true);
+            GameState.instance.ChangeStateToOpenUI();
+        }
     }
 }

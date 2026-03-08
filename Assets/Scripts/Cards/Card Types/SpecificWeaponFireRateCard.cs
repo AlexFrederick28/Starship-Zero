@@ -6,9 +6,10 @@ public class SpecificWeaponFireRateCard : CardBase
     {
         base.AddStatUpgrade();
 
-        LevelUpManager.instance.chosenWeapon.fireRate += LevelUpManager.instance.chosenCard.statUpgradeAmount;
+        float fireRateIncrease = ((float)totalStatAmount / 100) * LevelUpManager.instance.chosenWeapon.fireRate;
+        LevelUpManager.instance.chosenWeapon.fireRate += fireRateIncrease;
         LevelUpManager.instance.chosenWeapon.weaponLevel++;
 
-        Debug.Log("Applied: " + LevelUpManager.instance.chosenCard.statUpgradeAmount.ToString() + "from Fire Rate Card!");
+        Debug.Log("Applied: " + fireRateIncrease + "from Fire Rate Card!");
     }
 }

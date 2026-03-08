@@ -62,7 +62,8 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] protected InventoryItemPackage[] specimens = new InventoryItemPackage[0];
     private int totalSpecimenWeight;
     [Tooltip("Out of 100")]
-    [SerializeField] protected int dropFrequencyPercentChance;
+    public int dropFrequencyPercentChance;
+    [SerializeField] protected int recordedDropFrequencyPercentChance;
 
     [Space]
     [Header("Audio")]
@@ -101,6 +102,11 @@ public class EnemyBase : MonoBehaviour
         if (GameState.instance != null)
         {
             GameState.instance.OnPlayerLevelUp += PauseAndUnpauseEnemy;
+
+            GameState.instance.OnEnteringInfestedRoom += RecordVariablesOnRoomStart;
+            GameState.instance.OnCompletedInfestedClear += ResetVariablesToRecorded;
+            GameState.instance.OnPlayerRespawn += ResetVariablesToRecorded;
+            GameState.instance.OnPlayerRetry += ResetVariablesToRecorded;
         }
 
         PlayerBase.OnPlayerDeath += PauseAndUnpauseEnemy;
@@ -130,6 +136,11 @@ public class EnemyBase : MonoBehaviour
 
         GameState.instance.OnPlayerLevelUp -= PauseAndUnpauseEnemy;
 
+        GameState.instance.OnEnteringInfestedRoom -= RecordVariablesOnRoomStart;
+        GameState.instance.OnCompletedInfestedClear -= ResetVariablesToRecorded;
+        GameState.instance.OnPlayerRespawn -= ResetVariablesToRecorded;
+        GameState.instance.OnPlayerRetry -= ResetVariablesToRecorded;
+
         PlayerBase.OnPlayerDeath -= PauseAndUnpauseEnemy;
     }
 
@@ -137,6 +148,25 @@ public class EnemyBase : MonoBehaviour
     {
         if (enemyPaused == true) { return; }
         AttackCooldown();
+    }
+
+    public void RecordVariablesOnRoomStart()
+    {
+        recordedDropFrequencyPercentChance = dropFrequencyPercentChance;
+    }
+
+    public void ResetVariablesToRecorded()
+    {
+        dropFrequencyPercentChance = recordedDropFrequencyPercentChance;
+    }
+
+    /// <summary>
+    /// Makes the drop chance directly equal to the plugged in amount
+    /// </summary>
+    /// <param name="amount"></param>
+    public void IncreaseDropChance(int amount)
+    {
+        dropFrequencyPercentChance = amount;
     }
 
     protected void LevelScale()
@@ -188,6 +218,7 @@ public class EnemyBase : MonoBehaviour
             DropRandomSpecimen();
             Spawning.instance.AddToPool(gameObject);
             Spawning.instance.EnemyDeath(currentDifficultyType);
+            ResetVariablesToRecorded();
             Health = maxHealth;
         }
     }

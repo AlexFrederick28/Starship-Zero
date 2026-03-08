@@ -29,8 +29,7 @@ MonoBehaviour:
   - amount: 
     description: 
   - amount: 
-    description: An extremely strong sniper rifle that exceeds in single target with
-      high damage and very low fire rate.
+    description: An extremely strong sniper rifle that exceeds in single target damage.
   weapon: {fileID: 11400000, guid: dc64a8829b1b7d74696f040b9b68325b, type: 2}
   item: {fileID: 11400000, guid: 21414279f7b4e61469bf4c858944467f, type: 2}
   ingredients:

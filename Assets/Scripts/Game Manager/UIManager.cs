@@ -107,6 +107,9 @@ public class UIManager : MonoBehaviour
     public GameObject questParent;
     public GameObject questPrefab;
 
+    public Action OnOpenedUI;
+    public Action OnClosedUI;
+
     public static UIManager instance;
     private void OnEnable()
     {
@@ -118,6 +121,9 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        OnOpenedUI += OpenTabUI;
+        OnClosedUI += CloseTabUI;
     }
 
     private void OnDisable()
@@ -126,6 +132,9 @@ public class UIManager : MonoBehaviour
         {
             instance = null;
         }
+
+        OnOpenedUI -= OpenTabUI;
+        OnClosedUI -= CloseTabUI;
     }
 
     private void Start()
@@ -146,6 +155,19 @@ public class UIManager : MonoBehaviour
     {
         GetUINumbersTEMP();
     }
+
+    public void OpenTabUI()
+    {
+        tabParent.SetActive(true);
+        Debug.Log("Opened tab parent");
+    }
+
+    public void CloseTabUI()
+    {
+        tabParent.SetActive(false);
+        Debug.Log("Closed tab parent");
+    }
+
     public void GetUINumbersTEMP()
     {
         if (Spawning.instance != null)
@@ -195,7 +217,7 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void CloseAllInteractiveUI()
     {
-        if (GameState.instance.currentState == GameState.States.RoomClear) { return; }
+        if (GameState.instance.currentState == GameState.States.RoomClear || GameState.instance.currentState == GameState.States.Main ) { return; }
         inventoryParent.SetActive(false);
         weaponCraftingUIParent.SetActive(false);
         upgradeParent.SetActive(false);
@@ -207,15 +229,36 @@ public class UIManager : MonoBehaviour
     public void SwapToInventoryUI()
     {
         // tab 1
+        inventoryParent.SetActive(true);
+        weaponCraftingUIParent.SetActive(false);
+        upgradeParent.SetActive(false);
+        cardUnlockParent.SetActive(false);
     }
 
     public void SwapToWeaponCraftingUI()
     {
         // tab 2
+        inventoryParent.SetActive(false);
+        weaponCraftingUIParent.SetActive(true);
+        upgradeParent.SetActive(false);
+        cardUnlockParent.SetActive(false);
+    }
+
+    public void SwapToCardUI()
+    {
+        // tab 3
+        inventoryParent.SetActive(false);
+        weaponCraftingUIParent.SetActive(false);
+        upgradeParent.SetActive(false);
+        cardUnlockParent.SetActive(true);
     }
 
     public void SwapToPermanentUpgradeUI()
     {
-        // tab 3
+        // tab 4
+        inventoryParent.SetActive(false);
+        weaponCraftingUIParent.SetActive(false);
+        upgradeParent.SetActive(true);
+        cardUnlockParent.SetActive(false);
     }
 }

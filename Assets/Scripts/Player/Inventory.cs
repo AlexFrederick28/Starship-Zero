@@ -226,6 +226,7 @@ public class Inventory : MonoBehaviour
             if (inventoryUI.activeSelf == true)
             {
                 inventoryUI.SetActive(false);
+                UIManager.instance.OnClosedUI?.Invoke();
                 UIManager.instance.infoInventoryName.text = string.Empty;
                 UIManager.instance.infoInventoryImage.sprite = null;
                 UIManager.instance.infoInventoryText.text = string.Empty;
@@ -234,6 +235,7 @@ public class Inventory : MonoBehaviour
             else if (inventoryUI.activeSelf == false && GameState.instance.currentState != GameState.States.OpenUI)
             {
                 GameState.instance.ChangeStateToOpenUI();
+                UIManager.instance.OnOpenedUI?.Invoke();
                 SortStacksInInventory();
                 RemoveGapsFromInventory();
                 inventoryUI.SetActive(true);

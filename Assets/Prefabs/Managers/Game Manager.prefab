@@ -120,6 +120,7 @@ MonoBehaviour:
   notificationYPosition: 80
   notificationYDestination: 160
   notificationSpeed: 0.5
+  tabParent: {fileID: 0}
   inventoryParent: {fileID: 0}
   inventorySlotContentParent: {fileID: 0}
   slot: {fileID: 2477720363533150392, guid: a91f7fefa0e626a438287925bc7b264d, type: 3}
@@ -189,11 +190,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelUp
   itemManager: {fileID: 824038302523504858}
-  CardGO1: {fileID: 0}
-  CardGO2: {fileID: 0}
-  CardGO3: {fileID: 0}
   chosenCard: {fileID: 0}
   chosenWeapon: {fileID: 0}
+  displayedCards: []
 --- !u!114 &824038302523504858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,7 +212,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 094f3b217e931004caaba877d67e76fe, type: 2}
   - {fileID: 11400000, guid: 914f0f1c60182e644b355c21cac546d3, type: 2}
   allSelectedCardsList: []
-  playerActiveCardList: []
   poolParentToSpawn: {fileID: 3664450109471185214, guid: 3f1f2524fbae2af4fb73a3578cd7d42a, type: 3}
   poolParent: {fileID: 0}
   physicalCardPool: []
@@ -223,4 +221,5 @@ MonoBehaviour:
   - {fileID: 9113614014718786097, guid: d6f9031a24fa30d4bbeee5c517f5d03c, type: 3}
   - {fileID: 970022975748340800, guid: c6bdc83d23ed015419c14f897fde00d7, type: 3}
   - {fileID: 1619084867359471902, guid: d2ceccb3a02c0d94685bf10e77bcab56, type: 3}
+  - {fileID: 1619084867359471902, guid: 6ed3f717081e4b74cb1ed13cff460450, type: 3}
   allWeapons: []

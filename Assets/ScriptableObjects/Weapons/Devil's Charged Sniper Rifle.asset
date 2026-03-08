@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponScriptableObject
   weaponName: Devil's Charged Sniper Rifle
   weaponDescription: An extremely strong sniper rifle that exceeds in single target
-    with high damage and very low fire rate
+    damage.
   weaponSprite: {fileID: 0}
   damage: 50
   fireRate: 0.5

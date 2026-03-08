@@ -14,6 +14,7 @@ public class CardSlot : MonoBehaviour, IPointerClickHandler
     public Color originalColour;
     public Color highlightedColour;
     public Image cardIconImage;
+    public Image cardLockImage;
     public TextMeshProUGUI cardName;
 
     public CardScriptableObject card;
@@ -30,14 +31,18 @@ public class CardSlot : MonoBehaviour, IPointerClickHandler
     private void OnDisable()
     {
         CardUnlockUpgradeMenu.OnViewingCard += ViewCardSlot;
+
+        // unview the slot on closing UI
+        DeselectSlot();
     }
 
     public void ViewCardSlot(CardSlot slot)
     {
         if (slot == this)
         {
-            if (CardUnlockUpgradeMenu.instance.selectedCardSlot == null)
+            if (CardUnlockUpgradeMenu.instance.selectedCardSlot != this)
             {
+                // if the selected slot is this, highlight it
                 // setting the viewed slot visually on the bottom card description UI. 
                 // letting the card upgrade menu know what slot has been selected
                 Debug.Log("Selected Slot");
@@ -46,10 +51,11 @@ public class CardSlot : MonoBehaviour, IPointerClickHandler
                 UIManager.instance.cardDescriptionImage.sprite = card.cardSprite;
                 UIManager.instance.cardDescriptionNameText.text = card.cardName;
                 UIManager.instance.cardDescriptionText.text = card.cardDescription;
+                if (slot.card.defaultCard == true) { UIManager.instance.cardUnlockButton.gameObject.SetActive(false); return; }
                 if (isUnlocked == false)
                 {
                     UIManager.instance.cardUnlockButton.gameObject.SetActive(true);
-                    UIManager.instance.cardUnlockButton.GetComponentInChildren<TextMeshProUGUI>().text =  "Unlock" + "\n" + "$" + unlockCost;
+                    UIManager.instance.cardUnlockButton.GetComponentInChildren<TextMeshProUGUI>().text = "Unlock" + "\n" + "$" + unlockCost;
                     UIManager.instance.cardUnlockButton.onClick.RemoveAllListeners();
                     UIManager.instance.cardUnlockButton.onClick.AddListener(UnlockCard);
                 }
@@ -61,7 +67,7 @@ public class CardSlot : MonoBehaviour, IPointerClickHandler
             }
             else
             {
-                // if this slot is already selected, unselect it
+                // if the selected slot is this, deselect it
                 Debug.Log("Deselected Slot");
                 DeselectSlot();
                 return;
@@ -121,6 +127,7 @@ public class CardSlot : MonoBehaviour, IPointerClickHandler
         if (GameState.instance.player.currency >= unlockCost)
         {
             isUnlocked = true;
+            cardLockImage.enabled = false;
             cardActiveToggle.onValueChanged.AddListener(AddOrRemoveCardToSelectedCards);
             UIManager.instance.cardUnlockButton.gameObject.SetActive(false);
             cardActiveToggle.gameObject.SetActive(true);
