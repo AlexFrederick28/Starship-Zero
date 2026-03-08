@@ -54,6 +54,7 @@ public class PlayerBase : MonoBehaviour
     [Space]
     [SerializeField] private float currentHealth;
     [SerializeField] private float maxHealth;
+    [SerializeField] private float recordedMaxHealth;
 
     public float Health
     {
@@ -78,6 +79,7 @@ public class PlayerBase : MonoBehaviour
     }
 
     public float speed;
+    public float recordedSpeed;
     public int currency;
 
     private IInteractable interactable;
@@ -146,6 +148,11 @@ public class PlayerBase : MonoBehaviour
     {
         if (GameState.instance != null)
         {
+            GameState.instance.OnEnteringInfestedRoom += RecordVariablesOnRoomStart;
+            GameState.instance.OnCompletedInfestedClear += ResetVariablesToRecorded;
+            GameState.instance.OnPlayerRespawn += ResetVariablesToRecorded;
+            GameState.instance.OnPlayerRetry += ResetVariablesToRecorded;
+
             GameState.instance.OnPlayerRespawn += ResetPlayerStatsOnRespawn;
             GameState.instance.OnPlayerRetry += ResetPlayerStatsOnRespawn;
             GameState.instance.OnPlayerLevelUp += PausePlayerOnPlayerLevelUp;
@@ -155,6 +162,11 @@ public class PlayerBase : MonoBehaviour
 
     private void OnDisable()
     {
+        GameState.instance.OnEnteringInfestedRoom -= RecordVariablesOnRoomStart;
+        GameState.instance.OnCompletedInfestedClear -= ResetVariablesToRecorded;
+        GameState.instance.OnPlayerRespawn -= ResetVariablesToRecorded;
+        GameState.instance.OnPlayerRetry -= ResetVariablesToRecorded;
+
         GameState.instance.OnPlayerRespawn -= ResetPlayerStatsOnRespawn;
         GameState.instance.OnPlayerRetry -= ResetPlayerStatsOnRespawn;
         GameState.instance.OnPlayerLevelUp -= PausePlayerOnPlayerLevelUp;
@@ -179,6 +191,18 @@ public class PlayerBase : MonoBehaviour
 
         // temp function for player UI
         SetPlayerUI();
+    }
+
+    public void RecordVariablesOnRoomStart()
+    {
+        recordedSpeed = speed;
+        recordedMaxHealth = maxHealth;
+    }
+
+    public void ResetVariablesToRecorded()
+    {
+        speed = recordedSpeed;
+        maxHealth = recordedMaxHealth;
     }
 
     private void PausePlayerOnPlayerLevelUp()

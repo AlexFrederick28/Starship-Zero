@@ -48,6 +48,12 @@ public class ExperiencePoint : MonoBehaviour, ICollectable
         }
     }
 
+    public void AddExperienceAdditive(int additive)
+    {
+        if (additive == 0) { return; }
+        currentExperienceAmount += additive;
+    }
+
     public void ScaleExperience(float currentExperience)
     {
         // setting the initial default experience

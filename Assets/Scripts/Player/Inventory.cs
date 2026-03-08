@@ -350,6 +350,28 @@ public class Inventory : MonoBehaviour
         {
             UIManager.instance.infoWeaponInventoryText.text = string.Empty;
             UIManager.instance.weaponStatInventoryText.text = string.Empty;
+
+            // shows weapon equip/un-equip button
+            // toggling the slider bar off if it is a weapon, as there can only be one in a stack
+            UIManager.instance.weaponLoadoutButton.onClick.RemoveAllListeners();
+            UIManager.instance.weaponLoadoutButton.onClick.AddListener(EquipAndUnequipWeapon);
+
+            UIManager.instance.infoWeaponInventoryText.gameObject.SetActive(true);
+            UIManager.instance.weaponLoadoutButton.gameObject.SetActive(true);
+
+            UIManager.instance.selectedStackAmount.gameObject.SetActive(false);
+            UIManager.instance.infoInventoryText.gameObject.SetActive(false);
+            UIManager.instance.stackAmountSlider.gameObject.SetActive(false);
+
+            if (selectedSlot.weaponEquipped == true)
+            {
+                UIManager.instance.weaponLoadoutButton.GetComponentInChildren<TextMeshProUGUI>().text = "Unequip";
+            }
+            else
+            {
+                UIManager.instance.weaponLoadoutButton.GetComponentInChildren<TextMeshProUGUI>().text = "Equip";
+            }
+
             for (int i = 0; i < slot.inventoryItem.weaponDescription.Length; i++)
             {
                 if (i == 0)
@@ -368,36 +390,6 @@ public class Inventory : MonoBehaviour
         {
             // set the description of an item if it is not a weapon
             UIManager.instance.infoInventoryText.text = slot.inventoryItem.description;
-        }
-        
-        // displaying and setting the selected slot
-        slot.slotImage.color = Color.white;
-        selectedSlot = slot;
-        slot.viewingSlot = true;
-
-        // display for weapon/normal item
-        if (selectedSlot.inventoryItem.isWeapon)
-        {
-            // shows weapon equip/un-equip button
-            // toggling the slider bar off if it is a weapon, as there can only be one in a stack
-            UIManager.instance.weaponLoadoutButton.onClick.RemoveAllListeners();
-            UIManager.instance.weaponLoadoutButton.onClick.AddListener(EquipAndUnequipWeapon);
-
-            UIManager.instance.infoWeaponInventoryText.gameObject.SetActive(true);
-            UIManager.instance.infoInventoryText.gameObject.SetActive(false);
-            UIManager.instance.stackAmountSlider.gameObject.SetActive(false);
-            UIManager.instance.weaponLoadoutButton.gameObject.SetActive(true);
-            if (selectedSlot.weaponEquipped == true)
-            {
-                UIManager.instance.weaponLoadoutButton.GetComponentInChildren<TextMeshProUGUI>().text = "Unequip";
-            }
-            else
-            {
-                UIManager.instance.weaponLoadoutButton.GetComponentInChildren<TextMeshProUGUI>().text = "Equip";
-            }
-        }
-        else
-        {
             UIManager.instance.weaponLoadoutButton.gameObject.SetActive(false);
             UIManager.instance.infoWeaponInventoryText.gameObject.SetActive(false);
             UIManager.instance.infoInventoryText.gameObject.SetActive(true);
@@ -407,6 +399,11 @@ public class Inventory : MonoBehaviour
             UIManager.instance.stackAmountSlider.maxValue = slot.currentStackSize;
             UIManager.instance.stackAmountSlider.value = slot.currentStackSize;
         }
+        
+        // displaying and setting the selected slot
+        slot.slotImage.color = Color.white;
+        selectedSlot = slot;
+        slot.viewingSlot = true;
     }
 
     public void EquipAndUnequipWeapon()

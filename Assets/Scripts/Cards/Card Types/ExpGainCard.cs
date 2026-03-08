@@ -1,7 +1,9 @@
 using UnityEngine;
 
-public class LifeStealCard : CardBase
+public class ExpGainCard : CardBase
 {
+    public int initialAdditiveExp;
+
     public override void AddStatUpgrade()
     {
         base.AddStatUpgrade();
@@ -16,13 +18,14 @@ public class LifeStealCard : CardBase
         if (totalStatAmount == 0) { return; }
         base.CustomOnHitEvent(damageDealt, enemy);
 
-        float healthToAdd = ((float)totalStatAmount/100) * damageDealt;
-        if (healthToAdd < 1)
+        float expToAdd = ((float)totalStatAmount / 100) * enemy.experienceAdditive;
+        if (expToAdd < 1)
         {
-            healthToAdd = 1;
+            expToAdd = initialAdditiveExp;
         }
-        Debug.Log("Health to add = " + healthToAdd + " From stat amount: " + totalStatAmount + " Damage Dealt: " + damageDealt);
 
-        GameState.instance.player.AddHealth((int)healthToAdd);
+        Debug.Log("Exp to add = " + (int)expToAdd + " From stat amount: " + totalStatAmount + " Damage Dealt: " + damageDealt);
+
+        enemy.experienceAdditive = (int)expToAdd;
     }
 }

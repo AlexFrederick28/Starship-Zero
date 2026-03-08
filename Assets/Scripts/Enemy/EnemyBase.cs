@@ -39,6 +39,7 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] protected float damage;
     [SerializeField] protected float speed;
     [SerializeField] protected int level;
+    public int experienceAdditive;
 
     [Space]
     [Header("Stat Scaling")]
@@ -158,6 +159,7 @@ public class EnemyBase : MonoBehaviour
     public void ResetVariablesToRecorded()
     {
         dropFrequencyPercentChance = recordedDropFrequencyPercentChance;
+        experienceAdditive = 0;
     }
 
     /// <summary>
@@ -214,7 +216,9 @@ public class EnemyBase : MonoBehaviour
 
         if (Health == 0)
         {
-            Spawning.instance.experience.RemoveFromPool(Spawning.instance.experience.selectedExperiencePoint, currentDifficultyType, transform);
+            ExperiencePoint exp = Spawning.instance.experience.experiencePool[0];
+            Spawning.instance.experience.RemoveFromPool(exp, currentDifficultyType, transform);
+            exp.AddExperienceAdditive(experienceAdditive); // THIS KEEPS RETURNING NULL FML
             DropRandomSpecimen();
             Spawning.instance.AddToPool(gameObject);
             Spawning.instance.EnemyDeath(currentDifficultyType);
