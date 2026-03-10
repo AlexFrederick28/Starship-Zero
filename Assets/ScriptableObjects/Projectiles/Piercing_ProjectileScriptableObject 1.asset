@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6f6bc09a63eb648a30462704919af4, type: 3}
   m_Name: Piercing_ProjectileScriptableObject 1
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileScriptableObject
-  projectileName: Basic Bullet
-  projectileDescription: The average bullet found everywhere that does nothing special.
+  projectileName: Piercing Bullet
+  projectileDescription: A piercing projectile that goes through a set amount of
+    enemies before breaking nothing special.
   displaySprite: {fileID: 6363875592875451746, guid: b5af269fbc3a98d44af25a9faf410703, type: 3}
-  projectilePrefabToFire: {fileID: 396421345929245815, guid: ebedc5602757a7c45be0cb715bf235b3, type: 3}
-  projectileEffectType: 0
+  projectilePrefabToFire: {fileID: 396421345929245815, guid: cb4bb48b0a4797948bee2ef7e56888ff, type: 3}
+  projectileEffectType: 1
+  effectCount: 1
