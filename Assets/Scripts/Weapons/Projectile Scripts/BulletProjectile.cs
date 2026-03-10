@@ -11,8 +11,13 @@ public class BulletProjectile : MonoBehaviour
 
     public WeaponBase baseWeapon; // owner of this bullet created (used to refer back to it when dealing damage)
 
+    public ProjectileScriptableObject projectileInfo;
+
+    public int projectileEffectCount;
+
     private void Start()
     {
+        projectileEffectCount = baseWeapon.bulletEffectCount;
         MoveProjectile();
         Destroy(gameObject, projectileLifeTime);
     }
@@ -38,12 +43,44 @@ public class BulletProjectile : MonoBehaviour
 
         if (collision.GetComponentInParent<EnemyBase>() == true)
         {
-            //Debug.Log("BP enemy hit");
-            baseWeapon.ProjectileDealDamage(collision);
-        }
+            if (projectileInfo.projectileEffectType == ProjectileScriptableObject.ProjectileBulletEffect.Basic)
+            {
+                //Debug.Log("basic projectile");
 
-        baseWeapon.DestroyProjectile(gameObject);
+
+                baseWeapon.ProjectileDealDamage(collision); // damage
+
+                DestroyProjectile(); // destroy
+            }
+
+            else if (projectileInfo.projectileEffectType == ProjectileScriptableObject.ProjectileBulletEffect.Piercing)
+            {
+                //Debug.Log("piercing projectile");
+
+                // CHECK FOR 0 FIRST
+                if (projectileEffectCount <= 0) // out of pierce
+                {
+                   // Debug.Log("no pierce left");
+                    baseWeapon.ProjectileDealDamage(collision);
+                    DestroyProjectile();
+                }
+
+                if (projectileEffectCount > 0) // has pierce left
+                {
+                    projectileEffectCount--;
+
+                    //Debug.Log("pierce now remaining: " + projectileEffectCount);
+                    baseWeapon.ProjectileDealDamage(collision);
+                }
+            }
+            //Debug.Log("BP enemy hit");
+            //baseWeapon.ProjectileDealDamage(collision);
+        }
 
     }
 
+    public void DestroyProjectile()
+    {
+        baseWeapon.DestroyProjectile(gameObject);
+    }
 }

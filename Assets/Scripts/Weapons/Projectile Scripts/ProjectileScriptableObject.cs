@@ -10,6 +10,7 @@ public class ProjectileScriptableObject : ScriptableObject
     public Sprite displaySprite; // image used to show the projectile
     public GameObject projectilePrefabToFire; // prefab to be fired
     public ProjectileBulletEffect projectileEffectType; // type
+    public int effectCount; // amount of times the bullets effect happens e.g. pierce
 
     public enum ProjectileBulletEffect
     {

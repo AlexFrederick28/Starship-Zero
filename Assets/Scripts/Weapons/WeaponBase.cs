@@ -28,12 +28,14 @@ public class WeaponBase : MonoBehaviour
     public float fireRate;
     public float critChance;
     public float critDamage;
+    public int bulletEffectCount;
 
     // to track what a weapons stats are before entering an infested room
     private float recordedDamage;
     private float recordedFireRate;
     private float recordedCritChance;
     private float recordedCritDamage;
+    public int recordedBulletEffectCount;
 
     [Header("Other")]
     [SerializeField] private float fireTime;
@@ -52,6 +54,8 @@ public class WeaponBase : MonoBehaviour
     [SerializeField] public CardManager cardManager;
 
     public static Action<float, EnemyBase> OnDamagingEnemy;
+
+    public ProjectileScriptableObject projectileSOInfo;
 
     protected void OnEnable()
     {
@@ -103,6 +107,7 @@ public class WeaponBase : MonoBehaviour
             cardManager = FindFirstObjectByType<CardManager>();
         }
 
+        //bulletEffectCount = projectileSOInfo.effectCount;
         AssignWeaponStats();
     }
 
@@ -135,7 +140,8 @@ public class WeaponBase : MonoBehaviour
         recordedFireRate = fireRate;
         recordedCritChance = critChance;
         recordedCritDamage = critDamage;
-    }
+        recordedBulletEffectCount = bulletEffectCount;
+}
 
     public void ResetWeaponStats()
     {
@@ -143,6 +149,7 @@ public class WeaponBase : MonoBehaviour
         fireRate = baseFireRate;
         critChance = baseCritChance;
         critDamage = baseCritDamage;
+        bulletEffectCount = 1;
     }
 
     public void ResetToRecordedWeaponStats()
@@ -151,6 +158,7 @@ public class WeaponBase : MonoBehaviour
         fireRate = recordedFireRate;
         critChance = recordedCritChance;
         critDamage = recordedCritDamage;
+        bulletEffectCount = recordedBulletEffectCount;
         weaponLevel = 0;
     }
 
