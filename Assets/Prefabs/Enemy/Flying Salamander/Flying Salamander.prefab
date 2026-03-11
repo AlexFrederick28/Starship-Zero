@@ -179,7 +179,7 @@ CapsuleCollider2D:
     m_Bits: 1073741824
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 268435510
+    m_Bits: 805306422
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -210,7 +210,7 @@ GameObject:
   m_Component:
   - component: {fileID: 290420391604719430}
   - component: {fileID: 617683803849249655}
-  m_Layer: 26
+  m_Layer: 25
   m_Name: Body (For Bullet Impact)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
