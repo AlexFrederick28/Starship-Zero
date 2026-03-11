@@ -86,14 +86,14 @@ public class BulletProjectile : MonoBehaviour
                 //Debug.Log("Bullet Type: " + projectileInfo.projectileEffectType);
 
                 Collider2D[] enemyHits = Physics2D.OverlapCircleAll(transform.position, projectileEffectCount, enemyLayerMask); // find all enemies in explosive radius
-                Debug.Log("BOOOOM");
+                //Debug.Log("BOOOOM");
 
                 // deal damage to each one
                 foreach (var enemyHit in enemyHits)
                 {
 
 
-                    Debug.Log("BAAAANG");
+                    //Debug.Log("BAAAANG");
 
                     baseWeapon.ProjectileDealDamage(enemyHit, true, 0.5f);
 

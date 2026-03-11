@@ -54,7 +54,7 @@ MonoBehaviour:
   projectileEffectCount: 0
   enemyLayerMask:
     serializedVersion: 2
-    m_Bits: 2348810240
+    m_Bits: 33554432
 --- !u!58 &8746432159178278598
 CircleCollider2D:
   m_ObjectHideFlags: 0
