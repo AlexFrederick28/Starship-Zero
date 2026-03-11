@@ -329,7 +329,7 @@ public class WeaponBase : MonoBehaviour
         // a damage event that is used by a CardBase (a physical card object) to add its affect from this hit
         OnDamagingEnemy?.Invoke(finalDamage, enemy);
         
-        //Debug.Log(enemy + " enemy target");
+        Debug.Log(enemy + " enemy target");
         enemy.TakeDamage(finalDamage); // final damage
 
     }

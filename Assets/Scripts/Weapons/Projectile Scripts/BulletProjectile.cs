@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -84,18 +85,40 @@ public class BulletProjectile : MonoBehaviour
             {
                 //Debug.Log("Bullet Type: " + projectileInfo.projectileEffectType);
 
-                var enemyHits = Physics2D.OverlapCircleAll(transform.position, projectileEffectCount, enemyLayerMask); // find all enemies in explosive radius
+                Collider2D[] enemyHits = Physics2D.OverlapCircleAll(transform.position, projectileEffectCount, enemyLayerMask); // find all enemies in explosive radius
+                Debug.Log("BOOOOM");
 
                 // deal damage to each one
                 foreach (var enemyHit in enemyHits)
                 {
+
+
+                    Debug.Log("BAAAANG");
+
+                    baseWeapon.ProjectileDealDamage(enemyHit, true, 0.5f);
+
+
                     // enemy flying, short, tall
                     //enemyHits = GetComponentInParent<EnemyBase>();
 
-                    GameObject enemy = enemyHit.GetComponentInParent<EnemyBase>().gameObject;
-                 
+                    //GameObject enemy = enemyHit.GetComponentInParent<EnemyBase>().gameObject;
+
                     //Debug.Log(enemyHits);
-                    baseWeapon.ProjectileDealDamage(enemy.GetComponent<Collider2D>(), true, 0.5f);
+
+                    //var enemy = enemyHit.GetComponentInParent<EnemyBase>();
+
+
+
+                    //if (enemy != null)
+                    //{
+                    //    baseWeapon.ProjectileDealDamage(enemyHit, true, 0.5f);
+                    //}
+                    //else
+                    //{
+                    //    Debug.Log(enemy.name + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                    //}
+
+                    //baseWeapon.ProjectileDealDamage(enemyHit.GetComponent<Collider2D>(), true, 0.5f);
                 }
 
                 DestroyProjectile();
