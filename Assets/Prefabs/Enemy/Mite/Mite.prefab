@@ -192,7 +192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8641697759331695676}
   - component: {fileID: 2989538292794073793}
-  m_Layer: 27
+  m_Layer: 25
   m_Name: 'Body '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,6 +308,7 @@ MonoBehaviour:
   damage: 0
   speed: 0
   level: 0
+  experienceAdditive: 0
   healthScale: 0
   damageScale: 0
   speedScale: 0
