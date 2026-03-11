@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8746432159178278598}
   - component: {fileID: 2816250719307920095}
   m_Layer: 29
-  m_Name: Piercing Bullet
+  m_Name: Explosive Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,7 +50,7 @@ MonoBehaviour:
   projectileLifeTime: 3
   RB2D: {fileID: 0}
   baseWeapon: {fileID: 0}
-  projectileInfo: {fileID: 11400000, guid: 6da24025c77c1cb41b0d964ab73bdb52, type: 2}
+  projectileInfo: {fileID: 11400000, guid: 10d692cf612a6694a82c5ec5bb700613, type: 2}
   projectileEffectCount: 0
   enemyLayerMask:
     serializedVersion: 2
@@ -197,7 +197,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3179362714106569466, guid: ddc6bf3af8943c9498120454356b0d18, type: 3}
+  m_Sprite: {fileID: -1352798348338500236, guid: ddc6bf3af8943c9498120454356b0d18, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

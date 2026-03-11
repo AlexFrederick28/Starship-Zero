@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ public class BulletProjectile : MonoBehaviour
     public ProjectileScriptableObject projectileInfo;
 
     public int projectileEffectCount;
+    public LayerMask enemyLayerMask;
 
     private void Start()
     {
@@ -43,16 +45,18 @@ public class BulletProjectile : MonoBehaviour
 
         if (collision.GetComponentInParent<EnemyBase>() == true)
         {
+            // basic projectile
             if (projectileInfo.projectileEffectType == ProjectileScriptableObject.ProjectileBulletEffect.Basic)
             {
                 //Debug.Log("basic projectile");
 
 
-                baseWeapon.ProjectileDealDamage(collision); // damage
+                baseWeapon.ProjectileDealDamage(collision, false, 0); // damage
 
                 DestroyProjectile(); // destroy
             }
 
+            // piercing projectile
             else if (projectileInfo.projectileEffectType == ProjectileScriptableObject.ProjectileBulletEffect.Piercing)
             {
                 //Debug.Log("piercing projectile");
@@ -61,7 +65,7 @@ public class BulletProjectile : MonoBehaviour
                 if (projectileEffectCount <= 0) // out of pierce
                 {
                    // Debug.Log("no pierce left");
-                    baseWeapon.ProjectileDealDamage(collision);
+                    baseWeapon.ProjectileDealDamage(collision, false, 0);
                     DestroyProjectile();
                 }
 
@@ -70,9 +74,33 @@ public class BulletProjectile : MonoBehaviour
                     projectileEffectCount--;
 
                     //Debug.Log("pierce now remaining: " + projectileEffectCount);
-                    baseWeapon.ProjectileDealDamage(collision);
+                    baseWeapon.ProjectileDealDamage(collision, false, 0);
+
                 }
             }
+
+            //explosive projectile
+            else if (projectileInfo.projectileEffectType == ProjectileScriptableObject.ProjectileBulletEffect.Explosive)
+            {
+                //Debug.Log("Bullet Type: " + projectileInfo.projectileEffectType);
+
+                var enemyHits = Physics2D.OverlapCircleAll(transform.position, projectileEffectCount, enemyLayerMask); // find all enemies in explosive radius
+
+                // deal damage to each one
+                foreach (var enemyHit in enemyHits)
+                {
+                    // enemy flying, short, tall
+                    //enemyHits = GetComponentInParent<EnemyBase>();
+
+                    GameObject enemy = enemyHit.GetComponentInParent<EnemyBase>().gameObject;
+                 
+                    //Debug.Log(enemyHits);
+                    baseWeapon.ProjectileDealDamage(enemy.GetComponent<Collider2D>(), true, 0.5f);
+                }
+
+                DestroyProjectile();
+            }
+
             //Debug.Log("BP enemy hit");
             //baseWeapon.ProjectileDealDamage(collision);
         }
@@ -83,4 +111,5 @@ public class BulletProjectile : MonoBehaviour
     {
         baseWeapon.DestroyProjectile(gameObject);
     }
+
 }
