@@ -85,6 +85,7 @@ MonoBehaviour:
   damage: 0
   speed: 0
   level: 0
+  experienceAdditive: 0
   healthScale: 0
   damageScale: 0
   speedScale: 0
@@ -300,7 +301,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 8391194786852480621, guid: f14e780266a83e04984795ac1798e2f3, type: 3}
+  m_Sprite: {fileID: -5353627423235688769, guid: f2aa82647c4372b4981de5c952ab16a1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -321,7 +322,7 @@ Animator:
   m_GameObject: {fileID: 5047862745490613471}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: dbba834e377daab46aad56067682e34d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 32ce9e39d827d6a4fa859345e21a158f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

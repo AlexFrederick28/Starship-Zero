@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Room : MonoBehaviour
@@ -21,6 +22,7 @@ public class Room : MonoBehaviour
     [SerializeField] private List<RoomInformation> roomInfoList;
     [SerializeField] private Spawning spawning;
     [SerializeField] private GameObject roomInformationPanel;
+    private bool withinInteractionRadius = false;
 
     public enum RoomStates { empty, infested, weapons, upgrade }
     [Header("Room States")]
@@ -68,7 +70,7 @@ public class Room : MonoBehaviour
     {
         if (GameState.instance != null)
         {
-            Debug.Log(this.name + "Subscribed");
+            //Debug.Log(this.name + "Subscribed");
             GameState.instance.OnPlayerRespawn += PlayerOutsideRoomOnRespawn;
         }
 
@@ -150,7 +152,7 @@ public class Room : MonoBehaviour
             if (roomInfoList[i].showOnState == RoomStates.infested && roomInfoList[i].isName == false)
             {
                 float roomDifficulty = (spawning.timerLength / spawning.difficultyMultiplier) / 60;
-                textComponent.text = roomInfoList[i].title + " " + spawning.timerLength.ToString() + "\n" + roomInfoList[i].extraText + " " + (int)roomDifficulty;
+                textComponent.text = roomInfoList[i].title + " " + spawning.timerLength.ToString(); //+ "\n" + roomInfoList[i].extraText + " " + (int)roomDifficulty;
             }
             else
             {
@@ -186,16 +188,22 @@ public class Room : MonoBehaviour
         roomInformationPanel.SetActive(true);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerBase>() == null) { return; }
+        if (collision.gameObject.GetComponent<PlayerBase>() == null || GameState.instance.currentState == GameState.States.RoomClear) { withinInteractionRadius = false; return; }
+        else
+        {
+            withinInteractionRadius = true;
+        }
+
         ShowRoomInformation();
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerBase>() == null) { return; }
+        if (collision.gameObject.GetComponent<PlayerBase>() == null || withinInteractionRadius == true) { return; }
 
         HideRoomInformation();
+        Debug.Log("exited");
     }
 }

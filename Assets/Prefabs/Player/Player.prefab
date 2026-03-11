@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 7679342737790346400}
   - component: {fileID: 8918831172719077285}
   - component: {fileID: 7780437159749607076}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Weapon test (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,6 +255,8 @@ MonoBehaviour:
   fireRate: 2
   critChance: 20
   critDamage: 20
+  bulletEffectCount: 0
+  recordedBulletEffectCount: 0
   fireTime: 0
   detectionRadius: 5
   closestTarget: {fileID: 0}
@@ -263,6 +265,7 @@ MonoBehaviour:
   newBullet: {fileID: 0}
   currentBullets: []
   cardManager: {fileID: 0}
+  projectileSOInfo: {fileID: 0}
 --- !u!1 &4184326947844396731
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,7 +277,7 @@ GameObject:
   - component: {fileID: 3145994658137934890}
   - component: {fileID: 1731940680856908459}
   - component: {fileID: 1425397096900734612}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Weapon test (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -380,6 +383,8 @@ MonoBehaviour:
   fireRate: 2
   critChance: 20
   critDamage: 20
+  bulletEffectCount: 0
+  recordedBulletEffectCount: 0
   fireTime: 0
   detectionRadius: 5
   closestTarget: {fileID: 0}
@@ -388,6 +393,7 @@ MonoBehaviour:
   newBullet: {fileID: 0}
   currentBullets: []
   cardManager: {fileID: 0}
+  projectileSOInfo: {fileID: 0}
 --- !u!1 &4318514336278049100
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,7 +422,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7311839100965269547}
@@ -543,7 +549,6 @@ Transform:
   - {fileID: 6743839964712983853}
   - {fileID: 739644908994417275}
   - {fileID: 902616250665091808}
-  - {fileID: 9096172556738060043}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8215110890558832416
@@ -818,37 +823,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!1 &5307523123092830326
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9096172556738060043}
-  m_Layer: 30
-  m_Name: Flying Enemy Hit Detection
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &9096172556738060043
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5307523123092830326}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7311839100965269547}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8104230526165746787
 GameObject:
   m_ObjectHideFlags: 0
@@ -860,7 +834,7 @@ GameObject:
   - component: {fileID: 8907547537299078236}
   - component: {fileID: 5494484714268004043}
   - component: {fileID: 428295092610920416}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Weapon test (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -966,6 +940,8 @@ MonoBehaviour:
   fireRate: 2
   critChance: 20
   critDamage: 20
+  bulletEffectCount: 0
+  recordedBulletEffectCount: 0
   fireTime: 0
   detectionRadius: 5
   closestTarget: {fileID: 0}
@@ -974,6 +950,7 @@ MonoBehaviour:
   newBullet: {fileID: 0}
   currentBullets: []
   cardManager: {fileID: 0}
+  projectileSOInfo: {fileID: 0}
 --- !u!1 &8878544019969407335
 GameObject:
   m_ObjectHideFlags: 0
@@ -985,7 +962,7 @@ GameObject:
   - component: {fileID: 5168945827272872454}
   - component: {fileID: 3875631835624828801}
   - component: {fileID: 4897798138333844846}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Weapon test (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1091,6 +1068,8 @@ MonoBehaviour:
   fireRate: 2
   critChance: 20
   critDamage: 20
+  bulletEffectCount: 0
+  recordedBulletEffectCount: 0
   fireTime: 0
   detectionRadius: 5
   closestTarget: {fileID: 0}
@@ -1099,6 +1078,7 @@ MonoBehaviour:
   newBullet: {fileID: 0}
   currentBullets: []
   cardManager: {fileID: 0}
+  projectileSOInfo: {fileID: 0}
 --- !u!1 &8932506193411276592
 GameObject:
   m_ObjectHideFlags: 0

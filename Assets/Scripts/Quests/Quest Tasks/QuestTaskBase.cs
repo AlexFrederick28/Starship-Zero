@@ -44,13 +44,13 @@ public class QuestTaskBase : MonoBehaviour
 
     public virtual void ActivateQuestObject(int id)
     {
-        Debug.Log("ID = " + id);
-        Debug.Log("Quests 0 ID =  " + quests[0].prerequisite.id);
+        //Debug.Log("ID = " + id);
+        //Debug.Log("Quests 0 ID =  " + quests[0].prerequisite.id);
         if (id != quests[0].prerequisite.id) { return; }
         if (disableUpdate == true)
         {
             disableUpdate = false;
-            Debug.Log("Enabled update");
+            //Debug.Log("Enabled update");
         }
     }
 

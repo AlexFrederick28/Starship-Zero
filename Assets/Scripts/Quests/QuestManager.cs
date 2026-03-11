@@ -90,7 +90,7 @@ public class QuestManager : MonoBehaviour
     {
         foreach (Quest q in quest)
         {
-            Debug.Log("Added quest to QuestManager " + q.prerequisite.name);
+            //Debug.Log("Added quest to QuestManager " + q.prerequisite.name);
             instance.questList.Add(q);
         }
     }
