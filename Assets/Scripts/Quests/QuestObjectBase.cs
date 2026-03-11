@@ -39,10 +39,10 @@ public class QuestObjectBase : MonoBehaviour, IInteractable
 
     public virtual void EnableQuestObject()
     {
-        Debug.Log("Enabling quest object");
+        //Debug.Log("Enabling quest object");
         if (QuestManager.instance.activeQuests.Any(q => q.prerequisite.id == questID))
         {
-            Debug.Log("Found quest with same ID and activating quest object");
+            //Debug.Log("Found quest with same ID and activating quest object");
             EnableInteractionComponent();
         }
     }

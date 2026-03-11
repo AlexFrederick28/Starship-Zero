@@ -224,7 +224,7 @@ public class CardManager : MonoBehaviour
             allSelectedCardsList[i].cardLevel = newInstance.cardLevel;
         }
 
-        Debug.Log("Set cards!");
+        //Debug.Log("Set cards!");
     }
 
     // grabs the amount of items at the start/end of a room

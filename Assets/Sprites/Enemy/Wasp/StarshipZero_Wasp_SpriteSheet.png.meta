@@ -1,22 +1,25 @@
 fileFormatVersion: 2
-guid: 785ad7bd1f2dacb4bbcf1546ec1b20c0
+guid: f2aa82647c4372b4981de5c952ab16a1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8013095791708937206
-    second: StarshipZero_Player_Idle_Spritesheet_0
+      213: -5353627423235688769
+    second: StarshipZero_Wasp_SpriteSheet_0
   - first:
-      213: -7718151475427000641
-    second: StarshipZero_Player_Idle_Spritesheet_1
+      213: 351082703924651044
+    second: StarshipZero_Wasp_SpriteSheet_1
   - first:
-      213: -7844898380798766664
-    second: StarshipZero_Player_Idle_Spritesheet_2
+      213: 8953779705758705480
+    second: StarshipZero_Wasp_SpriteSheet_2
   - first:
-      213: 2654151670033213752
-    second: StarshipZero_Player_Idle_Spritesheet_3
+      213: 8846449522370052592
+    second: StarshipZero_Wasp_SpriteSheet_3
   - first:
-      213: -6540815396706715133
-    second: StarshipZero_Player_Idle_Spritesheet_4
+      213: 1913346911809076551
+    second: StarshipZero_Wasp_SpriteSheet_4
+  - first:
+      213: 2351731995739856028
+    second: StarshipZero_Wasp_SpriteSheet_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -63,7 +66,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 475
+  spritePixelsToUnits: 1920
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -87,9 +90,9 @@ TextureImporter:
     maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
-    crunchedCompression: 0
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
@@ -112,13 +115,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: StarshipZero_Player_Idle_Spritesheet_0
+      name: StarshipZero_Wasp_SpriteSheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 660
-        height: 2000
+        width: 1041
+        height: 1080
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,20 +130,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a04e20825d3cbc090800000000000000
-      internalID: -8013095791708937206
+      spriteID: fb63f3a293814b5b0800000000000000
+      internalID: -5353627423235688769
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StarshipZero_Player_Idle_Spritesheet_1
+      name: StarshipZero_Wasp_SpriteSheet_1
       rect:
         serializedVersion: 2
-        x: 660
+        x: 1041
         y: 0
-        width: 660
-        height: 2000
+        width: 1041
+        height: 1080
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -149,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fbe3488202e93e490800000000000000
-      internalID: -7718151475427000641
+      spriteID: 424663eebdb4fd400800000000000000
+      internalID: 351082703924651044
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StarshipZero_Player_Idle_Spritesheet_2
+      name: StarshipZero_Wasp_SpriteSheet_2
       rect:
         serializedVersion: 2
-        x: 1320
+        x: 2082
         y: 0
-        width: 660
-        height: 2000
+        width: 1041
+        height: 1080
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +174,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8b1d3799c72512390800000000000000
-      internalID: -7844898380798766664
+      spriteID: 84769d60437324c70800000000000000
+      internalID: 8953779705758705480
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StarshipZero_Player_Idle_Spritesheet_3
+      name: StarshipZero_Wasp_SpriteSheet_3
       rect:
         serializedVersion: 2
-        x: 1980
+        x: 3123
         y: 0
-        width: 660
-        height: 2000
+        width: 1041
+        height: 1080
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,20 +196,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 839e650b1e075d420800000000000000
-      internalID: 2654151670033213752
+      spriteID: 0f18a4858f6e4ca70800000000000000
+      internalID: 8846449522370052592
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StarshipZero_Player_Idle_Spritesheet_4
+      name: StarshipZero_Wasp_SpriteSheet_4
       rect:
         serializedVersion: 2
-        x: 2640
+        x: 4164
         y: 0
-        width: 660
-        height: 2000
+        width: 1041
+        height: 1080
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,8 +218,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 30af3e92d0b5a35a0800000000000000
-      internalID: -6540815396706715133
+      spriteID: 74d787201e29d8a10800000000000000
+      internalID: 1913346911809076551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarshipZero_Wasp_SpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 5205
+        y: 0
+        width: 1041
+        height: 1080
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9c9ef44ac703a020800000000000000
+      internalID: 2351731995739856028
       vertices: []
       indices: 
       edges: []
@@ -225,7 +250,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: df70534d0b46bca4c973a3dd43fda2bc
+    spriteID: 9717020131da29c43a8d01166f7474b1
     internalID: 0
     vertices: []
     indices: 
@@ -235,13 +260,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":5.0,"y":1.0},"gridSpriteSize":{"x":660.0,"y":2000.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":6.0,"y":1.0},"gridSpriteSize":{"x":1041.0,"y":1080.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      StarshipZero_Player_Idle_Spritesheet_0: -8013095791708937206
-      StarshipZero_Player_Idle_Spritesheet_1: -7718151475427000641
-      StarshipZero_Player_Idle_Spritesheet_2: -7844898380798766664
-      StarshipZero_Player_Idle_Spritesheet_3: 2654151670033213752
-      StarshipZero_Player_Idle_Spritesheet_4: -6540815396706715133
+      StarshipZero_Wasp_SpriteSheet_0: -5353627423235688769
+      StarshipZero_Wasp_SpriteSheet_1: 351082703924651044
+      StarshipZero_Wasp_SpriteSheet_2: 8953779705758705480
+      StarshipZero_Wasp_SpriteSheet_3: 8846449522370052592
+      StarshipZero_Wasp_SpriteSheet_4: 1913346911809076551
+      StarshipZero_Wasp_SpriteSheet_5: 2351731995739856028
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

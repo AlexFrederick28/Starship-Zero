@@ -16,10 +16,10 @@ public class DropChanceCard : CardBase
         if (totalStatAmount == 0) { return; }
         base.CustomOnHitEvent(damageDealt, enemy);
 
-        int increaseAmount = enemy.dropFrequencyPercentChance + totalStatAmount;
+        float increaseAmount = (statUpgradeAmount/100) * (float)enemy.dropFrequencyPercentChance;
         Debug.Log("Drop chance will equal = " + increaseAmount + " From stat amount: " + totalStatAmount + " Damage Dealt: " + damageDealt);
 
-        enemy.IncreaseDropChance(increaseAmount);
+        enemy.IncreaseDropChance((int)increaseAmount);
         GameState.instance.player.AddHealth(totalStatAmount);
     }
 }

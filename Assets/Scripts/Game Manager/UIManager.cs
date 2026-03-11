@@ -159,13 +159,13 @@ public class UIManager : MonoBehaviour
     public void OpenTabUI()
     {
         tabParent.SetActive(true);
-        Debug.Log("Opened tab parent");
+        //Debug.Log("Opened tab parent");
     }
 
     public void CloseTabUI()
     {
         tabParent.SetActive(false);
-        Debug.Log("Closed tab parent");
+        //Debug.Log("Closed tab parent");
     }
 
     public void GetUINumbersTEMP()

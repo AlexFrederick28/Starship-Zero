@@ -130,7 +130,7 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
                 ActivateQuest();
                 if (textIndex == currentDialogue.dialogueText.Length - 1)
                 {
-                    Debug.Log("Completed topic and quest on correct line");
+                    //Debug.Log("Completed topic and quest on correct line");
                     CompleteTopic();
                     CompleteQuestOnCurrentDialogue();
                 }
@@ -191,7 +191,7 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
                 {
                     if (QuestManager.instance.questList[i].prerequisite.id == currentDialogue.quest.prerequisite.id)
                     {
-                        Debug.Log("Activated quest");
+                        //Debug.Log("Activated quest");
                         currentDialogue.quest.prerequisite.level = GameState.instance.player.Level; // as the quest is activated, so is the quest level which is used in circumstances such as entering an infested room
                         GameObject newQuestInstance = Instantiate(UIManager.instance.questPrefab);
                         newQuestInstance.transform.SetParent(UIManager.instance.questParent.transform);

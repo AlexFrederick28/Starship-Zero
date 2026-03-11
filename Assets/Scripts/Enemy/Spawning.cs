@@ -426,7 +426,7 @@ public class Spawning : Difficulty
                     {
                         if (randomNumb <= CurrentMediumSpawnChance)
                         {
-                            Debug.Log("Spawned medium enemy");
+                            //Debug.Log("Spawned medium enemy");
                             int enemyToSpawn = SearchForEnemyTypeInPool(EnemyBase.DifficultyType.Medium);
 
                             if (enemiesInactiveInPool[enemyToSpawn].GetComponent<EnemyBase>().currentDifficultyType == EnemyBase.DifficultyType.Medium)

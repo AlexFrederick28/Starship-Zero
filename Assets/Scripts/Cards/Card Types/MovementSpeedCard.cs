@@ -6,7 +6,7 @@ public class MovementSpeedCard : CardBase
     {
         base.AddStatUpgrade();
 
-        float movementSpeedIncrease = ((float)totalStatAmount / 100) * GameState.instance.player.speed;
+        float movementSpeedIncrease = ((float)statUpgradeAmount / 100) * GameState.instance.player.speed;
 
         GameState.instance.player.speed += movementSpeedIncrease;
         LevelUpManager.instance.chosenCard.cardInfo.cardLevel++;
