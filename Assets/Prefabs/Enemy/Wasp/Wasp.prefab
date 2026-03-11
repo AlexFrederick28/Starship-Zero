@@ -35,6 +35,7 @@ Transform:
   - {fileID: 2611128602495445815}
   - {fileID: 764015930239492433}
   - {fileID: 3239369173231000002}
+  - {fileID: 3050294327505550742}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &834134475085249847
@@ -77,6 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBase
   view: {fileID: 5047862745490613471}
+  colliders: []
   animator: {fileID: 1443543133215943893}
   enemyType: {fileID: 11400000, guid: 49b0f5a9d9f4dcf4692b79a681fe02e0, type: 2}
   enemyName: 
@@ -221,6 +223,75 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &3508842613824786212
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3050294327505550742}
+  - component: {fileID: 2601770999059336696}
+  m_Layer: 26
+  m_Name: Body (Attack)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3050294327505550742
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3508842613824786212}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6806558868633045701}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &2601770999059336696
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3508842613824786212}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 1610612736
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 268435510
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 1610612736
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 1610612736
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.25, y: -0.1}
+  m_Size: {x: 0.5, y: 1}
+  m_Direction: 0
 --- !u!1 &5047862745490613471
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,7 +416,7 @@ GameObject:
   - component: {fileID: 3239369173231000002}
   - component: {fileID: 8051076372035456062}
   m_Layer: 25
-  m_Name: Body
+  m_Name: Body (Hit Reg)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -379,10 +450,10 @@ CapsuleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 1610612736
+    m_Bits: 536870912
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 268435510
+    m_Bits: 3724542007
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -392,10 +463,10 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 1610612736
+    m_Bits: 536870912
   m_CallbackLayers:
     serializedVersion: 2
-    m_Bits: 1610612736
+    m_Bits: 536870912
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0

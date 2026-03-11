@@ -7,6 +7,7 @@ public class EnemyBase : MonoBehaviour
 {
     [Header("Base Settings")]
     [SerializeField] private GameObject view;
+    [SerializeField] private GameObject[] colliders;
     [SerializeField] private Animator animator;
     [SerializeField] private EnemyScriptableObject enemyType;
     [SerializeField] private string enemyName;
@@ -103,6 +104,7 @@ public class EnemyBase : MonoBehaviour
         if (GameState.instance != null)
         {
             GameState.instance.OnPlayerLevelUp += PauseAndUnpauseEnemy;
+            LevelUpManager.OnCardChosen += PauseAndUnpauseEnemy;
 
             GameState.instance.OnEnteringInfestedRoom += RecordVariablesOnRoomStart;
             GameState.instance.OnCompletedInfestedClear += ResetVariablesToRecorded;
@@ -136,6 +138,7 @@ public class EnemyBase : MonoBehaviour
         }
 
         GameState.instance.OnPlayerLevelUp -= PauseAndUnpauseEnemy;
+        LevelUpManager.OnCardChosen -= PauseAndUnpauseEnemy;
 
         GameState.instance.OnEnteringInfestedRoom -= RecordVariablesOnRoomStart;
         GameState.instance.OnCompletedInfestedClear -= ResetVariablesToRecorded;
@@ -235,13 +238,23 @@ public class EnemyBase : MonoBehaviour
         transform.position += targetPosition * speed * Time.deltaTime;
         if (transform.position.x > playerTransform.position.x)
         {
-            Quaternion newRotation = new Quaternion(0, 0, 0,0);
+            Quaternion newRotation = new Quaternion(0, 0, 0, 0);
             view.transform.rotation = newRotation;
+
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                colliders[i].transform.rotation = newRotation;
+            }
         }
         else
         {
             Quaternion newRotation = new Quaternion(0, 180, 0, 0);
             view.transform.rotation = newRotation;
+
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                colliders[i].transform.rotation = newRotation;
+            }
         }
     }
 

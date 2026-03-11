@@ -148,6 +148,7 @@ Transform:
   - {fileID: 7033738536028575324}
   - {fileID: 1249934881207735285}
   - {fileID: 6784314817228386713}
+  - {fileID: 630646731551284107}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4611495231020740868
@@ -163,6 +164,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBase
   view: {fileID: 489965776112638487}
+  colliders:
+  - {fileID: 7184874482148918041}
+  - {fileID: 5220898386078919345}
   animator: {fileID: 974976415234636650}
   enemyType: {fileID: 11400000, guid: 9f3463a6bc0caef4f9c497d1d961636f, type: 2}
   enemyName: Mutant Mite
@@ -221,6 +225,75 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!1 &3231114571191374726
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 630646731551284107}
+  - component: {fileID: 8750102732373692379}
+  m_Layer: 31
+  m_Name: Body (Attack)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &630646731551284107
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3231114571191374726}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4693066798500435396}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &8750102732373692379
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3231114571191374726}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 1610612736
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 268435510
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 1610612736
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 1610612736
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: -0.15}
+  m_Size: {x: 1.1, y: 0.9}
+  m_Direction: 1
 --- !u!1 &4702846739321190041
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,7 +418,7 @@ GameObject:
   - component: {fileID: 6784314817228386713}
   - component: {fileID: 2481819225710031112}
   m_Layer: 25
-  m_Name: Body
+  m_Name: Body (Hit Reg)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -379,10 +452,10 @@ CapsuleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 1610612736
+    m_Bits: 536870912
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 268435510
+    m_Bits: 3724542007
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -392,10 +465,10 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 1610612736
+    m_Bits: 536870912
   m_CallbackLayers:
     serializedVersion: 2
-    m_Bits: 1610612736
+    m_Bits: 536870912
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0

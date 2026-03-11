@@ -52,7 +52,6 @@ public class UIManager : MonoBehaviour
     [Header("Permanent Upgrades")]
     public GameObject upgradeParent;
     public GameObject upgradeCardParent;
-    public GameObject upgradePlayerParent;
 
     [Space]
     [Header("Death Menu")]

@@ -62,6 +62,7 @@ public class WeaponBase : MonoBehaviour
         if (GameState.instance != null)
         {
             GameState.instance.OnPlayerLevelUp += PauseWeapon;
+            LevelUpManager.OnCardChosen += PauseWeapon;
 
             GameState.instance.OnEnteringInfestedRoom += RandomiseWeaponFireTime;
             GameState.instance.OnEnteringInfestedRoom += ResetWeaponStats;
@@ -83,9 +84,10 @@ public class WeaponBase : MonoBehaviour
     protected void OnDisable()
     {
         GameState.instance.OnPlayerLevelUp -= PauseWeapon;
+        LevelUpManager.OnCardChosen -= PauseWeapon;
 
         GameState.instance.OnEnteringInfestedRoom -= RandomiseWeaponFireTime;
-            GameState.instance.OnEnteringInfestedRoom -= ResetWeaponStats;
+        GameState.instance.OnEnteringInfestedRoom -= ResetWeaponStats;
         GameState.instance.OnEnteringInfestedRoom -= RecordWeaponStats;
 
         GameState.instance.OnCompletedInfestedClear -= ResetToRecordedWeaponStats;

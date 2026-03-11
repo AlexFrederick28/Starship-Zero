@@ -51,7 +51,15 @@ public class GameState : MonoBehaviour
         }
 
         OnPlayerRespawn += PlayerRespawnFromCheckpoint;
+        OnPlayerRespawn += ChangeStateToMain;
+
         OnPlayerRetry += PlayerRetryFromCheckpoint;
+        OnPlayerRetry += ChangeToPreviousState;
+
+        OnPlayerLevelUp += ChangeStateToPaused;
+        PlayerBase.OnPlayerDeath += ChangeStateToPaused;
+
+        LevelUpManager.OnCardChosen += ChangeToPreviousState;
     }
 
     private void OnDisable()
@@ -62,7 +70,24 @@ public class GameState : MonoBehaviour
         }
 
         OnPlayerRespawn -= PlayerRespawnFromCheckpoint;
+        OnPlayerRespawn -= ChangeStateToMain;
+
         OnPlayerRetry -= PlayerRetryFromCheckpoint;
+        OnPlayerRetry -= ChangeToPreviousState;
+
+        OnPlayerLevelUp -= ChangeStateToPaused;
+        PlayerBase.OnPlayerDeath -= ChangeStateToPaused;
+
+        LevelUpManager.OnCardChosen -= ChangeToPreviousState;
+    }
+
+    public void ChangeStateToPaused()
+    {
+        if (currentState == States.Paused) { return; }
+
+        Debug.Log("Changed state to paused");
+        previousState = currentState;
+        currentState = States.Paused;
     }
 
     public void PauseAndResumeGame()
@@ -110,6 +135,7 @@ public class GameState : MonoBehaviour
     public void ChangeToPreviousState()
     {
         currentState = previousState;
+        Debug.Log("Changed to previous state");
     }
 
     public void PlayerRespawnFromCheckpoint()
