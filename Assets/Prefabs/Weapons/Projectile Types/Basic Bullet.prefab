@@ -51,6 +51,10 @@ MonoBehaviour:
   RB2D: {fileID: 0}
   baseWeapon: {fileID: 0}
   projectileInfo: {fileID: 11400000, guid: c4b68c6fede7c2346bd826b99ea11b4d, type: 2}
+  projectileEffectCount: 0
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 2348810240
 --- !u!58 &8746432159178278598
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -193,7 +197,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -5200944313915248819, guid: ddc6bf3af8943c9498120454356b0d18, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -16,8 +16,8 @@ public class ProjectileScriptableObject : ScriptableObject
     {
         Basic,
         Piercing,
+        Explosive,
         // bounce
-        // explosive
         // lightning/zap
     }
 }

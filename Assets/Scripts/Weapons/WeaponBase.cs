@@ -304,7 +304,8 @@ public class WeaponBase : MonoBehaviour
     //    }
     //}
 
-    public void ProjectileDealDamage(Collider2D collision) // weapon projectile deals damage
+    // weapon projectile deals damage, cut damage by amount 0-1 e.g. 0.8 = 80% damage
+    public void ProjectileDealDamage(Collider2D collision, bool cutDamage, float amountToCut) 
     {
         float critRoll = Random.Range(0f, 100f);
         float finalDamage = 0f;
@@ -319,9 +320,16 @@ public class WeaponBase : MonoBehaviour
             finalDamage += damage;
         }   
 
+        if (cutDamage == true)
+        {
+            finalDamage = finalDamage * amountToCut;
+        }
+
         EnemyBase enemy = collision.gameObject.GetComponentInParent<EnemyBase>();
         // a damage event that is used by a CardBase (a physical card object) to add its affect from this hit
         OnDamagingEnemy?.Invoke(finalDamage, enemy);
+        
+        //Debug.Log(enemy + " enemy target");
         enemy.TakeDamage(finalDamage); // final damage
 
     }
