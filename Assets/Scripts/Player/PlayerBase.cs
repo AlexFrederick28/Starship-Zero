@@ -85,6 +85,10 @@ public class PlayerBase : MonoBehaviour
 
     public float speed;
     public float recordedSpeed;
+    public float damage;
+    public float critChance;
+    public float critDamage;
+    public float fireRate;
     public int currency;
 
     private IInteractable interactable;

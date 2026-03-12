@@ -1,16 +1,34 @@
 using UnityEngine;
 
-public class UpgradeCritChance : MonoBehaviour
+public class UpgradeCritChance : UpgradeBase
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override void UpgradeCard()
     {
-        
+        if (GameState.instance.player.currency < currentStatIncreaseAndCost.y) { return; }
+
+        base.UpgradeCard();
+
+        float critChanceIncrease = (currentStatIncreaseAndCost.x / 100) * GameState.instance.player.critChance;
+        if ((int)critChanceIncrease < 1)
+        {
+            critChanceIncrease = 1f;
+        }
+
+        GameState.instance.player.critChance += (int)critChanceIncrease;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void RefundCard()
     {
-        
+        if (previousStatIncreaseAndCost.Count < 1) { return; }
+
+        base.RefundCard();
+
+        float critChanceDecrease = (currentStatIncreaseAndCost.x / 100) * GameState.instance.player.critChance;
+        if ((int)critChanceDecrease < 1)
+        {
+            critChanceDecrease = 1f;
+        }
+
+        GameState.instance.player.critChance -= critChanceDecrease;
     }
 }

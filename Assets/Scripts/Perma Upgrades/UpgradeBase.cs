@@ -27,7 +27,7 @@ public class UpgradeBase : MonoBehaviour
     {
         buyCostText.text = "-$" + currentStatIncreaseAndCost.y.ToString();
         upgradeLevelText.text = upgradeLevel.ToString();
-        if (previousStatIncreaseAndCost.Count < 1) { return; }
+        if (previousStatIncreaseAndCost.Count < 1) { refundCostText.text = "+$0"; return; }
         refundCostText.text = "+$" + previousStatIncreaseAndCost[previousStatIncreaseAndCost.Count-1].y.ToString();
     }
 

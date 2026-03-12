@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using Random = UnityEngine.Random;
 
 public class WeaponBase : MonoBehaviour
@@ -36,6 +37,7 @@ public class WeaponBase : MonoBehaviour
     private float recordedCritChance;
     private float recordedCritDamage;
     public int recordedBulletEffectCount;
+    private bool addedPermanentStatsToWeapon = false;
 
     [Header("Other")]
     [SerializeField] private float fireTime;
@@ -66,6 +68,7 @@ public class WeaponBase : MonoBehaviour
 
             GameState.instance.OnEnteringInfestedRoom += RandomiseWeaponFireTime;
             GameState.instance.OnEnteringInfestedRoom += ResetWeaponStats;
+            GameState.instance.OnEnteringInfestedRoom += AddStatsFromPlayerPermanentUpgrades;
             GameState.instance.OnEnteringInfestedRoom += RecordWeaponStats;
 
             GameState.instance.OnCompletedInfestedClear += ResetToRecordedWeaponStats;
@@ -88,6 +91,7 @@ public class WeaponBase : MonoBehaviour
 
         GameState.instance.OnEnteringInfestedRoom -= RandomiseWeaponFireTime;
         GameState.instance.OnEnteringInfestedRoom -= ResetWeaponStats;
+        GameState.instance.OnEnteringInfestedRoom -= AddStatsFromPlayerPermanentUpgrades;
         GameState.instance.OnEnteringInfestedRoom -= RecordWeaponStats;
 
         GameState.instance.OnCompletedInfestedClear -= ResetToRecordedWeaponStats;
@@ -100,6 +104,9 @@ public class WeaponBase : MonoBehaviour
         GameState.instance.OnPlayerRespawn -= ResetToRecordedWeaponStats;
 
         PlayerBase.OnPlayerDeath -= PauseWeapon;
+
+        ResetWeaponStats();
+        addedPermanentStatsToWeapon = false;
     }
 
     protected virtual void Start()
@@ -110,7 +117,7 @@ public class WeaponBase : MonoBehaviour
         }
 
         //bulletEffectCount = projectileSOInfo.effectCount;
-        AssignWeaponStats();
+        AssignBaseWeaponStats();
     }
 
     protected virtual void Update()
@@ -122,6 +129,45 @@ public class WeaponBase : MonoBehaviour
     private void FixedUpdate()
     {
         FindClosetTarget();
+    }
+
+    public void AddStatsFromPlayerPermanentUpgrades()
+    {
+        if (addedPermanentStatsToWeapon == true ) { return; }
+
+        if (GameState.instance.player.damage > 0)
+        {
+            // percent damage increase 
+            float damageIncrease = (GameState.instance.player.damage / 100) * damage;
+            if (damageIncrease < 1) { damageIncrease = 1; }
+            damage += (int)damageIncrease;
+        }
+
+        if (GameState.instance.player.critChance > 0)
+        {
+            // percent crit chance increase 
+            float critChanceIncrease = (GameState.instance.player.critChance / 100) * critChance;
+            if (critChanceIncrease < 1) { critChanceIncrease = 1; }
+            critChance += (int)critChanceIncrease;
+        }
+
+        if (GameState.instance.player.critDamage > 0)
+        {
+            // percent crit damage increase 
+            float critDamageIncrease = (GameState.instance.player.critDamage / 100) * critDamage;
+            if (critDamageIncrease < 1) { critDamageIncrease = 1; }
+            critDamage += (int)critDamageIncrease;
+        }
+
+        if (GameState.instance.player.fireRate > 0)
+        {
+            // percent fire rate increase 
+            float fireRateIncrease = (GameState.instance.player.fireRate / 100) * fireRate;
+            if (fireRateIncrease < 1) { fireRateIncrease = 1; }
+            fireRate += (int)fireRateIncrease;
+        }
+
+        addedPermanentStatsToWeapon = true;
     }
 
     public void PauseWeapon()
@@ -152,6 +198,9 @@ public class WeaponBase : MonoBehaviour
         critChance = baseCritChance;
         critDamage = baseCritDamage;
         bulletEffectCount = 1;
+        addedPermanentStatsToWeapon = false;
+
+        //AddStatsFromPlayerPermanentUpgrades();
     }
 
     public void ResetToRecordedWeaponStats()
@@ -163,111 +212,6 @@ public class WeaponBase : MonoBehaviour
         bulletEffectCount = recordedBulletEffectCount;
         weaponLevel = 0;
     }
-
-    //public void ItemScaling()
-    //{
-    //    // this function is scaling weapon damage, crit chance, crit damage, and fire rate based off of a set in stone item positions 
-    //    if (cardManager == null)
-    //    {
-    //        cardManager = FindFirstObjectByType<CardManager>();
-    //    }
-
-    //    // (regions in order of the item manager list, 0 = first in list)
-    //    #region Damage 
-    //    if (cardManager.itemCountGO[0] > 0f) // if at least 1 itemas
-    //    {
-    //        // convert to float for decimal calculation
-    //        float amount = cardManager.itemCountGO[0];
-    //        float scale = cardManager.itemScalingGO[0];
-
-    //        //Debug.Log("ItemCount [" + amount + "], Item Scaling [" + scale + "]");
-    //        float itemModifier = amount * scale; // amount to modify by
-    //        //Debug.Log("Item: Damage Increase [" + itemModifier + "%]");
-
-    //        damage = baseDamage * (1f + itemModifier / 100f); // weapons damage
-    //    }
-    //    else // if no items (0 or less damage
-    //    {
-    //        //Debug.Log("else = base damage");
-    //        damage = baseDamage;
-    //    }
-
-    //    //Debug.Log(weaponName + " Damage = [" + damage + "]");
-    //    #endregion
-
-    //    #region Crit Chance
-    //    if (cardManager.itemCountGO[1] > 0f)
-    //    {
-    //        // convert
-    //        float amount = cardManager.itemCountGO[1];
-    //        float scale = cardManager.itemScalingGO[1];
-
-    //        //Debug.Log("ItemCount [" + amount + "], Item Scaling [" + scale + "]");
-    //        float itemModifier = amount * scale;
-
-    //        critChance = baseCritChance + itemModifier;
-
-    //    }
-    //    else
-    //    {
-    //        critChance = baseCritChance;
-    //    }
-
-    //    //Debug.Log(weaponName + " Crit Chance = [" + critChance + "]");
-    //    #endregion
-
-    //    #region Crit Damage
-    //    if (cardManager.itemCountGO[2] > 0f)
-    //    {
-    //        // convert
-    //        float amount = cardManager.itemCountGO[2];
-    //        float scale = cardManager.itemScalingGO[2];
-
-    //        //Debug.Log("ItemCount [" + amount + "], Item Scaling [" + scale + "]");
-    //        float itemModifier = amount * scale;
-
-    //        critDamage = baseCritDamage + itemModifier;
-
-    //    }
-    //    else
-    //    {
-    //        critDamage = baseCritDamage;
-    //    }
-
-    //    //Debug.Log(weaponName + " Crit Damage = [" + critDamage + "]");
-    //    #endregion
-
-    //    #region Fire Rate
-    //    if (cardManager.itemCountGO[3] > 0f) // if at least 1 itemas
-    //    {
-    //        // convert to float for decimal calculation
-    //        float amount = cardManager.itemCountGO[3];
-    //        float scale = cardManager.itemScalingGO[3];
-
-    //        //Debug.Log("ItemCount [" + amount + "], Item Scaling [" + scale + "]");
-    //        float itemModifier = amount * scale; // amount to modify by
-    //        //Debug.Log("Item: Attack Speed Increase [" + itemModifier + "%]");
-
-    //        fireRate = baseFireRate * (1f + itemModifier / 100f); // weapons damage
-    //    }
-    //    else // if no items (0 or less damage
-    //    {
-    //        fireRate = baseFireRate;
-    //    }
-
-    //    //Debug.Log(weaponName + " Attack Speed = [" + fireRate + "]");
-    //    #endregion
-
-
-    //}
-
-    //protected void ModifyWeaponStats(float mod)
-    //{
-    //    damage = baseDamage * (1f + mod / 100f);
-    //    critChance = baseCritChance + mod;
-    //    critDamage = baseCritDamage + mod;
-    //    fireRate = baseFireRate * (1f + mod / 100f);
-    //}
 
     protected virtual void FireProjectile() // weapon fires projectile
     {
@@ -293,18 +237,6 @@ public class WeaponBase : MonoBehaviour
             //Debug.Log("No target detected to fire");
         }
     }
-
-    //protected virtual void FireAttack() // variation ^^^ 
-    //{
-    //    newBullet = Instantiate(projectileToFire, transform.position, Quaternion.identity);
-
-    //    BulletProjectile bullet = newBullet.GetComponent<BulletProjectile>();
-    //    currentBullets.Add(newBullet);
-    //    if (bullet != null)
-    //    {
-    //        bullet.baseWeapon = this;
-    //    }
-    //}
 
     // weapon projectile deals damage, cut damage by amount 0-1 e.g. 0.8 = 80% damage
     public void ProjectileDealDamage(Collider2D collision, bool cutDamage, float amountToCut) 
@@ -398,17 +330,18 @@ public class WeaponBase : MonoBehaviour
     public void ChangeWeaponType(WeaponScriptableObject type)
     {
         weaponType = type;
-        AssignWeaponStats();
+        AssignBaseWeaponStats();
+        ResetWeaponStats();
     }
 
     public void RemoveWeapon()
     {
         weaponType = null;
-        AssignWeaponStats();
+        AssignBaseWeaponStats();
     }
 
     // gives the weapon its base stats
-    public void AssignWeaponStats() 
+    public void AssignBaseWeaponStats() 
     {
         if (weaponType == null) // no scriptable can be found
         {

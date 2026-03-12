@@ -1,16 +1,34 @@
 using UnityEngine;
 
-public class UpgradeFireRate : MonoBehaviour
+public class UpgradeFireRate : UpgradeBase
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override void UpgradeCard()
     {
-        
+        if (GameState.instance.player.currency < currentStatIncreaseAndCost.y) { return; }
+
+        base.UpgradeCard();
+
+        float fireRateIncrease = (currentStatIncreaseAndCost.x / 100) * GameState.instance.player.fireRate;
+        if ((int)fireRateIncrease < 1)
+        {
+            fireRateIncrease = 1f;
+        }
+
+        GameState.instance.player.fireRate += (int)fireRateIncrease;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void RefundCard()
     {
-        
+        if (previousStatIncreaseAndCost.Count < 1) { return; }
+
+        base.RefundCard();
+
+        float fireRateDecrease = (currentStatIncreaseAndCost.x / 100) * GameState.instance.player.fireRate;
+        if ((int)fireRateDecrease < 1)
+        {
+            fireRateDecrease = 1f;
+        }
+
+        GameState.instance.player.fireRate -= fireRateDecrease;
     }
 }
