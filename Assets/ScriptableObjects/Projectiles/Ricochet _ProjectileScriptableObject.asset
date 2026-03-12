@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b6f6bc09a63eb648a30462704919af4, type: 3}
-  m_Name: Piercing_ProjectileScriptableObject
+  m_Name: Ricochet _ProjectileScriptableObject
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileScriptableObject
-  projectileName: Piercing Bullet
-  projectileDescription: A piercing projectile that goes through a set amount of
-    enemies before breaking.
-  displaySprite: {fileID: -3179362714106569466, guid: ddc6bf3af8943c9498120454356b0d18, type: 3}
-  projectilePrefabToFire: {fileID: 396421345929245815, guid: cb4bb48b0a4797948bee2ef7e56888ff, type: 3}
-  projectileEffectType: 1
+  projectileName: Ricochet Bullet
+  projectileDescription: A bullet that ricochets when hitting an enemy bouncing to
+    others close by before being destroyed.
+  displaySprite: {fileID: -4597166296181225529, guid: ddc6bf3af8943c9498120454356b0d18, type: 3}
+  projectilePrefabToFire: {fileID: 396421345929245815, guid: f7f23d2d91e35cc4192ff1c58d80574a, type: 3}
+  projectileEffectType: 3
   effectCount: 1
