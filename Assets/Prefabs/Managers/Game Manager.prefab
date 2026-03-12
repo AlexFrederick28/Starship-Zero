@@ -116,6 +116,7 @@ MonoBehaviour:
   playerCurrency: {fileID: 0}
   playerLevel: {fileID: 0}
   notificationPrefab: {fileID: 5283195962082511771, guid: cc160ab4bae2a4a4c9292e7f8b3ffc39, type: 3}
+  largeNotificationPrefab: {fileID: 5283195962082511771, guid: ebe98e142b8540d45b63e839f07732c3, type: 3}
   notificationTime: 1
   notificationYPosition: 80
   notificationYDestination: 160
@@ -139,7 +140,6 @@ MonoBehaviour:
   cardUnlockButton: {fileID: 0}
   upgradeParent: {fileID: 0}
   upgradeCardParent: {fileID: 0}
-  upgradePlayerParent: {fileID: 0}
   deathMenuParent: {fileID: 0}
   respawnButton: {fileID: 0}
   retryInfestedRoomButton: {fileID: 0}

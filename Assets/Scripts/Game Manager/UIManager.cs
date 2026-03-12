@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI playerCurrency;
     public TextMeshProUGUI playerLevel;
     public GameObject notificationPrefab;
+    public GameObject largeNotificationPrefab;
     public float notificationTime;
     public float notificationYPosition;
     public float notificationYDestination;
@@ -46,7 +47,6 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI cardDescriptionText;
     public TextMeshProUGUI cardDescriptionNameText;
     public Button cardUnlockButton; // use the button to apply the unlock cost visually
-    //public TextMeshProUGUI cardUnlockCostText;
 
     [Space]
     [Header("Permanent Upgrades")]
@@ -209,6 +209,23 @@ public class UIManager : MonoBehaviour
 
         yield return new WaitForEndOfFrame();
         Destroy(newNotification);
+    }
+
+    /// <summary>
+    /// A large notification coroutine that plays on the UIManager.cs
+    /// </summary>
+    /// <param name="routine"></param>
+    public void SpawnLargeNotification(string description, float screenTime, float sizeIncrease)
+    {
+        Debug.Log("Spawned large notification");
+        GameObject newNotification = Instantiate(instance.largeNotificationPrefab);
+        newNotification.transform.SetParent(instance.canvas.transform);
+        newNotification.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
+
+        LargeNotification noti = newNotification.GetComponent<LargeNotification>();
+        noti.description = description;
+        noti.screenTime = screenTime;
+        noti.sizeIncrease = sizeIncrease;
     }
 
     /// <summary>

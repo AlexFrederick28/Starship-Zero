@@ -21,6 +21,9 @@ public class Difficulty : MonoBehaviour
             if (value >= timerLength)
             {
                 timerReachedMaxLength = true; // can be a win condition for the player
+                // set a notification on the screen in big text letting the player know to clear the rest of the infested
+                UIManager.instance.SpawnLargeNotification("Clear the Last of the Infested", screenTime, textSizeIncrease);
+                //StartCoroutine(UIManager.instance.NewLargeNotification("Clear the Last of the Infested", screenTime, textSizeIncrease));
                 value = timerLength;
             }
             currentTime = value;
@@ -50,6 +53,11 @@ public class Difficulty : MonoBehaviour
     [SerializeField] protected float scalingSegments;
     public bool timerReachedMaxLength = false;
     public bool timerPaused = false;
+
+    [Space]
+    [Header("Large Notification")]
+    public float screenTime;
+    public float textSizeIncrease;
 
     private void Start()
     {

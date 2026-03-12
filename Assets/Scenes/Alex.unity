@@ -10495,7 +10495,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 974008507174762601, guid: eb137bc84a4855c45a346dc6cae4baf7, type: 3}
       propertyPath: timerLength
-      value: 40
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 974008507174762601, guid: eb137bc84a4855c45a346dc6cae4baf7, type: 3}
       propertyPath: maxDifficulty
@@ -10518,12 +10518,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 974008507174762601, guid: eb137bc84a4855c45a346dc6cae4baf7, type: 3}
+      propertyPath: bossEnemyPoolCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 974008507174762601, guid: eb137bc84a4855c45a346dc6cae4baf7, type: 3}
+      propertyPath: easyEnemyPoolCount
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 974008507174762601, guid: eb137bc84a4855c45a346dc6cae4baf7, type: 3}
+      propertyPath: hardEnemyPoolCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 974008507174762601, guid: eb137bc84a4855c45a346dc6cae4baf7, type: 3}
       propertyPath: entryQuestActivated
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 974008507174762601, guid: eb137bc84a4855c45a346dc6cae4baf7, type: 3}
       propertyPath: difficultyMultiplier
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 974008507174762601, guid: eb137bc84a4855c45a346dc6cae4baf7, type: 3}
+      propertyPath: mediumEnemyPoolCount
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 974008507174762601, guid: eb137bc84a4855c45a346dc6cae4baf7, type: 3}
       propertyPath: spawnAmountMulitplier

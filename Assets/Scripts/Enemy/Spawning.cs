@@ -144,8 +144,14 @@ public class Spawning : Difficulty
     public bool playerClearedRoom = false;
     private bool PlayerWinCondition()
     {
-        if (timerReachedMaxLength == true && playerClearedRoom == false)
+        if (timerReachedMaxLength == true && totalEnemiesActive < 1)
         {
+            // if there are no enemies active and the timer reached the limit
+            // enemies no longer spawn after the timer is over, however the player has to clear all of them to succeed/proceed.
+
+            //StartCoroutine(UIManager.instance.NewLargeNotification("Room Cleared", screenTime, textSizeIncrease));
+            UIManager.instance.SpawnLargeNotification("Room Cleared", screenTime, textSizeIncrease);
+
             ResetInfestedRoom();
             playerClearedRoom = true;
             GameState.instance.ChangeStateToMain();
@@ -255,8 +261,10 @@ public class Spawning : Difficulty
 
             amountOfEnemiesToSpawn = (currentDifficulty / scalingSegments) * spawnAmountMulitplier;
 
-            SpawnNewEnemy();
             PlayerWinCondition();
+
+            if (timerReachedMaxLength == true) { return; }
+            SpawnNewEnemy();
         }
     }
 

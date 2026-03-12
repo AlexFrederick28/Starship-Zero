@@ -520,6 +520,8 @@ MonoBehaviour:
   scalingSegments: 0
   timerReachedMaxLength: 0
   timerPaused: 0
+  screenTime: 1.5
+  textSizeIncrease: 0.01
   questLevel: {x: 0, y: 0}
   questID: 4
   entryQuestActivated: 0
