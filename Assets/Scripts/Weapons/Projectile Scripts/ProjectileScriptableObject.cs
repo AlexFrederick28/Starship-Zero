@@ -17,7 +17,6 @@ public class ProjectileScriptableObject : ScriptableObject
         Basic,
         Piercing,
         Explosive,
-        // bounce
-        // lightning/zap
+        Ricochet
     }
 }

@@ -16,6 +16,6 @@ MonoBehaviour:
   projectileDescription: A projectile that explodes on contact dealing damage in
     an area.
   displaySprite: {fileID: -1352798348338500236, guid: ddc6bf3af8943c9498120454356b0d18, type: 3}
-  projectilePrefabToFire: {fileID: 0}
+  projectilePrefabToFire: {fileID: 396421345929245815, guid: fffdcb7d903dd9544be6d112f639d79f, type: 3}
   projectileEffectType: 2
   effectCount: 1

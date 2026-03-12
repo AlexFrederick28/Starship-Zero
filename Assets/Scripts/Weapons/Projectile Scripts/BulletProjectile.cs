@@ -18,6 +18,8 @@ public class BulletProjectile : MonoBehaviour
     public int projectileEffectCount;
     public LayerMask enemyLayerMask;
 
+    public Transform lastEnemyHit;
+
     private void Start()
     {
         projectileEffectCount = baseWeapon.bulletEffectCount;
@@ -91,37 +93,63 @@ public class BulletProjectile : MonoBehaviour
                 // deal damage to each one
                 foreach (var enemyHit in enemyHits)
                 {
-
-
                     //Debug.Log("BAAAANG");
 
                     baseWeapon.ProjectileDealDamage(enemyHit, true, 0.5f);
 
-
-                    // enemy flying, short, tall
-                    //enemyHits = GetComponentInParent<EnemyBase>();
-
-                    //GameObject enemy = enemyHit.GetComponentInParent<EnemyBase>().gameObject;
-
-                    //Debug.Log(enemyHits);
-
-                    //var enemy = enemyHit.GetComponentInParent<EnemyBase>();
-
-
-
-                    //if (enemy != null)
-                    //{
-                    //    baseWeapon.ProjectileDealDamage(enemyHit, true, 0.5f);
-                    //}
-                    //else
-                    //{
-                    //    Debug.Log(enemy.name + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-                    //}
-
-                    //baseWeapon.ProjectileDealDamage(enemyHit.GetComponent<Collider2D>(), true, 0.5f);
                 }
 
                 DestroyProjectile();
+            }
+
+            // ricochet projectile
+            else if (projectileInfo.projectileEffectType == ProjectileScriptableObject.ProjectileBulletEffect.Ricochet)
+            {
+                baseWeapon.ProjectileDealDamage(collision, false, 0);
+
+                projectileEffectCount--;
+
+                if (projectileEffectCount <= 0)
+                {
+                    DestroyProjectile();
+                }
+
+                lastEnemyHit = collision.transform;
+
+                Collider2D[] nearbyEnemies = Physics2D.OverlapCircleAll(transform.position, 5f, enemyLayerMask); // find enemies in range
+
+
+                Transform nextTarget = null; // reset target
+
+                float closestDistance = Mathf.Infinity; // dist
+
+                foreach (var enemy in nearbyEnemies)
+                {
+                    if (enemy.transform == lastEnemyHit)
+                        continue;
+
+                    float distance = Vector2.Distance(transform.position, enemy.transform.position); // get distance from this bullet to enemy
+
+                    if (distance < closestDistance) // find the closet enemy
+                    {
+                        closestDistance = distance;
+                        nextTarget = enemy.transform;
+                    }
+                }
+
+                // if target is found
+                if (nextTarget != null)
+                {
+                    Vector2 direction = (nextTarget.position - transform.position).normalized; // normalized needed
+
+                    // aim at next enemy and go
+                    Rigidbody2D rb = GetComponent<Rigidbody2D>();
+                    rb.linearVelocity = direction * rb.linearVelocity.magnitude;
+                }
+                else
+                {
+                    Debug.Log("no target found for ricochet");
+                }
             }
 
             //Debug.Log("BP enemy hit");
