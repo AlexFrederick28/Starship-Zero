@@ -7,6 +7,12 @@ public class SpecificWeaponDamageCard : CardBase
         base.AddStatUpgrade();
 
         float damageIncrease = ((float)statUpgradeAmount / 100) * LevelUpManager.instance.chosenWeapon.damage;
+
+        if (damageIncrease < 1)
+        {
+            damageIncrease = 1;
+        }
+
         LevelUpManager.instance.chosenWeapon.damage += (int)damageIncrease;
         LevelUpManager.instance.chosenWeapon.weaponLevel++;
 

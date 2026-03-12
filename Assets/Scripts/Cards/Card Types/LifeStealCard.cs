@@ -16,7 +16,7 @@ public class LifeStealCard : CardBase
         if (totalStatAmount == 0) { return; }
         base.CustomOnHitEvent(damageDealt, enemy);
 
-        float healthToAdd = ((float)statUpgradeAmount/100) * damageDealt;
+        float healthToAdd = ((float)totalStatAmount/100) * damageDealt;
         if (healthToAdd < 1)
         {
             healthToAdd = 1;

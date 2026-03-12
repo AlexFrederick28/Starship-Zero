@@ -12,7 +12,7 @@ public class CardHoster : MonoBehaviour, IPointerClickHandler
         {
             LevelUpManager.instance.chosenCard = Card;
             LevelUpManager.instance.chosenWeapon = chosenWeapon;
-            LevelUpManager.instance.OnCardChosen?.Invoke();
+            LevelUpManager.OnCardChosen?.Invoke();
         }
     }
 }

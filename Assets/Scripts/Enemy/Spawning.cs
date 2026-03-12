@@ -181,6 +181,7 @@ public class Spawning : Difficulty
             GameState.instance.OnPlayerRetry += ResetInfestedRoom;
             GameState.instance.OnPlayerRetry += PauseSpawning;
             GameState.instance.OnPlayerLevelUp += PauseSpawning;
+            LevelUpManager.OnCardChosen += PauseSpawning;
 
             GameState.instance.OnCompletedInfestedClear += GameState.instance.playerInventory.DestroyLoadout;
             GameState.instance.OnCompletedInfestedClear += GameState.instance.playerInventory.RemoveGapsFromInventory;
@@ -215,6 +216,7 @@ public class Spawning : Difficulty
         GameState.instance.OnPlayerRetry -= ResetInfestedRoom;
         GameState.instance.OnPlayerRetry -= PauseSpawning;
         GameState.instance.OnPlayerLevelUp -= PauseSpawning;
+        LevelUpManager.OnCardChosen -= PauseSpawning;
 
         GameState.instance.OnCompletedInfestedClear -= GameState.instance.playerInventory.DestroyLoadout;
         GameState.instance.OnCompletedInfestedClear -= GameState.instance.playerInventory.RemoveGapsFromInventory;

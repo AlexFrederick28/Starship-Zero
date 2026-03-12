@@ -28,7 +28,7 @@ public class LevelUpManager : MonoBehaviour
     public List<CardBase> displayedCards;
 
 
-    public Action OnCardChosen;
+    public static Action OnCardChosen;
 
     //public ItemCardInfo pickedCard1;
     //public ItemCardInfo pickedCard2;
@@ -244,7 +244,8 @@ public class LevelUpManager : MonoBehaviour
         displayedCards.Clear();
 
         chosenCard.AddStatUpgrade();
-        GameState.instance.OnPlayerLevelUp?.Invoke();
+        ShowOrHideLevelUpCards();
+        //GameState.instance.OnPlayerLevelUp?.Invoke();
     }
 
     // card 1 2 3

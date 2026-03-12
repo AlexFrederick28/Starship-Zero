@@ -32,6 +32,7 @@ public class PlayerBase : MonoBehaviour
                 currentExperience -= experienceNeeded;
                 CalculateExperienceNeeded();
                 GameState.instance.OnPlayerLevelUp?.Invoke(); // pauses the game when the player levels up. Needs to be invoked a second time to unpause
+                Debug.Log("Invoked OnPlayerLevelUp");
             }
             if (currentExperience < 0)
             {
@@ -53,7 +54,11 @@ public class PlayerBase : MonoBehaviour
 
     [Space]
     [SerializeField] private float currentHealth;
-    [SerializeField] private float maxHealth;
+    public float maxHealth;
+    public float healthRegenSpeed;
+    private float healthRegenCurrentTime;
+    public float healthRegenAmount;
+    private bool readyToRegen = false;
     [SerializeField] private float recordedMaxHealth;
 
     public float Health
@@ -80,6 +85,10 @@ public class PlayerBase : MonoBehaviour
 
     public float speed;
     public float recordedSpeed;
+    public float damage;
+    public float critChance;
+    public float critDamage;
+    public float fireRate;
     public int currency;
 
     private IInteractable interactable;
@@ -107,6 +116,7 @@ public class PlayerBase : MonoBehaviour
                 PauseAndUnpausePlayer(); // pause player
             }
             OnPlayerDeath?.Invoke();
+            Debug.Log("Invoked OnPlayerDead");
             playerDead = true;
             return true;
         }
@@ -156,6 +166,7 @@ public class PlayerBase : MonoBehaviour
             GameState.instance.OnPlayerRespawn += ResetPlayerStatsOnRespawn;
             GameState.instance.OnPlayerRetry += ResetPlayerStatsOnRespawn;
             GameState.instance.OnPlayerLevelUp += PausePlayerOnPlayerLevelUp;
+            LevelUpManager.OnCardChosen += PausePlayerOnPlayerLevelUp;
             GameState.instance.OnCompletedInfestedClear += ResetPlayerHealth;
         }
     }
@@ -170,6 +181,7 @@ public class PlayerBase : MonoBehaviour
         GameState.instance.OnPlayerRespawn -= ResetPlayerStatsOnRespawn;
         GameState.instance.OnPlayerRetry -= ResetPlayerStatsOnRespawn;
         GameState.instance.OnPlayerLevelUp -= PausePlayerOnPlayerLevelUp;
+        LevelUpManager.OnCardChosen -= PausePlayerOnPlayerLevelUp;
         GameState.instance.OnCompletedInfestedClear -= ResetPlayerHealth;
     }
 
@@ -191,6 +203,7 @@ public class PlayerBase : MonoBehaviour
 
         // temp function for player UI
         SetPlayerUI();
+        HealthRegenCooldown();
     }
 
     public void RecordVariablesOnRoomStart()
@@ -273,6 +286,35 @@ public class PlayerBase : MonoBehaviour
     public void AddCurrency(int amount)
     {
         currency += amount;
+    }
+
+    public void PassiveHealthRegen()
+    {
+        currentHealth += healthRegenAmount;
+        readyToRegen = false;
+    }
+
+    protected void HealthRegenCooldown()
+    {
+        if (GameState.instance.currentState == GameState.States.Paused) { return; }
+        if (currentHealth >= maxHealth) { return; }
+
+        if (readyToRegen == false)
+        {
+            healthRegenCurrentTime += Time.deltaTime;
+
+            if (healthRegenCurrentTime >= healthRegenSpeed)
+            {
+                readyToRegen = true;
+            }
+        }
+
+        if (readyToRegen == true)
+        {
+            PassiveHealthRegen();
+            healthRegenCurrentTime = 0f;
+            readyToRegen = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

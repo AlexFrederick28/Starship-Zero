@@ -51,6 +51,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBase
   view: {fileID: 7150618930100028658}
+  colliders:
+  - {fileID: 6405806106761505902}
+  - {fileID: 3496999604250918143}
+  - {fileID: 8659161512365794411}
   animator: {fileID: 6678791244391867235}
   enemyType: {fileID: 11400000, guid: e928ae4eac23cda418b6fce97f68144e, type: 2}
   enemyName: 
