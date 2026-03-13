@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df599df421858994284221178bf8deaa, type: 3}
+  m_Name: Pierce Projectile
+  m_EditorClassIdentifier: Assembly-CSharp::CraftingRecipe
+  isFree: 0
+  unlockCost: 150
+  purchaseCost: 0
+  weaponDescription:
+  - amount: 
+    description: A hardy, perfectly crafted metal bullet that goes through multiple
+      targets in a line.
+  weapon: {fileID: 0}
+  projectile: {fileID: 11400000, guid: 6da24025c77c1cb41b0d964ab73bdb52, type: 2}
+  item: {fileID: 0}
+  ingredients: []

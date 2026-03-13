@@ -345,6 +345,7 @@ public class Inventory : MonoBehaviour
         UIManager.instance.infoInventoryImage.enabled = true;
         UIManager.instance.infoInventoryText.text = string.Empty;
         UIManager.instance.weaponStatInventoryText.text = string.Empty;
+        UIManager.instance.infoInventoryImage.gameObject.SetActive(true);
 
         // setting the description of a weapon
         if (slot.inventoryItem.isWeapon == true)
@@ -366,12 +367,19 @@ public class Inventory : MonoBehaviour
 
             if (selectedSlot.weaponEquipped == true)
             {
-                UIManager.instance.bulletSelectParent.gameObject.SetActive(true);
+                UIManager.instance.projectileSelectButton.gameObject.SetActive(true);
+
+                EquippedWeapon weapon = weaponLoadoutList.FirstOrDefault(w => w.equipID == GameState.instance.playerInventory.selectedSlot.equipID);
+                BulletProjectile projectile = GameState.instance.playerInventory.playerWeapons[weapon.equipID].GetComponent<WeaponBase>().projectileToFire.GetComponent<BulletProjectile>();
+                string weaponDisplayName = projectile.projectileInfo.projectileName;
+
+                UIManager.instance.projectileSelectButton.GetComponentInChildren<TextMeshProUGUI>().text = "Bullet Type: " + weaponDisplayName;
+                UIManager.instance.projectileSelectButtonImage.sprite = projectile.projectileInfo.displaySprite;
                 UIManager.instance.weaponLoadoutButton.GetComponentInChildren<TextMeshProUGUI>().text = "Unequip";
             }
             else
             {
-                UIManager.instance.bulletSelectParent.gameObject.SetActive(false);
+                UIManager.instance.projectileSelectButton.gameObject.SetActive(false);
                 UIManager.instance.weaponLoadoutButton.GetComponentInChildren<TextMeshProUGUI>().text = "Equip";
             }
 
@@ -394,7 +402,7 @@ public class Inventory : MonoBehaviour
             // set the description of an item if it is not a weapon
             UIManager.instance.infoInventoryText.text = slot.inventoryItem.description;
             UIManager.instance.weaponLoadoutButton.gameObject.SetActive(false);
-            UIManager.instance.bulletSelectParent.gameObject.SetActive(false);
+            UIManager.instance.projectileSelectButton.gameObject.SetActive(false);
             UIManager.instance.infoWeaponInventoryText.gameObject.SetActive(false);
             UIManager.instance.infoInventoryText.gameObject.SetActive(true);
             UIManager.instance.stackAmountSlider.gameObject.SetActive(true);
@@ -432,7 +440,7 @@ public class Inventory : MonoBehaviour
                         // turn off weapon
                         TurnOffWeapon(playerWeapons[i].GetComponent<WeaponBase>());
                         // hide bullet selection
-                        UIManager.instance.bulletSelectParent.gameObject.SetActive(false);
+                        UIManager.instance.projectileSelectButton.gameObject.SetActive(false);
 
                         // reset loadout slot
                         ResetLoadoutSlot(weaponLoadoutSlotList[i]);
@@ -460,7 +468,7 @@ public class Inventory : MonoBehaviour
                 EquippedWeapon equippedWeapon = new EquippedWeapon();
                 equippedWeapon.equippedSlotItem = selectedSlot;
                 weaponLoadoutList.Add(equippedWeapon);
-                UIManager.instance.bulletSelectParent.gameObject.SetActive(true);
+                UIManager.instance.projectileSelectButton.gameObject.SetActive(true);
 
                 for (int i = 0; i < weaponLoadoutSlotList.Count; i++)
                 {
@@ -584,6 +592,10 @@ public class Inventory : MonoBehaviour
         {
             selectedSlot = null;
             UIManager.instance.weaponLoadoutButton.gameObject.SetActive(false);
+            UIManager.instance.infoInventoryImage.gameObject.SetActive(false);
+            UIManager.instance.projectileSelectDropDown.gameObject.SetActive(false);
+            UIManager.instance.projectileSelectButton.gameObject.SetActive(false);
+            UIManager.instance.stackAmountSlider.gameObject.SetActive(false);
             UIManager.instance.infoInventoryName.text = string.Empty;
             UIManager.instance.infoInventoryImage.sprite = null;
             UIManager.instance.infoInventoryImage.enabled = false;

@@ -580,6 +580,8 @@ MonoBehaviour:
   - {fileID: 8104230526165746787}
   weaponLoadoutSlotList: []
   weaponLoadoutList: []
+  unlockedProjectileTypes:
+  - {fileID: 11400000, guid: c4b68c6fede7c2346bd826b99ea11b4d, type: 2}
   multiSelectedSlots: []
 --- !u!114 &5574114283436868701
 MonoBehaviour:
@@ -626,6 +628,10 @@ MonoBehaviour:
   recordedMaxHealth: 0
   speed: 4
   recordedSpeed: 0
+  damage: 0
+  critChance: 0
+  critDamage: 0
+  fireRate: 0
   currency: 0
   volume: 0.1
   minPitch: 1

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6f6bc09a63eb648a30462704919af4, type: 3}
   m_Name: Ricochet _ProjectileScriptableObject
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileScriptableObject
-  projectileName: Ricochet Bullet
+  projectileName: Ricochet
   projectileDescription: A bullet that ricochets when hitting an enemy bouncing to
     others close by before being destroyed.
   displaySprite: {fileID: -4597166296181225529, guid: ddc6bf3af8943c9498120454356b0d18, type: 3}

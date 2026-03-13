@@ -31,7 +31,9 @@ public class UIManager : MonoBehaviour
     public GameObject inventoryParent;
     public GameObject inventorySlotContentParent;
     public GameObject slot;
-    public GameObject bulletSelectParent;
+    public GameObject projectileSelectButton;
+    public Image projectileSelectButtonImage;
+    public GameObject projectileSelectDropDown;
     public TextMeshProUGUI infoInventoryName;
     public Image infoInventoryImage;
     public TextMeshProUGUI infoWeaponInventoryText;

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6f6bc09a63eb648a30462704919af4, type: 3}
   m_Name: Basic_ProjectileScriptableObject
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileScriptableObject
-  projectileName: Basic Bullet
+  projectileName: Basic
   projectileDescription: The average bullet found everywhere that does nothing special.
   displaySprite: {fileID: -5200944313915248819, guid: ddc6bf3af8943c9498120454356b0d18, type: 3}
-  projectilePrefabToFire: {fileID: 396421345929245815, guid: ebedc5602757a7c45be0cb715bf235b3, type: 3}
+  projectilePrefabToFire: {fileID: 396421345929245815, guid: ca871753ad77499448ad90838024f6d9, type: 3}
   projectileEffectType: 0
   effectCount: 0

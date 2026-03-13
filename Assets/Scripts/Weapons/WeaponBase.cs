@@ -20,7 +20,7 @@ public class WeaponBase : MonoBehaviour
     [SerializeField] private float baseCritDamage;
 
     [SerializeField] public float projectileSpeed;
-    [SerializeField] private GameObject projectileToFire;
+    public GameObject projectileToFire;
     public WeaponScriptableObject weaponType;
 
     [Header("Modified Stats")]

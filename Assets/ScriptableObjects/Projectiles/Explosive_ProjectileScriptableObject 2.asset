@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6f6bc09a63eb648a30462704919af4, type: 3}
   m_Name: Explosive_ProjectileScriptableObject 2
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileScriptableObject
-  projectileName: Explosive Bullet
+  projectileName: 'Explosive '
   projectileDescription: A projectile that explodes on contact dealing damage in
     an area.
   displaySprite: {fileID: -1352798348338500236, guid: ddc6bf3af8943c9498120454356b0d18, type: 3}

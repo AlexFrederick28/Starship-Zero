@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6f6bc09a63eb648a30462704919af4, type: 3}
   m_Name: Piercing_ProjectileScriptableObject
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileScriptableObject
-  projectileName: Piercing Bullet
+  projectileName: Pierce
   projectileDescription: A piercing projectile that goes through a set amount of
     enemies before breaking.
   displaySprite: {fileID: -3179362714106569466, guid: ddc6bf3af8943c9498120454356b0d18, type: 3}

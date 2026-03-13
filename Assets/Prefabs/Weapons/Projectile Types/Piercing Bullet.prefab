@@ -55,6 +55,7 @@ MonoBehaviour:
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 33554432
+  lastEnemyHit: {fileID: 0}
 --- !u!58 &8746432159178278598
 CircleCollider2D:
   m_ObjectHideFlags: 0

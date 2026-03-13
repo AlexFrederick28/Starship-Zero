@@ -196,7 +196,12 @@ public class CraftingBase : MonoBehaviour, IPointerClickHandler
         if (recipeUnlocked == true)
         {
             UIManager.instance.weaponUnlockButton.SetActive(false);
-            if (recipe.projectile != null) { return; }
+            if (recipe.projectile != null) 
+            {
+                ShowCraftingSummary();
+                CheckCraftingPossibility();
+                return; 
+            }
             UIManager.instance.weaponCraftButton.SetActive(true);
             UIManager.instance.weaponCraftButton.GetComponentInChildren<TextMeshProUGUI>().text = "Craft: $" + recipe.purchaseCost.ToString();
             UIManager.instance.weaponCraftButton.GetComponent<Button>().onClick.AddListener(CraftWeapon);
