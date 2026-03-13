@@ -34,6 +34,7 @@ public class Inventory : MonoBehaviour
     public GameObject[] playerWeapons;
     public List<InventorySlot> weaponLoadoutSlotList;
     public List<EquippedWeapon> weaponLoadoutList;
+    public List<ProjectileScriptableObject> unlockedProjectileTypes;
 
     public List<InventorySlot> multiSelectedSlots;
     public Action OnClearingMultiSelectedSlotsFromList;
@@ -351,7 +352,7 @@ public class Inventory : MonoBehaviour
             UIManager.instance.infoWeaponInventoryText.text = string.Empty;
             UIManager.instance.weaponStatInventoryText.text = string.Empty;
 
-            // shows weapon equip/un-equip button
+            // shows weapon equip/un-equip button and bullet selection
             // toggling the slider bar off if it is a weapon, as there can only be one in a stack
             UIManager.instance.weaponLoadoutButton.onClick.RemoveAllListeners();
             UIManager.instance.weaponLoadoutButton.onClick.AddListener(EquipAndUnequipWeapon);
@@ -365,10 +366,12 @@ public class Inventory : MonoBehaviour
 
             if (selectedSlot.weaponEquipped == true)
             {
+                UIManager.instance.bulletSelectParent.gameObject.SetActive(true);
                 UIManager.instance.weaponLoadoutButton.GetComponentInChildren<TextMeshProUGUI>().text = "Unequip";
             }
             else
             {
+                UIManager.instance.bulletSelectParent.gameObject.SetActive(false);
                 UIManager.instance.weaponLoadoutButton.GetComponentInChildren<TextMeshProUGUI>().text = "Equip";
             }
 
@@ -391,6 +394,7 @@ public class Inventory : MonoBehaviour
             // set the description of an item if it is not a weapon
             UIManager.instance.infoInventoryText.text = slot.inventoryItem.description;
             UIManager.instance.weaponLoadoutButton.gameObject.SetActive(false);
+            UIManager.instance.bulletSelectParent.gameObject.SetActive(false);
             UIManager.instance.infoWeaponInventoryText.gameObject.SetActive(false);
             UIManager.instance.infoInventoryText.gameObject.SetActive(true);
             UIManager.instance.stackAmountSlider.gameObject.SetActive(true);
@@ -427,6 +431,8 @@ public class Inventory : MonoBehaviour
 
                         // turn off weapon
                         TurnOffWeapon(playerWeapons[i].GetComponent<WeaponBase>());
+                        // hide bullet selection
+                        UIManager.instance.bulletSelectParent.gameObject.SetActive(false);
 
                         // reset loadout slot
                         ResetLoadoutSlot(weaponLoadoutSlotList[i]);
@@ -454,6 +460,8 @@ public class Inventory : MonoBehaviour
                 EquippedWeapon equippedWeapon = new EquippedWeapon();
                 equippedWeapon.equippedSlotItem = selectedSlot;
                 weaponLoadoutList.Add(equippedWeapon);
+                UIManager.instance.bulletSelectParent.gameObject.SetActive(true);
+
                 for (int i = 0; i < weaponLoadoutSlotList.Count; i++)
                 {
                     if (weaponLoadoutSlotList[i].inventoryItem == null)

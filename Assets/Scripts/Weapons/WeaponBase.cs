@@ -14,7 +14,6 @@ public class WeaponBase : MonoBehaviour
     public string weaponDescription;
     public int weaponLevel = 0;
 
-    // TODO - add base and modified stats to weapon
     [SerializeField] private float baseDamage;
     [SerializeField] private float baseFireRate;
     [SerializeField] private float baseCritChance;
@@ -365,6 +364,11 @@ public class WeaponBase : MonoBehaviour
             projectileSpeed = weaponType.projectileSpeed;
             projectileToFire = weaponType.projectileToFire;
         }
+    }
+
+    public void ChangeProjectileType(GameObject projectile)
+    {
+        projectileToFire = projectile;
     }
 
     // visual for attack range radius of the weapon

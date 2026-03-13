@@ -31,6 +31,7 @@ public class UIManager : MonoBehaviour
     public GameObject inventoryParent;
     public GameObject inventorySlotContentParent;
     public GameObject slot;
+    public GameObject bulletSelectParent;
     public TextMeshProUGUI infoInventoryName;
     public Image infoInventoryImage;
     public TextMeshProUGUI infoWeaponInventoryText;
@@ -86,11 +87,12 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI weaponCraftingSelectedDescription;
     public TextMeshProUGUI weaponCraftingSelectedDescriptionAmount;
     public Image weaponCraftingSelectedImage;
-    public Scrollbar weaponListScrollbar;
     public GameObject weaponCraftingRecipeParent;
     public GameObject weaponCraftingRecipePrefab;
     public GameObject weaponUnlockButton;
     public GameObject weaponCraftButton;
+    public GameObject weaponListParent;
+    public GameObject projectileListParent;
     public List<GameObject> weaponCraftingRecipePrefabList;
 
     [Header("Dialogue")]
@@ -276,5 +278,17 @@ public class UIManager : MonoBehaviour
         weaponCraftingUIParent.SetActive(false);
         upgradeParent.SetActive(true);
         cardUnlockParent.SetActive(false);
+    }
+
+    public void SwapToProjectileTabUI()
+    {
+        projectileListParent.SetActive(true);
+        weaponListParent.SetActive(false);
+    }
+
+    public void SwapToWeaponTabUI()
+    {
+        projectileListParent.SetActive(false);
+        weaponListParent.SetActive(true);
     }
 }

@@ -24,6 +24,7 @@ public class CraftingRecipe : ScriptableObject
     public int purchaseCost;
     public CraftingDescription[] weaponDescription;
     public WeaponScriptableObject weapon;
+    public ProjectileScriptableObject projectile;
     public InventoryItemPackage item;
     public Ingredient[] ingredients;
 }

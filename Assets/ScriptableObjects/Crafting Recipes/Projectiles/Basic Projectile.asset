@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df599df421858994284221178bf8deaa, type: 3}
+  m_Name: Basic Projectile
+  m_EditorClassIdentifier: Assembly-CSharp::CraftingRecipe
+  isFree: 1
+  unlockCost: 0
+  purchaseCost: 0
+  weaponDescription:
+  - amount: 
+    description: A projectile used by any and all weapons, the standard type.
+  weapon: {fileID: 0}
+  projectile: {fileID: 11400000, guid: c4b68c6fede7c2346bd826b99ea11b4d, type: 2}
+  item: {fileID: 0}
+  ingredients: []

@@ -6,14 +6,14 @@ public class CraftFirstWeaponTutorial : QuestTaskBase
     {
         base.OnEnable();
 
-        WeaponCrafting.OnFirstWeaponCraft += CraftedFirstWeapon;
+        CraftingBase.OnFirstWeaponCraft += CraftedFirstWeapon;
     }
 
     public override void OnDisable()
     {
         base.OnDisable();
 
-        WeaponCrafting.OnFirstWeaponCraft -= CraftedFirstWeapon;
+        CraftingBase.OnFirstWeaponCraft -= CraftedFirstWeapon;
     }
 
     public override void OnQuestUpdate()

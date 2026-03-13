@@ -8,12 +8,12 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class WeaponCrafting : MonoBehaviour, IPointerClickHandler
+public class CraftingBase : MonoBehaviour, IPointerClickHandler
 {
-    public bool weaponUnlocked = false;
+    public bool recipeUnlocked = false;
     public bool canCraft = false;
     public CraftingRecipe recipe;
-    public Image weaponLockedImage;
+    public Image lockedImage;
     public bool craftedFirstWeaponTutorial = false;
 
     public static Action OnFirstWeaponCraft;
@@ -31,7 +31,7 @@ public class WeaponCrafting : MonoBehaviour, IPointerClickHandler
 
     public void CheckCraftingPossibility()
     {
-        if (weaponUnlocked == false) { return; }
+        if (recipeUnlocked == false) { return; }
         if (GameState.instance.player.currency < recipe.purchaseCost) { Debug.Log("Player does not have enough currency to craft"); return; }
         // function should play on click when the item is selected, or possible when the weapon crafting menu is enabled (Would allow for reactive UI such as green text to visually tell the player they can craft it)
         int amountOfIngredients = 0;
@@ -89,8 +89,19 @@ public class WeaponCrafting : MonoBehaviour, IPointerClickHandler
                 UIManager.instance.weaponCraftingSelectedDescriptionAmount.text += "\n" + recipe.weaponDescription[i].amount;
             }
         }
-        UIManager.instance.weaponCraftingSelectedImage.sprite = recipe.weapon.weaponSprite;
-        UIManager.instance.weaponCraftingSelectedName.text = recipe.weapon.weaponName;
+
+        if (recipe.weapon != null)
+        {
+            // weapon sprite
+            UIManager.instance.weaponCraftingSelectedImage.sprite = recipe.weapon.weaponSprite;
+            UIManager.instance.weaponCraftingSelectedName.text = recipe.weapon.weaponName;
+        }
+        else
+        {
+            // projectile sprite
+            UIManager.instance.weaponCraftingSelectedImage.sprite = recipe.projectile.displaySprite;
+            UIManager.instance.weaponCraftingSelectedName.text = recipe.projectile.projectileName;
+        }
 
         if (UIManager.instance.weaponCraftingRecipePrefabList.Count > 0)
         {
@@ -100,7 +111,7 @@ public class WeaponCrafting : MonoBehaviour, IPointerClickHandler
             }
             UIManager.instance.weaponCraftingRecipePrefabList.Clear();
         }
-        if (weaponUnlocked == false) { return; } // if the weapon is not unlocked, dont show the recipe
+        if (recipeUnlocked == false) { return; } // if the weapon is not unlocked, dont show the recipe
         for (int i = 0; i < recipe.ingredients.Length; i++)
         {
             GameObject newRecipe = Instantiate(UIManager.instance.weaponCraftingRecipePrefab, UIManager.instance.weaponCraftingRecipeParent.transform);
@@ -115,18 +126,19 @@ public class WeaponCrafting : MonoBehaviour, IPointerClickHandler
     public void UnlockWeapon()
     {
         // use currency to unlock a weapon, to then be able to craft it
-        if (weaponUnlocked == true) { return; }
+        if (recipeUnlocked == true) { return; }
         if (GameState.instance.player.currency >= recipe.unlockCost)
         {
-            weaponUnlocked = true;
+            recipeUnlocked = true;
             GameState.instance.player.currency -= recipe.unlockCost;
             UIManager.instance.NewNotification("Currency -" + recipe.unlockCost);
             UIManager.instance.weaponUnlockButton.SetActive(false);
+            lockedImage.enabled = false;
+            if (recipe.projectile != null) { GameState.instance.playerInventory.unlockedProjectileTypes.Add(recipe.projectile); return; }
             UIManager.instance.weaponCraftButton.SetActive(true);
             UIManager.instance.weaponCraftButton.GetComponentInChildren<TextMeshProUGUI>().text = "Craft: $" + recipe.purchaseCost.ToString();
             UIManager.instance.weaponCraftButton.GetComponent<Button>().onClick.RemoveAllListeners();
             UIManager.instance.weaponCraftButton.GetComponent<Button>().onClick.AddListener(CraftWeapon);
-            weaponLockedImage.enabled = false;
         }
 
         ShowCraftingSummary();
@@ -181,9 +193,10 @@ public class WeaponCrafting : MonoBehaviour, IPointerClickHandler
         UIManager.instance.weaponUnlockButton.GetComponent<Button>().onClick.RemoveAllListeners();
         UIManager.instance.weaponCraftButton.GetComponent<Button>().onClick.RemoveAllListeners();
 
-        if (weaponUnlocked == true)
+        if (recipeUnlocked == true)
         {
             UIManager.instance.weaponUnlockButton.SetActive(false);
+            if (recipe.projectile != null) { return; }
             UIManager.instance.weaponCraftButton.SetActive(true);
             UIManager.instance.weaponCraftButton.GetComponentInChildren<TextMeshProUGUI>().text = "Craft: $" + recipe.purchaseCost.ToString();
             UIManager.instance.weaponCraftButton.GetComponent<Button>().onClick.AddListener(CraftWeapon);
