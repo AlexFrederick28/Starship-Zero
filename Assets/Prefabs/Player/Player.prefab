@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 531139956505114197}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.276, z: 0}
   m_LocalScale: {x: 1.6, y: 1.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -67,7 +67,7 @@ CapsuleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: -0.7}
-  m_Size: {x: 0.5, y: 1}
+  m_Size: {x: 0.8, y: 1.35}
   m_Direction: 0
 --- !u!1 &1121210451778032649
 GameObject:
@@ -95,7 +95,7 @@ Transform:
   m_GameObject: {fileID: 1121210451778032649}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.24, z: 0}
   m_LocalScale: {x: 1.6, y: 1.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -421,8 +421,8 @@ Transform:
   m_GameObject: {fileID: 4318514336278049100}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -2.46, z: 0}
+  m_LocalScale: {x: 0.45, y: 0.45, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7311839100965269547}
@@ -474,7 +474,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8013095791708937206, guid: 785ad7bd1f2dacb4bbcf1546ec1b20c0, type: 3}
+  m_Sprite: {fileID: -869518482509468134, guid: fc99293c00625704191ca5d4c4e3deb3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -495,7 +495,7 @@ Animator:
   m_GameObject: {fileID: 4318514336278049100}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 210a097b7068b374793dec2544e48e12, type: 2}
+  m_Controller: {fileID: 9100000, guid: 287a299c29188df4e85c433638fae3a2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1154,5 +1154,5 @@ CapsuleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0.4}
-  m_Size: {x: 0.6, y: 1.5}
+  m_Size: {x: 0.8, y: 1.6}
   m_Direction: 0

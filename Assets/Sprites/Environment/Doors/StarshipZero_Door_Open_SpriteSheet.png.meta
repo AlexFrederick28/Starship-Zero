@@ -1,0 +1,663 @@
+fileFormatVersion: 2
+guid: f285b464de5104a4aa7cdea84d064fa4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3109821958722719002
+    second: StarshipZero_Door_Open_SpriteSheet_0
+  - first:
+      213: 5036069469261914219
+    second: StarshipZero_Door_Open_SpriteSheet_1
+  - first:
+      213: -8031203768491923065
+    second: StarshipZero_Door_Open_SpriteSheet_2
+  - first:
+      213: 7305010008172566349
+    second: StarshipZero_Door_Open_SpriteSheet_3
+  - first:
+      213: 6436647411474354006
+    second: StarshipZero_Door_Open_SpriteSheet_4
+  - first:
+      213: 4314251045601751619
+    second: StarshipZero_Door_Open_SpriteSheet_5
+  - first:
+      213: -6444642215676479347
+    second: StarshipZero_Door_Open_SpriteSheet_6
+  - first:
+      213: 5413803898702071783
+    second: StarshipZero_Door_Open_SpriteSheet_7
+  - first:
+      213: -6739895143976539741
+    second: StarshipZero_Door_Open_SpriteSheet_8
+  - first:
+      213: 6731734576157873479
+    second: StarshipZero_Door_Open_SpriteSheet_9
+  - first:
+      213: 3103060541253636307
+    second: StarshipZero_Door_Open_SpriteSheet_10
+  - first:
+      213: -3892909464339860601
+    second: StarshipZero_Door_Open_SpriteSheet_11
+  - first:
+      213: -545408272175849110
+    second: StarshipZero_Door_Open_SpriteSheet_12
+  - first:
+      213: 8788970796387855428
+    second: StarshipZero_Door_Open_SpriteSheet_13
+  - first:
+      213: 5965988906737305085
+    second: StarshipZero_Door_Open_SpriteSheet_14
+  - first:
+      213: -948936479539186092
+    second: StarshipZero_Door_Open_SpriteSheet_15
+  - first:
+      213: 9130728978289959747
+    second: StarshipZero_Door_Open_SpriteSheet_16
+  - first:
+      213: -4193740004511547077
+    second: StarshipZero_Door_Open_SpriteSheet_17
+  - first:
+      213: 3364592510382128214
+    second: StarshipZero_Door_Open_SpriteSheet_18
+  - first:
+      213: -1575251868664793896
+    second: StarshipZero_Door_Open_SpriteSheet_19
+  - first:
+      213: 8418841937209501159
+    second: StarshipZero_Door_Open_SpriteSheet_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: StarshipZero_Door_Open_SpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 0
+        width: 130
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1d806c489e482b20800000000000000
+      internalID: 3109821958722719002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarshipZero_Door_Open_SpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 0
+        width: 67
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b60eb830086b3e540800000000000000
+      internalID: 5036069469261914219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarshipZero_Door_Open_SpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 0
+        width: 67
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 789a24449be6b8090800000000000000
+      internalID: -8031203768491923065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarshipZero_Door_Open_SpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 0
+        width: 67
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d479cc916eb906560800000000000000
+      internalID: 7305010008172566349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarshipZero_Door_Open_SpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 0
+        width: 67
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65fcd59c7b0935950800000000000000
+      internalID: 6436647411474354006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarshipZero_Door_Open_SpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 811
+        y: 0
+        width: 67
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34233f4d77c4fdb30800000000000000
+      internalID: 4314251045601751619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarshipZero_Door_Open_SpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 914
+        y: 0
+        width: 67
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d88fd1ecc080096a0800000000000000
+      internalID: -6444642215676479347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarshipZero_Door_Open_SpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 1061
+        y: 0
+        width: 67
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e703c956f1b12b40800000000000000
+      internalID: 5413803898702071783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarshipZero_Door_Open_SpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 1176
+        y: 0
+        width: 67
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a9e5e773151772a0800000000000000
+      internalID: -6739895143976539741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarshipZero_Door_Open_SpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 1311
+        y: 0
+        width: 66
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 745da164eeceb6d50800000000000000
+      internalID: 6731734576157873479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarshipZero_Door_Open_SpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 1438
+        y: 0
+        width: 67
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d054fd1f19401b20800000000000000
+      internalID: 3103060541253636307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarshipZero_Door_Open_SpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 1560
+        y: 0
+        width: 67
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 783344bb77b99f9c0800000000000000
+      internalID: -3892909464339860601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarshipZero_Door_Open_SpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 1701
+        y: 0
+        width: 67
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a61266fe0125e68f0800000000000000
+      internalID: -545408272175849110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarshipZero_Door_Open_SpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 1810
+        y: 0
+        width: 67
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44ceaf39f52b8f970800000000000000
+      internalID: 8788970796387855428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarshipZero_Door_Open_SpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 1963
+        y: 0
+        width: 67
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df58fff2d437bc250800000000000000
+      internalID: 5965988906737305085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarshipZero_Door_Open_SpriteSheet_15
+      rect:
+        serializedVersion: 2
+        x: 2059
+        y: 0
+        width: 67
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45638aeac43b4d2f0800000000000000
+      internalID: -948936479539186092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarshipZero_Door_Open_SpriteSheet_16
+      rect:
+        serializedVersion: 2
+        x: 2226
+        y: 0
+        width: 67
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 343a65b01add6be70800000000000000
+      internalID: 9130728978289959747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarshipZero_Door_Open_SpriteSheet_17
+      rect:
+        serializedVersion: 2
+        x: 2309
+        y: 0
+        width: 67
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b318ebe6fa7dcc5c0800000000000000
+      internalID: -4193740004511547077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarshipZero_Door_Open_SpriteSheet_18
+      rect:
+        serializedVersion: 2
+        x: 2488
+        y: 0
+        width: 67
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65c3443df0f61be20800000000000000
+      internalID: 3364592510382128214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarshipZero_Door_Open_SpriteSheet_19
+      rect:
+        serializedVersion: 2
+        x: 2559
+        y: 0
+        width: 66
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d4f67085c4932ae0800000000000000
+      internalID: -1575251868664793896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarshipZero_Door_Open_SpriteSheet_20
+      rect:
+        serializedVersion: 2
+        x: 2750
+        y: 0
+        width: 66
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e5a88f032cb5d470800000000000000
+      internalID: 8418841937209501159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      StarshipZero_Door_Open_SpriteSheet_0: 3109821958722719002
+      StarshipZero_Door_Open_SpriteSheet_1: 5036069469261914219
+      StarshipZero_Door_Open_SpriteSheet_10: 3103060541253636307
+      StarshipZero_Door_Open_SpriteSheet_11: -3892909464339860601
+      StarshipZero_Door_Open_SpriteSheet_12: -545408272175849110
+      StarshipZero_Door_Open_SpriteSheet_13: 8788970796387855428
+      StarshipZero_Door_Open_SpriteSheet_14: 5965988906737305085
+      StarshipZero_Door_Open_SpriteSheet_15: -948936479539186092
+      StarshipZero_Door_Open_SpriteSheet_16: 9130728978289959747
+      StarshipZero_Door_Open_SpriteSheet_17: -4193740004511547077
+      StarshipZero_Door_Open_SpriteSheet_18: 3364592510382128214
+      StarshipZero_Door_Open_SpriteSheet_19: -1575251868664793896
+      StarshipZero_Door_Open_SpriteSheet_2: -8031203768491923065
+      StarshipZero_Door_Open_SpriteSheet_20: 8418841937209501159
+      StarshipZero_Door_Open_SpriteSheet_3: 7305010008172566349
+      StarshipZero_Door_Open_SpriteSheet_4: 6436647411474354006
+      StarshipZero_Door_Open_SpriteSheet_5: 4314251045601751619
+      StarshipZero_Door_Open_SpriteSheet_6: -6444642215676479347
+      StarshipZero_Door_Open_SpriteSheet_7: 5413803898702071783
+      StarshipZero_Door_Open_SpriteSheet_8: -6739895143976539741
+      StarshipZero_Door_Open_SpriteSheet_9: 6731734576157873479
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

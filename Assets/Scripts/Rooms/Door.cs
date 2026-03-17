@@ -4,6 +4,7 @@ public class Door : MonoBehaviour, IInteractable
 {
     [SerializeField] private Transform playerEntryPoint;
     [SerializeField] private Transform playerExitPoint;
+    [SerializeField] protected Room room;
 
     public void DisableInteractionComponent()
     {
@@ -22,17 +23,19 @@ public class Door : MonoBehaviour, IInteractable
 
     public virtual void OnInteract()
     {
-        if (GameState.instance.player != null && GetComponentInParent<Room>().playerInsideRoom == false)
+        if (GameState.instance.player != null && room.playerInsideRoom == false)
         {
             // enter room
+            room.animator.SetBool("isUsed", true);
             GameState.instance.player.transform.position = playerEntryPoint.position;
-            GetComponentInParent<Room>().playerInsideRoom = true;
+            room.playerInsideRoom = true;
         }
-        else if (GetComponentInParent<Room>().playerInsideRoom == true && GameState.instance.player != null && GameState.instance.currentState != GameState.States.RoomClear)
+        else if (room.playerInsideRoom == true && GameState.instance.player != null && GameState.instance.currentState != GameState.States.RoomClear)
         {
             // leave room
+            room.animator.SetBool("isUsed", true);
             GameState.instance.player.transform.position = playerExitPoint.position;
-            GetComponentInParent<Room>().playerInsideRoom = false;
+            room.playerInsideRoom = false;
         }
     }
 }

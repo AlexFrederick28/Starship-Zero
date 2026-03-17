@@ -1,0 +1,435 @@
+fileFormatVersion: 2
+guid: 1664def9f8eb1714c8d642f6df829d53
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1180741843790790054
+    second: StarshipZero_Door_Close_SpriteSheet_0
+  - first:
+      213: 5771536577931609001
+    second: StarshipZero_Door_Close_SpriteSheet_1
+  - first:
+      213: 5640765505253952968
+    second: StarshipZero_Door_Close_SpriteSheet_2
+  - first:
+      213: 502833074830810905
+    second: StarshipZero_Door_Close_SpriteSheet_3
+  - first:
+      213: 4346818470047275863
+    second: StarshipZero_Door_Close_SpriteSheet_4
+  - first:
+      213: -208054484153698310
+    second: StarshipZero_Door_Close_SpriteSheet_5
+  - first:
+      213: 5094613950539608585
+    second: StarshipZero_Door_Close_SpriteSheet_6
+  - first:
+      213: -787435304638304096
+    second: StarshipZero_Door_Close_SpriteSheet_7
+  - first:
+      213: -7930490890201623772
+    second: StarshipZero_Door_Close_SpriteSheet_8
+  - first:
+      213: 6797465080370090296
+    second: StarshipZero_Door_Close_SpriteSheet_9
+  - first:
+      213: -8603175247578195692
+    second: StarshipZero_Door_Close_SpriteSheet_10
+  - first:
+      213: 4966169473015881602
+    second: StarshipZero_Door_Close_SpriteSheet_11
+  - first:
+      213: -3103438090818000521
+    second: StarshipZero_Door_Close_SpriteSheet_12
+  - first:
+      213: 2192146004122215298
+    second: StarshipZero_Door_Close_SpriteSheet_13
+  - first:
+      213: 6725720723495196452
+    second: StarshipZero_Door_Close_SpriteSheet_14
+  - first:
+      213: 4798148277918014798
+    second: StarshipZero_Door_Close_SpriteSheet_15
+  - first:
+      213: 8583501490510481718
+    second: StarshipZero_Door_Close_SpriteSheet_16
+  - first:
+      213: 1875438279914255869
+    second: StarshipZero_Door_Close_SpriteSheet_17
+  - first:
+      213: -6616338103258496930
+    second: StarshipZero_Door_Close_SpriteSheet_18
+  - first:
+      213: 4320985245010651469
+    second: StarshipZero_Door_Close_SpriteSheet_19
+  - first:
+      213: -6323699299035415409
+    second: StarshipZero_Door_Close_SpriteSheet_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 75
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: StarshipZero_Door_Close_SpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6adf69a7376d26010800000000000000
+      internalID: 1180741843790790054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarshipZero_Door_Close_SpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a389cf40fd981050800000000000000
+      internalID: 5771536577931609001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarshipZero_Door_Close_SpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cd40f94756084e40800000000000000
+      internalID: 5640765505253952968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarshipZero_Door_Close_SpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91f9b96740c6af600800000000000000
+      internalID: 502833074830810905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarshipZero_Door_Close_SpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75b564a3e50035c30800000000000000
+      internalID: 4346818470047275863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarshipZero_Door_Close_SpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 256
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af7771a8c87dc1df0800000000000000
+      internalID: -208054484153698310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarshipZero_Door_Close_SpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 256
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 902b9a54564b3b640800000000000000
+      internalID: 5094613950539608585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarshipZero_Door_Close_SpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 0
+        width: 256
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a0be6f23c77215f0800000000000000
+      internalID: -787435304638304096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarshipZero_Door_Close_SpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 0
+        width: 256
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4239f0b8d8c31f190800000000000000
+      internalID: -7930490890201623772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarshipZero_Door_Close_SpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 0
+        width: 256
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 831d490e972755e50800000000000000
+      internalID: 6797465080370090296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarshipZero_Door_Close_SpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 0
+        width: 256
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4191ba3a1b16b9880800000000000000
+      internalID: -8603175247578195692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 393dfad8f0a0ef741969d6a6a70dc7f4
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":11.0,"y":1.0},"gridSpriteSize":{"x":256.0,"y":192.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      StarshipZero_Door_Close_SpriteSheet_0: 1180741843790790054
+      StarshipZero_Door_Close_SpriteSheet_1: 5771536577931609001
+      StarshipZero_Door_Close_SpriteSheet_10: -8603175247578195692
+      StarshipZero_Door_Close_SpriteSheet_2: 5640765505253952968
+      StarshipZero_Door_Close_SpriteSheet_3: 502833074830810905
+      StarshipZero_Door_Close_SpriteSheet_4: 4346818470047275863
+      StarshipZero_Door_Close_SpriteSheet_5: -208054484153698310
+      StarshipZero_Door_Close_SpriteSheet_6: 5094613950539608585
+      StarshipZero_Door_Close_SpriteSheet_7: -787435304638304096
+      StarshipZero_Door_Close_SpriteSheet_8: -7930490890201623772
+      StarshipZero_Door_Close_SpriteSheet_9: 6797465080370090296
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

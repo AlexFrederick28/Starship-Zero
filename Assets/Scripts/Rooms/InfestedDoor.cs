@@ -28,7 +28,7 @@ public class InfestedDoor : Door
             {
                 if (spawning.questID == QuestManager.instance.activeQuests[i].prerequisite.id)
                 {
-                    if (GameState.instance.currentState != GameState.States.RoomClear && GetComponentInParent<Room>().playerInsideRoom == false)
+                    if (GameState.instance.currentState != GameState.States.RoomClear && room.playerInsideRoom == false)
                     {
                         // if the quest is active, enables and sends quest level to spawner as well as activates respawn checkpoint
                         GameState.instance.ChangeStateToRoomClear();
@@ -38,7 +38,7 @@ public class InfestedDoor : Door
                         questEnabled = true;
                         break;
                     }
-                    else if (GameState.instance.currentState != GameState.States.RoomClear && GetComponentInParent<Room>().playerInsideRoom == true)
+                    else if (GameState.instance.currentState != GameState.States.RoomClear && room.playerInsideRoom == true)
                     {
                         // leaving the infested room and disabling spawning and respawn
                         GameState.instance.ChangeStateToMain();
@@ -70,7 +70,7 @@ public class InfestedDoor : Door
         {
             if (GameState.instance.currentState != GameState.States.RoomClear && GetComponentInParent<Room>().playerInsideRoom == false)
             {
-                // if the quest is active, enables and sends quest level to spawner as well as activates respawn checkpoint
+                // enables spawning
                 base.OnInteract();
                 GameState.instance.ChangeStateToRoomClear();
                 spawning.enabled = true;
@@ -79,7 +79,7 @@ public class InfestedDoor : Door
             }
             else if (GameState.instance.currentState != GameState.States.RoomClear && GetComponentInParent<Room>().playerInsideRoom == true)
             {
-                // leaving the infested room and disabling spawning and respawn
+                // disables spawning
                 base.OnInteract();
                 GameState.instance.ChangeStateToMain();
                 spawning.enabled = false;

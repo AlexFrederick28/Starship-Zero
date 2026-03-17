@@ -5,6 +5,7 @@ using System.Net;
 using TMPro;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Room : MonoBehaviour
 {
@@ -57,6 +58,9 @@ public class Room : MonoBehaviour
     [SerializeField] private GameObject upgradeRoom;
     public bool playerInsideRoom = false;
 
+    [Header("Door Animation")]
+    public Animator animator;
+
     public Action OnRoomStateChange;
 
     private void Start()
@@ -68,6 +72,7 @@ public class Room : MonoBehaviour
 
     private void OnEnable()
     {
+        animator.StopPlayback();
         if (GameState.instance != null)
         {
             //Debug.Log(this.name + "Subscribed");
@@ -205,5 +210,10 @@ public class Room : MonoBehaviour
 
         HideRoomInformation();
         Debug.Log("exited");
+    }
+
+    public virtual void OnDoorAnimationComplete()
+    {
+        animator.SetBool("isUsed", false);
     }
 }
