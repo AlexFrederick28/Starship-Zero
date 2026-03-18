@@ -4,6 +4,9 @@ using UnityEngine.InputSystem.LowLevel;
 
 public class PowerGridSwitch : QuestTaskBase, IInteractable
 {
+    [SerializeField] private Sprite switchActiveSprite;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+
     public void DisableInteractionComponent()
     {
         return;
@@ -25,6 +28,7 @@ public class PowerGridSwitch : QuestTaskBase, IInteractable
         if (this.enabled == true)
         {
             RegisterQuestInteraction();
+            spriteRenderer.sprite = switchActiveSprite;
         }
     }
 }

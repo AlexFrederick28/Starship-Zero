@@ -5,6 +5,7 @@ using System.Net;
 using TMPro;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.Tilemaps;
 
 public class Room : MonoBehaviour
@@ -34,18 +35,22 @@ public class Room : MonoBehaviour
     {
         if (currentState == RoomStates.infested)
         {
+            ChangeLightColourToInfested();
             ChangeToInfestedRoom();
         }
         else if (currentState == RoomStates.empty)
         {
+            ChangeLightColourToCleared();
             ChangeToEmptyRoom();
         }
         else if (currentState == RoomStates.weapons)
         {
+            ChangeLightColourToCleared();
             ChangeToWeaponsRoom();
         }
         else if (currentState == RoomStates.upgrade)
         {
+            ChangeLightColourToCleared();
             ChangeToUpgradeRoom();
         }
 
@@ -60,6 +65,11 @@ public class Room : MonoBehaviour
 
     [Header("Door Animation")]
     public Animator animator;
+
+    [Header("Lighting")]
+    public Light2D[] lights;
+    public Color infestedColour;
+    public Color clearedColour;
 
     public Action OnRoomStateChange;
 
@@ -215,5 +225,21 @@ public class Room : MonoBehaviour
     public virtual void OnDoorAnimationComplete()
     {
         animator.SetBool("isUsed", false);
+    }
+
+    public void ChangeLightColourToCleared()
+    {
+        for (int i = 0; i < lights.Length; i++)
+        {
+            lights[i].color = clearedColour;
+        }
+    }
+
+    public void ChangeLightColourToInfested()
+    {
+        for (int i = 0; i < lights.Length; i++)
+        {
+            lights[i].color = infestedColour;
+        }
     }
 }

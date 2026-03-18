@@ -138,6 +138,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiteEnemy
   view: {fileID: 2388746164370177002}
+  colliders: []
+  animator: {fileID: 0}
   enemyType: {fileID: 11400000, guid: 2f65c7155c952ec48bc0b344c98db473, type: 2}
   enemyName: 
   currentHealth: 0
@@ -145,6 +147,7 @@ MonoBehaviour:
   damage: 0
   speed: 0
   level: 0
+  experienceAdditive: 0
   healthScale: 0
   damageScale: 0
   speedScale: 0
@@ -162,6 +165,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 903b12cb14098994dbf4c83f57acdae7, type: 2}
   - {fileID: 11400000, guid: e9addd1566cc81740b86a77e02fdc37e, type: 2}
   dropFrequencyPercentChance: 30
+  recordedDropFrequencyPercentChance: 0
   volume: 0.2
   minPitch: 1
   maxPitch: 1.8
