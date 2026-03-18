@@ -55,6 +55,7 @@ MonoBehaviour:
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 33554432
+  lastEnemyHit: {fileID: 0}
 --- !u!58 &8746432159178278598
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -90,7 +91,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Radius: 0.3
 --- !u!50 &2816250719307920095
 Rigidbody2D:
   serializedVersion: 5

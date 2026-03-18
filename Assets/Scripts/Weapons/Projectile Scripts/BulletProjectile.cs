@@ -105,11 +105,12 @@ public class BulletProjectile : MonoBehaviour
             // ricochet projectile
             else if (projectileInfo.projectileEffectType == ProjectileScriptableObject.ProjectileBulletEffect.Ricochet)
             {
+                //Debug.Log("Effect count: " + projectileEffectCount);
                 baseWeapon.ProjectileDealDamage(collision, false, 0);
 
                 projectileEffectCount--;
 
-                if (projectileEffectCount <= 0)
+                if (projectileEffectCount < 0)
                 {
                     DestroyProjectile();
                 }
@@ -145,6 +146,11 @@ public class BulletProjectile : MonoBehaviour
                     // aim at next enemy and go
                     Rigidbody2D rb = GetComponent<Rigidbody2D>();
                     rb.linearVelocity = direction * rb.linearVelocity.magnitude;
+
+                    // turn bullet direction
+                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                    transform.rotation = Quaternion.Euler(0, 0, angle);
+
                 }
                 else
                 {

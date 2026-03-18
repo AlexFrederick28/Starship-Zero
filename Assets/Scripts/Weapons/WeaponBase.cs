@@ -41,7 +41,7 @@ public class WeaponBase : MonoBehaviour
     [Header("Other")]
     [SerializeField] private float fireTime;
     [SerializeField] private float detectionRadius = 5f; // default 5, subject to change
-    [SerializeField] private Transform closestTarget;
+    [SerializeField] private Transform targetToAttack;
     [SerializeField] private bool canWeaponFire;
 
     public InventoryItemPackage.Rarity rarity;
@@ -50,7 +50,9 @@ public class WeaponBase : MonoBehaviour
     [SerializeField] protected GameObject newBullet; // newest bullet
     [SerializeField] public List<GameObject> currentBullets; // all bullets
 
-    [Header("References (item stuff for now)")]
+    public LayerMask enemiesLayerMask;
+
+    [Header("References")]
 
     [SerializeField] public CardManager cardManager;
 
@@ -127,7 +129,7 @@ public class WeaponBase : MonoBehaviour
 
     private void FixedUpdate()
     {
-        FindClosetTarget();
+
     }
 
     public void AddStatsFromPlayerPermanentUpgrades()
@@ -214,10 +216,10 @@ public class WeaponBase : MonoBehaviour
 
     protected virtual void FireProjectile() // weapon fires projectile
     {
-        if (closestTarget != null)
+        if (targetToAttack != null)
         {
             // direction to fire forward
-            Vector3 vectorToTarget = closestTarget.position - transform.position;
+            Vector3 vectorToTarget = targetToAttack.position - transform.position;
             float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
             Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
@@ -282,6 +284,8 @@ public class WeaponBase : MonoBehaviour
             {
                 fireTime = 0f; // reset timer
 
+
+                FindClosetTarget(); // find
                 FireProjectile(); // fire
 
                 //if (isProjectile == false) // variation
@@ -305,25 +309,75 @@ public class WeaponBase : MonoBehaviour
 
     protected void FindClosetTarget() // closet enemy for weapon to fire at
     {
-        var hits = Physics2D.OverlapCircleAll(transform.position, detectionRadius);
+        var hits = Physics2D.OverlapCircleAll(transform.position, detectionRadius, enemiesLayerMask);
 
-        float shortestDistance = detectionRadius;
-        closestTarget = null; // reset
+        float firstClosestDistance = detectionRadius;
+        float secondClosestDistance = detectionRadius;
+
+        Transform closestTarget = null;
+        Transform secondClosestTarget = null;
+
+        targetToAttack = null; // reset
+
+        //foreach (var hit in hits)
+        //{
+        //    if (hit.gameObject.GetComponentInParent<EnemyBase>() == true)
+        //    {
+        //        float distanceToTarget = Vector2.Distance(transform.position, hit.transform.position);
+
+        //        if (distanceToTarget < firstClosestDistance) // if closest
+        //        {
+        //            firstClosestDistance = distanceToTarget;
+        //            targetToAttack = hit.transform; // set as target
+        //            //Debug.Log(closestTarget.name);
+        //        }
+        //    }
+        //}
 
         foreach (var hit in hits)
         {
-            if (hit.gameObject.GetComponentInParent<EnemyBase>() == true)
+            if (hit.gameObject.GetComponentInParent<EnemyBase>() != null) // make sure it has an enemy base
             {
-                float distanceToTarget = Vector2.Distance(transform.position, hit.transform.position);
+                float distance = Vector2.Distance(transform.position, hit.transform.position);
 
-                if (distanceToTarget < shortestDistance) // if closest
+                if (distance < firstClosestDistance)
                 {
-                    shortestDistance = distanceToTarget;
-                    closestTarget = hit.transform; // set as target
-                    //Debug.Log(closestTarget.name);
+                    // make first closest to second closest
+                    secondClosestDistance = firstClosestDistance;
+                    secondClosestTarget = closestTarget;
+
+                    // new closeset enemy
+                    firstClosestDistance = distance;
+                    closestTarget = hit.transform;
+                }
+                else if (distance < secondClosestDistance)
+                {
+                    // second closest enemy
+                    secondClosestDistance = distance;
+                    secondClosestTarget = hit.transform;
                 }
             }
         }
+
+        // randomise target
+
+        float randomValue = Random.value;
+
+        //Debug.Log(randomValue + "randomVal");
+
+        if (closestTarget != null && secondClosestTarget != null) // 2 targets
+        {
+
+            if (randomValue < 0.5f) // 50/50 chance for first or second
+            {
+                targetToAttack = closestTarget;
+            }
+            else
+            {
+                targetToAttack = secondClosestTarget;
+            }
+        }
+
     }
 
     public void ChangeWeaponType(WeaponScriptableObject type)
