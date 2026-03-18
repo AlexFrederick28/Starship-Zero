@@ -8,6 +8,7 @@ public class SceneChanger : MonoBehaviour
 
     private void OnEnable()
     {
+        DontDestroyOnLoad(this.gameObject);
         if (instance == null)
         {
             instance = this;

@@ -319,6 +319,7 @@ public class WeaponBase : MonoBehaviour
 
         targetToAttack = null; // reset
 
+        // OLD
         //foreach (var hit in hits)
         //{
         //    if (hit.gameObject.GetComponentInParent<EnemyBase>() == true)
@@ -359,23 +360,21 @@ public class WeaponBase : MonoBehaviour
             }
         }
 
-        // randomise target
 
         float randomValue = Random.value;
 
         //Debug.Log(randomValue + "randomVal");
 
-        if (closestTarget != null && secondClosestTarget != null) // 2 targets
-        {
 
-            if (randomValue < 0.5f) // 50/50 chance for first or second
-            {
-                targetToAttack = closestTarget;
-            }
-            else
-            {
-                targetToAttack = secondClosestTarget;
-            }
+        // pick target - 50/50 chance for first or second
+        if (randomValue < 0.5f && closestTarget != null) 
+        {
+            targetToAttack = closestTarget;
+        }
+
+        else if (secondClosestTarget != null)
+        {
+            targetToAttack = secondClosestTarget;
         }
 
     }

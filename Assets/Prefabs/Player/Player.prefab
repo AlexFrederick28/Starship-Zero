@@ -259,11 +259,14 @@ MonoBehaviour:
   recordedBulletEffectCount: 0
   fireTime: 0
   detectionRadius: 5
-  closestTarget: {fileID: 0}
+  targetToAttack: {fileID: 0}
   canWeaponFire: 1
   rarity: 0
   newBullet: {fileID: 0}
   currentBullets: []
+  enemiesLayerMask:
+    serializedVersion: 2
+    m_Bits: 33554432
   cardManager: {fileID: 0}
   projectileSOInfo: {fileID: 0}
 --- !u!1 &4184326947844396731
@@ -387,11 +390,14 @@ MonoBehaviour:
   recordedBulletEffectCount: 0
   fireTime: 0
   detectionRadius: 5
-  closestTarget: {fileID: 0}
+  targetToAttack: {fileID: 0}
   canWeaponFire: 1
   rarity: 0
   newBullet: {fileID: 0}
   currentBullets: []
+  enemiesLayerMask:
+    serializedVersion: 2
+    m_Bits: 33554432
   cardManager: {fileID: 0}
   projectileSOInfo: {fileID: 0}
 --- !u!1 &4318514336278049100
@@ -1007,11 +1013,14 @@ MonoBehaviour:
   recordedBulletEffectCount: 0
   fireTime: 0
   detectionRadius: 5
-  closestTarget: {fileID: 0}
+  targetToAttack: {fileID: 0}
   canWeaponFire: 1
   rarity: 0
   newBullet: {fileID: 0}
   currentBullets: []
+  enemiesLayerMask:
+    serializedVersion: 2
+    m_Bits: 33554432
   cardManager: {fileID: 0}
   projectileSOInfo: {fileID: 0}
 --- !u!1 &8878544019969407335
@@ -1135,11 +1144,14 @@ MonoBehaviour:
   recordedBulletEffectCount: 0
   fireTime: 0
   detectionRadius: 5
-  closestTarget: {fileID: 0}
+  targetToAttack: {fileID: 0}
   canWeaponFire: 1
   rarity: 0
   newBullet: {fileID: 0}
   currentBullets: []
+  enemiesLayerMask:
+    serializedVersion: 2
+    m_Bits: 33554432
   cardManager: {fileID: 0}
   projectileSOInfo: {fileID: 0}
 --- !u!1 &8932506193411276592
