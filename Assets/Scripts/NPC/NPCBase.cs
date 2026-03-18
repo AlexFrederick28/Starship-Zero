@@ -149,7 +149,11 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
 
     public void CompleteTopic()
     {
+        // TODO: This line is playing everytime after completing a topic, needs to be fixed and have the dialogue box disappear when the topic is over
+        Debug.Log("Completed topic");
         currentDialogue.completedTopic = true;
+        OnEndInteraction();
+        SetDialogueInActive();
     }
 
     public void GoNextDialogue()
@@ -231,10 +235,7 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
 
     public void EndDialogue()
     {
-        if (UIManager.instance != null)
-        {
-            UIManager.instance.dialogueParent.SetActive(false);
-        }
+        SetDialogueInActive();
     }
 
     public IEnumerator WriteLine_C()
