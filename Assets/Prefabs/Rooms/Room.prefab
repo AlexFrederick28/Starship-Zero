@@ -146,7 +146,7 @@ MonoBehaviour:
   playerInsideRoom: 0
   animator: {fileID: 2523495927155365866}
   lights: []
-  infestedColour: {r: 1, g: 0, b: 0, a: 1}
+  infestedColour: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
   clearedColour: {r: 1, g: 1, b: 1, a: 1}
 --- !u!50 &5969774344006428218
 Rigidbody2D:

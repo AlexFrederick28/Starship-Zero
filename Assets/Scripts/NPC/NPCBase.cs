@@ -143,6 +143,14 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
                 StopAllCoroutines();
                 ClearText();
                 StartCoroutine(WriteLine_C());
+
+                if (currentDialogue.isQuest == true && currentDialogue.completedPrerequisite == false)
+                {
+                    // if the current topic is a quest and the dialogue has been exhausted, close the dialogue with NPC
+                    Debug.Log("Exhausted topic");
+                    OnEndInteraction();
+                    return;
+                }
             }
         }
     }
@@ -150,10 +158,10 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
     public void CompleteTopic()
     {
         // TODO: This line is playing everytime after completing a topic, needs to be fixed and have the dialogue box disappear when the topic is over
-        Debug.Log("Completed topic");
+        //Debug.Log("Completed topic");
+        if (currentDialogue.completedTopic == true) { return; }
+
         currentDialogue.completedTopic = true;
-        OnEndInteraction();
-        SetDialogueInActive();
     }
 
     public void GoNextDialogue()
