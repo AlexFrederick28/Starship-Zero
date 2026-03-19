@@ -76,13 +76,21 @@ public class SoundManager : MonoBehaviour
         if (repeat == true)
         {
             bool newClip = false;
+            musicObject.volume = volume;
+
+            double nextStartTime = AudioSettings.dspTime;
+
             while (repeat == true)
             {
                 if (newClip == false)
                 {
-                    musicObject.clip = clip[Random.Range(0, clip.Length)];
-                    musicObject.volume = volume;
-                    musicObject.Play();
+                    AudioClip nextClip = clip[Random.Range(0, clip.Length)];
+
+                    musicObject.clip = nextClip;
+                    musicObject.PlayScheduled(nextStartTime);
+
+                    nextStartTime += nextClip.length;
+
                     newClip = true;
                 }
 
