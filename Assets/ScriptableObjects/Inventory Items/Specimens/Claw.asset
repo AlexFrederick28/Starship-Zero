@@ -19,7 +19,7 @@ MonoBehaviour:
   description: A razor sharp claw from the Mites prickly legs.
   sellAmount: 50
   rarity: 0
-  sprite: {fileID: 6363875592875451746, guid: b5af269fbc3a98d44af25a9faf410703, type: 3}
+  sprite: {fileID: -8728994399186600728, guid: b2cd5ad8fd0a6a648bde67c67a3c0efd, type: 3}
   dropChance: 100
   weapon: {fileID: 0}
   weaponDescription: []

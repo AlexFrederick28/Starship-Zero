@@ -243,7 +243,7 @@ public class UIManager : MonoBehaviour
         upgradeParent.SetActive(false);
         cardUnlockParent.SetActive(false);
         tabParent.SetActive(false);
-        GameState.instance.ChangeStateToMain();
+        GameState.instance.ChangeStateToMainWithoutMusic();
     }
 
     public void SwapToInventoryUI()

@@ -117,6 +117,12 @@ public class GameState : MonoBehaviour
         Debug.Log("State changed to main");
     }
 
+    public void ChangeStateToMainWithoutMusic()
+    {
+        currentState = States.Main;
+        Debug.Log("State changed to main");
+    }
+
     public void ChangeStateToRoomClear()
     {
         StopAllCoroutines();

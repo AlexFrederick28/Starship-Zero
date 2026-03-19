@@ -20,7 +20,7 @@ MonoBehaviour:
     electricity after it has been consumed. '
   sellAmount: 100
   rarity: 1
-  sprite: {fileID: -6910595954689261531, guid: d9e05939a191326419faaac918a260a9, type: 3}
+  sprite: {fileID: -4265743309592238539, guid: b2cd5ad8fd0a6a648bde67c67a3c0efd, type: 3}
   dropChance: 25
   weapon: {fileID: 0}
   weaponDescription: []

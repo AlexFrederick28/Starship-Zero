@@ -239,7 +239,8 @@ public class EnemyBase : MonoBehaviour
         if (transform.position.x > playerTransform.position.x)
         {
             Quaternion newRotation = new Quaternion(0, 0, 0, 0);
-            view.transform.rotation = newRotation;
+            //view.transform.rotation = newRotation;
+            view.GetComponent<SpriteRenderer>().flipX = false;
 
             for (int i = 0; i < colliders.Length; i++)
             {
@@ -249,7 +250,9 @@ public class EnemyBase : MonoBehaviour
         else
         {
             Quaternion newRotation = new Quaternion(0, 180, 0, 0);
-            view.transform.rotation = newRotation;
+            //view.transform.rotation = newRotation;
+
+            view.GetComponent<SpriteRenderer>().flipX = true;
 
             for (int i = 0; i < colliders.Length; i++)
             {

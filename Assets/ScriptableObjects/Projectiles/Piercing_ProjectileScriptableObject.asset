@@ -15,7 +15,7 @@ MonoBehaviour:
   projectileName: Pierce
   projectileDescription: A piercing projectile that goes through a set amount of
     enemies before breaking.
-  displaySprite: {fileID: -3179362714106569466, guid: ddc6bf3af8943c9498120454356b0d18, type: 3}
+  displaySprite: {fileID: -7420973490148558685, guid: d0ee368788976f2478b5494f3b826495, type: 3}
   projectilePrefabToFire: {fileID: 396421345929245815, guid: cb4bb48b0a4797948bee2ef7e56888ff, type: 3}
   projectileEffectType: 1
   effectCount: 1

@@ -20,6 +20,7 @@ MonoBehaviour:
     to create streams of electricity throughout its claws.
   sellAmount: 1000
   rarity: 3
-  sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  sprite: {fileID: -5944570559144076067, guid: b2cd5ad8fd0a6a648bde67c67a3c0efd, type: 3}
   dropChance: 1
   weapon: {fileID: 0}
+  weaponDescription: []
