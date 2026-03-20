@@ -31,9 +31,10 @@ MonoBehaviour:
   - amount: 
     description: A shotgun that has a small spread and medium fire rate.
   weapon: {fileID: 11400000, guid: 40888e2930952174883b7a1d5ab23991, type: 2}
+  projectile: {fileID: 0}
   item: {fileID: 11400000, guid: 176ca8e224858fe4191f6c3f3b75a95d, type: 2}
   ingredients:
-  - amount: 2
+  - amount: 1
     ingredient: {fileID: 11400000, guid: 523488d13c1459640a8052758ce959f1, type: 2}
   - amount: 1
     ingredient: {fileID: 11400000, guid: 903b12cb14098994dbf4c83f57acdae7, type: 2}

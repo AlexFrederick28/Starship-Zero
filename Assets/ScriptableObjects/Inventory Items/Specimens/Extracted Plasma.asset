@@ -18,7 +18,7 @@ MonoBehaviour:
   itemName: Extracted Plasma
   description: Highly concentrated plasma, found in the Mites Plasma Sac after consuming
     large amounts of electricity.
-  sellAmount: 300
+  sellAmount: 600
   rarity: 2
   sprite: {fileID: -6279798537542421789, guid: b2cd5ad8fd0a6a648bde67c67a3c0efd, type: 3}
   dropChance: 5

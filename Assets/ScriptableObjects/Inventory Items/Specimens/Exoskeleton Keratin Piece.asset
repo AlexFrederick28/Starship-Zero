@@ -17,7 +17,7 @@ MonoBehaviour:
   maxStackSize: 20
   itemName: Exoskeleton Keratin Piece
   description: The tough outer layer of a Mite.
-  sellAmount: 50
+  sellAmount: 100
   rarity: 0
   sprite: {fileID: 3827271276223198764, guid: b2cd5ad8fd0a6a648bde67c67a3c0efd, type: 3}
   dropChance: 100

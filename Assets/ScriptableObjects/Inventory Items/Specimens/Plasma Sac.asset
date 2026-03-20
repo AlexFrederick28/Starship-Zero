@@ -18,7 +18,7 @@ MonoBehaviour:
   itemName: Plasma Sac
   description: 'An extremely durable and evolutionary organ, designed to large amounts
     electricity after it has been consumed. '
-  sellAmount: 100
+  sellAmount: 400
   rarity: 1
   sprite: {fileID: -4265743309592238539, guid: b2cd5ad8fd0a6a648bde67c67a3c0efd, type: 3}
   dropChance: 25

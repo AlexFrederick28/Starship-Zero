@@ -46,7 +46,7 @@ public class SceneChanger : MonoBehaviour
         Debug.Log("Quitting Windows");
         Application.Quit();
 #elif UNITY_WEBGL
-        Debug.Log("WebGL Build")
+        Debug.Log("WebGL Build");
 #else
         Debug.Log("Other");
 #endif

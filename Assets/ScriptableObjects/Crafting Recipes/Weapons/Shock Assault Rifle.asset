@@ -32,9 +32,10 @@ MonoBehaviour:
     description: A very consistent low damaging assault rifle that constantly fires
       bullets.
   weapon: {fileID: 11400000, guid: cee4685c4493b55468270d05a4e71b88, type: 2}
+  projectile: {fileID: 0}
   item: {fileID: 11400000, guid: 2c94c08e396236d46b423fc16bd6fafa, type: 2}
   ingredients:
-  - amount: 30
+  - amount: 5
     ingredient: {fileID: 11400000, guid: 2414a70ec7a14874c8ed409553d40660, type: 2}
-  - amount: 2
+  - amount: 1
     ingredient: {fileID: 11400000, guid: 91bf478454817b34b9918453c73c0430, type: 2}

@@ -32,11 +32,12 @@ MonoBehaviour:
     description: Shotgun with a WIDE spread and fast projectiles in an arc that shoots
       slowly.
   weapon: {fileID: 11400000, guid: 97f2754ccac24a14788e516acba81e78, type: 2}
+  projectile: {fileID: 0}
   item: {fileID: 11400000, guid: a2ed245284632714aa0539fba3a12ec3, type: 2}
   ingredients:
   - amount: 10
     ingredient: {fileID: 11400000, guid: 2414a70ec7a14874c8ed409553d40660, type: 2}
-  - amount: 2
+  - amount: 1
     ingredient: {fileID: 11400000, guid: 903b12cb14098994dbf4c83f57acdae7, type: 2}
-  - amount: 2
+  - amount: 1
     ingredient: {fileID: 11400000, guid: 523488d13c1459640a8052758ce959f1, type: 2}

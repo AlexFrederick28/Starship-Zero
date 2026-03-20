@@ -17,7 +17,7 @@ MonoBehaviour:
   maxStackSize: 20
   itemName: Claw
   description: A razor sharp claw from the Mites prickly legs.
-  sellAmount: 50
+  sellAmount: 100
   rarity: 0
   sprite: {fileID: -8728994399186600728, guid: b2cd5ad8fd0a6a648bde67c67a3c0efd, type: 3}
   dropChance: 100
