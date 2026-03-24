@@ -8,11 +8,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Map
   - Water
   - UI
-  - 
-  - 
+  - FogOfWar Main
+  - FogOfWar Secondary
   - 
   - 
   - 
@@ -43,6 +43,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 891884379
+    locked: 0
+  - name: FogOfWar
+    uniqueID: 1849844251
     locked: 0
   m_RenderingLayers:
   - Default

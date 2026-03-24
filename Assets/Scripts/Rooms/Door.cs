@@ -5,6 +5,7 @@ public class Door : MonoBehaviour, IInteractable
     [SerializeField] private Transform playerEntryPoint;
     [SerializeField] private Transform playerExitPoint;
     [SerializeField] protected Room room;
+    private bool discoveredRoomOnEnter = false;
 
     public void DisableInteractionComponent()
     {
@@ -29,6 +30,12 @@ public class Door : MonoBehaviour, IInteractable
             room.animator.SetBool("isUsed", true);
             GameState.instance.player.transform.position = playerEntryPoint.position;
             room.playerInsideRoom = true;
+
+            if (discoveredRoomOnEnter == false)
+            {
+                RoomManager.instance.UnlockRoomViewOnMap(room.roomData);
+                discoveredRoomOnEnter = true;
+            }
         }
         else if (room.playerInsideRoom == true && GameState.instance.player != null && GameState.instance.currentState != GameState.States.RoomClear)
         {

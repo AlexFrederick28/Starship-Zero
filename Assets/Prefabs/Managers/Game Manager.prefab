@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6467625082563482837}
   - component: {fileID: 6283190580603290024}
+  - component: {fileID: 5317677821563666459}
   - component: {fileID: 7095342941005253738}
   - component: {fileID: 6870090674624868283}
   - component: {fileID: 5562658886180886453}
@@ -57,6 +58,21 @@ MonoBehaviour:
   playerInventory: {fileID: 0}
   latestCheckpoint: {fileID: 0}
   musicVolume: 0.1
+--- !u!114 &5317677821563666459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3904750311189774911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5729ba37b748bec43b52a82f8722753a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoomManager
+  spriteUnlitDefault: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  spriteLitDefault: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  allRoomData: []
 --- !u!114 &7095342941005253738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,13 +87,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
   musicObject: {fileID: 0}
   mainMusic:
-  - {fileID: 8300000, guid: 5e7873d3065a41743b9db724dff4189c, type: 3}
-  - {fileID: 8300000, guid: 46467b935f18e4540962ef57b6bdf1a3, type: 3}
-  - {fileID: 8300000, guid: 86e06b6ff7c340e4a8e2a54a7753b286, type: 3}
-  - {fileID: 8300000, guid: 5d77fdf6be35c8645bb47afecfdbc7d0, type: 3}
+  - {fileID: 8300000, guid: aaccc4ff374652f41b7cec18dd87b992, type: 3}
+  - {fileID: 8300000, guid: 62fbfe45f0d02dc42bb73243dfda2aa0, type: 3}
+  - {fileID: 8300000, guid: f5d61a0dd716f1e44a2e78790a9f5be7, type: 3}
   battleMusic:
-  - {fileID: 8300000, guid: a6388af41684ed14186ddd5c21007b21, type: 3}
-  - {fileID: 8300000, guid: c49bb4488db105d48ab2ee9ffd06886c, type: 3}
+  - {fileID: 8300000, guid: 9c8c30b619751e944b0ae57c55fb8bf5, type: 3}
+  - {fileID: 8300000, guid: 0ef07e75eb0428f4f84aefd13e3893c8, type: 3}
+  - {fileID: 8300000, guid: da287d679651667469b0c05f0028a4f6, type: 3}
   tutorialMusic:
   - {fileID: 0}
   soundObject: {fileID: 7917900519422113262, guid: a0709ac2481edc54b8950b3c87142ef0, type: 3}
@@ -125,6 +141,9 @@ MonoBehaviour:
   inventoryParent: {fileID: 0}
   inventorySlotContentParent: {fileID: 0}
   slot: {fileID: 2477720363533150392, guid: a91f7fefa0e626a438287925bc7b264d, type: 3}
+  projectileSelectButton: {fileID: 0}
+  projectileSelectButtonImage: {fileID: 0}
+  projectileSelectDropDown: {fileID: 0}
   infoInventoryName: {fileID: 0}
   infoInventoryImage: {fileID: 0}
   infoWeaponInventoryText: {fileID: 0}
@@ -152,11 +171,12 @@ MonoBehaviour:
   weaponCraftingSelectedDescription: {fileID: 0}
   weaponCraftingSelectedDescriptionAmount: {fileID: 0}
   weaponCraftingSelectedImage: {fileID: 0}
-  weaponListScrollbar: {fileID: 0}
   weaponCraftingRecipeParent: {fileID: 0}
   weaponCraftingRecipePrefab: {fileID: 0}
   weaponUnlockButton: {fileID: 0}
   weaponCraftButton: {fileID: 0}
+  weaponListParent: {fileID: 0}
+  projectileListParent: {fileID: 0}
   weaponCraftingRecipePrefabList: []
   canvas: {fileID: 0}
   dialogueParent: {fileID: 0}

@@ -16,11 +16,11 @@ public class Room : MonoBehaviour
         public bool isName = false;
         public string title;
         public string extraText;
-        //public TextMeshProUGUI text;
         public GameObject childObject;
     }
 
     [SerializeField] private List<RoomInformation> roomInfoList;
+    public RoomManager.RoomData roomData;
     [SerializeField] private Spawning spawning;
     [SerializeField] private GameObject roomInformationPanel;
     private bool withinInteractionRadius = false;
@@ -74,6 +74,7 @@ public class Room : MonoBehaviour
 
     private void Start()
     {
+        AddRoomToRoomManager();
         SpawnRoomInformationOnStart();
         UpdateRoomInformation();
         HideRoomInformation();
@@ -240,5 +241,13 @@ public class Room : MonoBehaviour
         {
             lights[i].color = infestedColour;
         }
+    }
+
+    public void AddRoomToRoomManager()
+    {
+        RoomManager.RoomData newRoomData = new RoomManager.RoomData();
+        newRoomData.roomParent = this;
+        newRoomData.tilemapRenderers = roomData.tilemapRenderers;
+        RoomManager.instance.allRoomData.Add(newRoomData);
     }
 }

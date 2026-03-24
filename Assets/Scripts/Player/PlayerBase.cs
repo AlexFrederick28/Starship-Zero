@@ -5,6 +5,7 @@ using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 
 public class PlayerBase : MonoBehaviour
@@ -99,6 +100,9 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] protected float minPitch;
     [SerializeField] protected float maxPitch;
     [SerializeField] protected AudioClip playerHurtClip;
+
+    [SerializeField] public LayerMask fogLayerMask;
+    [SerializeField] public float fogOfWarClearRadius;
 
     public static Action OnPlayerDeath;
     public static Action OnPressingRetryOrRespawn;
@@ -372,5 +376,16 @@ public class PlayerBase : MonoBehaviour
     public void ResetPlayerHealth()
     {
         Health = maxHealth;
+    }
+
+    public void RevealFogOfWar()
+    {
+        //RaycastHit2D[] hits2D = new RaycastHit2D[50];
+        //hits2D = Physics2D.CircleCastAll(transform.position, fogOfWarClearRadius, Vector2.zero, 0f, fogLayerMask);
+
+        //for (int i = 0; i < hits2D.Length; i++)
+        //{
+        //    hits2D[i].collider.gameObject.SetActive(false);
+        //}
     }
 }
