@@ -23,6 +23,9 @@ public class WeaponBase : MonoBehaviour
     public GameObject projectileToFire;
     public WeaponScriptableObject weaponType;
 
+    // if it is shotgun it uses different code for firing like a shotgun
+    public bool isWeaponShotgun; // when shotgun shoot 5? projectiles
+
     [Header("Modified Stats")]
     public float damage;
     public float fireRate;
@@ -218,19 +221,46 @@ public class WeaponBase : MonoBehaviour
     {
         if (targetToAttack != null)
         {
-            // direction to fire forward
-            Vector3 vectorToTarget = targetToAttack.position - transform.position;
-            float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
-            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-            newBullet = Instantiate(projectileToFire, transform.position, rotation); // create bullet
-
-            BulletProjectile bullet = newBullet.GetComponent<BulletProjectile>();
-            currentBullets.Add(newBullet);
-            if (bullet != null)
+            if (isWeaponShotgun != true) // not a shotgun
             {
-                bullet.baseWeapon = this; // owner that created bullet
+                // direction to fire forward
+                Vector3 vectorToTarget = targetToAttack.position - transform.position;
+                float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+                Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+                newBullet = Instantiate(projectileToFire, transform.position, rotation); // create bullet
+
+                BulletProjectile bullet = newBullet.GetComponent<BulletProjectile>();
+                currentBullets.Add(newBullet);
+                if (bullet != null)
+                {
+                    bullet.baseWeapon = this; // owner that created bullet
+                }
             }
+
+            else if (isWeaponShotgun != false) // is a shotgun
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    Vector3 vectorToTarget = targetToAttack.position - transform.position;
+                    float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+
+                    float randomSpread = Random.Range(-30f, 30f);  // 30 degree shotgun spread
+                    Quaternion rotation = Quaternion.AngleAxis(angle + randomSpread, Vector3.forward);
+
+                    newBullet = Instantiate(projectileToFire, transform.position, rotation); // create bullet
+
+                    BulletProjectile bullet = newBullet.GetComponent<BulletProjectile>();
+                    currentBullets.Add(newBullet);
+                    if (bullet != null)
+                    {
+                        bullet.baseWeapon = this; // owner that created bullet
+                    }
+                }
+                
+            }
+
         }
 
         else
@@ -405,6 +435,7 @@ public class WeaponBase : MonoBehaviour
             baseCritDamage = 0;
             projectileSpeed = 0;
             projectileToFire = null;
+            isWeaponShotgun = false;
         }
         else // found, set its base stats
         {
@@ -416,6 +447,7 @@ public class WeaponBase : MonoBehaviour
             baseCritDamage = weaponType.critDamage;
             projectileSpeed = weaponType.projectileSpeed;
             projectileToFire = weaponType.projectileToFire;
+            isWeaponShotgun = weaponType.isShotgun;
         }
     }
 

@@ -13,5 +13,6 @@ public class WeaponScriptableObject : ScriptableObject
     public float critDamage;
     public float projectileSpeed;
     public GameObject projectileToFire;
+    public bool isShotgun = false;
 
 }
