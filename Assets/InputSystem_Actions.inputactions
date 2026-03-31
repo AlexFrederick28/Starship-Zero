@@ -43,6 +43,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Map",
+                    "type": "Button",
+                    "id": "9b314539-cf49-46a7-b1b4-226ae6aedb2a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Close",
                     "type": "Button",
                     "id": "6c048613-847a-4816-b595-c8029fbb0a09",
@@ -511,6 +520,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Close",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b402e649-bb96-42bc-9dcd-f2397dcd872a",
+                    "path": "<Keyboard>/m",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Map",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

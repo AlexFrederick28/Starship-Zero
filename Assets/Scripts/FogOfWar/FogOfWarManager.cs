@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
 
+/// <summary>
+/// shelved mechanic for now (not working)
+/// </summary>
 public class FogOfWarManager : MonoBehaviour
 {
     public RenderTexture fogTexture;
