@@ -9,6 +9,7 @@ using Unity.VisualScripting;
 using System.Net;
 using JetBrains.Annotations;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
+using UnityEngine.Jobs;
 
 public class NPCBase : MonoBehaviour, IInteractable, IDialogue
 {
@@ -220,8 +221,9 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
         }
     }
 
-    public void CompletePrerequisite()
+    public void CompletePrerequisite(int questID)
     {
+        if (questID != currentDialogue.quest.prerequisite.id) { return; }
         currentDialogue.completedPrerequisite = true;
     }
 

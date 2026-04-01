@@ -12,7 +12,7 @@ public class QuestManager : MonoBehaviour
     public Sprite completeQuestSprite;
 
     public static Action<int> OnActivateNewQuest;
-    public static Action OnQuestCompletion;
+    public static Action<int> OnQuestCompletion;
 
     public static QuestManager instance;
 
@@ -74,7 +74,7 @@ public class QuestManager : MonoBehaviour
                     Debug.Log("Complete ACTIVE quest");
                     instance.activeQuests[i].prerequisite.complete = true;
                     instance.questUIList[i].image.sprite = completeQuestSprite;
-                    OnQuestCompletion?.Invoke();
+                    OnQuestCompletion?.Invoke(q.prerequisite.id);
                 }
                 else
                 {

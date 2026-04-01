@@ -6,6 +6,7 @@ public class QuestTaskBase : MonoBehaviour
     public bool disableUpdate = false;
     public QuestScriptableObjects[] questInfos;
     [SerializeField] private Quest[] quests;
+    [SerializeField] private GameObject mapMarker;
 
     public virtual void OnEnable()
     {

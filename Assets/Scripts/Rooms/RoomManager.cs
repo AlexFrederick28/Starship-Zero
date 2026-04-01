@@ -9,7 +9,6 @@ using UnityEngine.Tilemaps;
 
 public class RoomManager : MonoBehaviour
 {
-
     public Material spriteUnlitDefault;
     public Material spriteLitDefault;
     public List<RoomData> allRoomData; // rooms will subscribe by themselves
