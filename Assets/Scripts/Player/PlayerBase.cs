@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements;
+using System.Collections.Generic;
 
 public class PlayerBase : MonoBehaviour
 {
@@ -32,8 +33,14 @@ public class PlayerBase : MonoBehaviour
                 LevelUp();
                 currentExperience -= experienceNeeded;
                 CalculateExperienceNeeded();
-                GameState.instance.OnPlayerLevelUp?.Invoke(); // pauses the game when the player levels up. Needs to be invoked a second time to unpause
-                Debug.Log("Invoked OnPlayerLevelUp");
+
+                levelUpQueue.Enqueue(GameState.instance.OnPlayerLevelUp); // add to queue
+                LevelUpCheckQueue(); // queue - where the (where the invoke also occurs)
+
+               
+
+                //GameState.instance.OnPlayerLevelUp?.Invoke(); // pauses the game when the player levels up. Needs to be invoked a second time to unpause
+                //Debug.Log("Invoked OnPlayerLevelUp");
             }
             if (currentExperience < 0)
             {
@@ -41,6 +48,10 @@ public class PlayerBase : MonoBehaviour
             }
         }
     }
+
+    public Queue<Action> levelUpQueue = new Queue<Action>();
+    public bool isLevellingUp = false;
+
 
     [SerializeField] private int experienceNeeded;
     public int ExperienceNeeded
@@ -172,6 +183,9 @@ public class PlayerBase : MonoBehaviour
             GameState.instance.OnPlayerLevelUp += PausePlayerOnPlayerLevelUp;
             LevelUpManager.OnCardChosen += PausePlayerOnPlayerLevelUp;
             GameState.instance.OnCompletedInfestedClear += ResetPlayerHealth;
+
+            LevelUpManager.OnCardChosen += AfterLevelUpCard;
+
         }
     }
 
@@ -187,6 +201,9 @@ public class PlayerBase : MonoBehaviour
         GameState.instance.OnPlayerLevelUp -= PausePlayerOnPlayerLevelUp;
         LevelUpManager.OnCardChosen -= PausePlayerOnPlayerLevelUp;
         GameState.instance.OnCompletedInfestedClear -= ResetPlayerHealth;
+
+        LevelUpManager.OnCardChosen -= AfterLevelUpCard;
+
     }
 
     private void Start()
@@ -387,5 +404,44 @@ public class PlayerBase : MonoBehaviour
         //{
         //    hits2D[i].collider.gameObject.SetActive(false);
         //}
+    }
+
+    public void LevelUpCheckQueue()
+    {
+        // is there a level?
+        if (levelUpQueue.Count <= 0)
+        {
+            Debug.Log("No level ups found");
+            return;
+        }
+
+        // are they already levelling up?
+        if (isLevellingUp == true)
+        {
+            Debug.Log("Already levelling");
+            return;
+        }
+
+        // double check for level queue & not levelling
+        if (levelUpQueue.Count > 0 && isLevellingUp == false)
+        {
+            Debug.Log("Queue Level Up");
+
+            isLevellingUp = true;
+            Action actionToDeqeue = levelUpQueue.Dequeue(); // dequeue and run, while also have a reference to that action if needed
+            actionToDeqeue?.Invoke();
+        }
+
+        //Debug.Log("Levels Queued After: " + levelUpQueue.Count);
+    }
+
+    public void AfterLevelUpCard()
+    {
+        GameState.instance.player.isLevellingUp = false; // not levelling anymore 
+
+        if (levelUpQueue.Count > 0) // if multiple levels try to level up again (should be
+        {
+            LevelUpCheckQueue();
+        }
     }
 }
