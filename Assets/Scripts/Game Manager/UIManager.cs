@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -61,6 +62,15 @@ public class UIManager : MonoBehaviour
     public GameObject deathMenuParent;
     public Button respawnButton;
     public Button retryInfestedRoomButton;
+
+    [Space]
+    [Header("Navigation Menu")]
+    public GameObject navigationMenuParent;
+    public GameObject navigationEasyUIParent;
+    public GameObject navigationMediumUIParent;
+    public GameObject navigationHardUIParent;
+    public TextMeshProUGUI navigationRoomInfoText;
+    public Button navigationTravelButton;
 
     [Serializable]
     public class LevelUpCardUI
@@ -243,6 +253,7 @@ public class UIManager : MonoBehaviour
         upgradeParent.SetActive(false);
         cardUnlockParent.SetActive(false);
         tabParent.SetActive(false);
+        navigationMenuParent.SetActive(false);
         GameState.instance.ChangeStateToMainWithoutMusic();
     }
 
@@ -253,6 +264,7 @@ public class UIManager : MonoBehaviour
         weaponCraftingUIParent.SetActive(false);
         upgradeParent.SetActive(false);
         cardUnlockParent.SetActive(false);
+        navigationMenuParent.SetActive(false);
     }
 
     public void SwapToWeaponCraftingUI()
@@ -262,6 +274,7 @@ public class UIManager : MonoBehaviour
         weaponCraftingUIParent.SetActive(true);
         upgradeParent.SetActive(false);
         cardUnlockParent.SetActive(false);
+        navigationMenuParent.SetActive(false);
     }
 
     public void SwapToCardUI()
@@ -271,6 +284,7 @@ public class UIManager : MonoBehaviour
         weaponCraftingUIParent.SetActive(false);
         upgradeParent.SetActive(false);
         cardUnlockParent.SetActive(true);
+        navigationMenuParent.SetActive(false);
     }
 
     public void SwapToPermanentUpgradeUI()
@@ -280,6 +294,17 @@ public class UIManager : MonoBehaviour
         weaponCraftingUIParent.SetActive(false);
         upgradeParent.SetActive(true);
         cardUnlockParent.SetActive(false);
+        navigationMenuParent.SetActive(false);
+    }
+
+    public void SwapToNavigationUI()
+    {
+        // tab 5
+        inventoryParent.SetActive(false);
+        weaponCraftingUIParent.SetActive(false);
+        upgradeParent.SetActive(false);
+        cardUnlockParent.SetActive(false);
+        navigationMenuParent.SetActive(true);
     }
 
     public void SwapToProjectileTabUI()

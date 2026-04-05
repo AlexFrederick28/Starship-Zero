@@ -13,7 +13,7 @@ public class CameraFollowPlayer : MonoBehaviour
 
     public float smoothTime = 0.25f; // the smoothing time for the camera - changed in inspector
 
-    [SerializeField] private Transform target; // what the camera follows
+    public Transform target; // what the camera follows
 
     [Space]
     [Header("Tether")]
@@ -24,6 +24,25 @@ public class CameraFollowPlayer : MonoBehaviour
     [SerializeField] private float tetherDistance; // the distance
 
     #endregion
+
+    public static CameraFollowPlayer instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (instance != this)
+        {
+            // turns off duplicate instances if there are more than one enabled
+            gameObject.SetActive(false);
+        }
+    }
 
     private void Update()
     {

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6467625082563482837}
   - component: {fileID: 6283190580603290024}
+  - component: {fileID: 416779978556543936}
   - component: {fileID: 7047259803151340473}
   - component: {fileID: 5317677821563666459}
   - component: {fileID: 7095342941005253738}
@@ -59,6 +60,23 @@ MonoBehaviour:
   playerInventory: {fileID: 0}
   latestCheckpoint: {fileID: 0}
   musicVolume: 0.1
+--- !u!114 &416779978556543936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3904750311189774911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d46dfe4cf61db5c4abf1d834fb35dd9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NavigationManager
+  infestedEasyRoomList: []
+  infestedMediumRoomList: []
+  infestedHardRoomList: []
+  questRoomList: []
+  roomNavigationUIPrefab: {fileID: 1636734408569493664, guid: 16d0c4b621ff41c48be1ba31869dae96, type: 3}
 --- !u!114 &7047259803151340473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,9 +91,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MapManager
   mapRect: {fileID: 0}
   openedMapSize: {x: 1920, y: 1080}
-  openedMapPosition: {x: 0, y: 0}
   minimisedMapSize: {x: 400, y: 225}
-  minimisedMapPosition: {x: -20, y: 20}
+  mapAnchorPosition: {x: 0, y: 0}
 --- !u!114 &5317677821563666459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,6 +197,9 @@ MonoBehaviour:
   deathMenuParent: {fileID: 0}
   respawnButton: {fileID: 0}
   retryInfestedRoomButton: {fileID: 0}
+  navigationEasyUIParent: {fileID: 0}
+  navigationMediumUIParent: {fileID: 0}
+  navigationHardUIParent: {fileID: 0}
   levelUpMenuParent: {fileID: 0}
   levelUpCardUIList: []
   currentTime: {fileID: 0}

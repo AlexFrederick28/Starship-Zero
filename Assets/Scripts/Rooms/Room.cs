@@ -19,9 +19,12 @@ public class Room : MonoBehaviour
         public GameObject childObject;
     }
 
-    [SerializeField] private List<RoomInformation> roomInfoList;
+    [Tooltip("Whether or not this room is in an accessible area for the player (Allows them to teleport here if so)")]
+    public bool roomAreaLocked = false;
+    public bool isQuestRoom = false;
+    public List<RoomInformation> roomInfoList;
     public RoomManager.RoomData roomData;
-    [SerializeField] private Spawning spawning;
+    public Spawning spawning;
     [SerializeField] private GameObject roomInformationPanel;
     private bool withinInteractionRadius = false;
 
@@ -55,7 +58,10 @@ public class Room : MonoBehaviour
 
         return currentState;
     }
+    public RoomDifficulty roomDifficulty;
+    public enum RoomDifficulty { easy, medium, hard }
 
+    [Header("Room Parents")]
     [SerializeField] private GameObject emptyRoom;
     [SerializeField] private GameObject infestedRoom;
     [SerializeField] private GameObject weaponsRoom;
@@ -78,6 +84,11 @@ public class Room : MonoBehaviour
         SpawnRoomInformationOnStart();
         UpdateRoomInformation();
         HideRoomInformation();
+
+        if (NavigationManager.instance != null)
+        {
+            NavigationManager.instance.AddInfestedRoomToNavigationList(this);
+        }
     }
 
     private void OnEnable()
@@ -166,7 +177,7 @@ public class Room : MonoBehaviour
 
             if (roomInfoList[i].showOnState == RoomStates.infested && roomInfoList[i].isName == false)
             {
-                float roomDifficulty = (spawning.timerLength / spawning.difficultyMultiplier) / 60;
+                //float roomDifficulty = (spawning.timerLength / spawning.difficultyMultiplier) / 60;
                 textComponent.text = roomInfoList[i].title + " " + spawning.timerLength.ToString(); //+ "\n" + roomInfoList[i].extraText + " " + (int)roomDifficulty;
             }
             else

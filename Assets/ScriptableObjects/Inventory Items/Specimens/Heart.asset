@@ -20,7 +20,7 @@ MonoBehaviour:
     specimens could be of use.
   sellAmount: 600
   rarity: 2
-  sprite: {fileID: 8185546507743837988, guid: b2cd5ad8fd0a6a648bde67c67a3c0efd, type: 3}
+  sprite: {fileID: -4126074238376919599, guid: dce78baf308b6d54fa541dc63ddd721e, type: 3}
   dropChance: 5
   weapon: {fileID: 0}
   weaponDescription: []

@@ -7,8 +7,13 @@ using UnityEditor.Rendering.Universal.ShaderGraph;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+/// <summary>
+/// Managers all infested and quest rooms.
+/// </summary>
 public class RoomManager : MonoBehaviour
 {
+    // This script handles room fog of war (showing a room on the map when it is entered)
+
     public Material spriteUnlitDefault;
     public Material spriteLitDefault;
     public List<RoomData> allRoomData; // rooms will subscribe by themselves
