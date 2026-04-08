@@ -174,7 +174,7 @@ public class PlayerBase : MonoBehaviour
         if (GameState.instance != null)
         {
             GameState.instance.OnEnteringInfestedRoom += RecordVariablesOnRoomStart;
-            GameState.instance.OnCompletedInfestedClear += ResetVariablesToRecorded;
+            GameState.instance.OnCompletedInfestedClear += ResetVariablesToRecordedFromInfestedClearCompletion;
             GameState.instance.OnPlayerRespawn += ResetVariablesToRecorded;
             GameState.instance.OnPlayerRetry += ResetVariablesToRecorded;
 
@@ -182,7 +182,7 @@ public class PlayerBase : MonoBehaviour
             GameState.instance.OnPlayerRetry += ResetPlayerStatsOnRespawn;
             GameState.instance.OnPlayerLevelUp += PausePlayerOnPlayerLevelUp;
             LevelUpManager.OnCardChosen += PausePlayerOnPlayerLevelUp;
-            GameState.instance.OnCompletedInfestedClear += ResetPlayerHealth;
+            GameState.instance.OnCompletedInfestedClear += ResetPlayerHealthOnInfestedRoomCompletion;
 
             LevelUpManager.OnCardChosen += AfterLevelUpCard;
 
@@ -192,7 +192,7 @@ public class PlayerBase : MonoBehaviour
     private void OnDisable()
     {
         GameState.instance.OnEnteringInfestedRoom -= RecordVariablesOnRoomStart;
-        GameState.instance.OnCompletedInfestedClear -= ResetVariablesToRecorded;
+        GameState.instance.OnCompletedInfestedClear -= ResetVariablesToRecordedFromInfestedClearCompletion;
         GameState.instance.OnPlayerRespawn -= ResetVariablesToRecorded;
         GameState.instance.OnPlayerRetry -= ResetVariablesToRecorded;
 
@@ -200,7 +200,7 @@ public class PlayerBase : MonoBehaviour
         GameState.instance.OnPlayerRetry -= ResetPlayerStatsOnRespawn;
         GameState.instance.OnPlayerLevelUp -= PausePlayerOnPlayerLevelUp;
         LevelUpManager.OnCardChosen -= PausePlayerOnPlayerLevelUp;
-        GameState.instance.OnCompletedInfestedClear -= ResetPlayerHealth;
+        GameState.instance.OnCompletedInfestedClear -= ResetPlayerHealthOnInfestedRoomCompletion;
 
         LevelUpManager.OnCardChosen -= AfterLevelUpCard;
 
@@ -209,7 +209,7 @@ public class PlayerBase : MonoBehaviour
     private void Start()
     {
         CalculateExperienceNeeded();
-        //CurrentExperience += 1000;
+        //CurrentExperience += 10000;
     }
 
     private void Update()
@@ -234,6 +234,12 @@ public class PlayerBase : MonoBehaviour
     }
 
     public void ResetVariablesToRecorded()
+    {
+        speed = recordedSpeed;
+        maxHealth = recordedMaxHealth;
+    }
+
+    public void ResetVariablesToRecordedFromInfestedClearCompletion(Room room)
     {
         speed = recordedSpeed;
         maxHealth = recordedMaxHealth;
@@ -391,6 +397,11 @@ public class PlayerBase : MonoBehaviour
     }
 
     public void ResetPlayerHealth()
+    {
+        Health = maxHealth;
+    }
+
+    public void ResetPlayerHealthOnInfestedRoomCompletion(Room room)
     {
         Health = maxHealth;
     }

@@ -10,6 +10,7 @@ public class NavigationManager : MonoBehaviour
     public List<Room> infestedMediumRoomList;
     public List<Room> infestedHardRoomList;
     public List<Room> questRoomList;
+    public List<NavigationTabUI> navigationTabUIList = new List<NavigationTabUI>();
 
     public GameObject roomNavigationUIPrefab;
     public NavigationTabUI selectedNavigationTab;
@@ -28,11 +29,7 @@ public class NavigationManager : MonoBehaviour
 
     private void OnEnable()
     {
-        // active quests appear in navigation quest list
-        //QuestManager.OnActivateNewQuest +=
-
-        // complete quests removed from navigation quest list
-        //QuestManager.OnQuestCompletion += 
+        GameState.instance.OnCompletedInfestedClear += RemoveInfestedRoomFromNavigation;
     }
 
     private void OnDisable()
@@ -43,11 +40,7 @@ public class NavigationManager : MonoBehaviour
             gameObject.SetActive(false);
         }
 
-        // active quests appear in navigation quest list
-        //QuestManager.OnActivateNewQuest -=
-
-        // complete quests removed from navigation quest list
-        //QuestManager.OnQuestCompletion -=
+        GameState.instance.OnCompletedInfestedClear -= RemoveInfestedRoomFromNavigation;
     }
 
     public void AddInfestedRoomToNavigationList(Room roomToAdd)
@@ -70,29 +63,51 @@ public class NavigationManager : MonoBehaviour
         {
             infestedEasyRoomList.Add(roomToAdd);
             GameObject newNavigationUI = Instantiate(roomNavigationUIPrefab, UIManager.instance.navigationEasyUIParent.transform);
-            newNavigationUI.GetComponent<NavigationTabUI>().room = roomToAdd;
+            NavigationTabUI newTab = newNavigationUI.GetComponent<NavigationTabUI>();
+            newTab.room = roomToAdd;
+            navigationTabUIList.Add(newTab);
         }
         else if (roomToAdd.roomDifficulty == Room.RoomDifficulty.medium)
         {
             infestedMediumRoomList.Add(roomToAdd);
             GameObject newNavigationUI = Instantiate(roomNavigationUIPrefab, UIManager.instance.navigationMediumUIParent.transform);
-            newNavigationUI.GetComponent<NavigationTabUI>().room = roomToAdd;
+            NavigationTabUI newTab = newNavigationUI.GetComponent<NavigationTabUI>();
+            newTab.room = roomToAdd;
+            Debug.Log("Added new tab: " + newTab.gameObject.name);
+            navigationTabUIList.Add(newTab);
         }
         else if (roomToAdd.roomDifficulty == Room.RoomDifficulty.hard)
         {
             infestedHardRoomList.Add(roomToAdd);
             GameObject newNavigationUI = Instantiate(roomNavigationUIPrefab, UIManager.instance.navigationHardUIParent.transform);
-            newNavigationUI.GetComponent<NavigationTabUI>().room = roomToAdd;
+            NavigationTabUI newTab = newNavigationUI.GetComponent<NavigationTabUI>();
+            newTab.room = roomToAdd;
+            navigationTabUIList.Add(newTab);
         }
     }
 
     public void RemoveInfestedRoomFromNavigation(Room roomToRemove)
     {
+        if (roomToRemove.isQuestRoom == true) { return; }
 
-    }
+        if (infestedEasyRoomList.Any(r => r == roomToRemove))
+        {
+            Room roomInList = infestedEasyRoomList.FirstOrDefault(r => r == roomToRemove);
+            infestedEasyRoomList.Remove(roomInList);
+        }
+        if (infestedMediumRoomList.Any(r => r == roomToRemove))
+        {
+            Room roomInList = infestedMediumRoomList.FirstOrDefault(r => r == roomToRemove);
+            infestedMediumRoomList.Remove(roomInList);
+        }
+        if (infestedHardRoomList.Any(r => r == roomToRemove))
+        {
+            Room roomInList = infestedHardRoomList.FirstOrDefault(r => r == roomToRemove);
+            infestedHardRoomList.Remove(roomInList);
+        }
 
-    public void AddQuestRoomToNavigationList()
-    {
-
+        NavigationTabUI tabToRemove = navigationTabUIList.FirstOrDefault(r => r.room == roomToRemove);
+        navigationTabUIList.Remove(tabToRemove);
+        Destroy(tabToRemove.gameObject);
     }
 }

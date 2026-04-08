@@ -1,6 +1,8 @@
+using JetBrains.Annotations;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using TMPro;
 using UnityEngine;
@@ -22,6 +24,7 @@ public class Room : MonoBehaviour
     [Tooltip("Whether or not this room is in an accessible area for the player (Allows them to teleport here if so)")]
     public bool roomAreaLocked = false;
     public bool isQuestRoom = false;
+    public int questID;
     public List<RoomInformation> roomInfoList;
     public RoomManager.RoomData roomData;
     public Spawning spawning;
@@ -101,6 +104,12 @@ public class Room : MonoBehaviour
         }
 
         OnRoomStateChange += UpdateRoomInformation;
+
+        // active quests appear in navigation quest list
+        QuestManager.OnActivateNewQuest += AddQuestRoomToNavigationMenu;
+
+        // complete quests removed from navigation quest list
+        QuestManager.OnQuestCompletion += RemoveQuestRoomFromNavigationList;
     }
 
     private void OnDisable()
@@ -108,6 +117,12 @@ public class Room : MonoBehaviour
         GameState.instance.OnPlayerRespawn -= PlayerOutsideRoomOnRespawn;
 
         OnRoomStateChange -= UpdateRoomInformation;
+
+        // active quests appear in navigation quest list
+        QuestManager.OnActivateNewQuest -= AddQuestRoomToNavigationMenu;
+
+        // complete quests removed from navigation quest list
+        QuestManager.OnQuestCompletion -= RemoveQuestRoomFromNavigationList;
     }
 
     private void Update()
@@ -260,5 +275,41 @@ public class Room : MonoBehaviour
         newRoomData.roomParent = this;
         newRoomData.tilemapRenderers = roomData.tilemapRenderers;
         RoomManager.instance.allRoomData.Add(newRoomData);
+    }
+
+    public void AddQuestRoomToNavigationMenu(int questID)
+    {
+        if (questID != this.questID) { return; }
+
+        // making sure the room is actually infested, and if the area has been unlocked and IS a quest
+        if (currentState != RoomStates.infested) { return; }
+        if (roomAreaLocked == true) { return; }
+        if (isQuestRoom == false) { return; }
+
+        // making sure the room hasnt already been added to a list
+        if (NavigationManager.instance.questRoomList.Any(r => r == this)) { return; }
+
+        // adding the room to a list
+        NavigationManager.instance.questRoomList.Add(this);
+        GameObject newNavigationUI = Instantiate(NavigationManager.instance.roomNavigationUIPrefab, UIManager.instance.navigationQuestParent.transform);
+        NavigationTabUI newTab = newNavigationUI.GetComponent<NavigationTabUI>();
+        newTab.room = this;
+        NavigationManager.instance.navigationTabUIList.Add(newTab);
+
+        Debug.Log("ADDED QUEST ROOM TO NAVIGATION");
+    }
+
+    public void RemoveQuestRoomFromNavigationList(int questID)
+    {
+        if (questID != this.questID) { return; }
+
+        // making sure the room is in a list
+        if (!NavigationManager.instance.questRoomList.Any(r => r == this)) { return; }
+
+        // removing the room from the list
+        NavigationManager.instance.questRoomList.Remove(this);
+        NavigationTabUI tabToRemove = NavigationManager.instance.navigationTabUIList.FirstOrDefault(r => r.room == this);
+        NavigationManager.instance.navigationTabUIList.Remove(tabToRemove);
+        Destroy(tabToRemove.gameObject);
     }
 }

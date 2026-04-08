@@ -31,6 +31,8 @@ public class NavigationTabUI : MonoBehaviour, IPointerClickHandler
         {
             CameraFollowPlayer.instance.target = GameState.instance.player.transform;
         }
+
+        DeselectTab();
     }
 
     public void OnPointerClick(PointerEventData eventData)

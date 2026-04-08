@@ -65,7 +65,10 @@ public class UIManager : MonoBehaviour
 
     [Space]
     [Header("Navigation Menu")]
+    public GameObject navigationNonQuestScrollView;
+    public GameObject navigationQuestScrollView;
     public GameObject navigationMenuParent;
+    public GameObject navigationQuestParent;
     public GameObject navigationEasyUIParent;
     public GameObject navigationMediumUIParent;
     public GameObject navigationHardUIParent;
@@ -317,5 +320,17 @@ public class UIManager : MonoBehaviour
     {
         projectileListParent.SetActive(false);
         weaponListParent.SetActive(true);
+    }
+
+    public void SwapToNonQuestNavigationUI()
+    {
+        navigationNonQuestScrollView.SetActive(true);
+        navigationQuestScrollView.SetActive(false);
+    }
+
+    public void SwapToQuestNavigationUI()
+    {
+        navigationNonQuestScrollView.SetActive(false);
+        navigationQuestScrollView.SetActive(true);
     }
 }

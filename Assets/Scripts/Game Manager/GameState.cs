@@ -16,7 +16,7 @@ public class GameState : MonoBehaviour
     public Action OnPlayerRespawn;
     public Action OnPlayerRetry;
     public Action OnPlayerLevelUp;
-    public Action OnCompletedInfestedClear;
+    public Action<Room> OnCompletedInfestedClear;
     public Action OnEnteringInfestedRoom;
 
     [Space]

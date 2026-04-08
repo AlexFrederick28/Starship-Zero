@@ -1,10 +1,12 @@
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class InfestedDoor : Door
 {
     public Spawning spawning;
+    //public Room parentRoom;
     public string difficultyName;
     private float roomDifficulty;
     private bool questEnabled = false;
@@ -26,7 +28,7 @@ public class InfestedDoor : Door
         {
             for (int i = 0; i < QuestManager.instance.activeQuests.Count; i++)
             {
-                if (spawning.questID == QuestManager.instance.activeQuests[i].prerequisite.id)
+                if (room.questID == QuestManager.instance.activeQuests[i].prerequisite.id)
                 {
                     if (GameState.instance.currentState != GameState.States.RoomClear && room.playerInsideRoom == false)
                     {

@@ -14,10 +14,13 @@ using Random = UnityEngine.Random;
 public class Spawning : Difficulty
 {
     [Space]
-    [Header("Quest Level")]
+    [Header("Parent Room")]
+    public Room parentRoom;
+
+    [Space]
+    [Header("Quest Info")]
     [Tooltip("If this room is attached to a quest, enter its ID here to obtain its level and dynamically changing the scaling of enemies")]
     public Vector2 questLevel;
-    public int questID;
     public bool entryQuestActivated = false;
     [Tooltip("Objects that will activate once the player has cleared the room")]
     public GameObject[] questObjects;
@@ -164,7 +167,7 @@ public class Spawning : Difficulty
                 }
             }
             GetComponentInParent<Room>().currentState = GetComponentInParent<Room>().clearedState;
-            GameState.instance.OnCompletedInfestedClear?.Invoke();
+            GameState.instance.OnCompletedInfestedClear?.Invoke(parentRoom);
             return true;
         }
         else
@@ -190,7 +193,7 @@ public class Spawning : Difficulty
             LevelUpManager.OnCardChosen += PauseSpawning;
 
             GameState.instance.OnCompletedInfestedClear += GameState.instance.playerInventory.DestroyLoadout;
-            GameState.instance.OnCompletedInfestedClear += GameState.instance.playerInventory.RemoveGapsFromInventory;
+            GameState.instance.OnCompletedInfestedClear += GameState.instance.playerInventory.RemoveGapsFromInventoryOnInfestedRoomCompletion;
 
             GameState.instance.OnEnteringInfestedRoom?.Invoke();
 
@@ -225,7 +228,7 @@ public class Spawning : Difficulty
         LevelUpManager.OnCardChosen -= PauseSpawning;
 
         GameState.instance.OnCompletedInfestedClear -= GameState.instance.playerInventory.DestroyLoadout;
-        GameState.instance.OnCompletedInfestedClear -= GameState.instance.playerInventory.RemoveGapsFromInventory;
+        GameState.instance.OnCompletedInfestedClear -= GameState.instance.playerInventory.RemoveGapsFromInventoryOnInfestedRoomCompletion;
 
         PlayerBase.OnPlayerDeath -= PauseSpawning;
 

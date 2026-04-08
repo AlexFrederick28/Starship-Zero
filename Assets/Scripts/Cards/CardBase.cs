@@ -18,7 +18,7 @@ public class CardBase : MonoBehaviour
 
         GameState.instance.OnPlayerRespawn += ResetTotalStatAmount;
         GameState.instance.OnPlayerRetry += ResetTotalStatAmount;
-        GameState.instance.OnCompletedInfestedClear += ResetTotalStatAmount;
+        GameState.instance.OnCompletedInfestedClear += ResetTotalStatAmountFromInfestedRoomCompletion;
     }
 
     protected virtual void OnDisable()
@@ -29,7 +29,7 @@ public class CardBase : MonoBehaviour
 
         GameState.instance.OnPlayerRespawn -= ResetTotalStatAmount;
         GameState.instance.OnPlayerRetry -= ResetTotalStatAmount;
-        GameState.instance.OnCompletedInfestedClear -= ResetTotalStatAmount;
+        GameState.instance.OnCompletedInfestedClear -= ResetTotalStatAmountFromInfestedRoomCompletion;
     }
 
     public virtual void Start()
@@ -117,6 +117,12 @@ public class CardBase : MonoBehaviour
     }
 
     public void ResetTotalStatAmount()
+    {
+        totalStatAmount = 0;
+        statUpgradeAmount = 0;
+    }
+
+    public void ResetTotalStatAmountFromInfestedRoomCompletion(Room room)
     {
         totalStatAmount = 0;
         statUpgradeAmount = 0;

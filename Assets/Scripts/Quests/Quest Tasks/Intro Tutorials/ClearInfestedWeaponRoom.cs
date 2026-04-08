@@ -32,10 +32,10 @@ public class ClearInfestedWeaponRoom : QuestTaskBase
         }
     }
 
-    public void CompletedInfestedRoom()
+    public void CompletedInfestedRoom(Room room)
     {
         if (Spawning.instance == null) { return; }
-        if (Spawning.instance.questID == questInfos[0].quest.prerequisite.id)
+        if (Spawning.instance.parentRoom.questID == questInfos[0].quest.prerequisite.id)
         {
             if (Spawning.instance.playerClearedRoom == true)
             {

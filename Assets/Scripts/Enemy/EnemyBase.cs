@@ -107,7 +107,7 @@ public class EnemyBase : MonoBehaviour
             LevelUpManager.OnCardChosen += PauseAndUnpauseEnemy;
 
             GameState.instance.OnEnteringInfestedRoom += RecordVariablesOnRoomStart;
-            GameState.instance.OnCompletedInfestedClear += ResetVariablesToRecorded;
+            GameState.instance.OnCompletedInfestedClear += ResetVariablesToRecordedFromCompletedInfestedRoom;
             GameState.instance.OnPlayerRespawn += ResetVariablesToRecorded;
             GameState.instance.OnPlayerRetry += ResetVariablesToRecorded;
         }
@@ -141,7 +141,7 @@ public class EnemyBase : MonoBehaviour
         LevelUpManager.OnCardChosen -= PauseAndUnpauseEnemy;
 
         GameState.instance.OnEnteringInfestedRoom -= RecordVariablesOnRoomStart;
-        GameState.instance.OnCompletedInfestedClear -= ResetVariablesToRecorded;
+        GameState.instance.OnCompletedInfestedClear -= ResetVariablesToRecordedFromCompletedInfestedRoom;
         GameState.instance.OnPlayerRespawn -= ResetVariablesToRecorded;
         GameState.instance.OnPlayerRetry -= ResetVariablesToRecorded;
 
@@ -160,6 +160,12 @@ public class EnemyBase : MonoBehaviour
     }
 
     public void ResetVariablesToRecorded()
+    {
+        dropFrequencyPercentChance = recordedDropFrequencyPercentChance;
+        experienceAdditive = 0;
+    }
+
+    public void ResetVariablesToRecordedFromCompletedInfestedRoom(Room room)
     {
         dropFrequencyPercentChance = recordedDropFrequencyPercentChance;
         experienceAdditive = 0;

@@ -75,7 +75,7 @@ public class WeaponBase : MonoBehaviour
             GameState.instance.OnEnteringInfestedRoom += AddStatsFromPlayerPermanentUpgrades;
             GameState.instance.OnEnteringInfestedRoom += RecordWeaponStats;
 
-            GameState.instance.OnCompletedInfestedClear += ResetToRecordedWeaponStats;
+            GameState.instance.OnCompletedInfestedClear += ResetToRecordedWeaponStatsOnInfestedRoomCompletion;
 
             GameState.instance.OnPlayerRetry += RandomiseWeaponFireTime;
             GameState.instance.OnPlayerRetry += PauseWeapon;
@@ -98,7 +98,7 @@ public class WeaponBase : MonoBehaviour
         GameState.instance.OnEnteringInfestedRoom -= AddStatsFromPlayerPermanentUpgrades;
         GameState.instance.OnEnteringInfestedRoom -= RecordWeaponStats;
 
-        GameState.instance.OnCompletedInfestedClear -= ResetToRecordedWeaponStats;
+        GameState.instance.OnCompletedInfestedClear -= ResetToRecordedWeaponStatsOnInfestedRoomCompletion;
 
         GameState.instance.OnPlayerRetry -= RandomiseWeaponFireTime;
         GameState.instance.OnPlayerRetry -= PauseWeapon;
@@ -208,6 +208,16 @@ public class WeaponBase : MonoBehaviour
     }
 
     public void ResetToRecordedWeaponStats()
+    {
+        damage = recordedDamage;
+        fireRate = recordedFireRate;
+        critChance = recordedCritChance;
+        critDamage = recordedCritDamage;
+        bulletEffectCount = recordedBulletEffectCount;
+        weaponLevel = 0;
+    }
+
+    public void ResetToRecordedWeaponStatsOnInfestedRoomCompletion(Room room)
     {
         damage = recordedDamage;
         fireRate = recordedFireRate;

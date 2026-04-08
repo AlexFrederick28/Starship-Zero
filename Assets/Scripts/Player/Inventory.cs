@@ -154,6 +154,35 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public void RemoveGapsFromInventoryOnInfestedRoomCompletion(Room room)
+    {
+        int desiredPosition = 0;
+
+        for (int i = 0; i < inventorySlots.Count; i++)
+        {
+            // scan through the inventory
+            if (inventorySlots[i].inventoryItem != null)
+            {
+                // if the current inventory slot (i) is not empty, then it is occupied 
+                if (i != desiredPosition)
+                {
+                    // if the occupied position is not equal to the desired position, move slots
+                    inventorySlots[desiredPosition].inventoryItem = inventorySlots[i].inventoryItem;
+                    inventorySlots[desiredPosition].currentStackSize = inventorySlots[i].currentStackSize;
+                    inventorySlots[desiredPosition].weaponEquipped = inventorySlots[i].weaponEquipped;
+                    inventorySlots[desiredPosition].equipID = inventorySlots[i].equipID;
+
+                    inventorySlots[i].RenewObject();
+                    inventorySlots[desiredPosition].RefreshSlot();
+                    inventorySlots[i].RefreshSlot();
+                }
+
+                // if the current occupied slot (i) is equal to the desired position keep looking for an empty slot
+                desiredPosition++;
+            }
+        }
+    }
+
     public void AddItemToInventory(InventoryItemPackage type)
     {
         // WEAPONS SHOULD NOT STACK 
@@ -543,7 +572,7 @@ public class Inventory : MonoBehaviour
         slot.weaponEquipped = false;
     }
 
-    public void DestroyLoadout()
+    public void DestroyLoadout(Room room)
     {
         for (int i = 0; i < weaponLoadoutList.Count; i++)
         {
