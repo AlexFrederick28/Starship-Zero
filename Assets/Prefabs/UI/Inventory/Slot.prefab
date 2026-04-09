@@ -90,28 +90,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c22c3d3963caa314eb09762c085f3e75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
-  stackSize: 0
-  inventoryItem:
-    isSpecimen: 0
-    isWeapon: 0
-    maxStackSize: 0
-    currentStackSize: 0
-    name: 
-    description: 
-    sellAmount: 0
-    rarity: 0
-    sprite: {fileID: 0}
-    dropChance: 0
-    baseDamage: 0
-    baseFireRate: 0
-    baseCritChance: 0
-    baseCritDamage: 0
-    projectileSpeed: 0
+  currentStackSize: 0
+  amountFromStackToSell: 0
+  slotPosition: 0
+  inventoryItem: {fileID: 0}
   childImage: {fileID: 4944570018890060777}
   slotImage: {fileID: 8262624077569818423}
   stackNumberText: {fileID: 5188109626206902275}
   originalColour: {r: 0, g: 0, b: 0, a: 0.7058824}
   highlightedColour: {r: 1, g: 0.8275918, b: 0, a: 0.5882353}
+  selectedSlot: 0
+  viewingSlot: 0
+  weaponEquipped: 0
+  equipID: 0
+  isLoadoutSlot: 0
 --- !u!1 &4291193602153406415
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,10 +136,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6038722121286108870}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 80, y: 80}
+  m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7890376810814474070
 CanvasRenderer:

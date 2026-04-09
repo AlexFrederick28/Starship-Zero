@@ -19,7 +19,7 @@ MonoBehaviour:
   description: na
   sellAmount: 0
   rarity: 0
-  sprite: {fileID: 6199476883190837557, guid: fcbbbbdb02c93484e83cb4726f532044, type: 3}
+  sprite: {fileID: -3076093986956024022, guid: 6784aa77515cfe245b08545c7ac5a5ab, type: 3}
   dropChance: 0
   weapon: {fileID: 11400000, guid: 05999a0be426d764f8c18b11c29079bb, type: 2}
   weaponDescription:

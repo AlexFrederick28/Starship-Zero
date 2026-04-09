@@ -15,10 +15,11 @@ MonoBehaviour:
   weaponName: Dusty Pistol
   weaponDescription: Early game simple pistol that shoots basic projectiles and is
     consistent
-  weaponSprite: {fileID: 0}
+  weaponSprite: {fileID: -3076093986956024022, guid: 6784aa77515cfe245b08545c7ac5a5ab, type: 3}
   damage: 5
   fireRate: 2
   critChance: 0
   critDamage: 50
   projectileSpeed: 10
   projectileToFire: {fileID: 396421345929245815, guid: ca871753ad77499448ad90838024f6d9, type: 3}
+  isShotgun: 0

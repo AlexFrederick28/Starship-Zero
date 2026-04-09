@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponName: 'Explosive Shotgun '
   weaponDescription: 'Shotgun with a WIDE spread and fast projectiles in an arc that
     shoots slowly  '
-  weaponSprite: {fileID: 0}
+  weaponSprite: {fileID: 6687262570613895729, guid: dac5dcb06c97c934e8d671988c3236d2, type: 3}
   damage: 10
   fireRate: 0.75
   critChance: 0

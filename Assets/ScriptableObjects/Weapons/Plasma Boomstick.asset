@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponScriptableObject
   weaponName: Plasma Boomstick
   weaponDescription: A shotgun that has a small spread and medium fire rate
-  weaponSprite: {fileID: 0}
+  weaponSprite: {fileID: -7931584429332073470, guid: 786a7b7a24304594c9da566558544819, type: 3}
   damage: 10
   fireRate: 1
   critChance: 0

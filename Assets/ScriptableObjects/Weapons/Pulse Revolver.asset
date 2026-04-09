@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponScriptableObject
   weaponName: Pulse Revolver
   weaponDescription: 'Pistol that does mediocre single target damage  '
-  weaponSprite: {fileID: 0}
+  weaponSprite: {fileID: -1142850308211932723, guid: 27d5ccc71d10f594f8cc2746372436ef, type: 3}
   damage: 10
   fireRate: 1
   critChance: 0
   critDamage: 50
   projectileSpeed: 15
   projectileToFire: {fileID: 396421345929245815, guid: ca871753ad77499448ad90838024f6d9, type: 3}
+  isShotgun: 0

@@ -15,10 +15,11 @@ MonoBehaviour:
   weaponName: '44 Magnum Blaster  '
   weaponDescription: 'A high damaging pistol with that has a lower fire rate than
     the other pistols  '
-  weaponSprite: {fileID: 0}
+  weaponSprite: {fileID: 4286688239122013104, guid: 60e64c1d1279350498b0053745e1859d, type: 3}
   damage: 20
   fireRate: 0.75
   critChance: 5
   critDamage: 50
   projectileSpeed: 20
   projectileToFire: {fileID: 396421345929245815, guid: ca871753ad77499448ad90838024f6d9, type: 3}
+  isShotgun: 0
