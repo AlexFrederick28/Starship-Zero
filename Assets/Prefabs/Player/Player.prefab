@@ -691,6 +691,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBase
   currentExperience: 0
+  isLevellingUp: 0
   experienceNeeded: 0
   experienceCurve:
     serializedVersion: 2
