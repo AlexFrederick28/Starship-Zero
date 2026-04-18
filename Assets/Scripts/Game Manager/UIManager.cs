@@ -130,6 +130,14 @@ public class UIManager : MonoBehaviour
     [Space]
 
     public GameObject pauseMenuParent;
+    public GameObject pauseButtonPanel;
+    public GameObject audioPanel;
+    public GameObject controlPanel;
+
+    public Slider MasterSlider;// access the slider volume - MasterSlider.value
+    public Slider MusicSlider;
+    public Slider SoundsEffectsSlider;
+
 
     public static UIManager instance;
     private void OnEnable()

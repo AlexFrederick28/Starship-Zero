@@ -13,7 +13,7 @@ public class PauseUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //Debug.Log(UIManager.instance.MasterSlider.value); // volume for master
     }
 
     public void TogglePauseUI(InputAction.CallbackContext context)
@@ -58,5 +58,43 @@ public class PauseUI : MonoBehaviour
         }
      
     }
+
+    public void CloseParentPauseUI()
+    {
+        UIManager.instance.pauseMenuParent.SetActive(false);
+        GameState.instance.ChangeToPreviousState();
+    }
+
+
+    public void OpenPauseButtonsUI()
+    {
+        UIManager.instance.pauseButtonPanel.SetActive(true);
+    }
+
+    public void ClosePauseButtonsUI()
+    {
+        UIManager.instance.pauseButtonPanel.SetActive(false);
+    }
+
+    public void OpenControlUI()
+    {
+        UIManager.instance.controlPanel.SetActive(true);
+    }
+
+    public void CloseControlUI()
+    {
+        UIManager.instance.controlPanel.SetActive(false);
+    }
+
+    public void OpenVolumeUI()
+    {
+        UIManager.instance.audioPanel.SetActive(true);
+    }
+
+    public void CloseVolumeUI()
+    {
+        UIManager.instance.audioPanel.SetActive(false);
+    }
+
 
 }
