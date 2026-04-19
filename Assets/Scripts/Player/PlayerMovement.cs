@@ -16,19 +16,27 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] protected float volume;
     [SerializeField] protected AudioClip footstepClip;
 
+    [SerializeField] protected Animator animator;
+    [SerializeField] private string currentState;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponentInChildren<Animator>(); // View - child has animator
+
+        SetAnimFrontSide(); // front default
     }
 
     private void Update()
     {
-        MoveAnimations();
+
     }
 
     private void FixedUpdate()
     {
         rb.linearVelocity = moveInput * player.speed;
+
+        MoveAnimations();
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -42,5 +50,80 @@ public class PlayerMovement : MonoBehaviour
     {
         // use vector2 move input to set the correct animation (Idle, Up, Down, left, Right)
 
+        // if move input forward = SetFront etc
+
+        if (moveInput.y >= 1)
+        {
+            SetAnimBackSide();
+        }
+
+        else if (moveInput.y <= -1)
+        {
+            SetAnimFrontSide();
+        }
+
+        else if (moveInput.x <= -0.5)
+        {
+            SetAnimLeftSide();
+        }
+
+        else if (moveInput.x >= 0.5f)
+        {
+            SetAnimRightSide();
+        }
+
+        else if (moveInput.x == 0 && moveInput.y == 0)
+        {
+            SetAnimFrontSide(); // should be idle?
+        }
+
+
     }
+
+    public void SetAnimIdle()
+    {
+        // idle stuff
+    }
+
+    public void SetAnimFrontSide()
+    {
+        //currentState = "FrontSide";
+
+        PlaySetAnimation("FrontSide");
+    }
+
+    public void SetAnimBackSide()
+    {
+        //currentState = "BackSide";
+
+        PlaySetAnimation("BackSide");
+    }
+
+    public void SetAnimLeftSide()
+    {
+        //currentState = "LeftSide";
+
+        PlaySetAnimation("LeftSide");
+    }
+
+    public void SetAnimRightSide()
+    {
+        //currentState = "RightSide";
+
+        PlaySetAnimation("RightSide");
+    }
+
+    public void PlaySetAnimation(string stateToPlay)
+    {
+        if (currentState == stateToPlay)
+        {
+            return; // already playing
+        }
+
+        currentState = stateToPlay;
+
+        Debug.Log("Anim State: " + currentState);
+        animator.CrossFadeInFixedTime(currentState, 0, 0); // state, transition time, layer?
+    }
+
 }
