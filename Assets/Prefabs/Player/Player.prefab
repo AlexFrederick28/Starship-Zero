@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 739644908994417275}
   - component: {fileID: 1690413686337806070}
   m_Layer: 30
-  m_Name: Short Enemy Hit Detection
+  m_Name: Hit Detection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,10 +129,10 @@ CapsuleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 134217729
+    m_Bits: 2617245697
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 2751463478
+    m_Bits: 536870966
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -142,16 +142,16 @@ CapsuleCollider2D:
     m_Bits: 4294967295
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 134217729
+    m_Bits: 2617245697
   m_CallbackLayers:
     serializedVersion: 2
-    m_Bits: 134217729
+    m_Bits: 2617245697
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.7}
-  m_Size: {x: 0.8, y: 1.35}
+  m_Offset: {x: 0, y: -0.26}
+  m_Size: {x: 0.8, y: 2.65}
   m_Direction: 0
 --- !u!1 &1121210451778032649
 GameObject:
@@ -179,8 +179,8 @@ Transform:
   m_GameObject: {fileID: 1121210451778032649}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.24, z: 0}
-  m_LocalScale: {x: 1.6, y: 1.6, z: 1}
+  m_LocalPosition: {x: 0, y: -0.28, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7311839100965269547}
@@ -219,8 +219,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -1.1}
-  m_Size: {x: 0.7, y: 0.3}
+  m_Offset: {x: 0, y: -1.84}
+  m_Size: {x: 1, y: 0.6}
   m_Direction: 1
 --- !u!1 &2951328098434718891
 GameObject:
@@ -566,7 +566,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3257450334941862889, guid: a83b2ce53e772844bbbe9a12358cf20d, type: 3}
+  m_Sprite: {fileID: -5795601880033637210, guid: 3f4b5e69604518a42b065e9f672937a1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -640,7 +640,6 @@ Transform:
   - {fileID: 9116013883404478746}
   - {fileID: 6743839964712983853}
   - {fileID: 739644908994417275}
-  - {fileID: 902616250665091808}
   - {fileID: 2439550551501633499}
   - {fileID: 5812815393463584494}
   - {fileID: 7895349657158364669}
@@ -953,7 +952,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2439550551501633499
 Transform:
   m_ObjectHideFlags: 0
@@ -1381,72 +1380,3 @@ MonoBehaviour:
     m_Bits: 33554432
   cardManager: {fileID: 0}
   projectileSOInfo: {fileID: 0}
---- !u!1 &8932506193411276592
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 902616250665091808}
-  - component: {fileID: 6491394265164180661}
-  m_Layer: 30
-  m_Name: Tall&Flying Enemy Hit Detection
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &902616250665091808
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8932506193411276592}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.6, y: 1.6, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7311839100965269547}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &6491394265164180661
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8932506193411276592}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 2483027969
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 1610612790
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 2483027969
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 2483027969
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.4}
-  m_Size: {x: 0.8, y: 1.6}
-  m_Direction: 0

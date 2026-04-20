@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 400
+  spritePixelsToUnits: 650
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -117,9 +117,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 512
-        width: 256
-        height: 256
+        y: 854
+        width: 426
+        height: 426
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -138,10 +138,10 @@ TextureImporter:
       name: StarshipZero_Tilemap_WallsHalfSquare_1
       rect:
         serializedVersion: 2
-        x: 256
-        y: 512
-        width: 256
-        height: 256
+        x: 426
+        y: 854
+        width: 426
+        height: 426
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,8 +150,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06d2fa9dc5bbd124c8c600589803c2da
-      internalID: -2118768247
+      spriteID: 8856665b9e7e48d418f8f1082a68a85f
+      internalID: -1139797442
       vertices: []
       indices: 
       edges: []
@@ -160,10 +160,10 @@ TextureImporter:
       name: StarshipZero_Tilemap_WallsHalfSquare_2
       rect:
         serializedVersion: 2
-        x: 512
-        y: 512
-        width: 256
-        height: 256
+        x: 852
+        y: 854
+        width: 426
+        height: 426
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,8 +172,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d3e9006e4f11b1449a07b17d2ac997d0
-      internalID: 258590338
+      spriteID: 17358b1ef9678e24b9bbb0c64b83eceb
+      internalID: 1533645081
       vertices: []
       indices: 
       edges: []
@@ -183,9 +183,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 256
-        width: 256
-        height: 256
+        y: 428
+        width: 426
+        height: 426
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,8 +194,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6290391db3cfd034b9727614180ca7cc
-      internalID: -266901565
+      spriteID: a06c3c130ab45cc4597d52c4e51186eb
+      internalID: -2052302659
       vertices: []
       indices: 
       edges: []
@@ -204,10 +204,10 @@ TextureImporter:
       name: StarshipZero_Tilemap_WallsHalfSquare_4
       rect:
         serializedVersion: 2
-        x: 512
-        y: 256
-        width: 256
-        height: 256
+        x: 852
+        y: 428
+        width: 426
+        height: 426
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,8 +216,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f41e2f64683fa7640b49a383564aca57
-      internalID: 338191960
+      spriteID: df71e1b8002442a45a9ebadff51b356a
+      internalID: -224460929
       vertices: []
       indices: 
       edges: []
@@ -227,9 +227,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 256
-        height: 256
+        y: 2
+        width: 426
+        height: 426
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -238,8 +238,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 78ebfcfc86d3dfe4c999709dc70f34b3
-      internalID: -1457827853
+      spriteID: 6e00380531bec064786948e159d05c54
+      internalID: -230205805
       vertices: []
       indices: 
       edges: []
@@ -248,10 +248,10 @@ TextureImporter:
       name: StarshipZero_Tilemap_WallsHalfSquare_6
       rect:
         serializedVersion: 2
-        x: 256
-        y: 0
-        width: 256
-        height: 256
+        x: 426
+        y: 2
+        width: 426
+        height: 426
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -260,8 +260,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a25c9b6ee4196314fa301beae94698b2
-      internalID: -714546007
+      spriteID: c4cb85d0e8b7ee7479d9a3c6251a9078
+      internalID: 475512907
       vertices: []
       indices: 
       edges: []
@@ -270,10 +270,10 @@ TextureImporter:
       name: StarshipZero_Tilemap_WallsHalfSquare_7
       rect:
         serializedVersion: 2
-        x: 512
-        y: 0
-        width: 256
-        height: 256
+        x: 852
+        y: 2
+        width: 426
+        height: 426
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -282,8 +282,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 952f8dd6370d9bc46a1ab7ce8d79a822
-      internalID: 1166885024
+      spriteID: ce40e54cb686da54ba40d7702b3ce255
+      internalID: 1874650674
       vertices: []
       indices: 
       edges: []
@@ -292,7 +292,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 7bcae9806b2f0c242adfc825115ecd7c
+    spriteID: 4aaef89e47477ee40b4808ee1673d7e0
     internalID: 0
     vertices: []
     indices: 
@@ -302,16 +302,16 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":3.0,"y":3.0},"gridSpriteSize":{"x":256.0,"y":256.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":3.0,"y":3.0},"gridSpriteSize":{"x":426.0,"y":426.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       StarshipZero_Tilemap_WallsHalfSquare_0: -8012504186830731855
-      StarshipZero_Tilemap_WallsHalfSquare_1: -2118768247
-      StarshipZero_Tilemap_WallsHalfSquare_2: 258590338
-      StarshipZero_Tilemap_WallsHalfSquare_3: -266901565
-      StarshipZero_Tilemap_WallsHalfSquare_4: 338191960
-      StarshipZero_Tilemap_WallsHalfSquare_5: -1457827853
-      StarshipZero_Tilemap_WallsHalfSquare_6: -714546007
-      StarshipZero_Tilemap_WallsHalfSquare_7: 1166885024
+      StarshipZero_Tilemap_WallsHalfSquare_1: -1139797442
+      StarshipZero_Tilemap_WallsHalfSquare_2: 1533645081
+      StarshipZero_Tilemap_WallsHalfSquare_3: -2052302659
+      StarshipZero_Tilemap_WallsHalfSquare_4: -224460929
+      StarshipZero_Tilemap_WallsHalfSquare_5: -230205805
+      StarshipZero_Tilemap_WallsHalfSquare_6: 475512907
+      StarshipZero_Tilemap_WallsHalfSquare_7: 1874650674
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
