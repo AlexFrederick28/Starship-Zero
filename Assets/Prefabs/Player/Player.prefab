@@ -587,7 +587,7 @@ Animator:
   m_GameObject: {fileID: 4318514336278049100}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 429e7edec9c35dc4fa71bb279487513d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 73374f89aed8cf146a6d5bdd8a1f7c4d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -691,6 +691,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBase
   currentExperience: 0
+  isLevellingUp: 0
   experienceNeeded: 0
   experienceCurve:
     serializedVersion: 2
@@ -753,6 +754,8 @@ MonoBehaviour:
   moveInput: {x: 0, y: 0}
   volume: 0.5
   footstepClip: {fileID: 8300000, guid: 4630f484283440b46826ceb8ecd9b582, type: 3}
+  animator: {fileID: 0}
+  currentState: 
 --- !u!50 &8227415630955463128
 Rigidbody2D:
   serializedVersion: 5

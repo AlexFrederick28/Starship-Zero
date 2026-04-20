@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 3386434121657024945}
   - component: {fileID: 4020860564896548261}
   - component: {fileID: 824038302523504858}
+  - component: {fileID: 3680459805288895175}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -76,7 +77,9 @@ MonoBehaviour:
   infestedMediumRoomList: []
   infestedHardRoomList: []
   questRoomList: []
+  navigationTabUIList: []
   roomNavigationUIPrefab: {fileID: 1636734408569493664, guid: 16d0c4b621ff41c48be1ba31869dae96, type: 3}
+  selectedNavigationTab: {fileID: 0}
 --- !u!114 &7047259803151340473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,9 +200,15 @@ MonoBehaviour:
   deathMenuParent: {fileID: 0}
   respawnButton: {fileID: 0}
   retryInfestedRoomButton: {fileID: 0}
+  navigationNonQuestScrollView: {fileID: 0}
+  navigationQuestScrollView: {fileID: 0}
+  navigationMenuParent: {fileID: 0}
+  navigationQuestParent: {fileID: 0}
   navigationEasyUIParent: {fileID: 0}
   navigationMediumUIParent: {fileID: 0}
   navigationHardUIParent: {fileID: 0}
+  navigationRoomInfoText: {fileID: 0}
+  navigationTravelButton: {fileID: 0}
   levelUpMenuParent: {fileID: 0}
   levelUpCardUIList: []
   currentTime: {fileID: 0}
@@ -285,3 +294,15 @@ MonoBehaviour:
   - {fileID: 1619084867359471902, guid: d1667723d7ed25445a34a2d9fc05dcba, type: 3}
   - {fileID: 1619084867359471902, guid: 249a97c472e48924680a2414a8623545, type: 3}
   allWeapons: []
+--- !u!114 &3680459805288895175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3904750311189774911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e32f330438820342b8bf93cd53e9c78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseUI

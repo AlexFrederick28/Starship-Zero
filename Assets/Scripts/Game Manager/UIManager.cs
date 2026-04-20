@@ -126,6 +126,19 @@ public class UIManager : MonoBehaviour
     public Action OnOpenedUI;
     public Action OnClosedUI;
 
+    [Header("Pause UI")]
+    [Space]
+
+    public GameObject pauseMenuParent;
+    public GameObject pauseButtonPanel;
+    public GameObject audioPanel;
+    public GameObject controlPanel;
+
+    public Slider MasterSlider;// access the slider volume - MasterSlider.value
+    public Slider MusicSlider;
+    public Slider SoundsEffectsSlider;
+
+
     public static UIManager instance;
     private void OnEnable()
     {
@@ -250,6 +263,7 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void CloseAllInteractiveUI()
     {
+        if (GameState.instance.currentState == GameState.States.Paused) { return; }
         if (GameState.instance.currentState == GameState.States.RoomClear || GameState.instance.currentState == GameState.States.Main ) { return; }
         inventoryParent.SetActive(false);
         weaponCraftingUIParent.SetActive(false);
@@ -257,7 +271,17 @@ public class UIManager : MonoBehaviour
         cardUnlockParent.SetActive(false);
         tabParent.SetActive(false);
         navigationMenuParent.SetActive(false);
+
+        StopAllCoroutines();
+        StartCoroutine(CloseInteractiveUIDelay());
+    }
+
+    IEnumerator CloseInteractiveUIDelay()
+    {
+        yield return new WaitForSeconds(0.1f);
+
         GameState.instance.ChangeStateToMainWithoutMusic();
+
     }
 
     public void SwapToInventoryUI()
