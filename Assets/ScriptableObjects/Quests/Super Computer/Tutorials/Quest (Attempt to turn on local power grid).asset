@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13d262efe859a104dad7c800dc0e1872, type: 3}
-  m_Name: "TutorialFirstQuest pt.5 \u201CGain access to the Weapons Manufacturer
-    room\u201D 1"
+  m_Name: Quest (Attempt to turn on local power grid)
   m_EditorClassIdentifier: Assembly-CSharp::QuestScriptableObjects
   quest:
-    description: Gain access to the Weapons Manufacturer room
+    description: Attempt to turn on local power grid
     prerequisite:
-      name: Gain access to the Weapons Manufacturer room
+      name: Attempt to turn on local power grid
       id: 7
       level: 0
-      currencyReward: 500
+      currencyReward: 0
       complete: 0

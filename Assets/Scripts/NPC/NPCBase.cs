@@ -122,6 +122,14 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
         if (currentDialogue.completedTopic == false || currentDialogue.completedTopic == true && currentDialogue.isQuest == true && currentDialogue.completedPrerequisite == false || currentDialogue.completedTopic == true && dialogueIndex < newDialogue.Length - 1) //&& currentDialogue.completedPrerequisite == false || currentDialogue.completedTopic == true && dialogueIndex < newDialogue.Length - 1)
         {
             // repeats the same topic if not completed, as well as adds any quest that hasnt already been made active
+
+            if (textIndex == currentDialogue.dialogueText.Length - 1)
+            {
+                //Debug.Log("Completed topic and quest on correct line");
+                CompleteTopic();
+                CompleteQuestOnCurrentDialogue();
+            }
+
             if (textIndex < currentDialogue.dialogueText.Length - 1)
             {
                 textIndex++;
@@ -129,12 +137,6 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
                 ClearText();
                 StartCoroutine(WriteLine_C());
                 ActivateQuest();
-                if (textIndex == currentDialogue.dialogueText.Length - 1)
-                {
-                    //Debug.Log("Completed topic and quest on correct line");
-                    CompleteTopic();
-                    CompleteQuestOnCurrentDialogue();
-                }
             }
             else if (textIndex == currentDialogue.dialogueText.Length - 1)
             {

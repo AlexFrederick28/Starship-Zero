@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13d262efe859a104dad7c800dc0e1872, type: 3}
-  m_Name: "TutorialFirstQuest pt.7 \u201CCraft a weapon\u201D"
+  m_Name: Quest (Clear Infested Weapons Room)
   m_EditorClassIdentifier: Assembly-CSharp::QuestScriptableObjects
   quest:
-    description: Craft a weapon
+    description: Clear Infested Weapons Room
     prerequisite:
-      name: Craft a weapon
-      id: 9
+      name: Clear Infested Weapons Room
+      id: 3
       level: 0
-      currencyReward: 0
+      currencyReward: 500
       complete: 0

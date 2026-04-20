@@ -339,7 +339,7 @@ MonoBehaviour:
   textIndex: 0
   dialogueIndex: 0
   textSpeed: 0.015
-  useVoiceLines: 1
+  useVoiceLines: 0
   volume: 0.25
   minPitch: 1
   maxPitch: 3

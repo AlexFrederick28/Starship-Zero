@@ -5,7 +5,9 @@ public class PickupStarterWeaponTutorial : QuestTaskBase, IInteractable
 {
     [SerializeField] private TextMeshPro gunText;
     [SerializeField] private Collider2D pickupCollider;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private InventoryItemPackage weapon;
+    private bool pickedUpWeapon = false;
 
     public override void Start()
     {
@@ -20,10 +22,17 @@ public class PickupStarterWeaponTutorial : QuestTaskBase, IInteractable
     {
         base.OnQuestUpdate();
 
-        if (gunText.enabled == false)
+        if (gunText.enabled == false && pickedUpWeapon == false)
         {
             pickupCollider.enabled = true;
             gunText.enabled = true;
+        }
+
+        if (GameState.instance.playerInventory.weaponLoadoutList.Count > 0)
+        {
+            RegisterQuestInteraction();
+            Debug.Log("Quest complete");
+            gameObject.SetActive(false);
         }
     }
 
@@ -36,8 +45,10 @@ public class PickupStarterWeaponTutorial : QuestTaskBase, IInteractable
     {
         if (gunText.enabled == false) { return; }
         PickupWeapon();
-        RegisterQuestInteraction();
-        gameObject.SetActive(false);
+        pickupCollider.enabled = false;
+        spriteRenderer.enabled = false;
+        gunText.enabled = false;
+        pickedUpWeapon = true;
     }
 
     public void OnEndInteraction()
