@@ -44,17 +44,26 @@ public class CameraFollowPlayer : MonoBehaviour
         }
     }
 
-    private void Update()
+    //private void Update()
+    //{
+    //    Vector3 targetPosition = target.position + offSet; // location the camera should go
+
+    //    transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocitySpeed, smoothTime); // move camera to target on a smooth damp
+    //}
+
+    private void LateUpdate()
     {
         Vector3 targetPosition = target.position + offSet; // location the camera should go
 
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocitySpeed, smoothTime); // move camera to target on a smooth damp
-    }
 
-    private void FixedUpdate()
-    {
         TetherDistanceCheck();
     }
+
+    //private void FixedUpdate()
+    //{
+    //    TetherDistanceCheck();
+    //}
 
     public void TetherDistanceCheck() // only if tether toggled check if too far from target
     {

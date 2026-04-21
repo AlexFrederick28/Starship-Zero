@@ -630,7 +630,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5168945827272872454}
@@ -660,9 +660,9 @@ MonoBehaviour:
   maxInventorySlots: 96
   selectedSlot: {fileID: 0}
   inventorySlots: []
-  collectionRadius: 2
+  collectionRadius: 1
   collectionInterval: 0.5
-  collectionSpeed: 2
+  collectionSpeed: 6
   layerMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -672,7 +672,11 @@ MonoBehaviour:
   - {fileID: 4184326947844396731}
   - {fileID: 2951328098434718891}
   - {fileID: 8104230526165746787}
-  weaponLoadoutSlotList: []
+  weaponLoadoutSlotList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   weaponLoadoutList: []
   unlockedProjectileTypes:
   - {fileID: 11400000, guid: c4b68c6fede7c2346bd826b99ea11b4d, type: 2}
