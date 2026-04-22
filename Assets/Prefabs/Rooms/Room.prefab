@@ -592,7 +592,6 @@ MonoBehaviour:
   playerExitPoint: {fileID: 4068341901873724054}
   room: {fileID: 803046030391801484}
   spawning: {fileID: 974008507174762601}
-  parentRoom: {fileID: 803046030391801484}
   difficultyName: 
 --- !u!114 &974008507174762601
 MonoBehaviour:
@@ -678,7 +677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 295c347cd598ab247977d68af0f54a00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpecimenPool
-  maxSpecimenPoolCount: 200
+  maxSpecimenPoolCount: 500
   totalSpecimensInPool: 0
   poolParent: {fileID: 0}
   poolParentToSpawn: {fileID: 5143114912004970901, guid: b2af3b64bf8f08c4caf1bd23e4c5895d, type: 3}
@@ -697,7 +696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ab33e3530d2bad4cab9c44d21c953f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Experience
-  maxExperiencePoolCount: 1000
+  maxExperiencePoolCount: 2000
   totalExperienceInPool: 0
   poolParent: {fileID: 0}
   poolParentToSpawn: {fileID: 9027508375457356037, guid: 91f6199349a550a40a9e46a7b1851e06, type: 3}

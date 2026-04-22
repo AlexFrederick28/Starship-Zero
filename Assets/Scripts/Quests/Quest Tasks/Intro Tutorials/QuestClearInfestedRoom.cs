@@ -2,7 +2,7 @@ using System.Data;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ClearInfestedWeaponRoom : QuestTaskBase
+public class QuestClearInfestedRoom : QuestTaskBase
 {
     private bool subscribedToCompletionEvent = false;
 

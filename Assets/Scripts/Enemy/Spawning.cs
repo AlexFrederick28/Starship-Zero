@@ -555,6 +555,10 @@ public class Spawning : Difficulty
             // only reset timer if the player has been respawned or retried the room
             currentTime = 0;
         }
+        else
+        {
+            timerReachedMaxLength = false;
+        }
 
         easyEnemiesSpawned = 0;
         mediumEnemiesSpawned = 0;
