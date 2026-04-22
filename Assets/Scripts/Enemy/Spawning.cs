@@ -155,7 +155,8 @@ public class Spawning : Difficulty
             //StartCoroutine(UIManager.instance.NewLargeNotification("Room Cleared", screenTime, textSizeIncrease));
             UIManager.instance.SpawnLargeNotification("Room Cleared", screenTime, textSizeIncrease);
 
-            ResetInfestedRoom();
+            //ResetInfestedRoom();
+            OnInfestedRoomReset?.Invoke();
             playerClearedRoom = true;
             GameState.instance.ChangeStateToMain();
             foreach (GameObject go in questObjects)
@@ -549,7 +550,7 @@ public class Spawning : Difficulty
 
     public void ResetInfestedRoom()
     {
-        Debug.Log("Reset room");
+        //Debug.Log("Reset room");
         if (timerReachedMaxLength == false)
         {
             // only reset timer if the player has been respawned or retried the room
@@ -557,6 +558,7 @@ public class Spawning : Difficulty
         }
         else
         {
+            currentTime = 0;
             timerReachedMaxLength = false;
         }
 

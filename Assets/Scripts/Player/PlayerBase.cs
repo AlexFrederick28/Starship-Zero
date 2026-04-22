@@ -28,6 +28,7 @@ public class PlayerBase : MonoBehaviour
                 return;
             }
 
+            if (playerDead == true) { return; }
             while (currentExperience >= experienceNeeded)
             {
                 LevelUp();
@@ -264,6 +265,7 @@ public class PlayerBase : MonoBehaviour
     public void TakeDamage(float damage)
     {
         // enemy take damage from player
+        if (GameState.instance.currentState == GameState.States.Paused) { return; }
 
         if (Health != 0)
         {
@@ -307,6 +309,8 @@ public class PlayerBase : MonoBehaviour
 
     public void AddHealth(int amount)
     {
+        if (GameState.instance.currentState == GameState.States.Paused) { return; }
+
         Health += amount;
     }
 
@@ -317,6 +321,8 @@ public class PlayerBase : MonoBehaviour
 
     public void PassiveHealthRegen()
     {
+        if (GameState.instance.currentState == GameState.States.Paused) { return; }
+
         currentHealth += healthRegenAmount;
         readyToRegen = false;
     }
@@ -404,17 +410,6 @@ public class PlayerBase : MonoBehaviour
     public void ResetPlayerHealthOnInfestedRoomCompletion(Room room)
     {
         Health = maxHealth;
-    }
-
-    public void RevealFogOfWar()
-    {
-        //RaycastHit2D[] hits2D = new RaycastHit2D[50];
-        //hits2D = Physics2D.CircleCastAll(transform.position, fogOfWarClearRadius, Vector2.zero, 0f, fogLayerMask);
-
-        //for (int i = 0; i < hits2D.Length; i++)
-        //{
-        //    hits2D[i].collider.gameObject.SetActive(false);
-        //}
     }
 
     public void LevelUpCheckQueue()

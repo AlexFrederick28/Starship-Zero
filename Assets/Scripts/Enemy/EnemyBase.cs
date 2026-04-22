@@ -106,13 +106,15 @@ public class EnemyBase : MonoBehaviour
             GameState.instance.OnPlayerLevelUp += PauseAndUnpauseEnemy;
             LevelUpManager.OnCardChosen += PauseAndUnpauseEnemy;
 
-            GameState.instance.OnEnteringInfestedRoom += RecordVariablesOnRoomStart;
+            //GameState.instance.OnEnteringInfestedRoom += RecordVariablesOnRoomStart;
             GameState.instance.OnCompletedInfestedClear += ResetVariablesToRecordedFromCompletedInfestedRoom;
             GameState.instance.OnPlayerRespawn += ResetVariablesToRecorded;
             GameState.instance.OnPlayerRetry += ResetVariablesToRecorded;
         }
 
         PlayerBase.OnPlayerDeath += PauseAndUnpauseEnemy;
+
+        RecordVariablesOnRoomStart();
 
         if (scaledStats == false)
         {
@@ -140,7 +142,7 @@ public class EnemyBase : MonoBehaviour
         GameState.instance.OnPlayerLevelUp -= PauseAndUnpauseEnemy;
         LevelUpManager.OnCardChosen -= PauseAndUnpauseEnemy;
 
-        GameState.instance.OnEnteringInfestedRoom -= RecordVariablesOnRoomStart;
+        //GameState.instance.OnEnteringInfestedRoom -= RecordVariablesOnRoomStart;
         GameState.instance.OnCompletedInfestedClear -= ResetVariablesToRecordedFromCompletedInfestedRoom;
         GameState.instance.OnPlayerRespawn -= ResetVariablesToRecorded;
         GameState.instance.OnPlayerRetry -= ResetVariablesToRecorded;
@@ -157,6 +159,7 @@ public class EnemyBase : MonoBehaviour
     public void RecordVariablesOnRoomStart()
     {
         recordedDropFrequencyPercentChance = dropFrequencyPercentChance;
+        //Debug.Log("Recorded drop chance = " + recordedDropFrequencyPercentChance);
     }
 
     public void ResetVariablesToRecorded()
@@ -205,6 +208,7 @@ public class EnemyBase : MonoBehaviour
     {
         // enemy attack player - mostly used for animations
         if (enemyPaused == true) { return; }
+        if (GameState.instance.currentState == GameState.States.Paused) { return; }
         Debug.Log("Enemy used Attack!");
         cooldownTimer = 0f;
         readyToAttack = false;
