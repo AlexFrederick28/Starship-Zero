@@ -29,8 +29,10 @@ MonoBehaviour:
   - amount: 
     description: 
   - amount: 
-    description: Pistol that does mediocre single target damage.
+    description: The second iteration of the plasma pistol, its refined design comes
+      with a sleek and sharp style. Known for its cheap cost and standard effectiveness.
   weapon: {fileID: 11400000, guid: b7b77be51fb6cd948a8e0c6a56078354, type: 2}
+  projectile: {fileID: 0}
   item: {fileID: 11400000, guid: c007b520972bb1948a1d7e5abcb055a5, type: 2}
   ingredients:
   - amount: 1

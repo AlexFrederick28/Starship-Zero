@@ -60,6 +60,7 @@ public class CraftingBase : MonoBehaviour, IPointerClickHandler
         if (inventoryContains == recipe.ingredients.Length)
         {
             // once we have checked to see if we have all the ingredients in the players inventory, SHOW the player they can craft it (like a red or green text/background)
+            // HIGHLIGHT GREEN OR SMTH SHOWING THE PLAYER THEY CAN CRAFT
             canCraft = true;
         }
         else
@@ -151,9 +152,9 @@ public class CraftingBase : MonoBehaviour, IPointerClickHandler
         Inventory inventory = GameState.instance.playerInventory;
         if (recipe.isFree == true)
         {
-            for (int i = 0; i < inventory.inventorySlots.Count; i++)
+            for (int i = 0; i < inventory.weaponSlots.Count; i++)
             {
-                if (inventory.inventorySlots[i].inventoryItem == recipe.item)
+                if (inventory.weaponSlots[i].inventoryItem == recipe.item)
                 {
                     Debug.Log("Player inventory already contains this free item!");
                     return;
@@ -176,7 +177,9 @@ public class CraftingBase : MonoBehaviour, IPointerClickHandler
             GameState.instance.player.currency -= recipe.purchaseCost;
         }
 
-        GameState.instance.playerInventory.AddItemToInventory(recipe.item);
+        //GameState.instance.playerInventory.AddItemToInventory(recipe.item);
+        GameState.instance.playerInventory.AddWeaponToInventory(recipe.item);
+
         Debug.Log("Crafted weapon: " + recipe.weapon.weaponName);
         if (craftedFirstWeaponTutorial == false)
         {

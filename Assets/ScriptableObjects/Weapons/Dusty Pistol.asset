@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Dusty Pistol
   m_EditorClassIdentifier: Assembly-CSharp::WeaponScriptableObject
   weaponName: Dusty Pistol
-  weaponDescription: Early game simple pistol that shoots basic projectiles and is
-    consistent
-  weaponSprite: {fileID: -3076093986956024022, guid: 6784aa77515cfe245b08545c7ac5a5ab, type: 3}
+  weaponDescription: One of the first iterations for the plasma pistol, typically
+    known as the ticking time bomb due to its high hazard. So small it fits in the
+    palm of your hand, made from generic stainless steel.
+  weaponSprite: {fileID: 21300000, guid: 6784aa77515cfe245b08545c7ac5a5ab, type: 3}
   damage: 5
   fireRate: 2
   critChance: 0
@@ -23,3 +24,4 @@ MonoBehaviour:
   projectileSpeed: 10
   projectileToFire: {fileID: 396421345929245815, guid: ca871753ad77499448ad90838024f6d9, type: 3}
   isShotgun: 0
+  fireSound: {fileID: 0}

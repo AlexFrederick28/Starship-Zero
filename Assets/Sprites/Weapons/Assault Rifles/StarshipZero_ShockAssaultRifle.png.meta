@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: dac5dcb06c97c934e8d671988c3236d2
+guid: d6cc19d7babc06049913e4dd336aea36
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6687262570613895729
-    second: StarshipZero_ExplosiveShotgun_0
+      213: 457885580880079940
+    second: StarshipZero_ShockAssaultRifle_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -12,12 +12,12 @@ TextureImporter:
     enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
-    fadeOut: 0
+    fadeOut: 1
     borderMipMap: 0
     mipMapsPreserveCoverage: 0
     alphaTestReferenceValue: 0.5
-    mipMapFadeDistanceStart: 1
-    mipMapFadeDistanceEnd: 3
+    mipMapFadeDistanceStart: 2
+    mipMapFadeDistanceEnd: 4
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
@@ -28,7 +28,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMipmapLimit: 0
+  ignoreMipmapLimit: 1
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -46,11 +46,11 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  alignment: 9
+  spritePivot: {x: 0.49402624, y: 0.3874312}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -74,7 +74,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: StarshipZero_ExplosiveShotgun_0
+      name: StarshipZero_ShockAssaultRifle_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 47
         y: 0
-        width: 1859
-        height: 1859
+        width: 1836
+        height: 1836
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 132f43990ededcc50800000000000000
-      internalID: 6687262570613895729
+      spriteID: 44c6124828cba5600800000000000000
+      internalID: 457885580880079940
       vertices: []
       indices: 
       edges: []
@@ -138,8 +138,8 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 21f1d8452bd28bd49907f51e5bcc070a
-    internalID: 0
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      StarshipZero_ExplosiveShotgun_0: 6687262570613895729
+      StarshipZero_ShockAssaultRifle_0: 457885580880079940
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

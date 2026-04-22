@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 786a7b7a24304594c9da566558544819
+guid: ad5d2004aa8841141be62f8b26e54dfa
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7931584429332073470
-    second: StarshipZero_PlasmaBoomstick_0
+      213: -4406483221856330443
+    second: StarshipZero_44MagnumBlaster 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: StarshipZero_PlasmaBoomstick_0
+      name: StarshipZero_44MagnumBlaster 1_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 0
-        width: 1906
-        height: 1906
+        x: 542
+        y: 710
+        width: 820
+        height: 500
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 20474af1cf95de190800000000000000
-      internalID: -7931584429332073470
+      spriteID: 53dd8843bd609d2c0800000000000000
+      internalID: -4406483221856330443
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: d9334d1f14d00014587f1c3250f76b33
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -146,11 +146,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      StarshipZero_PlasmaBoomstick_0: -7931584429332073470
+      StarshipZero_44MagnumBlaster 1_0: -4406483221856330443
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

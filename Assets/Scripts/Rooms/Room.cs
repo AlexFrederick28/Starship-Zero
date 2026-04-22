@@ -3,6 +3,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using TMPro;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class Room : MonoBehaviour
     {
         public RoomStates showOnState;
         public bool isName = false;
+        public bool isTimer = false;
         public string title;
         public string extraText;
         public GameObject childObject;
@@ -190,7 +192,7 @@ public class Room : MonoBehaviour
             textComponent.fontSizeMin = 0.2f;
             textComponent.fontSizeMax = 0.3f;
 
-            if (roomInfoList[i].showOnState == RoomStates.infested && roomInfoList[i].isName == false)
+            if (roomInfoList[i].showOnState == RoomStates.infested && roomInfoList[i].isTimer == true)
             {
                 //float roomDifficulty = (spawning.timerLength / spawning.difficultyMultiplier) / 60;
                 textComponent.text = roomInfoList[i].title + " " + spawning.timerLength.ToString(); //+ "\n" + roomInfoList[i].extraText + " " + (int)roomDifficulty;
@@ -231,6 +233,7 @@ public class Room : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
+        // when inside an infested room, the room info canvas will stay active
         if (collision.gameObject.GetComponent<PlayerBase>() == null || GameState.instance.currentState == GameState.States.RoomClear) { withinInteractionRadius = false; return; }
         else
         {
@@ -242,10 +245,12 @@ public class Room : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerBase>() == null || withinInteractionRadius == true) { return; }
+        if (collision.gameObject.GetComponent<PlayerBase>() == null || withinInteractionRadius == false) { return; }
 
         HideRoomInformation();
-        Debug.Log("exited");
+        //Debug.Log("exited");
+
+        withinInteractionRadius = false;
     }
 
     public virtual void OnDoorAnimationComplete()
@@ -296,7 +301,7 @@ public class Room : MonoBehaviour
         newTab.room = this;
         NavigationManager.instance.navigationTabUIList.Add(newTab);
 
-        Debug.Log("ADDED QUEST ROOM TO NAVIGATION");
+        //Debug.Log("ADDED QUEST ROOM TO NAVIGATION");
     }
 
     public void RemoveQuestRoomFromNavigationList(int questID)

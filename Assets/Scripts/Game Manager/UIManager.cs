@@ -45,6 +45,11 @@ public class UIManager : MonoBehaviour
     public Button weaponLoadoutButton;
 
     [Space]
+    [Header("Weapon Inventory")]
+    public GameObject weaponInventorySlotContentParent;
+    public GameObject weaponInventorySlot;
+
+    [Space]
     [Header("Card Unlock")]
     public GameObject cardUnlockParent;
     public Image cardDescriptionImage;

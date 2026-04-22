@@ -29,7 +29,10 @@ MonoBehaviour:
   - amount: 
     description: 
   - amount: 
-    description: A strong sniper that has a faster fire but deals less damage.
+    description: Developed from the original plasma pistol, the structure of this
+      weapon accomodates for a large amount of firepower from a single projectile,
+      at the cost of being very slow fire rate. The long barrel has been designed
+      for an impressive projectile speed and accuracy.
   weapon: {fileID: 11400000, guid: 5ee2841ad0fd8ac4983f43bb12628877, type: 2}
   projectile: {fileID: 0}
   item: {fileID: 11400000, guid: 43f9ff5b04f2d75458f85e48ceb4c54c, type: 2}

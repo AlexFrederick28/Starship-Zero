@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Explosive Shotgun
   m_EditorClassIdentifier: Assembly-CSharp::WeaponScriptableObject
   weaponName: 'Explosive Shotgun '
-  weaponDescription: 'Shotgun with a WIDE spread and fast projectiles in an arc that
-    shoots slowly  '
-  weaponSprite: {fileID: 6687262570613895729, guid: dac5dcb06c97c934e8d671988c3236d2, type: 3}
+  weaponDescription: The second iteration of the Plasma Shotgun, focusing on a higher
+    damage output. This weapons structure focuses on a large barrel diameter, capable
+    of shooting hard hitting projectiles.
+  weaponSprite: {fileID: 21300000, guid: 99caac795a40bd74f804d4b7785b4954, type: 3}
   damage: 10
   fireRate: 0.75
   critChance: 0
@@ -23,3 +24,4 @@ MonoBehaviour:
   projectileSpeed: 20
   projectileToFire: {fileID: 396421345929245815, guid: ca871753ad77499448ad90838024f6d9, type: 3}
   isShotgun: 1
+  fireSound: {fileID: 0}

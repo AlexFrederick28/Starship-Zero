@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Plasma Boomstick
   m_EditorClassIdentifier: Assembly-CSharp::WeaponScriptableObject
   weaponName: Plasma Boomstick
-  weaponDescription: A shotgun that has a small spread and medium fire rate
-  weaponSprite: {fileID: -7931584429332073470, guid: 786a7b7a24304594c9da566558544819, type: 3}
+  weaponDescription: Utlises a Mites eye to produce a wide spread upon firing, contributing
+    to a reliable damage output.
+  weaponSprite: {fileID: 21300000, guid: d260599b1162bd9468c4c9248b9208f8, type: 3}
   damage: 10
   fireRate: 1
   critChance: 0
@@ -22,3 +23,4 @@ MonoBehaviour:
   projectileSpeed: 15
   projectileToFire: {fileID: 396421345929245815, guid: ca871753ad77499448ad90838024f6d9, type: 3}
   isShotgun: 1
+  fireSound: {fileID: 0}

@@ -23,7 +23,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
     private void OnEnable()
     {
-        if (transform.parent != UIManager.instance.inventorySlotContentParent.transform) { return; }
+        //if (transform.parent != UIManager.instance.inventorySlotContentParent.transform) { return; }
         GameState.instance.playerInventory.OnClearingMultiSelectedSlotsFromList += DeselectSlot;
         if (viewingSlot == true) { SelectSlot(); } // deselect the slot if it is selected
         RefreshSlot();

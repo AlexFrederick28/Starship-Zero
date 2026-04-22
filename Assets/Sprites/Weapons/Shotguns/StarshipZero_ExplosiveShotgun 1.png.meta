@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 27d5ccc71d10f594f8cc2746372436ef
+guid: 99caac795a40bd74f804d4b7785b4954
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7310510069252093163
-    second: StarshipZero_PulseRevolver_0
+      213: 3174018712307441040
+    second: StarshipZero_ExplosiveShotgun 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: StarshipZero_PulseRevolver_0
+      name: StarshipZero_ExplosiveShotgun 1_0
       rect:
         serializedVersion: 2
-        x: 521
-        y: 716
-        width: 878
-        height: 481
+        x: 30
+        y: 589
+        width: 1860
+        height: 743
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: be4ffacdc26247560800000000000000
-      internalID: 7310510069252093163
+      spriteID: 09d1781c3316c0c20800000000000000
+      internalID: 3174018712307441040
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      StarshipZero_PulseRevolver_0: 7310510069252093163
+      StarshipZero_ExplosiveShotgun 1_0: 3174018712307441040
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

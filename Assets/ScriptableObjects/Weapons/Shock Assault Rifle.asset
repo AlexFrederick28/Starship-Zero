@@ -13,12 +13,16 @@ MonoBehaviour:
   m_Name: Shock Assault Rifle
   m_EditorClassIdentifier: Assembly-CSharp::WeaponScriptableObject
   weaponName: 'Shock Assault Rifle  '
-  weaponDescription: A very consistent low damaging assault rifle that constantly
-    fires bullets
-  weaponSprite: {fileID: 0}
+  weaponDescription: Known for its rediculously high fire rate, this weapon succeeds
+    at raining bullets upon your enemies. Uniquely, stores its ammo as a thin liquid
+    within its battery storage, transforming into a high velocity lethal projectile
+    upon being fired.
+  weaponSprite: {fileID: 21300000, guid: d6cc19d7babc06049913e4dd336aea36, type: 3}
   damage: 7.5
   fireRate: 2.5
   critChance: 5
   critDamage: 50
   projectileSpeed: 15
   projectileToFire: {fileID: 396421345929245815, guid: ca871753ad77499448ad90838024f6d9, type: 3}
+  isShotgun: 0
+  fireSound: {fileID: 0}

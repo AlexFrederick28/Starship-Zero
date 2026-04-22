@@ -29,7 +29,12 @@ MonoBehaviour:
   - amount: 
     description: 
   - amount: 
-    description: An extremely strong sniper rifle that exceeds in single target damage.
+    description: A sniper variant, harnesses the power of the Mites for devastating
+      firepower. Functions using the heart of a Mite rather than a supercharged battery
+      - a Mites heart is extremely efficient at carrying and distributing plasma
+      energy, allowing this sniper to produce more power then ever before. The produced
+      energy is stored into a plasma sac also taken from a Mite, necessary to store
+      such as large amount of condensed energy.
   weapon: {fileID: 11400000, guid: dc64a8829b1b7d74696f040b9b68325b, type: 2}
   projectile: {fileID: 0}
   item: {fileID: 11400000, guid: 21414279f7b4e61469bf4c858944467f, type: 2}

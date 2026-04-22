@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Hypercharged Sniper Rifle
   m_EditorClassIdentifier: Assembly-CSharp::WeaponScriptableObject
   weaponName: Hypercharged Sniper Rifle
-  weaponDescription: A strong sniper that has a faster fire but deals less damage
+  weaponDescription: Developed from the original plasma pistol, the structure of
+    this weapon accomodates for a large amount of firepower from a single projectile,
+    at the cost of being very slow fire rate. The long barrel has been designed for
+    an impressive projectile speed and accuracy.
   weaponSprite: {fileID: 0}
   damage: 30
   fireRate: 0.75
@@ -21,3 +24,5 @@ MonoBehaviour:
   critDamage: 50
   projectileSpeed: 20
   projectileToFire: {fileID: 396421345929245815, guid: ca871753ad77499448ad90838024f6d9, type: 3}
+  isShotgun: 0
+  fireSound: {fileID: 0}

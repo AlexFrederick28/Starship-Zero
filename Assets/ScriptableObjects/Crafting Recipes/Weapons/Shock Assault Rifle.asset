@@ -29,8 +29,10 @@ MonoBehaviour:
   - amount: 
     description: 
   - amount: 
-    description: A very consistent low damaging assault rifle that constantly fires
-      bullets.
+    description: Known for its rediculously high fire rate, this weapon succeeds
+      at raining bullets upon your enemies. Uniquely, stores its ammo as a thin liquid
+      within its battery storage, transforming into a high velocity lethal projectile
+      upon being fired.
   weapon: {fileID: 11400000, guid: cee4685c4493b55468270d05a4e71b88, type: 2}
   projectile: {fileID: 0}
   item: {fileID: 11400000, guid: 2c94c08e396236d46b423fc16bd6fafa, type: 2}

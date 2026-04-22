@@ -21,8 +21,10 @@ public class Inventory : MonoBehaviour
     }
 
     public int maxInventorySlots;
+    public int maxWeaponSlots;
     public InventorySlot selectedSlot;
     public List<InventorySlot> inventorySlots;
+    public List<InventorySlot> weaponSlots;
 
     private float collectionTimer;
     public float collectionRadius;
@@ -50,6 +52,7 @@ public class Inventory : MonoBehaviour
         if (UIManager.instance != null)
         {
             SetInventoryOnStart();
+            SetWeaponInventoryOnStart();
             inventoryUI = UIManager.instance.inventoryParent;
             Debug.Log("Added inventory slots");
         }
@@ -67,6 +70,16 @@ public class Inventory : MonoBehaviour
             GameObject newSlot = Instantiate(UIManager.instance.slot, UIManager.instance.inventorySlotContentParent.transform);
             newSlot.GetComponent<InventorySlot>().slotPosition = inventorySlots.Count;
             inventorySlots.Add(newSlot.GetComponent<InventorySlot>());
+        }
+    }
+
+    public void SetWeaponInventoryOnStart()
+    {
+        for (int i = 0; i < maxWeaponSlots; i++)
+        {
+            GameObject newSlot = Instantiate(UIManager.instance.weaponInventorySlot, UIManager.instance.weaponInventorySlotContentParent.transform);
+            newSlot.GetComponent<InventorySlot>().slotPosition = weaponSlots.Count;
+            weaponSlots.Add(newSlot.GetComponent<InventorySlot>());
         }
     }
 
@@ -129,6 +142,7 @@ public class Inventory : MonoBehaviour
     {
         int desiredPosition = 0;
 
+        // INVENTORY SLOTS
         for (int i = 0; i < inventorySlots.Count; i++)
         {
             // scan through the inventory
@@ -152,12 +166,38 @@ public class Inventory : MonoBehaviour
                 desiredPosition++;
             }
         }
+
+        int weaponDesiredPosition = 0;
+        // WEAPON SLOTS
+        for (int i = 0; i < weaponSlots.Count; i++)
+        {
+            // scan through the inventory
+            if (weaponSlots[i].inventoryItem != null)
+            {
+                // if the current inventory slot (i) is not empty, then it is occupied 
+                if (i != weaponDesiredPosition)
+                {
+                    // if the occupied position is not equal to the desired position, move slots
+                    weaponSlots[weaponDesiredPosition].inventoryItem = weaponSlots[i].inventoryItem;
+                    weaponSlots[weaponDesiredPosition].weaponEquipped = weaponSlots[i].weaponEquipped;
+                    weaponSlots[weaponDesiredPosition].equipID = weaponSlots[i].equipID;
+
+                    weaponSlots[i].RenewObject();
+                    weaponSlots[weaponDesiredPosition].RefreshSlot();
+                    weaponSlots[i].RefreshSlot();
+                }
+
+                // if the current occupied slot (i) is equal to the desired position keep looking for an empty slot
+                weaponDesiredPosition++;
+            }
+        }
     }
 
     public void RemoveGapsFromInventoryOnInfestedRoomCompletion(Room room)
     {
         int desiredPosition = 0;
 
+        // INVENTORY SLOTS
         for (int i = 0; i < inventorySlots.Count; i++)
         {
             // scan through the inventory
@@ -179,6 +219,31 @@ public class Inventory : MonoBehaviour
 
                 // if the current occupied slot (i) is equal to the desired position keep looking for an empty slot
                 desiredPosition++;
+            }
+        }
+
+        int weaponDesiredPosition = 0;
+        // WEAPON SLOTS
+        for (int i = 0; i < weaponSlots.Count; i++)
+        {
+            // scan through the inventory
+            if (weaponSlots[i].inventoryItem != null)
+            {
+                // if the current inventory slot (i) is not empty, then it is occupied 
+                if (i != weaponDesiredPosition)
+                {
+                    // if the occupied position is not equal to the desired position, move slots
+                    weaponSlots[weaponDesiredPosition].inventoryItem = weaponSlots[i].inventoryItem;
+                    weaponSlots[weaponDesiredPosition].weaponEquipped = weaponSlots[i].weaponEquipped;
+                    weaponSlots[weaponDesiredPosition].equipID = weaponSlots[i].equipID;
+
+                    weaponSlots[i].RenewObject();
+                    weaponSlots[weaponDesiredPosition].RefreshSlot();
+                    weaponSlots[i].RefreshSlot();
+                }
+
+                // if the current occupied slot (i) is equal to the desired position keep looking for an empty slot
+                weaponDesiredPosition++;
             }
         }
     }
@@ -217,12 +282,23 @@ public class Inventory : MonoBehaviour
 
     public void RemoveNullItemsFromList()
     {
+        // INVENTORY SLOTS
         for (int i = 0; i < inventorySlots.Count; i++)
         {
             if (inventorySlots[i].inventoryItem == null)
             {
                 inventorySlots[i].RenewObject();
                 inventorySlots[i].RefreshSlot();
+            }
+        }
+
+        // WEAPON SLOTS
+        for (int i = 0; i < weaponSlots.Count; i++)
+        {
+            if (weaponSlots[i].inventoryItem == null)
+            {
+                weaponSlots[i].RenewObject();
+                weaponSlots[i].RefreshSlot();
             }
         }
     }
@@ -364,6 +440,7 @@ public class Inventory : MonoBehaviour
     public void RefreshItemAndSlot(int position)
     {
         inventorySlots[position].RefreshSlot();
+        weaponSlots[position].RefreshSlot();
     }
 
     public void ShowSelectedItem(InventorySlot slot)
@@ -588,13 +665,13 @@ public class Inventory : MonoBehaviour
 
     public void SearchForAndRemoveEquippedWeapon(InventorySlot weapon)
     {
-        for (int i = inventorySlots.Count - 1; i >= 0; i--)
+        for (int i = weaponSlots.Count - 1; i >= 0; i--)
         {
-            if (inventorySlots[i].equipID == weapon.equipID && inventorySlots[i].weaponEquipped == true)
+            if (weaponSlots[i].equipID == weapon.equipID && weaponSlots[i].weaponEquipped == true)
             {
                 // if the weapon is identical, and the weapon is equipped. Unequip it
-                inventorySlots[i].RenewObject();
-                inventorySlots[i].RefreshSlot();
+                weaponSlots[i].RenewObject();
+                weaponSlots[i].RefreshSlot();
                 Debug.Log("Removed player weapons after successful infested clear!");
                 break;
             }
@@ -603,12 +680,12 @@ public class Inventory : MonoBehaviour
 
     public void SearchInventoryForEquippedWeapon(InventorySlot weapon)
     {
-        for (int i = 0; i < inventorySlots.Count; i++)
+        for (int i = 0; i < weaponSlots.Count; i++)
         {
-            if (inventorySlots[i].equipID == weapon.equipID && inventorySlots[i].weaponEquipped == true)
+            if (weaponSlots[i].equipID == weapon.equipID && weaponSlots[i].weaponEquipped == true)
             {
                 // if the weapon is identical, and the weapon is equipped. Unequip it
-                inventorySlots[i].weaponEquipped = false;
+                weaponSlots[i].weaponEquipped = false;
                 Debug.Log("Found weapon that is equipped with the same ID and will unequip");
                 break;
             }
@@ -652,6 +729,20 @@ public class Inventory : MonoBehaviour
                 collision.gameObject.SetActive(false);
             }
             Debug.Log("Added new object to inventory: " + obj.itemName);
+        }
+    }
+
+    public void AddWeaponToInventory(InventoryItemPackage type)
+    {
+        for (int x = 0; x < inventorySlots.Count; x++)
+        {
+            if (weaponSlots[x].inventoryItem == null)
+            {
+                weaponSlots[x].inventoryItem = type;
+                //inventorySlots[x].currentStackSize = 1;
+                Debug.Log("Added weapon to weapon slot");
+                return;
+            }
         }
     }
 }

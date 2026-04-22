@@ -38,7 +38,7 @@ public class PickupStarterWeaponTutorial : QuestTaskBase, IInteractable
 
     public void PickupWeapon()
     {
-        GameState.instance.playerInventory.AddItemToInventory(weapon);
+        GameState.instance.playerInventory.AddWeaponToInventory(weapon);
     }
 
     public void OnInteract()

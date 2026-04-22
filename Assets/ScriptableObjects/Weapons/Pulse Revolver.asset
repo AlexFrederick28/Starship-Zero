@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Pulse Revolver
   m_EditorClassIdentifier: Assembly-CSharp::WeaponScriptableObject
   weaponName: Pulse Revolver
-  weaponDescription: 'Pistol that does mediocre single target damage  '
-  weaponSprite: {fileID: -1142850308211932723, guid: 27d5ccc71d10f594f8cc2746372436ef, type: 3}
+  weaponDescription: The second iteration of the plasma pistol, its refined design
+    comes with a sleek and sharp style. Known for its cheap cost and standard effectiveness.
+  weaponSprite: {fileID: 21300000, guid: 27d5ccc71d10f594f8cc2746372436ef, type: 3}
   damage: 10
   fireRate: 1
   critChance: 0
@@ -22,3 +23,4 @@ MonoBehaviour:
   projectileSpeed: 15
   projectileToFire: {fileID: 396421345929245815, guid: ca871753ad77499448ad90838024f6d9, type: 3}
   isShotgun: 0
+  fireSound: {fileID: 0}

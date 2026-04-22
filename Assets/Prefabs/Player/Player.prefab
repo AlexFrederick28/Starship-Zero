@@ -658,8 +658,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Inventory
   maxInventorySlots: 96
+  maxWeaponSlots: 20
   selectedSlot: {fileID: 0}
   inventorySlots: []
+  weaponSlots: []
   collectionRadius: 1
   collectionInterval: 0.5
   collectionSpeed: 6
