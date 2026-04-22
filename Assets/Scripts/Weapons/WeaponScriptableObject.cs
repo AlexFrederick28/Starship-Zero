@@ -14,5 +14,6 @@ public class WeaponScriptableObject : ScriptableObject
     public float projectileSpeed;
     public GameObject projectileToFire;
     public bool isShotgun = false;
+    public AudioClip fireSound; // TODO - add to weaponbase and play the sound
 
 }
