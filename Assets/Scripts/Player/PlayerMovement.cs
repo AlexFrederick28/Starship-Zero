@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
 
         else if (moveInput.x == 0 && moveInput.y == 0)
         {
-            SetAnimFrontSide(); // should be idle?
+            SetAnimIdle();
         }
 
 
@@ -83,6 +83,8 @@ public class PlayerMovement : MonoBehaviour
     public void SetAnimIdle()
     {
         // idle stuff
+
+        PlaySetAnimation("Idle");
     }
 
     public void SetAnimFrontSide()
