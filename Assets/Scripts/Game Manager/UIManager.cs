@@ -26,6 +26,9 @@ public class UIManager : MonoBehaviour
     [Space]
     [Header("Tabs")]
     public GameObject tabParent;
+    public Image weaponCraftingLock;
+    public Image cyberneticUpgradeLock;
+    public Image cardUpgradeLock;
 
     [Space]
     [Header("Inventory")]
@@ -87,6 +90,7 @@ public class UIManager : MonoBehaviour
         public TextMeshProUGUI levelUpItemName;
         public TextMeshProUGUI levelUpItemStatDescription;
         public TextMeshProUGUI levelUpItemLevel;
+        public TextMeshProUGUI levelUpItemSlot;
         public Image levelUpItemImage;
     }
 
@@ -115,8 +119,12 @@ public class UIManager : MonoBehaviour
     public GameObject projectileListParent;
     public List<GameObject> weaponCraftingRecipePrefabList;
 
-    [Header("Dialogue")]
     [Space]
+    [Header("Super Computer")]
+    public Image newDialogueIcon;
+
+    [Space]
+    [Header("Dialogue")]
     public GameObject canvas;
     public GameObject dialogueParent;
     public TextMeshProUGUI nameText;
@@ -301,6 +309,8 @@ public class UIManager : MonoBehaviour
 
     public void SwapToWeaponCraftingUI()
     {
+        if (GameState.instance.weaponCraftingUnlocked == false) { return; }
+
         // tab 2
         inventoryParent.SetActive(false);
         weaponCraftingUIParent.SetActive(true);
@@ -311,6 +321,8 @@ public class UIManager : MonoBehaviour
 
     public void SwapToCardUI()
     {
+        if (GameState.instance.cyberneticUpgradesUnlocked == false) { return; }
+
         // tab 3
         inventoryParent.SetActive(false);
         weaponCraftingUIParent.SetActive(false);
@@ -321,6 +333,8 @@ public class UIManager : MonoBehaviour
 
     public void SwapToPermanentUpgradeUI()
     {
+        if (GameState.instance.cyberneticUpgradesUnlocked == false) { return; }
+
         // tab 4
         inventoryParent.SetActive(false);
         weaponCraftingUIParent.SetActive(false);

@@ -20,6 +20,11 @@ public class GameState : MonoBehaviour
     public Action OnEnteringInfestedRoom;
 
     [Space]
+    [Header("Unlock Status")]
+    public bool weaponCraftingUnlocked = false;
+    public bool cyberneticUpgradesUnlocked = false;
+
+    [Space]
     [Header("Audio")]
     [SerializeField] protected float musicVolume;
 

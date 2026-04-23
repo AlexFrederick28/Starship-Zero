@@ -144,12 +144,14 @@ public class LevelUpManager : MonoBehaviour
             {
                 // select a weapon for the card stats to go to 
                 int weaponPos = Random.Range(0, GameState.instance.playerInventory.weaponLoadoutList.Count);
+                int weaponPosShownValue = weaponPos + 1;
                 cardHost.chosenWeapon = GameState.instance.playerInventory.playerWeapons[weaponPos].GetComponent<Weapon>();
 
                 // show a specific upgrade stat on a single weapon 
                 UIManager.instance.levelUpCardUIList[i].levelUpItemName.text = cardHost.chosenWeapon.weaponName; // name
                 UIManager.instance.levelUpCardUIList[i].levelUpItemStatDescription.text = "+ " + cardHost.Card.cardInfo.cardName + "\n" + "\n" + cardHost.Card.statUpgradeAmount.ToString() + "%"; ; // description
                 UIManager.instance.levelUpCardUIList[i].levelUpItemLevel.text = cardHost.chosenWeapon.weaponLevel.ToString(); // weapon level
+                UIManager.instance.levelUpCardUIList[i].levelUpItemSlot.text = weaponPosShownValue.ToString(); // weapon slot num
                 UIManager.instance.levelUpCardUIList[i].levelUpItemImage.sprite = cardHost.chosenWeapon.weaponType.weaponSprite; // weapon sprite 
             }
             else

@@ -32,16 +32,15 @@ public class QuestClearInfestedRoom : QuestTaskBase
         }
     }
 
-    public void CompletedInfestedRoom(Room room)
+    public virtual void CompletedInfestedRoom(Room room)
     {
         if (Spawning.instance == null) { return; }
-        if (Spawning.instance.parentRoom.questID == questInfos[0].quest.prerequisite.id)
+        if (Spawning.instance.parentRoom.questID != questInfos[0].quest.prerequisite.id) { return; }
+
+        if (Spawning.instance.playerClearedRoom == true)
         {
-            if (Spawning.instance.playerClearedRoom == true)
-            {
-                RegisterQuestInteraction();
-                gameObject.SetActive(false);
-            }
+            RegisterQuestInteraction();
+            gameObject.SetActive(false);
         }
     }
 }

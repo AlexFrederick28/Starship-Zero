@@ -1,15 +1,16 @@
-using UnityEngine;
-using System.Collections;
-using System;
-using System.Linq;
-using UnityEngine.UI;
-using TMPro;
-using NUnit.Framework;
-using Unity.VisualScripting;
-using System.Net;
 using JetBrains.Annotations;
+using NUnit.Framework;
+using System;
+using System.Collections;
+using System.Linq;
+using System.Net;
+using TMPro;
+using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
+using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Jobs;
+using UnityEngine.UI;
 
 public class NPCBase : MonoBehaviour, IInteractable, IDialogue
 {
@@ -59,6 +60,8 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
         }
 
         currentDialogue = newDialogue[0];
+
+        StartDialogue();
     }
 
     protected void CreateNPC()
@@ -69,6 +72,7 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
 
     public void OnInteract()
     {
+        if (startedDialogue == true) { return; }    
         StartDialogue();
     }
 
@@ -78,7 +82,7 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
         {
             if (UIManager.instance.continueButton != null)
             {
-                UIManager.instance.continueButton.GetComponent<Button>().onClick.RemoveListener(NextLine);
+                UIManager.instance.continueButton.GetComponent<Button>().onClick.RemoveListener(NextLineButton);
             }
         }
 
@@ -93,12 +97,12 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
     {
         if (startedDialogue == true)
         {
-            NextLine();
+            NextLineButton();
         }
         if (UIManager.instance != null && startedDialogue == false)
         {
             UIManager.instance.nameText.text = nameNPC;
-            UIManager.instance.continueButton.GetComponent<Button>().onClick.AddListener(NextLine);
+            UIManager.instance.continueButton.GetComponent<Button>().onClick.AddListener(NextLineButton);
             Debug.Log("Started Dialogue");
 
             textIndex = 0;
@@ -117,8 +121,10 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
         }
     }
 
-    public void NextLine()
+    public void NextLineButton()
     {
+        if (startedDialogue == false) { return; }
+
         if (currentDialogue.completedTopic == false || currentDialogue.completedTopic == true && currentDialogue.isQuest == true && currentDialogue.completedPrerequisite == false || currentDialogue.completedTopic == true && dialogueIndex < newDialogue.Length - 1) //&& currentDialogue.completedPrerequisite == false || currentDialogue.completedTopic == true && dialogueIndex < newDialogue.Length - 1)
         {
             // repeats the same topic if not completed, as well as adds any quest that hasnt already been made active
@@ -128,6 +134,13 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
                 //Debug.Log("Completed topic and quest on correct line");
                 CompleteTopic();
                 CompleteQuestOnCurrentDialogue();
+                if (currentDialogue.isQuest == true && currentDialogue.completedPrerequisite == false && currentDialogue.completedTopic == true)
+                {
+                    // if the current topic is a quest and the dialogue has been exhausted, close the dialogue with NPC
+                    Debug.Log("Exhausted topic");
+                    OnEndInteraction();
+                    return;
+                }
             }
 
             if (textIndex < currentDialogue.dialogueText.Length - 1)
@@ -146,14 +159,49 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
                 StopAllCoroutines();
                 ClearText();
                 StartCoroutine(WriteLine_C());
+            }
+        }
+    }
 
-                if (currentDialogue.isQuest == true && currentDialogue.completedPrerequisite == false)
+    public void NextLineKeyPress(InputAction.CallbackContext context)
+    {
+        if (startedDialogue == false) { return; }
+
+        if (!context.performed) { return; }
+        if (currentDialogue.completedTopic == false || currentDialogue.completedTopic == true && currentDialogue.isQuest == true && currentDialogue.completedPrerequisite == false || currentDialogue.completedTopic == true && dialogueIndex < newDialogue.Length - 1) //&& currentDialogue.completedPrerequisite == false || currentDialogue.completedTopic == true && dialogueIndex < newDialogue.Length - 1)
+        {
+            // repeats the same topic if not completed, as well as adds any quest that hasnt already been made active
+
+            if (textIndex == currentDialogue.dialogueText.Length - 1)
+            {
+                //Debug.Log("Completed topic and quest on correct line");
+                CompleteTopic();
+                CompleteQuestOnCurrentDialogue();
+                if (currentDialogue.isQuest == true && currentDialogue.completedPrerequisite == false && currentDialogue.completedTopic == true)
                 {
                     // if the current topic is a quest and the dialogue has been exhausted, close the dialogue with NPC
                     Debug.Log("Exhausted topic");
                     OnEndInteraction();
                     return;
                 }
+            }
+
+            if (textIndex < currentDialogue.dialogueText.Length - 1)
+            {
+                textIndex++;
+                StopAllCoroutines();
+                ClearText();
+                StartCoroutine(WriteLine_C());
+                ActivateQuest();
+            }
+            else if (textIndex == currentDialogue.dialogueText.Length - 1)
+            {
+                CompleteQuestOnCurrentDialogue();
+                GoNextDialogue();
+                textIndex = 0;
+                StopAllCoroutines();
+                ClearText();
+                StartCoroutine(WriteLine_C());
             }
         }
     }
@@ -216,7 +264,8 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
                         QuestManager.instance.questUIList.Add(newQuestInstance.GetComponent<QuestUIParent>());
 
                         // quest objects get notified when a quest is activated
-                        QuestManager.OnActivateNewQuest?.Invoke(currentDialogue.quest.prerequisite.id); 
+                        QuestManager.OnActivateNewQuest?.Invoke(currentDialogue.quest.prerequisite.id);
+                        UIManager.instance.newDialogueIcon.enabled = false;
                     }
                 }
             }
@@ -227,6 +276,7 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
     {
         if (questID != currentDialogue.quest.prerequisite.id) { return; }
         currentDialogue.completedPrerequisite = true;
+        UIManager.instance.newDialogueIcon.enabled = true;
     }
 
     public void CompleteQuestOnCurrentDialogue()
