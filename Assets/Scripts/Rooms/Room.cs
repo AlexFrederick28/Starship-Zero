@@ -234,7 +234,7 @@ public class Room : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision)
     {
         // when inside an infested room, the room info canvas will stay active
-        if (collision.gameObject.GetComponent<PlayerBase>() == null || GameState.instance.currentState == GameState.States.RoomClear) { withinInteractionRadius = false; return; }
+        if (collision.gameObject.GetComponent<PlayerBase>() == null || GameState.instance.currentState == GameState.States.RoomClear) { withinInteractionRadius = false; HideRoomInformation(); return; }
         else
         {
             withinInteractionRadius = true;
