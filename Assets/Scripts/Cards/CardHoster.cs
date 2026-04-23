@@ -10,6 +10,7 @@ public class CardHoster : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
+
             LevelUpManager.instance.chosenCard = Card;
             LevelUpManager.instance.chosenWeapon = chosenWeapon;
             LevelUpManager.OnCardChosen?.Invoke();

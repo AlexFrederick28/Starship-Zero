@@ -16,6 +16,12 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource soundObject;
     [SerializeField] private AudioSource dialogueClip;
 
+    public float defaultMinPitch = 1.0f;
+    public float defaultMaxPitch = 1.8f;
+
+    // sound effects audio
+    public AudioClip[] soundEffectsArray; // 0 = equip weapon, 1 = remove weapon, 2 = UI interact, 3 = xp, 4 = crafting bench, 5 = card  
+
     private void Awake()
     {
         if (instance == null)
@@ -108,4 +114,43 @@ public class SoundManager : MonoBehaviour
             yield return new WaitForSeconds(clipLength);
         }
     }
+
+    public float SoundVolume()
+    {
+        float soundEffectVolume = 0.5f; 
+
+        if (UIManager.instance.MasterSlider != null || UIManager.instance.SoundsEffectsSlider != null)
+        {
+            soundEffectVolume = (UIManager.instance.MasterSlider.value * UIManager.instance.SoundsEffectsSlider.value) / 100;
+        }
+        else
+        {
+            Debug.Log("cannot find master slider or sound effect slider!");
+        }
+
+        return soundEffectVolume;
+    }
+
+    public float MusicVolume()
+    {
+        float soundEffectVolume = 0.5f;
+
+        if (UIManager.instance.MasterSlider != null || UIManager.instance.MusicSlider != null)
+        {
+            soundEffectVolume = (UIManager.instance.MasterSlider.value * UIManager.instance.MusicSlider.value) / 100;
+        }
+        else
+        {
+            Debug.Log("cannot find master slider or music slider!");
+        }
+
+        return soundEffectVolume;
+    }
+
+    public void PlayUISound() // buttons - on click, play this function
+    {
+        // if need be add another array for UI and random range 0 - arrary.count for variety
+        PlaySoundClip(soundEffectsArray[2], transform, SoundVolume(), false, true, defaultMinPitch, defaultMaxPitch); // UI sound
+    }
+
 }

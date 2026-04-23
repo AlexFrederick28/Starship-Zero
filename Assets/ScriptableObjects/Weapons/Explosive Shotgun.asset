@@ -24,4 +24,4 @@ MonoBehaviour:
   projectileSpeed: 20
   projectileToFire: {fileID: 396421345929245815, guid: ca871753ad77499448ad90838024f6d9, type: 3}
   isShotgun: 1
-  fireSound: {fileID: 0}
+  fireSound: {fileID: 8300000, guid: e5ffa4ab5f55aa44c96529dce496b9c9, type: 3}
