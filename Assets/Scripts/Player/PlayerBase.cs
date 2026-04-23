@@ -289,6 +289,15 @@ public class PlayerBase : MonoBehaviour
     {
         CurrentExperience += amount;
         StartCoroutine(UIManager.instance.NewNotification("Exp +" + amount));
+
+        if (SoundManager.instance.soundEffectsArray[3] != null)
+        {
+            SoundManager.instance.PlaySoundClip(SoundManager.instance.soundEffectsArray[3], transform, SoundManager.instance.SoundVolume(), false, true, SoundManager.instance.defaultMinPitch, SoundManager.instance.defaultMaxPitch); // xp
+        }
+        else
+        {
+            Debug.Log("no xp sound found");
+        }
     }
 
     public void LevelUp()
@@ -443,6 +452,15 @@ public class PlayerBase : MonoBehaviour
 
     public void AfterLevelUpCard()
     {
+        if (SoundManager.instance.soundEffectsArray[5] != null)
+        {
+            SoundManager.instance.PlaySoundClip(SoundManager.instance.soundEffectsArray[5], transform, SoundManager.instance.SoundVolume(), false, true, SoundManager.instance.defaultMinPitch, SoundManager.instance.defaultMaxPitch); // card sound
+        }
+        else
+        {
+            Debug.Log("no card sound found");
+        }
+
         GameState.instance.player.isLevellingUp = false; // not levelling anymore 
 
         if (levelUpQueue.Count > 0) // if multiple levels try to level up again (should be

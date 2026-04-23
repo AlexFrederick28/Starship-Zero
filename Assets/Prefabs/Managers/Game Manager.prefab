@@ -60,6 +60,8 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   playerInventory: {fileID: 0}
   latestCheckpoint: {fileID: 0}
+  weaponCraftingUnlocked: 0
+  cyberneticUpgradesUnlocked: 0
   musicVolume: 0.1
 --- !u!114 &416779978556543936
 MonoBehaviour:
@@ -136,6 +138,15 @@ MonoBehaviour:
   - {fileID: 0}
   soundObject: {fileID: 7917900519422113262, guid: a0709ac2481edc54b8950b3c87142ef0, type: 3}
   dialogueClip: {fileID: 0}
+  defaultMinPitch: 1
+  defaultMaxPitch: 1.8
+  soundEffectsArray:
+  - {fileID: 8300000, guid: 66169e571fd118947bef00f2765ea2da, type: 3}
+  - {fileID: 0}
+  - {fileID: 8300000, guid: b09f8c26d72a6c943bb967b585fc6fd0, type: 3}
+  - {fileID: 8300000, guid: 346493038e037fc46a2bdafe912f3bf5, type: 3}
+  - {fileID: 8300000, guid: 330d85b7b21f4c045860bdbf50c4bc39, type: 3}
+  - {fileID: 8300000, guid: db1b58cbe35a58e42972d160610d0f11, type: 3}
 --- !u!114 &6870090674624868283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,6 +187,9 @@ MonoBehaviour:
   notificationYDestination: 160
   notificationSpeed: 0.5
   tabParent: {fileID: 0}
+  weaponCraftingLock: {fileID: 0}
+  cyberneticUpgradeLock: {fileID: 0}
+  cardUpgradeLock: {fileID: 0}
   inventoryParent: {fileID: 0}
   inventorySlotContentParent: {fileID: 0}
   slot: {fileID: 2477720363533150392, guid: a91f7fefa0e626a438287925bc7b264d, type: 3}
@@ -190,6 +204,8 @@ MonoBehaviour:
   selectedStackAmount: {fileID: 0}
   stackAmountSlider: {fileID: 0}
   weaponLoadoutButton: {fileID: 0}
+  weaponInventorySlotContentParent: {fileID: 0}
+  weaponInventorySlot: {fileID: 0}
   cardUnlockParent: {fileID: 0}
   cardDescriptionImage: {fileID: 0}
   cardDescriptionText: {fileID: 0}
@@ -225,6 +241,7 @@ MonoBehaviour:
   weaponListParent: {fileID: 0}
   projectileListParent: {fileID: 0}
   weaponCraftingRecipePrefabList: []
+  newDialogueIcon: {fileID: 0}
   canvas: {fileID: 0}
   dialogueParent: {fileID: 0}
   nameText: {fileID: 0}
@@ -232,6 +249,13 @@ MonoBehaviour:
   continueButton: {fileID: 0}
   questParent: {fileID: 0}
   questPrefab: {fileID: 1232731352731200, guid: d87b4731775488f40a1cf27dbc21a2f1, type: 3}
+  pauseMenuParent: {fileID: 0}
+  pauseButtonPanel: {fileID: 0}
+  audioPanel: {fileID: 0}
+  controlPanel: {fileID: 0}
+  MasterSlider: {fileID: 0}
+  MusicSlider: {fileID: 0}
+  SoundsEffectsSlider: {fileID: 0}
 --- !u!114 &3386434121657024945
 MonoBehaviour:
   m_ObjectHideFlags: 0

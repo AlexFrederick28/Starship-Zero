@@ -179,6 +179,14 @@ public class CraftingBase : MonoBehaviour, IPointerClickHandler
 
         //GameState.instance.playerInventory.AddItemToInventory(recipe.item);
         GameState.instance.playerInventory.AddWeaponToInventory(recipe.item);
+        if (SoundManager.instance.soundEffectsArray[4] != null)
+        {
+            SoundManager.instance.PlaySoundClip(SoundManager.instance.soundEffectsArray[4], transform, SoundManager.instance.SoundVolume(), false, true, SoundManager.instance.defaultMinPitch, SoundManager.instance.defaultMaxPitch); // crafting sound
+        }
+        else
+        {
+            Debug.Log("no crafting sound found");
+        }
 
         Debug.Log("Crafted weapon: " + recipe.weapon.weaponName);
         if (craftedFirstWeaponTutorial == false)

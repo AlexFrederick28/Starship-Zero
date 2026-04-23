@@ -21,3 +21,5 @@ MonoBehaviour:
   critDamage: 100
   projectileSpeed: 10
   projectileToFire: {fileID: 8136050725359594267, guid: 62fa9780767f2be45b85e013368b17f9, type: 3}
+  isShotgun: 0
+  fireSound: {fileID: 8300000, guid: 9f37ab3aa9fa4784b86dbc761b8cbc77, type: 3}

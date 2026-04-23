@@ -42,6 +42,8 @@ public class WeaponBase : MonoBehaviour
     private bool addedPermanentStatsToWeapon = false;
 
     [Header("Other")]
+    private AudioClip onFireSound;
+
     [SerializeField] private float fireTime;
     [SerializeField] private float detectionRadius = 5f; // default 5, subject to change
     [SerializeField] private Transform targetToAttack;
@@ -232,6 +234,8 @@ public class WeaponBase : MonoBehaviour
         if (targetToAttack != null)
         {
 
+            SoundManager.instance.PlaySoundClip(onFireSound, transform, SoundManager.instance.SoundVolume(), false, true, SoundManager.instance.defaultMinPitch, SoundManager.instance.defaultMaxPitch);
+
             if (isWeaponShotgun != true) // not a shotgun
             {
                 // direction to fire forward
@@ -323,7 +327,6 @@ public class WeaponBase : MonoBehaviour
             if (fireTime >= 1f)
             {
                 fireTime = 0f; // reset timer
-
 
                 FindClosetTarget(); // find
                 FireProjectile(); // fire
@@ -446,6 +449,7 @@ public class WeaponBase : MonoBehaviour
             projectileSpeed = 0;
             projectileToFire = null;
             isWeaponShotgun = false;
+            onFireSound = null;
         }
         else // found, set its base stats
         {
@@ -458,6 +462,7 @@ public class WeaponBase : MonoBehaviour
             projectileSpeed = weaponType.projectileSpeed;
             projectileToFire = weaponType.projectileToFire;
             isWeaponShotgun = weaponType.isShotgun;
+            onFireSound = weaponType.fireSound;
         }
     }
 

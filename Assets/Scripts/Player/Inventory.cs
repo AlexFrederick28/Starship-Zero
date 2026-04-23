@@ -543,6 +543,15 @@ public class Inventory : MonoBehaviour
                         UIManager.instance.weaponLoadoutButton.GetComponentInChildren<TextMeshProUGUI>().text = "Equip";
                         Debug.Log("Removed weapon");
 
+                        if (SoundManager.instance.soundEffectsArray[1] != null)
+                        {
+                            SoundManager.instance.PlaySoundClip(SoundManager.instance.soundEffectsArray[1], transform, SoundManager.instance.SoundVolume(), false, true, SoundManager.instance.defaultMinPitch, SoundManager.instance.defaultMaxPitch); // unequip
+                        }
+                        else
+                        {
+                            Debug.Log("no unequip sound found");
+                        }
+
                         // turn off weapon
                         TurnOffWeapon(playerWeapons[i].GetComponent<WeaponBase>());
                         // hide bullet selection
@@ -575,6 +584,16 @@ public class Inventory : MonoBehaviour
                 equippedWeapon.equippedSlotItem = selectedSlot;
                 weaponLoadoutList.Add(equippedWeapon);
                 UIManager.instance.projectileSelectButton.gameObject.SetActive(true);
+               
+                if (SoundManager.instance.soundEffectsArray[0] != null)
+                {
+                    SoundManager.instance.PlaySoundClip(SoundManager.instance.soundEffectsArray[0], transform, SoundManager.instance.SoundVolume(), false, true, SoundManager.instance.defaultMinPitch, SoundManager.instance.defaultMaxPitch); // equip
+                }
+                else
+                {
+                    Debug.Log("no equip sound found");
+                }
+                    
 
                 for (int i = 0; i < weaponLoadoutSlotList.Count; i++)
                 {
