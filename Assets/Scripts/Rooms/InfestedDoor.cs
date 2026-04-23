@@ -15,7 +15,10 @@ public class InfestedDoor : Door
     {
         if (GameState.instance.playerInventory.weaponLoadoutList.Count <= 0)
         {
-            StartCoroutine(UIManager.instance.NewNotification("No Weapon Equipped!"));
+            if (gameObject.activeInHierarchy == true)
+            {
+                StartCoroutine(UIManager.instance.NewNotification("No Weapon Equipped!"));
+            }
             return;
         }
         // if the player has some sort of UI open, make sure they close it before trying to enter an infested room

@@ -64,7 +64,14 @@ public class NavigationTabUI : MonoBehaviour, IPointerClickHandler
             }
             else
             {
-                UIManager.instance.navigationRoomInfoText.text += "\n" + "\n" + room.roomInfoList[i].title + "\n" + room.roomInfoList[i].extraText;
+                if (room.roomInfoList[i].isTimer)
+                {
+                    UIManager.instance.navigationRoomInfoText.text += "\n" + "\n" + room.roomInfoList[i].title + " " + room.spawning.timerLength.ToString();
+                }
+                else
+                {
+                    UIManager.instance.navigationRoomInfoText.text += "\n" + "\n" + room.roomInfoList[i].title + "\n" + room.roomInfoList[i].extraText;
+                }
             }
         }
     }

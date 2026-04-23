@@ -292,7 +292,7 @@ public class PlayerBase : MonoBehaviour
 
         if (SoundManager.instance.soundEffectsArray[3] != null)
         {
-            SoundManager.instance.PlaySoundClip(SoundManager.instance.soundEffectsArray[3], transform, SoundManager.instance.SoundVolume(), false, true, SoundManager.instance.defaultMinPitch, SoundManager.instance.defaultMaxPitch); // xp
+            SoundManager.instance.PlaySoundClip(SoundManager.instance.soundEffectsArray[3], transform, SoundManager.instance.SoundVolume(), true, true, SoundManager.instance.defaultMinPitch, SoundManager.instance.defaultMaxPitch); // xp
         }
         else
         {
@@ -454,7 +454,7 @@ public class PlayerBase : MonoBehaviour
     {
         if (SoundManager.instance.soundEffectsArray[5] != null)
         {
-            SoundManager.instance.PlaySoundClip(SoundManager.instance.soundEffectsArray[5], transform, SoundManager.instance.SoundVolume(), false, true, SoundManager.instance.defaultMinPitch, SoundManager.instance.defaultMaxPitch); // card sound
+            SoundManager.instance.PlaySoundClip(SoundManager.instance.soundEffectsArray[5], transform, SoundManager.instance.SoundVolume(), true, true, SoundManager.instance.defaultMinPitch, SoundManager.instance.defaultMaxPitch); // card sound
         }
         else
         {

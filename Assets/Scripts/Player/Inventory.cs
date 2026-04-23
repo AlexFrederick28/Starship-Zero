@@ -545,7 +545,7 @@ public class Inventory : MonoBehaviour
 
                         if (SoundManager.instance.soundEffectsArray[1] != null)
                         {
-                            SoundManager.instance.PlaySoundClip(SoundManager.instance.soundEffectsArray[1], transform, SoundManager.instance.SoundVolume(), false, true, SoundManager.instance.defaultMinPitch, SoundManager.instance.defaultMaxPitch); // unequip
+                            SoundManager.instance.PlaySoundClip(SoundManager.instance.soundEffectsArray[1], transform, SoundManager.instance.SoundVolume(), true, true, SoundManager.instance.defaultMinPitch, SoundManager.instance.defaultMaxPitch); // unequip
                         }
                         else
                         {
@@ -587,7 +587,7 @@ public class Inventory : MonoBehaviour
                
                 if (SoundManager.instance.soundEffectsArray[0] != null)
                 {
-                    SoundManager.instance.PlaySoundClip(SoundManager.instance.soundEffectsArray[0], transform, SoundManager.instance.SoundVolume(), false, true, SoundManager.instance.defaultMinPitch, SoundManager.instance.defaultMaxPitch); // equip
+                    SoundManager.instance.PlaySoundClip(SoundManager.instance.soundEffectsArray[0], transform, SoundManager.instance.SoundVolume(), true, true, SoundManager.instance.defaultMinPitch, SoundManager.instance.defaultMaxPitch); // equip
                 }
                 else
                 {

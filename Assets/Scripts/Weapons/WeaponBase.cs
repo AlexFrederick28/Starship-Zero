@@ -234,7 +234,7 @@ public class WeaponBase : MonoBehaviour
         if (targetToAttack != null)
         {
 
-            SoundManager.instance.PlaySoundClip(onFireSound, transform, SoundManager.instance.SoundVolume(), false, true, SoundManager.instance.defaultMinPitch, SoundManager.instance.defaultMaxPitch);
+            SoundManager.instance.PlaySoundClip(onFireSound, transform, SoundManager.instance.SoundVolume(), true, true, SoundManager.instance.defaultMinPitch, SoundManager.instance.defaultMaxPitch);
 
             if (isWeaponShotgun != true) // not a shotgun
             {
