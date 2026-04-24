@@ -13,7 +13,7 @@ TagManager:
   - UI
   - FogOfWar Main
   - FogOfWar Secondary
-  - 
+  - UI Buttons
   - 
   - 
   - 
@@ -46,6 +46,9 @@ TagManager:
     locked: 0
   - name: FogOfWar
     uniqueID: 1849844251
+    locked: 0
+  - name: ParticleUI
+    uniqueID: 2209230881
     locked: 0
   m_RenderingLayers:
   - Default
