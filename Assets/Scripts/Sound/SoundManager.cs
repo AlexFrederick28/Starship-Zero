@@ -121,7 +121,7 @@ public class SoundManager : MonoBehaviour
 
         if (UIManager.instance.MasterSlider != null || UIManager.instance.SoundsEffectsSlider != null)
         {
-            soundEffectVolume = (UIManager.instance.MasterSlider.value * UIManager.instance.SoundsEffectsSlider.value) / 100;
+            soundEffectVolume = UIManager.instance.MasterSlider.value * UIManager.instance.SoundsEffectsSlider.value;
         }
         else
         {
@@ -137,7 +137,7 @@ public class SoundManager : MonoBehaviour
 
         if (UIManager.instance.MasterSlider != null || UIManager.instance.MusicSlider != null)
         {
-            soundEffectVolume = (UIManager.instance.MasterSlider.value * UIManager.instance.MusicSlider.value) / 100;
+            soundEffectVolume = UIManager.instance.MasterSlider.value * UIManager.instance.MusicSlider.value;
         }
         else
         {
@@ -147,10 +147,10 @@ public class SoundManager : MonoBehaviour
         return soundEffectVolume;
     }
 
-    public void PlayUISound() // buttons - on click, play this function
+    public void PlayUISound(float pitch) // buttons - on click, play this function
     {
         // if need be add another array for UI and random range 0 - arrary.count for variety
-        PlaySoundClip(soundEffectsArray[2], transform, SoundVolume(), false, true, defaultMinPitch, defaultMaxPitch); // UI sound
+        PlaySoundClip(soundEffectsArray[2], transform, SoundVolume(), true, true, pitch, pitch); // UI sound
     }
 
 }

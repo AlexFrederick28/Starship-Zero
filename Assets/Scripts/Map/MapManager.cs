@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class MapManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class MapManager : MonoBehaviour
     private bool mapOpen = false;
 
     public static MapManager instance;
+
+    public RectMask2D mapRectMask;
 
     private void Awake()
     {
@@ -36,6 +39,7 @@ public class MapManager : MonoBehaviour
         Debug.Log("Used Map");
         if (mapOpen == false)
         {
+            mapRectMask.enabled = false;
             mapRect.sizeDelta = openedMapSize;
             mapRect.anchoredPosition = mapAnchorPosition;
             mapOpen = true;
@@ -43,6 +47,7 @@ public class MapManager : MonoBehaviour
         }
         else if (mapOpen == true)
         {
+            mapRectMask.enabled = true;
             mapRect.sizeDelta = minimisedMapSize;
             mapRect.anchoredPosition = mapAnchorPosition;
             mapOpen = false;
@@ -55,6 +60,7 @@ public class MapManager : MonoBehaviour
         if (!context.performed) { return; }
         if (mapOpen == true) { return; }
 
+        mapRectMask.enabled = false;
         mapRect.sizeDelta = openedMapSize;
         mapRect.anchoredPosition = mapAnchorPosition;
         mapOpen = true;
@@ -65,6 +71,7 @@ public class MapManager : MonoBehaviour
         if (!context.performed) { return; }
         if (mapOpen == false) { return; }
 
+        mapRectMask.enabled = true;
         mapRect.sizeDelta = minimisedMapSize;
         mapRect.anchoredPosition = mapAnchorPosition;
         mapOpen = false;

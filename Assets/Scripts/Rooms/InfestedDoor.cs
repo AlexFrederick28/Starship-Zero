@@ -13,6 +13,7 @@ public class InfestedDoor : Door
 
     public override void OnInteract()
     {
+        if (nearDoor == false) { return; }
         if (GameState.instance.playerInventory.weaponLoadoutList.Count <= 0)
         {
             if (gameObject.activeInHierarchy == true)

@@ -6,6 +6,7 @@ public class Door : MonoBehaviour, IInteractable
     [SerializeField] private Transform playerExitPoint;
     [SerializeField] protected Room room;
     private bool discoveredRoomOnEnter = false;
+    protected bool nearDoor = false;  
 
     public void DisableInteractionComponent()
     {
@@ -24,6 +25,7 @@ public class Door : MonoBehaviour, IInteractable
 
     public virtual void OnInteract()
     {
+        if (nearDoor == false) { return; }
         if (GameState.instance.player != null && room.playerInsideRoom == false)
         {
             // enter room
@@ -44,5 +46,15 @@ public class Door : MonoBehaviour, IInteractable
             GameState.instance.player.transform.position = playerExitPoint.position;
             room.playerInsideRoom = false;
         }
+    }
+
+    public void OnCollisionStay2D(Collision2D collision)
+    {
+        nearDoor = true;
+    }
+
+    public void OnCollisionExit2D(Collision2D collision)
+    {
+        nearDoor = false;
     }
 }

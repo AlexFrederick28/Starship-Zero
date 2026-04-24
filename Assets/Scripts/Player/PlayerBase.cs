@@ -312,7 +312,7 @@ public class PlayerBase : MonoBehaviour
         if (npc.currentDialogue.quest.prerequisite.currencyReward > 0)
         {
             currency += npc.currentDialogue.quest.prerequisite.currencyReward;
-            StartCoroutine(UIManager.instance.NewNotification("Currency +" + npc.currentDialogue.quest.prerequisite.currencyReward));
+            StartCoroutine(UIManager.instance.NewNotification("+ $" + npc.currentDialogue.quest.prerequisite.currencyReward));
         }
     }
 
@@ -389,6 +389,8 @@ public class PlayerBase : MonoBehaviour
             interactable.OnEndInteraction();
             interactable = null;
         }
+
+        interactable = null;
     }
 
     private void SetPlayerUI()
@@ -400,7 +402,7 @@ public class PlayerBase : MonoBehaviour
         UIManager.instance.playerHealthSlider.maxValue = maxHealth;
         UIManager.instance.playerHealthSlider.minValue = 0f;
         UIManager.instance.playerHealthSlider.value = currentHealth;
-        UIManager.instance.playerCurrency.text = "Currency: $" + currency.ToString();
+        UIManager.instance.playerCurrency.text = "$" + currency.ToString();
     }
 
     public void ResetPlayerStatsOnRespawn()
