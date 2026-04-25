@@ -5,12 +5,15 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class BulletSelection : MonoBehaviour, IPointerClickHandler
+public class BulletSelection : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public Image projectileSelectButtonImage;
     public Image lockedImage;
     public ProjectileScriptableObject projectileType;
     public bool unlocked = false;
+    public Image backgroundImage;
+    public Color highlightColor;
+    public Color originalColor;
 
     private void OnEnable()
     {
@@ -40,11 +43,22 @@ public class BulletSelection : MonoBehaviour, IPointerClickHandler
             UIManager.instance.projectileSelectButton.GetComponentInChildren<TextMeshProUGUI>().text = "Bullet Type: " + projectileType.projectileName;
             UIManager.instance.projectileSelectButtonImage.sprite = projectileType.displaySprite;
 
+            SoundManager.instance.PlayUISound(1.5f);
             UIManager.instance.projectileSelectDropDown.SetActive(false);
         }
         else
         {
             Debug.Log("No weapon with the same equip ID could be found!");
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        backgroundImage.color = highlightColor;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        backgroundImage.color = originalColor;
     }
 }

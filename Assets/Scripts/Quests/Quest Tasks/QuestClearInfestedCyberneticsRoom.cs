@@ -9,8 +9,14 @@ public class QuestClearInfestedCyberneticsRoom : QuestClearInfestedRoom
 
         if (Spawning.instance.playerClearedRoom == true)
         {
-            UIManager.instance.cyberneticUpgradeLock.enabled = false;
-            UIManager.instance.cardUpgradeLock.enabled = false;
+            UIManager.instance.cyberneticUpgradeButtonImage.color = UIManager.instance.originalColor; ;
+            UIManager.instance.cyberneticUpgradeButtonText.SetActive(true); ;
+            UIManager.instance.cyberneticUpgradeButton.enabled = true;
+            UIManager.instance.cyberneticUpgradeButtonEventTrigger.enabled = true;
+            UIManager.instance.cardUpgradeButtonImage.color = UIManager.instance.originalColor;
+            UIManager.instance.cardUpgradeButtonText.SetActive(true);
+            UIManager.instance.cardUpgradeButtonButton.enabled = true;
+            UIManager.instance.cardUpgradeButtonEventTrigger.enabled = true;
             GameState.instance.cyberneticUpgradesUnlocked = true;
         }
     }

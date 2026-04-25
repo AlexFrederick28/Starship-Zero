@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 714843b74d6c2694aaf2543b3293d6c5
+guid: 6c02a64fb15f112438cf084593ccad31
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -952601085884393494
-    second: StarshipZero_MainMenu_SliderBackground_0
+      213: 6374585191174782205
+    second: StarshipZero_UI_TextBox_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: StarshipZero_MainMenu_SliderBackground_0
+      name: StarshipZero_UI_TextBox_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 268
-        height: 54
+        width: 305
+        height: 268
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ae795370c5ea7c2f0800000000000000
-      internalID: -952601085884393494
+      spriteID: dfc30761573177850800000000000000
+      internalID: 6374585191174782205
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      StarshipZero_MainMenu_SliderBackground_0: -952601085884393494
+      StarshipZero_UI_TextBox_0: 6374585191174782205
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

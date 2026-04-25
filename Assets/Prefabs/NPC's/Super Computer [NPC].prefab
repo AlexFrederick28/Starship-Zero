@@ -339,6 +339,20 @@ MonoBehaviour:
   textIndex: 0
   dialogueIndex: 0
   textSpeed: 0.015
+  spriteRenderer: {fileID: 0}
+  portraitSprites:
+  - {fileID: -6346037954525101935, guid: a841a6f3604d3aa4fa9eff5ad9d60eca, type: 3}
+  - {fileID: 127905488504401813, guid: a841a6f3604d3aa4fa9eff5ad9d60eca, type: 3}
+  - {fileID: -7684413745368860470, guid: a841a6f3604d3aa4fa9eff5ad9d60eca, type: 3}
+  - {fileID: -3441142657379508404, guid: a841a6f3604d3aa4fa9eff5ad9d60eca, type: 3}
+  - {fileID: 661302820274536482, guid: a841a6f3604d3aa4fa9eff5ad9d60eca, type: 3}
+  - {fileID: 5901642031917686331, guid: a841a6f3604d3aa4fa9eff5ad9d60eca, type: 3}
+  - {fileID: -7545958684343627644, guid: a841a6f3604d3aa4fa9eff5ad9d60eca, type: 3}
+  - {fileID: -4359954293963346239, guid: a841a6f3604d3aa4fa9eff5ad9d60eca, type: 3}
+  - {fileID: 6386493236672388456, guid: a841a6f3604d3aa4fa9eff5ad9d60eca, type: 3}
+  - {fileID: 1756813194852620281, guid: a841a6f3604d3aa4fa9eff5ad9d60eca, type: 3}
+  - {fileID: 4670533790457568078, guid: a841a6f3604d3aa4fa9eff5ad9d60eca, type: 3}
+  - {fileID: 7793822149476012074, guid: a841a6f3604d3aa4fa9eff5ad9d60eca, type: 3}
   useVoiceLines: 0
   volume: 0.25
   minPitch: 1
@@ -396,7 +410,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7763283562842622173
 Transform:
   m_ObjectHideFlags: 0

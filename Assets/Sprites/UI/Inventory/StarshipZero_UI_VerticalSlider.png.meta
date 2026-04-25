@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 714843b74d6c2694aaf2543b3293d6c5
+guid: a7b6d3e20f6f2ce429ff96adddea2cd7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -952601085884393494
-    second: StarshipZero_MainMenu_SliderBackground_0
+      213: 2920885055664293932
+    second: StarshipZero_UI_VerticalSlider_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -72,10 +72,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 512
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: StarshipZero_MainMenu_SliderBackground_0
+      name: StarshipZero_UI_VerticalSlider_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 287
         y: 0
-        width: 268
-        height: 54
+        width: 17
+        height: 267
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ae795370c5ea7c2f0800000000000000
-      internalID: -952601085884393494
+      spriteID: c280e9c8b71198820800000000000000
+      internalID: 2920885055664293932
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      StarshipZero_MainMenu_SliderBackground_0: -952601085884393494
+      StarshipZero_UI_VerticalSlider_0: 2920885055664293932
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

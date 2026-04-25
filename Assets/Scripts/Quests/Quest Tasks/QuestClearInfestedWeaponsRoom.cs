@@ -9,7 +9,10 @@ public class QuestClearInfestedWeaponsRoom : QuestClearInfestedRoom
 
         if (Spawning.instance.playerClearedRoom == true)
         {
-            UIManager.instance.weaponCraftingLock.enabled = false;
+            UIManager.instance.weaponCraftingButtonImage.color = UIManager.instance.originalColor;
+            UIManager.instance.weaponCraftingButtonText.SetActive(true);
+            UIManager.instance.weaponCraftingButton.enabled = true;
+            UIManager.instance.weaponCraftingButtonEventTrigger.enabled = true;
             GameState.instance.weaponCraftingUnlocked = true;
         }
     }

@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class ExperiencePoint : MonoBehaviour, ICollectable
 {
+    public Sprite[] expSprites;
+    public SpriteRenderer expRenderer;
     public EnemyBase.DifficultyType currentExperienceType;
 
     public float currentExperienceAmount;
@@ -33,18 +35,22 @@ public class ExperiencePoint : MonoBehaviour, ICollectable
         if (currentExperienceType == EnemyBase.DifficultyType.Easy)
         {
             currentExperienceAmount = easyDefaultExperience;
+            expRenderer.sprite = expSprites[0];
         }
         if (currentExperienceType == EnemyBase.DifficultyType.Medium)
         {
             currentExperienceAmount = mediumDefaultExperience;
+            expRenderer.sprite = expSprites[1];
         }
         if (currentExperienceType == EnemyBase.DifficultyType.Hard)
         {
             currentExperienceAmount = hardDefaultExperience;
+            expRenderer.sprite = expSprites[2];
         }
         if (currentExperienceType == EnemyBase.DifficultyType.Boss)
         {
             currentExperienceAmount = bossDefaultExperience;
+            expRenderer.sprite = expSprites[3];
         }
     }
 

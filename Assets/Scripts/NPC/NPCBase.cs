@@ -23,6 +23,8 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
     [SerializeField] private int dialogueIndex;
     [SerializeField] private float textSpeed;
     private bool givenCurrentQuestReward = false;
+    public Image portraitRenderer;
+    public Sprite[] portraitSprites;
 
     [Space]
     [Header("Audio")]
@@ -160,6 +162,9 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
                 ClearText();
                 StartCoroutine(WriteLine_C());
             }
+
+            int randomSprite = UnityEngine.Random.Range(portraitSprites.Length - 1, 0);
+            portraitRenderer.sprite = portraitSprites[randomSprite];
         }
     }
 
@@ -203,6 +208,9 @@ public class NPCBase : MonoBehaviour, IInteractable, IDialogue
                 ClearText();
                 StartCoroutine(WriteLine_C());
             }
+
+            int randomSprite = UnityEngine.Random.Range(portraitSprites.Length - 1, 0);
+            portraitRenderer.sprite = portraitSprites[randomSprite];
         }
     }
 

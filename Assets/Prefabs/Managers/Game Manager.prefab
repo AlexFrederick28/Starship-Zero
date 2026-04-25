@@ -98,6 +98,7 @@ MonoBehaviour:
   openedMapSize: {x: 1920, y: 1080}
   minimisedMapSize: {x: 400, y: 225}
   mapAnchorPosition: {x: 0, y: 0}
+  mapRectMask: {fileID: 0}
 --- !u!114 &5317677821563666459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,7 +163,7 @@ MonoBehaviour:
   questList: []
   activeQuests: []
   questUIList: []
-  completeQuestSprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  completeQuestSprite: {fileID: 21300000, guid: ebbf1ccb7194ead4e9123f46567413bd, type: 3}
 --- !u!114 &5562658886180886453
 MonoBehaviour:
   m_ObjectHideFlags: 0

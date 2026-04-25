@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
@@ -26,9 +27,20 @@ public class UIManager : MonoBehaviour
     [Space]
     [Header("Tabs")]
     public GameObject tabParent;
-    public Image weaponCraftingLock;
-    public Image cyberneticUpgradeLock;
-    public Image cardUpgradeLock;
+    public Color originalColor;
+    public Color lockedColor;
+    public Image weaponCraftingButtonImage;
+    public EventTrigger weaponCraftingButtonEventTrigger;
+    public GameObject weaponCraftingButtonText;
+    public Button weaponCraftingButton;
+    public Image cyberneticUpgradeButtonImage;
+    public Image cyberneticUpgradeButtonEventTrigger;
+    public GameObject cyberneticUpgradeButtonText;
+    public Button cyberneticUpgradeButton;
+    public Image cardUpgradeButtonImage;
+    public Image cardUpgradeButtonEventTrigger;
+    public GameObject cardUpgradeButtonText;
+    public Button cardUpgradeButtonButton;
 
     [Space]
     [Header("Inventory")]
