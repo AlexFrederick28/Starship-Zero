@@ -17,7 +17,7 @@ MonoBehaviour:
     this weapon accomodates for a large amount of firepower from a single projectile,
     at the cost of being very slow fire rate. The long barrel has been designed for
     an impressive projectile speed and accuracy.
-  weaponSprite: {fileID: 0}
+  weaponSprite: {fileID: 21300000, guid: 34c3d7571767fda47a2336eb6771f751, type: 3}
   damage: 30
   fireRate: 0.75
   critChance: 10

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class NavigationTabUI : MonoBehaviour, IPointerClickHandler
+public class NavigationTabUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public Room room;
     public Image image;
@@ -115,5 +115,15 @@ public class NavigationTabUI : MonoBehaviour, IPointerClickHandler
                 Debug.Log("Got Name");
             }
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        image.color = highlightColour;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        image.color = originalColour;
     }
 }

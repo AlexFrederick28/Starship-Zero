@@ -6,4 +6,9 @@ public class QuestUIParent : MonoBehaviour
 {
     public int questID;
     public UnityEngine.UI.Image image;
+
+    private void OnEnable()
+    {
+        image.SetNativeSize();
+    }
 }

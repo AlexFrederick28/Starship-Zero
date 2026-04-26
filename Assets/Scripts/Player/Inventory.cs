@@ -519,7 +519,6 @@ public class Inventory : MonoBehaviour
         }
         
         // displaying and setting the selected slot
-        slot.slotImage.color = Color.white;
         selectedSlot = slot;
         slot.viewingSlot = true;
     }

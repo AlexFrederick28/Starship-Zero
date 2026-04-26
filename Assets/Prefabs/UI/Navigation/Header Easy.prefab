@@ -62,15 +62,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.62352943, g: 0.62352943, b: 0.62352943, a: 0.39215687}
+  m_Color: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: b5807b35bbd7d3d4dabe954d1b78513e, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -113,7 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NavigationTabUI
   room: {fileID: 0}
   image: {fileID: 129523118586003622}
-  originalColour: {r: 0.62352943, g: 0.62352943, b: 0.62352943, a: 0.39215687}
+  originalColour: {r: 0.6901961, g: 0.6901961, b: 0.6901961, a: 1}
   highlightColour: {r: 1, g: 1, b: 1, a: 0.39215687}
   tabNameText: {fileID: 7093659702137169064}
 --- !u!1 &3484824966425179474
@@ -267,8 +267,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4293263240
+  m_fontColor: {r: 0.53333336, g: 1, b: 0.8980392, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

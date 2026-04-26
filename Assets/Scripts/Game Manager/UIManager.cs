@@ -34,11 +34,11 @@ public class UIManager : MonoBehaviour
     public GameObject weaponCraftingButtonText;
     public Button weaponCraftingButton;
     public Image cyberneticUpgradeButtonImage;
-    public Image cyberneticUpgradeButtonEventTrigger;
+    public EventTrigger cyberneticUpgradeButtonEventTrigger;
     public GameObject cyberneticUpgradeButtonText;
     public Button cyberneticUpgradeButton;
     public Image cardUpgradeButtonImage;
-    public Image cardUpgradeButtonEventTrigger;
+    public EventTrigger cardUpgradeButtonEventTrigger;
     public GameObject cardUpgradeButtonText;
     public Button cardUpgradeButtonButton;
 
@@ -117,12 +117,13 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI currentDifficulty;
 
     [Space]
-    [Header("Weapon Room")]
+    [Header("Weapon Crafting Menu")]
     public GameObject weaponCraftingUIParent;
     public TextMeshProUGUI weaponCraftingSelectedName;
     public TextMeshProUGUI weaponCraftingSelectedDescription;
     public TextMeshProUGUI weaponCraftingSelectedDescriptionAmount;
-    public Image weaponCraftingSelectedImage;
+    public Image weaponCraftingSelectedWeaponImage;
+    public Image weaponCraftingSelectedBulletImage;
     public GameObject weaponCraftingRecipeParent;
     public GameObject weaponCraftingRecipePrefab;
     public GameObject weaponUnlockButton;
@@ -388,4 +389,16 @@ public class UIManager : MonoBehaviour
         navigationNonQuestScrollView.SetActive(false);
         navigationQuestScrollView.SetActive(true);
     }
+
+    public void EmptyCraftingSelection()
+    {
+        weaponCraftingSelectedName.text = string.Empty;
+        weaponCraftingSelectedDescription.text = string.Empty;
+        weaponCraftingSelectedDescriptionAmount.text = string.Empty;
+        weaponCraftingSelectedWeaponImage.color = Color.clear;
+        weaponCraftingSelectedBulletImage.color = Color.clear;
+        weaponUnlockButton.gameObject.SetActive(false);
+        weaponCraftButton.gameObject.SetActive(false);
+    }
 }
+

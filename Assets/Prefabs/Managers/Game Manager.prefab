@@ -148,6 +148,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 346493038e037fc46a2bdafe912f3bf5, type: 3}
   - {fileID: 8300000, guid: 330d85b7b21f4c045860bdbf50c4bc39, type: 3}
   - {fileID: 8300000, guid: db1b58cbe35a58e42972d160610d0f11, type: 3}
+  - {fileID: 8300000, guid: 96e299446cc1fe545a021f9512e74ce2, type: 3}
 --- !u!114 &6870090674624868283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,9 +189,20 @@ MonoBehaviour:
   notificationYDestination: 160
   notificationSpeed: 0.5
   tabParent: {fileID: 0}
-  weaponCraftingLock: {fileID: 0}
-  cyberneticUpgradeLock: {fileID: 0}
-  cardUpgradeLock: {fileID: 0}
+  originalColor: {r: 0, g: 0, b: 0, a: 0}
+  lockedColor: {r: 0, g: 0, b: 0, a: 0}
+  weaponCraftingButtonImage: {fileID: 0}
+  weaponCraftingButtonEventTrigger: {fileID: 0}
+  weaponCraftingButtonText: {fileID: 0}
+  weaponCraftingButton: {fileID: 0}
+  cyberneticUpgradeButtonImage: {fileID: 0}
+  cyberneticUpgradeButtonEventTrigger: {fileID: 0}
+  cyberneticUpgradeButtonText: {fileID: 0}
+  cyberneticUpgradeButton: {fileID: 0}
+  cardUpgradeButtonImage: {fileID: 0}
+  cardUpgradeButtonEventTrigger: {fileID: 0}
+  cardUpgradeButtonText: {fileID: 0}
+  cardUpgradeButtonButton: {fileID: 0}
   inventoryParent: {fileID: 0}
   inventorySlotContentParent: {fileID: 0}
   slot: {fileID: 2477720363533150392, guid: a91f7fefa0e626a438287925bc7b264d, type: 3}
@@ -234,7 +246,8 @@ MonoBehaviour:
   weaponCraftingSelectedName: {fileID: 0}
   weaponCraftingSelectedDescription: {fileID: 0}
   weaponCraftingSelectedDescriptionAmount: {fileID: 0}
-  weaponCraftingSelectedImage: {fileID: 0}
+  weaponCraftingSelectedWeaponImage: {fileID: 0}
+  weaponCraftingSelectedBulletImage: {fileID: 0}
   weaponCraftingRecipeParent: {fileID: 0}
   weaponCraftingRecipePrefab: {fileID: 0}
   weaponUnlockButton: {fileID: 0}

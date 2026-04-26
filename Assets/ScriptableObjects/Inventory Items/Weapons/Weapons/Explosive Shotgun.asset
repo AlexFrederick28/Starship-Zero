@@ -36,5 +36,6 @@ MonoBehaviour:
   - amount: 
     description: 
   - amount: 
-    description: Shotgun with a WIDE spread and fast projectiles in an arc that shoots
-      slowly.
+    description: The second iteration of the Plasma Shotgun, focusing on a higher
+      damage output. This weapons structure focuses on a large barrel diameter, capable
+      of shooting hard hitting projectiles.

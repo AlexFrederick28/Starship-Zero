@@ -8,13 +8,17 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class CraftingBase : MonoBehaviour, IPointerClickHandler
+public class CraftingBase : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public bool recipeUnlocked = false;
     public bool canCraft = false;
     public CraftingRecipe recipe;
     public Image lockedImage;
     public bool craftedFirstWeaponTutorial = false;
+
+    public Image backgroundImage;
+    public Color highlightColor;
+    public Color originalColor;
 
     public static Action OnFirstWeaponCraft;
 
@@ -94,13 +98,13 @@ public class CraftingBase : MonoBehaviour, IPointerClickHandler
         if (recipe.weapon != null)
         {
             // weapon sprite
-            UIManager.instance.weaponCraftingSelectedImage.sprite = recipe.weapon.weaponSprite;
+            UIManager.instance.weaponCraftingSelectedWeaponImage.sprite = recipe.weapon.weaponSprite;
             UIManager.instance.weaponCraftingSelectedName.text = recipe.weapon.weaponName;
         }
         else
         {
             // projectile sprite
-            UIManager.instance.weaponCraftingSelectedImage.sprite = recipe.projectile.displaySprite;
+            UIManager.instance.weaponCraftingSelectedBulletImage.sprite = recipe.projectile.displaySprite;
             UIManager.instance.weaponCraftingSelectedName.text = recipe.projectile.projectileName;
         }
 
@@ -204,6 +208,8 @@ public class CraftingBase : MonoBehaviour, IPointerClickHandler
     {
         UIManager.instance.weaponUnlockButton.GetComponent<Button>().onClick.RemoveAllListeners();
         UIManager.instance.weaponCraftButton.GetComponent<Button>().onClick.RemoveAllListeners();
+        UIManager.instance.weaponCraftingSelectedBulletImage.color = Color.white;
+        UIManager.instance.weaponCraftingSelectedWeaponImage.color = Color.white;
 
         if (recipeUnlocked == true)
         {
@@ -226,7 +232,19 @@ public class CraftingBase : MonoBehaviour, IPointerClickHandler
             UIManager.instance.weaponUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockWeapon);
         }
 
+        SoundManager.instance.PlayUISound(1.5f);
+
         ShowCraftingSummary();
         CheckCraftingPossibility();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        backgroundImage.color = highlightColor;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        backgroundImage.color = originalColor;
     }
 }

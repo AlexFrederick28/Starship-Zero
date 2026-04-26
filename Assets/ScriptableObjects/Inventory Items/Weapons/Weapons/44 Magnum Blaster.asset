@@ -36,5 +36,6 @@ MonoBehaviour:
   - amount: 
     description: 
   - amount: 
-    description: A high damaging pistol with that has a lower fire rate than the
-      other pistols.
+    description: A large pistol variant with a huge damage output. Made with the
+      finest carbon steel, this weapon is heavily saught after being such a durable
+      and lightweight firearm.

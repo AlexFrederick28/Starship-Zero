@@ -118,6 +118,8 @@ public class LevelUpManager : MonoBehaviour
     {
         // NEW
 
+        SoundManager.instance.PlaySoundClip(SoundManager.instance.soundEffectsArray[6], transform, SoundManager.instance.SoundVolume(), true, true, 1.3f, 1.3f);
+
         displayedCards.Clear();
 
         for (int i = 0; i < UIManager.instance.levelUpCardUIList.Length; i++)

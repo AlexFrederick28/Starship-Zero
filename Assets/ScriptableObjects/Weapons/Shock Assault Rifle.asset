@@ -17,7 +17,7 @@ MonoBehaviour:
     at raining bullets upon your enemies. Uniquely, stores its ammo as a thin liquid
     within its battery storage, transforming into a high velocity lethal projectile
     upon being fired.
-  weaponSprite: {fileID: 21300000, guid: d6cc19d7babc06049913e4dd336aea36, type: 3}
+  weaponSprite: {fileID: 21300000, guid: 0236bf96bb8535648babcd22078115a5, type: 3}
   damage: 7.5
   fireRate: 2.5
   critChance: 5

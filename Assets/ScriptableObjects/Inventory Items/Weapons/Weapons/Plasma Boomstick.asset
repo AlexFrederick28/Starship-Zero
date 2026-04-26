@@ -36,4 +36,5 @@ MonoBehaviour:
   - amount: 
     description: 
   - amount: 
-    description: A shotgun that has a small spread and medium fire rate.
+    description: Utlises a Mites eye to produce a wide spread upon firing, contributing
+      to a reliable damage output.

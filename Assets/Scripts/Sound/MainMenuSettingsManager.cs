@@ -28,6 +28,7 @@ public class MainMenuSettingsManager : MonoBehaviour
 
     private void Update()
     {
+        if (musicAudioSource == null) { return; }
         musicAudioSource.volume = musicVolumeSlider.value * mainVolumeSlider.value;
     }
 

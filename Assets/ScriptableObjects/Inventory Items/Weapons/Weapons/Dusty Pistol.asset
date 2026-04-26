@@ -36,4 +36,6 @@ MonoBehaviour:
   - amount: 
     description: 
   - amount: 
-    description: Early game simple pistol that shoots basic projectiles and is consistent.
+    description: One of the first iterations for the plasma pistol, typically known
+      as the ticking time bomb due to its high hazard. So small it fits in the palm
+      of your hand, made from generic stainless steel.

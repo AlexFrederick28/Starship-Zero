@@ -19,7 +19,7 @@ MonoBehaviour:
   description: na
   sellAmount: 100
   rarity: 0
-  sprite: {fileID: 9192928721345626105, guid: fcbbbbdb02c93484e83cb4726f532044, type: 3}
+  sprite: {fileID: 21300000, guid: 34c3d7571767fda47a2336eb6771f751, type: 3}
   dropChance: 0
   weapon: {fileID: 11400000, guid: 5ee2841ad0fd8ac4983f43bb12628877, type: 2}
   weaponDescription:
@@ -36,4 +36,7 @@ MonoBehaviour:
   - amount: 
     description: 
   - amount: 
-    description: A strong sniper that has a faster fire but deals less damage.
+    description: Developed from the original plasma pistol, the structure of this
+      weapon accomodates for a large amount of firepower from a single projectile,
+      at the cost of being very slow fire rate. The long barrel has been designed
+      for an impressive projectile speed and accuracy.

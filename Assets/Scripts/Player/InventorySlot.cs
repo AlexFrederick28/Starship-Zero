@@ -14,7 +14,8 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     public Image slotImage;
     public TextMeshProUGUI stackNumberText;
     public Color originalColour;
-    public Color highlightedColour;
+    public Color multiSelectedColour;
+    public Color viewingSlotColour;
     public bool selectedSlot = false;
     public bool viewingSlot = false;
     public bool weaponEquipped = false;
@@ -121,6 +122,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         {
             if (selectedSlot == true) { DeselectSlot(); } // deselect the slot if it was multi selected
             GameState.instance.playerInventory.ShowSelectedItem(this);
+            slotImage.color = viewingSlotColour;
         }
     }
 
@@ -129,7 +131,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         // selecting and deselct parameters are handled by the OnClickEvent
         if (viewingSlot == true) { SelectSlot(); } // deslect the viewed slot 
         GameState.instance.playerInventory.multiSelectedSlots.Add(this);
-        slotImage.color = highlightedColour;
+        slotImage.color = multiSelectedColour;
         selectedSlot = true;
     }
 

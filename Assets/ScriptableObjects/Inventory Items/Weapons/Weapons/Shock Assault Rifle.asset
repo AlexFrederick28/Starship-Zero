@@ -19,7 +19,7 @@ MonoBehaviour:
   description: na
   sellAmount: 100
   rarity: 0
-  sprite: {fileID: 21300000, guid: d6cc19d7babc06049913e4dd336aea36, type: 3}
+  sprite: {fileID: 21300000, guid: 0236bf96bb8535648babcd22078115a5, type: 3}
   dropChance: 0
   weapon: {fileID: 11400000, guid: cee4685c4493b55468270d05a4e71b88, type: 2}
   weaponDescription:
@@ -36,5 +36,7 @@ MonoBehaviour:
   - amount: 
     description: 
   - amount: 
-    description: A very consistent low damaging assault rifle that constantly fires
-      bullets.
+    description: Known for its rediculously high fire rate, this weapon succeeds
+      at raining bullets upon your enemies. Uniquely, stores its ammo as a thin liquid
+      within its battery storage, transforming into a high velocity lethal projectile
+      upon being fired.
