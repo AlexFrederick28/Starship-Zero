@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemScriptableObject
   defaultCard: 0
   cardName: Exp Gain
-  cardScalingMin: 8
-  cardScalingMax: 26
+  cardScalingMin: 10
+  cardScalingMax: 41
   cardLevel: 0
   cardDescription: + Exp. Gained - gain more exp after killing an enemy
-  cardSprite: {fileID: -6910595954689261531, guid: d9e05939a191326419faaac918a260a9, type: 3}
+  cardSprite: {fileID: 21300000, guid: f910ff7d855292943abe3821f3804078, type: 3}

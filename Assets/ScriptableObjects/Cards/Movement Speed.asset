@@ -15,7 +15,7 @@ MonoBehaviour:
   defaultCard: 0
   cardName: Movement Speed
   cardScalingMin: 1
-  cardScalingMax: 6
+  cardScalingMax: 3
   cardLevel: 0
   cardDescription: + Movement Speed - gain increased movement speed
-  cardSprite: {fileID: -6910595954689261531, guid: d9e05939a191326419faaac918a260a9, type: 3}
+  cardSprite: {fileID: 21300000, guid: 3e265382ab07e2841ba3b0fb9e7fbc66, type: 3}

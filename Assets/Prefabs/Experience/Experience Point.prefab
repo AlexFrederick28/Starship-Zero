@@ -145,13 +145,13 @@ MonoBehaviour:
   currentExperienceType: 0
   currentExperienceAmount: 0
   easyDefaultExperience: 5
-  mediumDefaultExperience: 8
-  hardDefaultExperience: 10
-  bossDefaultExperience: 15
-  easyScaleExperience: 0.2
-  mediumScaleExperience: 0.3
-  hardScaleExperience: 0.35
-  bossScaleExperience: 0.5
+  mediumDefaultExperience: 6
+  hardDefaultExperience: 8
+  bossDefaultExperience: 10
+  easyScaleExperience: 0.05
+  mediumScaleExperience: 0.1
+  hardScaleExperience: 0.2
+  bossScaleExperience: 0.3
 --- !u!61 &407306473147868651
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -190,16 +190,16 @@ public class Room : MonoBehaviour
             textComponent.color = Color.black;
             textComponent.enableAutoSizing = true;
             textComponent.fontSizeMin = 0.2f;
-            textComponent.fontSizeMax = 0.3f;
+            textComponent.fontSizeMax = 0.2f;
 
             if (roomInfoList[i].showOnState == RoomStates.infested && roomInfoList[i].isTimer == true)
             {
                 //float roomDifficulty = (spawning.timerLength / spawning.difficultyMultiplier) / 60;
-                textComponent.text = roomInfoList[i].title + " " + spawning.timerLength.ToString(); //+ "\n" + roomInfoList[i].extraText + " " + (int)roomDifficulty;
+                textComponent.text = "  " + roomInfoList[i].title + " " + spawning.timerLength.ToString(); //+ "\n" + roomInfoList[i].extraText + " " + (int)roomDifficulty;
             }
             else
             {
-                textComponent.text = roomInfoList[i].title + " " + roomInfoList[i].extraText;
+                textComponent.text = "  " + roomInfoList[i].title + " " + roomInfoList[i].extraText;
             }
         }
     }

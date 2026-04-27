@@ -12,6 +12,11 @@ public class SpecificWeaponCritChanceCard : CardBase
         {
             //critChanceIncrease = ((float)totalStatAmount / 100) * LevelUpManager.instance.chosenWeapon.critChance; OLD: used the entire tracked amount rather than the shown amount
             critChanceIncrease = ((float)statUpgradeAmount / 100) * LevelUpManager.instance.chosenWeapon.critChance;
+
+            if (critChanceIncrease < 1f)
+            {
+                critChanceIncrease = 1f;
+            }
         }
         else
         {

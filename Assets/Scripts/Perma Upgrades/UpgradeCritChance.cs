@@ -8,7 +8,8 @@ public class UpgradeCritChance : UpgradeBase
 
         base.UpgradeCard();
 
-        float critChanceIncrease = (currentStatIncreaseAndCost.x / 100) * GameState.instance.player.critChance;
+        //float critChanceIncrease = (currentStatIncreaseAndCost.x / 100) * GameState.instance.player.critChance;
+        float critChanceIncrease = currentStatIncreaseAndCost.x;
         if ((int)critChanceIncrease < 1)
         {
             critChanceIncrease = 1f;
@@ -23,7 +24,8 @@ public class UpgradeCritChance : UpgradeBase
 
         base.RefundCard();
 
-        float critChanceDecrease = (currentStatIncreaseAndCost.x / 100) * GameState.instance.player.critChance;
+        //float critChanceDecrease = (currentStatIncreaseAndCost.x / 100) * GameState.instance.player.critChance;
+        float critChanceDecrease = currentStatIncreaseAndCost.x;
         if ((int)critChanceDecrease < 1)
         {
             critChanceDecrease = 1f;

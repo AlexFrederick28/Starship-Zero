@@ -399,7 +399,7 @@ public class Inventory : MonoBehaviour
 
         OnClearingMultiSelectedSlotsFromList?.Invoke();
 
-        StartCoroutine(UIManager.instance.NewNotification("Currency + " + totalEarned));
+        StartCoroutine(UIManager.instance.NewNotification("Currency + " + totalEarned, true, GameState.instance.player.transform));
         RemoveGapsFromInventory();
         multiSelectedSlots.Clear();
     }

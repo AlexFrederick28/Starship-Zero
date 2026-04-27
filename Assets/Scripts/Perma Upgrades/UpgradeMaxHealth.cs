@@ -8,7 +8,8 @@ public class UpgradeMaxHealth : UpgradeBase
 
         base.UpgradeCard();
 
-        float healthIncrease = (currentStatIncreaseAndCost.x / 100) * GameState.instance.player.maxHealth;
+        //float healthIncrease = (currentStatIncreaseAndCost.x / 100) * GameState.instance.player.maxHealth;
+        float healthIncrease = currentStatIncreaseAndCost.x;
 
         if ((int)healthIncrease < 1)
         {
@@ -25,7 +26,8 @@ public class UpgradeMaxHealth : UpgradeBase
 
         base.RefundCard();
 
-        float healthDecrease = (currentStatIncreaseAndCost.x / 100) * GameState.instance.player.maxHealth;
+        //float healthDecrease = (currentStatIncreaseAndCost.x / 100) * GameState.instance.player.maxHealth;
+        float healthDecrease = currentStatIncreaseAndCost.x;
 
         if ((int)healthDecrease < 1)
         {

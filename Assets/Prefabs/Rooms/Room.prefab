@@ -147,7 +147,7 @@ MonoBehaviour:
   roomInformationPanel: {fileID: 7975053287243819277}
   currentState: 0
   clearedState: 0
-  roomDifficulty: 0
+  roomDifficulty: 2
   emptyRoom: {fileID: 6421958285912189900}
   infestedRoom: {fileID: 4189630379278049378}
   weaponsRoom: {fileID: 8646567814421255547}
@@ -155,7 +155,7 @@ MonoBehaviour:
   playerInsideRoom: 0
   animator: {fileID: 2523495927155365866}
   lights: []
-  infestedColour: {r: 1, g: 0.3529412, b: 0.3529412, a: 1}
+  infestedColour: {r: 1, g: 0.30588236, b: 0.30588236, a: 1}
   clearedColour: {r: 1, g: 1, b: 1, a: 1}
 --- !u!50 &5969774344006428218
 Rigidbody2D:
@@ -267,7 +267,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8603175247578195692, guid: 1664def9f8eb1714c8d642f6df829d53, type: 3}
+  m_Sprite: {fileID: 7230046685643973353, guid: 86cd9ab1cddaf9342ae58a9343411de8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -288,7 +288,7 @@ Animator:
   m_GameObject: {fileID: 1045656543031957435}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 131ab8557a4db66498426f1e6c82c0d0, type: 2}
+  m_Controller: {fileID: 9100000, guid: cd84639d26a98db43b6232629324369b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1037,7 +1037,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 2800000, guid: 06dd302d28e35dc43b69f6bbce417ba2, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0

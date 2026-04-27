@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemScriptableObject
   defaultCard: 0
   cardName: Drop Chance
-  cardScalingMin: 3
-  cardScalingMax: 9
+  cardScalingMin: 10
+  cardScalingMax: 16
   cardLevel: 0
   cardDescription: + Drop Chance -  Higher chance of an enemy dropping an item on
     death
-  cardSprite: {fileID: -6910595954689261531, guid: d9e05939a191326419faaac918a260a9, type: 3}
+  cardSprite: {fileID: 21300000, guid: 8075b11725b0e42478806cb63fa5e7c5, type: 3}

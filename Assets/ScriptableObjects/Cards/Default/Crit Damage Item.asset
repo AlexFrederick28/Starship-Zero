@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemScriptableObject
   defaultCard: 1
   cardName: Crit. Damage
-  cardScalingMin: 15
-  cardScalingMax: 41
+  cardScalingMin: 30
+  cardScalingMax: 80
   cardLevel: 0
   cardDescription: + Crit. Damage - Adds more damage to critical hits.
-  cardSprite: {fileID: -7059618875203899034, guid: 8b3b68d838b2d6647b36a02721a36157, type: 3}
+  cardSprite: {fileID: 21300000, guid: 3a3b69e20b8c4ff4f957325b9805055c, type: 3}

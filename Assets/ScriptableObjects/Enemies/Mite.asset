@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Mite
   m_EditorClassIdentifier: Assembly-CSharp::EnemyScriptableObject
   enemyName: Mite
-  health: 10
+  health: 6
   damage: 3
   speed: 0.5
   level: 1
-  healthScaling: 5
-  damageScaling: 1
+  healthScaling: 1
+  damageScaling: 0.5
   speedScaling: 0

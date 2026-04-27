@@ -17,6 +17,6 @@ MonoBehaviour:
   damage: 5
   speed: 0.4
   level: 1
-  healthScaling: 5
+  healthScaling: 2
   damageScaling: 1
   speedScaling: 0

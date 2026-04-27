@@ -18,7 +18,7 @@ public class InfestedDoor : Door
         {
             if (gameObject.activeInHierarchy == true)
             {
-                StartCoroutine(UIManager.instance.NewNotification("No Weapon Equipped!"));
+                StartCoroutine(UIManager.instance.NewNotification("No Weapon Equipped!", true, GameState.instance.player.transform));
             }
             return;
         }

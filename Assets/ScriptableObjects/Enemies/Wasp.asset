@@ -15,8 +15,8 @@ MonoBehaviour:
   enemyName: Wasp
   health: 15
   damage: 5
-  speed: 0.6
+  speed: 0.8
   level: 1
-  healthScaling: 5
+  healthScaling: 2
   damageScaling: 1
   speedScaling: 0

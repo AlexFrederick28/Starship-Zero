@@ -192,7 +192,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 77cebbdbfa96671448ef30fc0593ac58, type: 2}
   - {fileID: 11400000, guid: 903b12cb14098994dbf4c83f57acdae7, type: 2}
   - {fileID: 11400000, guid: e9addd1566cc81740b86a77e02fdc37e, type: 2}
-  dropFrequencyPercentChance: 60
+  dropFrequencyPercentChance: 20
   recordedDropFrequencyPercentChance: 0
   volume: 0.2
   minPitch: 1

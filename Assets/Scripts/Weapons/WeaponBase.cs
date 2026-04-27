@@ -291,6 +291,7 @@ public class WeaponBase : MonoBehaviour
 
         if (critRoll <= critChance) // crit
         {
+            StartCoroutine(UIManager.instance.NewNotification("CRIT " + damage * (1 + critDamage / 100), true, collision.transform));
             finalDamage += damage * (1 + critDamage/100);
         }
 

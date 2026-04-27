@@ -164,6 +164,7 @@ public class UIManager : MonoBehaviour
     public Slider MusicSlider;
     public Slider SoundsEffectsSlider;
 
+    public DestroyObject destroyObject;
 
     public static UIManager instance;
     private void OnEnable()
@@ -247,14 +248,24 @@ public class UIManager : MonoBehaviour
     /// </summary>
     /// <param name="description"></param>
     /// <returns></returns>
-    public IEnumerator NewNotification(string description)
+    public IEnumerator NewNotification(string description, bool forPlayer, Transform transform)
     {
         GameObject newNotification = Instantiate(instance.notificationPrefab);
-        newNotification.transform.SetParent(instance.playerUIParent.transform);
+        newNotification.transform.SetParent(instance.playerUIParent.transform.root);
         newNotification.GetComponent<TextMeshProUGUI>().text = description;
-        newNotification.GetComponent<RectTransform>().localPosition = new Vector3(0, notificationYPosition, 0);
+        newNotification.AddComponent<DestroyObject>();
 
-        float timer = 0;
+        if (forPlayer == true)
+        {
+            newNotification.GetComponent<RectTransform>().localPosition = new Vector3(0, notificationYPosition, 0);
+        }
+        else
+        {
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+            newNotification.GetComponent<RectTransform>().localPosition = screenPos.normalized;
+        }
+
+            float timer = 0;
         while (timer < notificationTime)
         {
             Vector3 newPos = new Vector3(0, notificationYPosition, 0) - new Vector3 (0, notificationYDestination, 0);

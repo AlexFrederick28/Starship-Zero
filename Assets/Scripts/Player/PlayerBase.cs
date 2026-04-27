@@ -288,7 +288,7 @@ public class PlayerBase : MonoBehaviour
     public void AddExperience(int amount)
     {
         CurrentExperience += amount;
-        StartCoroutine(UIManager.instance.NewNotification("Exp +" + amount));
+        StartCoroutine(UIManager.instance.NewNotification("Exp +" + amount, true, transform));
 
         if (SoundManager.instance.soundEffectsArray[3] != null)
         {
@@ -303,7 +303,7 @@ public class PlayerBase : MonoBehaviour
     public void LevelUp()
     {
         Debug.Log("Leveled Up!");
-        StartCoroutine(UIManager.instance.NewNotification("Level +1"));
+        StartCoroutine(UIManager.instance.NewNotification("Level +1", true, transform));
         Level++;
     }
 
@@ -312,7 +312,7 @@ public class PlayerBase : MonoBehaviour
         if (npc.currentDialogue.quest.prerequisite.currencyReward > 0)
         {
             currency += npc.currentDialogue.quest.prerequisite.currencyReward;
-            StartCoroutine(UIManager.instance.NewNotification("+ $" + npc.currentDialogue.quest.prerequisite.currencyReward));
+            StartCoroutine(UIManager.instance.NewNotification("+ $" + npc.currentDialogue.quest.prerequisite.currencyReward, true, GameState.instance.player.transform));
         }
     }
 

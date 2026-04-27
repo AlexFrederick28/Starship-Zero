@@ -97,6 +97,14 @@ public class GameState : MonoBehaviour
         currentState = States.Paused;
     }
 
+    public void ChangeStateToUnpaused()
+    {
+        if (currentState != States.Paused) { return; }
+
+        currentState = previousState;
+        OnGameUnPause?.Invoke();
+    }
+
     public void PauseAndResumeGame()
     {
         if (gamePaused == false)

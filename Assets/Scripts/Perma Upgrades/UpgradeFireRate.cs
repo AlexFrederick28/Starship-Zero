@@ -8,7 +8,8 @@ public class UpgradeFireRate : UpgradeBase
 
         base.UpgradeCard();
 
-        float fireRateIncrease = (currentStatIncreaseAndCost.x / 100) * GameState.instance.player.fireRate;
+        //float fireRateIncrease = (currentStatIncreaseAndCost.x / 100) * GameState.instance.player.fireRate;
+        float fireRateIncrease = currentStatIncreaseAndCost.x;
         if ((int)fireRateIncrease < 1)
         {
             fireRateIncrease = 1f;
@@ -23,7 +24,8 @@ public class UpgradeFireRate : UpgradeBase
 
         base.RefundCard();
 
-        float fireRateDecrease = (currentStatIncreaseAndCost.x / 100) * GameState.instance.player.fireRate;
+        //float fireRateDecrease = (currentStatIncreaseAndCost.x / 100) * GameState.instance.player.fireRate;
+        float fireRateDecrease = currentStatIncreaseAndCost.x;
         if ((int)fireRateDecrease < 1)
         {
             fireRateDecrease = 1f;

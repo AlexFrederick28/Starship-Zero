@@ -15,7 +15,7 @@ MonoBehaviour:
   defaultCard: 0
   cardName: Life Steal
   cardScalingMin: 1
-  cardScalingMax: 5
+  cardScalingMax: 3
   cardLevel: 0
   cardDescription: + Life Steal - Gain an amount of health back on damaging an enemy
-  cardSprite: {fileID: -6910595954689261531, guid: d9e05939a191326419faaac918a260a9, type: 3}
+  cardSprite: {fileID: 21300000, guid: 5aae2f1dac129a44bb514304d3fb7c7b, type: 3}

@@ -8,7 +8,8 @@ public class UpgradeDamage : UpgradeBase
 
         base.UpgradeCard();
 
-        float damageIncrease = (currentStatIncreaseAndCost.x / 100) * GameState.instance.player.damage;
+        //float damageIncrease = (currentStatIncreaseAndCost.x / 100) * GameState.instance.player.damage;
+        float damageIncrease = currentStatIncreaseAndCost.x;
         if ((int)damageIncrease < 1)
         {
             damageIncrease = 1f;
@@ -23,7 +24,8 @@ public class UpgradeDamage : UpgradeBase
 
         base.RefundCard();
 
-        float damageDecrease = (currentStatIncreaseAndCost.x / 100) * GameState.instance.player.damage;
+        //float damageDecrease = (currentStatIncreaseAndCost.x / 100) * GameState.instance.player.damage;
+        float damageDecrease = currentStatIncreaseAndCost.x;
         if ((int)damageDecrease < 1)
         {
             damageDecrease = 1f;

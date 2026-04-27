@@ -136,7 +136,7 @@ public class CraftingBase : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         {
             recipeUnlocked = true;
             GameState.instance.player.currency -= recipe.unlockCost;
-            UIManager.instance.NewNotification("Currency -" + recipe.unlockCost);
+            UIManager.instance.NewNotification("Currency -" + recipe.unlockCost, true, GameState.instance.player.transform);
             UIManager.instance.weaponUnlockButton.SetActive(false);
             lockedImage.enabled = false;
             if (recipe.projectile != null) { GameState.instance.playerInventory.unlockedProjectileTypes.Add(recipe.projectile); return; }

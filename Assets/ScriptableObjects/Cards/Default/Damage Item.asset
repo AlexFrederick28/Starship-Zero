@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemScriptableObject
   defaultCard: 1
   cardName: Damage
-  cardScalingMin: 15
-  cardScalingMax: 41
+  cardScalingMin: 20
+  cardScalingMax: 51
   cardLevel: 0
   cardDescription: + Weapon Damage - Deal more damage.
-  cardSprite: {fileID: -6910595954689261531, guid: d9e05939a191326419faaac918a260a9, type: 3}
+  cardSprite: {fileID: 21300000, guid: 98f6aa2446c18b24a9cc799cac660ef4, type: 3}

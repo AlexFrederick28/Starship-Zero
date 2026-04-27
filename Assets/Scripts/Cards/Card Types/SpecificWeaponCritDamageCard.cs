@@ -11,6 +11,11 @@ public class SpecificWeaponCritDamageCard : CardBase
         if (LevelUpManager.instance.chosenWeapon.critDamage > 0)
         {
             critDamageIncrease = ((float)statUpgradeAmount / 100) * LevelUpManager.instance.chosenWeapon.critDamage;
+
+            if (critDamageIncrease < 1f)
+            {
+                critDamageIncrease = 1f;
+            }
         }
         else
         {

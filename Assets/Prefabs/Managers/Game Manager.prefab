@@ -57,6 +57,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameState
   currentState: 1
   gamePaused: 0
+  previousState: 0
   player: {fileID: 0}
   playerTransform: {fileID: 0}
   playerInventory: {fileID: 0}
@@ -132,10 +133,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: aaccc4ff374652f41b7cec18dd87b992, type: 3}
   - {fileID: 8300000, guid: 62fbfe45f0d02dc42bb73243dfda2aa0, type: 3}
   - {fileID: 8300000, guid: f5d61a0dd716f1e44a2e78790a9f5be7, type: 3}
+  - {fileID: 8300000, guid: 743d758305630904e8447ba3e7402e84, type: 3}
+  - {fileID: 8300000, guid: 24a2697a2a33aaa409723c80d8425ff7, type: 3}
   battleMusic:
   - {fileID: 8300000, guid: 9c8c30b619751e944b0ae57c55fb8bf5, type: 3}
   - {fileID: 8300000, guid: 0ef07e75eb0428f4f84aefd13e3893c8, type: 3}
   - {fileID: 8300000, guid: da287d679651667469b0c05f0028a4f6, type: 3}
+  - {fileID: 8300000, guid: 2039e1adf6b09ee499ab622bb7af6c88, type: 3}
   tutorialMusic:
   - {fileID: 0}
   soundObject: {fileID: 7917900519422113262, guid: a0709ac2481edc54b8950b3c87142ef0, type: 3}
@@ -357,3 +361,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a63ab40f6c4f5948a22e169bc6cc3fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneChanger
+  videoImage: {fileID: 0}
+  videoSource: {fileID: 0}

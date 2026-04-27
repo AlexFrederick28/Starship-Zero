@@ -19,7 +19,7 @@ MonoBehaviour:
   weaponSprite: {fileID: 21300000, guid: 99caac795a40bd74f804d4b7785b4954, type: 3}
   damage: 10
   fireRate: 0.75
-  critChance: 0
+  critChance: 5
   critDamage: 50
   projectileSpeed: 20
   projectileToFire: {fileID: 396421345929245815, guid: ca871753ad77499448ad90838024f6d9, type: 3}

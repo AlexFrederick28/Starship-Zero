@@ -20,7 +20,7 @@ MonoBehaviour:
     description: Damage
   - amount: 0.75
     description: Fire Rate
-  - amount: 5%
+  - amount: 15%
     description: Crit Chance
   - amount: 50%
     description: Crit Damage

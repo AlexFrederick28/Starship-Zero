@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemScriptableObject
   defaultCard: 1
   cardName: Fire Rate
-  cardScalingMin: 15
-  cardScalingMax: 41
+  cardScalingMin: 10
+  cardScalingMax: 31
   cardLevel: 0
   cardDescription: + Fire Rate - Attack quicker
-  cardSprite: {fileID: -6910595954689261531, guid: d9e05939a191326419faaac918a260a9, type: 3}
+  cardSprite: {fileID: 21300000, guid: 26d3706c854756e4692eb7aab68ab40a, type: 3}
