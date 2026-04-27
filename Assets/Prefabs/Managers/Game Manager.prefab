@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 4020860564896548261}
   - component: {fileID: 824038302523504858}
   - component: {fileID: 3680459805288895175}
+  - component: {fileID: 1141177093750060168}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -344,3 +345,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e32f330438820342b8bf93cd53e9c78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseUI
+--- !u!114 &1141177093750060168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3904750311189774911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a63ab40f6c4f5948a22e169bc6cc3fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneChanger

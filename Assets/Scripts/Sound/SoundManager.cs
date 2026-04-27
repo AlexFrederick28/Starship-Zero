@@ -39,6 +39,11 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        musicObject.volume = MusicVolume();
+    }
+
     public void PlaySoundClip(AudioClip clip, Transform transform, float volume, bool isSound2D, bool randomisePitch, float minPitch, float maxPitch)
     {
         AudioSource audioSource = Instantiate(soundObject, transform.position, Quaternion.identity);
@@ -143,6 +148,8 @@ public class SoundManager : MonoBehaviour
         {
             Debug.Log("cannot find master slider or music slider!");
         }
+
+        soundEffectVolume = UIManager.instance.MasterSlider.value * UIManager.instance.MusicSlider.value;
 
         return soundEffectVolume;
     }

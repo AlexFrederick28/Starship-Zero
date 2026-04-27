@@ -6,7 +6,7 @@ public class GameState : MonoBehaviour
     public enum States { Paused, Main, RoomClear, OpenUI }
     public States currentState;
     public bool gamePaused = false;
-    private States previousState;
+    public States previousState;
     public PlayerBase player;
     public Transform playerTransform;
     public Inventory playerInventory;
@@ -18,6 +18,8 @@ public class GameState : MonoBehaviour
     public Action OnPlayerLevelUp;
     public Action<Room> OnCompletedInfestedClear;
     public Action OnEnteringInfestedRoom;
+    public Action OnGamePause;
+    public Action OnGameUnPause;
 
     [Space]
     [Header("Unlock Status")]

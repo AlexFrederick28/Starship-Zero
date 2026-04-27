@@ -186,19 +186,23 @@ public class Spawning : Difficulty
         {
             //Debug.Log(this.name + "Subscribed");
             GameState.instance.OnPlayerRespawn += ResetInfestedRoom;
-            GameState.instance.OnPlayerRespawn += PauseSpawning;
+            GameState.instance.OnPlayerRespawn += PauseAndUnpauseSpawning;
             GameState.instance.OnPlayerRespawn += DisableInstanceOnPlayerRespawn;
             GameState.instance.OnPlayerRetry += ResetInfestedRoom;
-            GameState.instance.OnPlayerRetry += PauseSpawning;
-            GameState.instance.OnPlayerLevelUp += PauseSpawning;
-            LevelUpManager.OnCardChosen += PauseSpawning;
+            GameState.instance.OnPlayerRetry += PauseAndUnpauseSpawning;
+            GameState.instance.OnPlayerLevelUp += PauseAndUnpauseSpawning;
+            LevelUpManager.OnCardChosen += PauseAndUnpauseSpawning;
 
             GameState.instance.OnCompletedInfestedClear += GameState.instance.playerInventory.DestroyLoadout;
             GameState.instance.OnCompletedInfestedClear += GameState.instance.playerInventory.RemoveGapsFromInventoryOnInfestedRoomCompletion;
 
             GameState.instance.OnEnteringInfestedRoom?.Invoke();
 
-            PlayerBase.OnPlayerDeath += PauseSpawning;
+            PlayerBase.OnPlayerDeath += PauseAndUnpauseSpawning;
+
+            GameState.instance.OnGamePause += PauseSpawning;
+            GameState.instance.OnGameUnPause += UnPauseSpawning;
+
         }
 
         if (instance == null)
@@ -221,17 +225,20 @@ public class Spawning : Difficulty
     private void OnDisable()
     {
         GameState.instance.OnPlayerRespawn -= ResetInfestedRoom;
-        GameState.instance.OnPlayerRespawn -= PauseSpawning;
+        GameState.instance.OnPlayerRespawn -= PauseAndUnpauseSpawning;
         GameState.instance.OnPlayerRespawn -= DisableInstanceOnPlayerRespawn;
         GameState.instance.OnPlayerRetry -= ResetInfestedRoom;
-        GameState.instance.OnPlayerRetry -= PauseSpawning;
-        GameState.instance.OnPlayerLevelUp -= PauseSpawning;
-        LevelUpManager.OnCardChosen -= PauseSpawning;
+        GameState.instance.OnPlayerRetry -= PauseAndUnpauseSpawning;
+        GameState.instance.OnPlayerLevelUp -= PauseAndUnpauseSpawning;
+        LevelUpManager.OnCardChosen -= PauseAndUnpauseSpawning;
 
         GameState.instance.OnCompletedInfestedClear -= GameState.instance.playerInventory.DestroyLoadout;
         GameState.instance.OnCompletedInfestedClear -= GameState.instance.playerInventory.RemoveGapsFromInventoryOnInfestedRoomCompletion;
 
-        PlayerBase.OnPlayerDeath -= PauseSpawning;
+        PlayerBase.OnPlayerDeath -= PauseAndUnpauseSpawning;
+
+        GameState.instance.OnGamePause -= PauseSpawning;
+        GameState.instance.OnGameUnPause -= UnPauseSpawning;
 
         if (instance == this)
         {

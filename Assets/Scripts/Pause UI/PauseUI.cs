@@ -37,6 +37,7 @@ public class PauseUI : MonoBehaviour
                         {
                             UIManager.instance.pauseMenuParent.SetActive(true);
                             GameState.instance.ChangeStateToPaused();
+                            GameState.instance.OnGamePause?.Invoke();
                         }
                     }
                 }
@@ -45,6 +46,7 @@ public class PauseUI : MonoBehaviour
                 {
                     UIManager.instance.pauseMenuParent.SetActive(false);
                     GameState.instance.ChangeToPreviousState();
+                    GameState.instance.OnGameUnPause?.Invoke();
                 }
 
 

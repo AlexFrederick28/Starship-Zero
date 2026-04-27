@@ -81,7 +81,7 @@ public class Difficulty : MonoBehaviour
         }
     }
 
-    public virtual void PauseSpawning()
+    public virtual void PauseAndUnpauseSpawning()
     {
         if (timerPaused == false)
         {
@@ -89,6 +89,25 @@ public class Difficulty : MonoBehaviour
         }
         else if (timerPaused == true)
         {
+            timerPaused = false;
+        }
+    }
+
+    public virtual void PauseSpawning()
+    {
+        timerPaused = true;
+    }
+
+    public virtual void UnPauseSpawning()
+    {
+        if (GameState.instance.player.isLevellingUp == true)
+        {
+            // do not unpause if the level up card menu is open
+
+        }
+        else
+        {
+            // if out of the level up menu
             timerPaused = false;
         }
     }

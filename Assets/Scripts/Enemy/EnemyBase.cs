@@ -110,6 +110,9 @@ public class EnemyBase : MonoBehaviour
             GameState.instance.OnCompletedInfestedClear += ResetVariablesToRecordedFromCompletedInfestedRoom;
             GameState.instance.OnPlayerRespawn += ResetVariablesToRecorded;
             GameState.instance.OnPlayerRetry += ResetVariablesToRecorded;
+
+            GameState.instance.OnGamePause += PauseEnemy;
+            GameState.instance.OnGameUnPause += UnPauseEnemy;
         }
 
         PlayerBase.OnPlayerDeath += PauseAndUnpauseEnemy;
@@ -146,6 +149,9 @@ public class EnemyBase : MonoBehaviour
         GameState.instance.OnCompletedInfestedClear -= ResetVariablesToRecordedFromCompletedInfestedRoom;
         GameState.instance.OnPlayerRespawn -= ResetVariablesToRecorded;
         GameState.instance.OnPlayerRetry -= ResetVariablesToRecorded;
+
+        GameState.instance.OnGamePause -= PauseEnemy;
+        GameState.instance.OnGameUnPause -= UnPauseEnemy;
 
         PlayerBase.OnPlayerDeath -= PauseAndUnpauseEnemy;
     }
@@ -307,6 +313,18 @@ public class EnemyBase : MonoBehaviour
             animator.speed = animationSpeed;
             enemyPaused = false;
         }
+    }
+
+    protected void PauseEnemy()
+    {
+        animator.speed = 0.0f;
+        enemyPaused = true;
+    }
+
+    protected void UnPauseEnemy()
+    {
+        animator.speed = animationSpeed;
+        enemyPaused = false;
     }
 
     private void OnTriggerStay2D(Collider2D collision)

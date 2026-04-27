@@ -17,7 +17,7 @@ MonoBehaviour:
   maxStackSize: 1
   itemName: Devil's Charged Sniper Rifle
   description: na
-  sellAmount: 100
+  sellAmount: 700
   rarity: 0
   sprite: {fileID: 21300000, guid: eb86f78f225982542acd07f2f7326311, type: 3}
   dropChance: 0

@@ -364,7 +364,14 @@ public class Inventory : MonoBehaviour
                 if (multiSelectedSlots[i] != null)
                 {
                     UnequipMultipleWeapons(multiSelectedSlots[i]);
-                    totalEarned += multiSelectedSlots[i].inventoryItem.sellAmount * multiSelectedSlots[i].currentStackSize;
+                    if (multiSelectedSlots[i].inventoryItem.isWeapon == true)
+                    {
+                        totalEarned += multiSelectedSlots[i].inventoryItem.sellAmount * 1;
+                    }
+                    else
+                    {
+                        totalEarned += multiSelectedSlots[i].inventoryItem.sellAmount * multiSelectedSlots[i].currentStackSize;
+                    }
                     Debug.Log("Removing item at position: " + multiSelectedSlots[i].slotPosition);
                     multiSelectedSlots[i].SellItem();
                     multiSelectedSlots[i].RefreshSlot();
@@ -374,7 +381,15 @@ public class Inventory : MonoBehaviour
         }
         else if (selectedSlot.inventoryItem != null && selectedSlot.viewingSlot == true)
         {
-            totalEarned += selectedSlot.inventoryItem.sellAmount * selectedSlot.amountFromStackToSell;
+            if (selectedSlot.inventoryItem.isWeapon == true)
+            {
+                totalEarned += selectedSlot.inventoryItem.sellAmount * 1;
+            }
+            else
+            {
+                totalEarned += selectedSlot.inventoryItem.sellAmount * selectedSlot.amountFromStackToSell;
+            }
+
             selectedSlot.SellItem();
         }
         else
