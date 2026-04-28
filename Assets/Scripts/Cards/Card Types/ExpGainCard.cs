@@ -10,7 +10,7 @@ public class ExpGainCard : CardBase
 
         LevelUpManager.instance.chosenCard.cardInfo.cardLevel++;
 
-        Debug.Log("Applied: " + LevelUpManager.instance.chosenCard.statUpgradeAmount.ToString() + "from life steal Card!");
+        Debug.Log("Applied: " + LevelUpManager.instance.chosenCard.statUpgradeAmount.ToString() + "from exp Card!");
     }
 
     public override void CustomOnHitEvent(float damageDealt, EnemyBase enemy)
@@ -18,7 +18,7 @@ public class ExpGainCard : CardBase
         if (totalStatAmount == 0) { return; }
         base.CustomOnHitEvent(damageDealt, enemy);
 
-        float expToAdd = ((float)totalStatAmount / 100) * enemy.experienceAdditive;
+        float expToAdd = (float)totalStatAmount;
         if (expToAdd < 1)
         {
             expToAdd = initialAdditiveExp;

@@ -18,7 +18,7 @@ MonoBehaviour:
   itemName: Voltaic Thorns
   description: An evolutionary trait of the Mite, using its internal plasma energy
     to create streams of electricity throughout its claws.
-  sellAmount: 1000
+  sellAmount: 400
   rarity: 3
   sprite: {fileID: 661260496527270404, guid: 097fc379ea72bd84c8d33347bd61db5a, type: 3}
   dropChance: 2

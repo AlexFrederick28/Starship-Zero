@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Flying Salamander
   m_EditorClassIdentifier: Assembly-CSharp::EnemyScriptableObject
   enemyName: Flying Salamander
-  health: 25
+  health: 45
   damage: 5
   speed: 0.4
   level: 1
